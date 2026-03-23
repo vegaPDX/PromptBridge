@@ -1,7 +1,7 @@
 {
   "scenarioId": "1.8-meeting-summary",
-  "generatedAt": "2026-03-22T17:02:00.896Z",
-  "generatedWith": "claude-sonnet-4-20250514",
+  "generatedAt": "2026-03-22T20:00:00.000Z",
+  "generatedWith": "claude-opus-4-6-20260322",
   "options": [
     {
       "id": "a",
@@ -20,30 +20,14 @@
     }
   ],
   "responses": {
-    "response_weak": "I'd be happy to help summarize your meeting. However, I don't see any meeting content or notes provided. Could you please share the meeting details, notes, or transcript that you'd like me to summarize?",
-    "response_strong": "I'd be happy to help you create a professional meeting summary with that structure. To generate the summary with the sections you requested (key decisions, action items with owners/deadlines, discussion points, and next steps), I'll need you to share your handwritten notes or the meeting content. \n\nOnce you provide your notes, I'll organize them into this format:\n\n**Q4 Planning Meeting Summary**\n**Date:** [Meeting date]\n\n**1. Key Decisions Made**\n- [Decision 1]\n- [Decision 2]\n\n**2. Action Items**\n- [Task] - Owner: [Name] - Deadline: [Date]\n- [Task] - Owner: [Name] - Deadline: [Date]\n\n**3. Main Discussion Points**\n- [Topic 1]: [Brief summary]\n- [Topic 2]: [Brief summary]\n\n**4. Next Steps**\n- [Next step 1]\n- [Next step 2]\n\nPlease share your notes and I'll transform them into this clear, actionable format for your team."
+    "response_weak": "I'd be happy to help summarize your meeting! However, I don't see any meeting notes or content to work with. Could you share the meeting details, transcript, or your notes so I can create a summary for you?",
+    "response_medium": "Sure, I can help you create a meeting summary from your quarterly planning notes. To get started, please share your notes and I'll organize them into a clear summary.\n\nI'll structure it with an overview of the meeting purpose, the main topics discussed, any decisions that were made, and action items if there are any. Since it was a 45-minute quarterly planning session, I'll focus on capturing the strategic points and key takeaways.\n\nOnce you paste your notes, I'll clean them up into a professional format that's easy to share with attendees or stakeholders.",
+    "response_strong": "I'll transform your messy notes into a professional summary using exactly that structure. Please share your handwritten notes and I'll organize everything into this format:\n\n## Q4 Planning Meeting Summary\n**Date:** [Meeting date]\n**Duration:** 45 minutes\n**Attendees:** [Names]\n\n## 1. Key Decisions Made\n- [Decision] — approved by [who]\n- [Decision] — approved by [who]\n\n## 2. Action Items\n| Action Item | Owner | Deadline | Status |\n|---|---|---|---|\n| [Task description] | [Name] | [Date] | Not started |\n| [Task description] | [Name] | [Date] | Not started |\n| [Task description] | [Name] | [Date] | Not started |\n\n## 3. Main Discussion Points\n- **[Topic 1]:** [Brief summary of discussion and any differing viewpoints]\n- **[Topic 2]:** [Brief summary of discussion and any differing viewpoints]\n- **[Topic 3]:** [Brief summary of discussion and any differing viewpoints]\n\n## 4. Next Steps\n- [Next step with timeline]\n- [Next step with timeline]\n- [Follow-up meeting date if applicable]\n\n---\n*Prepared for: [6 team members] | Next review: [Date]*\n\nPaste your notes and I'll fill this in. I'll make sure each team member can quickly scan the action items table to find exactly what they're responsible for and when it's due."
   },
   "feedback": {
-    "weak": {
-      "what_happened": "Your brief request left the AI guessing about what you needed. It had to ask follow-up questions because it didn't know what meeting to summarize, what format you wanted, or who would read it. The stronger approach gave the AI everything upfront — your situation, the specific format needed, and who the audience was — so it could immediately provide a helpful template and clear next steps.",
-      "principle": "Provide context so the AI understands your situation and can give you exactly what you need on the first try.",
-      "principle_name": "Provide context",
-      "tip": "Before asking for help, briefly explain your situation and what you'll do with the AI's response. Instead of 'Help me with X,' try 'I need to do X for Y audience because Z situation.'",
-      "user_picked_best": false
-    },
-    "medium": {
-      "what_happened": "Your prompt gave some helpful context (quarterly planning, 45 minutes), but the AI still had to ask for your notes and couldn't provide a specific structure. The stronger prompt got a pre-formatted template and clear next steps because it specified exactly what format was needed and who the audience was.",
-      "principle": "Show what 'good' looks like by describing the specific format, structure, or style you want in your output.",
-      "principle_name": "Show what 'good' looks like",
-      "tip": "When asking AI to create documents, always specify the exact format you need (like 'organize into 4 sections: decisions, action items, discussion points, next steps') rather than just asking for a general summary.",
-      "user_picked_best": false
-    },
-    "strong": {
-      "what_happened": "You chose the strongest option, and you can see why it worked so well! The weak prompt got a generic 'I need more information' response, while your detailed request got the AI to immediately understand your exact needs and even provide a professional template. The AI knew your audience (6 team members), your goal (clear responsibilities), and your desired format.",
-      "principle": "When you show the AI exactly what 'good' looks like by specifying the format and structure you want, it can deliver precisely what you need instead of asking follow-up questions.",
-      "principle_name": "Show what 'good' looks like",
-      "tip": "Next time you need formatted output from any AI tool, include a mini-template or bullet points showing the exact structure you want — the AI will mirror that format and save you back-and-forth clarification.",
-      "user_picked_best": true
-    }
+    "what_happened": "Notice how the AI's readiness to help scales with the detail in the prompt. The weak prompt gets a dead stop — the AI has to ask for notes and has no idea what format to use, so you're back to square one. The medium prompt gets a slightly better response where the AI proposes a generic structure, but it's still vague about what sections to include. The strong prompt specifies the exact four-section structure, the audience, and the purpose (people need to know their responsibilities) — so the AI immediately provides a professional template with an action items table that includes owners and deadlines, ready to be filled in the moment the notes are shared.",
+    "principle": "When you tell the AI not just what you need, but how you need it structured and who will use it, the response is ready to use instead of requiring additional back-and-forth.",
+    "principle_name": "Show what 'good' looks like",
+    "tip": "When asking for formatted output, describe the sections or structure you want upfront. Saying 'format it with key decisions, action items with owners, and next steps' gets you a usable template on the first try instead of a generic offer to help."
   }
 }

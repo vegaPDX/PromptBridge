@@ -1,7 +1,7 @@
 {
   "scenarioId": "4a.5-self-check",
-  "generatedAt": "2026-03-22T16:58:50.318Z",
-  "generatedWith": "claude-sonnet-4-20250514",
+  "generatedAt": "2026-03-22T20:00:00.000Z",
+  "generatedWith": "claude-opus-4-6-20260322",
   "options": [
     {
       "id": "a",
@@ -20,30 +20,14 @@
     }
   ],
   "responses": {
-    "response_weak": "I'd be happy to proofread your email. Please share the email content and I'll review it for you.",
-    "response_strong": "I'd be happy to help you proofread your client email with that comprehensive approach. Please share the email content, and I'll:\n\n1. **Correct** any grammar, spelling, and obvious phrasing issues\n2. **Review factual claims** and highlight any that seem questionable or that I cannot verify\n3. **Assess the tone** to ensure it's appropriate for a client relationship\n4. **Flag uncertainties** - I'll clearly mark any corrections I'm not 100% confident about so you can make the final call\n\nOnce you share the email, I'll provide the corrected version followed by a summary of changes and any items that need your review."
+    "response_weak": "Sure, I can proofread your email! Please go ahead and paste the email text here, and I'll check it over for any errors.",
+    "response_medium": "I'd be happy to proofread your client email for grammar and spelling. Please share the email text and I'll clean up any mistakes I find. I'll return the corrected version with the changes noted so you can see what was fixed before you send it.",
+    "response_strong": "Absolutely -- I'll give your client email a thorough review. Here's exactly what I'll check for:\n\n## My Review Process\n\n**1. Grammar and Spelling**\n- Correct any errors in grammar, punctuation, and spelling\n- Fix subject-verb agreement, tense consistency, and comma usage\n\n**2. Factual Accuracy**\n- Flag any claims, numbers, dates, or names that I cannot verify or that seem inconsistent within the email\n\n**3. Awkward Phrasing**\n- Smooth out sentences that read clumsily or could be misinterpreted\n- Tighten wordy passages without changing your meaning\n\n**4. Tone Check**\n- Ensure the tone is professional and appropriate for a client relationship\n- Flag anything that might come across as too casual, too stiff, or unintentionally blunt\n\n**5. Confidence Flags**\n- After all corrections, I'll mark any changes where I'm less than fully confident -- places where the original phrasing might have been intentional, or where I'm making a judgment call on style rather than fixing a clear error\n\nPlease paste the email and I'll return the corrected version followed by a change log and flagged items for your review."
   },
   "feedback": {
-    "weak": {
-      "what_happened": "Most people start with a quick request like this -- it's completely natural. The challenge is that the AI just asked for the email without understanding what kind of help was needed. The stronger prompt got the AI to outline a complete proofreading process that covers grammar, facts, tone, and flags uncertainties -- exactly what's needed for an important client email.",
-      "principle": "When you're specific about what you want, AI tools can give you much more targeted and useful help instead of generic responses.",
-      "principle_name": "Be specific, not vague",
-      "tip": "Before asking an AI to help with any task, list out 2-3 specific things you want it to focus on. Instead of 'help me with this,' try 'help me with X, Y, and Z.'",
-      "user_picked_best": false
-    },
-    "medium": {
-      "what_happened": "This is how most people would phrase it -- focusing on grammar and spelling is a solid instinct. The challenge is that it missed the bigger picture. The strong prompt got a detailed plan covering all the key concerns (factual accuracy, tone, awkward phrasing) plus a smart safety net -- the AI promised to flag anything it wasn't sure about. The medium version worked, but left important quality checks on the table.",
-      "principle": "When the stakes are high, be specific about all the ways you want the AI to help you, not just the obvious ones.",
-      "principle_name": "Be specific, not vague",
-      "tip": "For important tasks, make a mental list of everything that could go wrong, then explicitly ask the AI to check for each one. Don't assume it will catch issues you don't mention.",
-      "user_picked_best": false
-    },
-    "strong": {
-      "what_happened": "You chose the strongest option, which got you a much more useful response. The weak prompt just asked the AI to wait for your email, while your detailed request got the AI to outline exactly how it would help you — breaking down each type of review you wanted and promising to flag uncertainties. The AI understood your full intent and committed to a systematic approach.",
-      "principle": "When you're specific about what you want, AI tools can give you much more targeted and useful help.",
-      "principle_name": "Be specific, not vague",
-      "tip": "Before hitting send on any AI request, ask yourself: 'What exactly do I want this tool to do?' Then list those specific tasks in your message — the AI will follow your roadmap and give you much better results.",
-      "user_picked_best": true
-    }
+    "what_happened": "Compare how each prompt shapes the AI's approach before it even sees the email. The weak prompt gets a single-sentence reply that just asks for the text -- the AI has no plan for what to look for. The medium prompt narrows the scope to grammar and spelling, so the AI commits to checking only those two things. The strong prompt lays out five specific review criteria and asks the AI to flag its own uncertainties, and the AI responds by building a structured review checklist that covers grammar, facts, phrasing, tone, and confidence levels. The email hasn't even been pasted yet, but the strong prompt has already set up a much more rigorous process.",
+    "principle": "Telling the AI exactly what to check for -- and asking it to flag its own uncertainties -- turns a basic proofread into a comprehensive quality review with built-in safeguards.",
+    "principle_name": "Be specific, not vague",
+    "tip": "For any review or editing task, list the specific dimensions you want checked (grammar, tone, accuracy, clarity) and add 'flag anything you're not confident about.' This gives you a safety net for the AI's blind spots."
   }
 }

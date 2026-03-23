@@ -106,6 +106,13 @@ export default function FreeformMode({ scenario, onComplete, onBack, practicedPr
         <div>
           <h3 className="font-semibold text-stone-700 mb-1">Write your request</h3>
           <p className="text-stone-500 text-sm mb-4">How would you ask an AI to help with this? Write the message you'd actually send.</p>
+          <div className="bg-indigo-50 border border-indigo-100 rounded-lg p-3 mb-4">
+            <p className="text-stone-600 text-sm">
+              <strong>Tip:</strong> After writing your prompt, copy it and paste it into any AI tool —{" "}
+              <strong>ChatGPT</strong>, <strong>Gemini</strong>, <strong>Claude</strong>, or{" "}
+              <strong>Copilot</strong>. See how a real AI responds, then come back and refine your approach.
+            </p>
+          </div>
           <textarea
             value={userPrompt}
             onChange={(e) => setUserPrompt(e.target.value)}
@@ -116,13 +123,20 @@ export default function FreeformMode({ scenario, onComplete, onBack, practicedPr
           <div className="flex items-center justify-end gap-3 mt-3">
             {apiKeyAvailable ? (
               /* Path 1: API key exists -- Submit for AI analysis */
-              <button
-                onClick={handleSubmit}
-                disabled={!userPrompt.trim()}
-                className="inline-flex items-center gap-2 px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 disabled:bg-stone-300 disabled:cursor-not-allowed text-white rounded-xl font-medium transition-colors"
-              >
-                <Send className="w-4 h-4" /> Submit
-              </button>
+              <>
+                <button
+                  onClick={handleSubmit}
+                  disabled={!userPrompt.trim()}
+                  className="inline-flex items-center gap-2 px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 disabled:bg-stone-300 disabled:cursor-not-allowed text-white rounded-xl font-medium transition-colors"
+                >
+                  <Send className="w-4 h-4" /> Submit
+                </button>
+                <CopyButton
+                  text={userPrompt}
+                  label="Copy to clipboard"
+                  className="bg-stone-100 text-stone-600 hover:bg-stone-200"
+                />
+              </>
             ) : (
               /* Path 2: No API key -- Copy & Try + disabled Analyze */
               <>
@@ -177,9 +191,9 @@ export default function FreeformMode({ scenario, onComplete, onBack, practicedPr
               <span className="font-semibold text-stone-800">Try it out</span>
             </div>
             <ul className="space-y-2 text-stone-600 text-sm">
-              <li>Try it in <strong>ChatGPT</strong>, <strong>Gemini</strong>, or any AI assistant you have access to.</li>
+              <li>Open <strong>ChatGPT</strong>, <strong>Gemini</strong>, <strong>Claude</strong>, or <strong>Copilot</strong> in a new tab and paste your prompt.</li>
               <li>Compare what you get back to what you expected.</li>
-              <li>If the result isn't useful, think about what context or details were missing from your request.</li>
+              <li>If the result isn't useful, think about what context or details were missing — then come back and try a different approach.</li>
             </ul>
           </div>
 

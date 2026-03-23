@@ -1,7 +1,7 @@
 {
   "scenarioId": "4a.7-document-detective",
-  "generatedAt": "2026-03-22T17:00:02.768Z",
-  "generatedWith": "claude-sonnet-4-20250514",
+  "generatedAt": "2026-03-22T20:00:00.000Z",
+  "generatedWith": "claude-opus-4-6-20260322",
   "options": [
     {
       "id": "a",
@@ -20,29 +20,14 @@
     }
   ],
   "responses": {
-    "response_weak": "I'd be happy to help summarize your lease, but I don't see the lease document attached. Could you please share the lease agreement text so I can provide you with a summary of its key terms and conditions?",
-    "response_strong": "Based on your lease agreement, here's the specific information you requested:\n\n**Pet Policy:**\n- Pets are allowed with prior written approval from landlord\n- Maximum 2 pets, under 50 lbs each\n- $300 non-refundable pet fee per pet\n- $25/month pet rent per pet\n- Tenant liable for all pet-related damages\n\n**Security Deposit Rules:**\n- Amount: $1,800 (equivalent to 1.5 months' rent)\n- Returned within 30 days of lease termination\n- Deductions allowed for: unpaid rent, cleaning beyond normal wear, repairs for tenant-caused damage\n- Must provide forwarding address in writing\n\n**Early Lease Termination:**\n- 60-day written notice required\n- Early termination fee: 2 months' rent\n- Responsible for rent until unit is re-rented or lease expires (whichever comes first)\n- Must allow showings during notice period\n- Security deposit still subject to standard deduction rules\n\nAll these provisions are found in Sections 8, 12, and 15 of your lease agreement respectively."
+    "response_weak": "I'd be happy to help summarize your lease! However, I don't see any lease text in your message. Could you please paste the full lease agreement or the relevant sections, and I'll provide a summary of the key terms and conditions for you?",
+    "response_medium": "Those are great questions to ask about your lease. I can definitely help you find information about pets, deposits, and early termination. However, I'll need you to share the actual lease document text so I can look through it for those specific details. Lease agreements vary widely, so I don't want to give you general information when you need answers about your specific contract.\n\nOnce you paste the lease text, I'll pull out the relevant sections on pet policies, security deposit terms, and early termination clauses and explain them in plain language.",
+    "response_strong": "## Lease Agreement Summary: Key Terms\n\nHere are the three areas you asked about, pulled directly from your lease:\n\n### 1. Pet Policy (Section 8)\n- **Pets allowed?** Yes, with prior written approval from the landlord\n- **Restrictions:** Maximum 2 pets, each must be under 50 lbs\n- **Pet deposit:** $300 non-refundable pet fee per pet (this is a fee, not a deposit -- you won't get it back)\n- **Pet rent:** $25/month per pet, added to your regular rent\n- **Liability:** You are responsible for all pet-related damages beyond normal wear and tear\n\n### 2. Security Deposit Rules (Section 12)\n- **Amount:** $1,800 (equivalent to 1.5 months' rent)\n- **Return timeline:** Within 30 days of lease termination\n- **Allowed deductions:**\n  - Unpaid rent or fees\n  - Cleaning costs beyond normal wear and tear\n  - Repairs for tenant-caused damage\n- **Important:** You must provide a forwarding address in writing to receive your deposit back. If you don't, the landlord may not be obligated to return it on time.\n\n### 3. Early Lease Termination (Section 15)\n- **Notice required:** 60 days written notice\n- **Early termination fee:** 2 months' rent ($2,400 based on your rent amount)\n- **Ongoing responsibility:** You're on the hook for rent until the unit is re-rented or the lease expires, whichever comes first\n- **Access:** You must allow the landlord to show the unit to prospective tenants during the notice period\n- **Deposit:** Standard deduction rules still apply -- the termination fee is separate from your deposit\n\n### Things to Watch Out For\n- The pet fee is **non-refundable** -- don't confuse it with the security deposit\n- The early termination clause means you could owe up to 2 months' rent **plus** rent until the unit is re-rented. In a slow rental market, that could add up fast\n- Make sure to provide your forwarding address **in writing** when you move out, or you risk delays getting your deposit back"
   },
   "feedback": {
-    "weak": {
-      "what_happened": "Most people start with a request like this -- it's a natural first instinct. The challenge is that asking to 'summarize my lease' without including the actual lease document leaves the AI with nothing to work with, so it has to ask for the document first. The stronger approach included the full lease text AND specified exactly what information was needed, allowing the AI to immediately extract those specific details.",
-      "principle": "AI tools can only work with the information you give them — if you want analysis of a document, you need to share that document.",
-      "principle_name": "Provide context",
-      "tip": "When you need help with any document (contract, email, report), always paste the full text into your message along with your specific questions. Don't assume the AI can access files or remember previous conversations.",
-      "user_picked_best": false
-    },
-    "medium": {
-      "what_happened": "This is how most people would phrase it -- being clear about what information is needed is a great instinct. The challenge is that without the actual lease document included, the AI has to ask for the missing information instead of giving answers. The stronger approach included the full lease text upfront, so the AI could immediately provide specific answers about pets, deposits, and early termination.",
-      "principle": "Always provide the context and materials the AI needs to complete your task in your initial request.",
-      "principle_name": "Provide context",
-      "tip": "When asking AI tools to analyze documents, always paste or upload the full document text in your first message. Don't make the AI ask for what it needs — give it everything upfront so you get answers immediately instead of having to go back and forth."
-    },
-    "strong": {
-      "what_happened": "You chose the strongest option, which included the actual lease text and a clear, organized request for specific information. This gave the AI everything it needed to provide detailed, actionable answers with exact policy details and section references. The weak option failed because it asked for help without providing the document to analyze.",
-      "principle": "Always provide the AI with the source material it needs to work with, rather than asking it to work with information it doesn't have access to.",
-      "principle_name": "Provide context",
-      "tip": "When you need help analyzing a document, always paste the full text (or relevant sections) directly into your message rather than just describing what you have.",
-      "user_picked_best": true
-    }
+    "what_happened": "Compare how each prompt sets up the interaction. The weak prompt asks the AI to summarize a lease but doesn't include the lease -- so the AI can only ask for the document, wasting a round of conversation. The medium prompt specifies what to look for (pets, deposits, termination) but still doesn't include the document, so the AI again has to ask for it. The strong prompt includes the full lease text and three numbered questions, so the AI can immediately extract the exact answers, organize them by section, cite the relevant clause numbers, and even add practical warnings about non-refundable fees and potential cost traps.",
+    "principle": "The AI can only analyze information you actually give it. Including the source material and specific questions in the same message gets you answers in one shot instead of a back-and-forth.",
+    "principle_name": "Provide context",
+    "tip": "When you need help understanding any document -- a lease, contract, medical bill, or policy -- paste the full text (or the relevant sections) directly into your message along with your specific questions. One complete prompt beats three rounds of back-and-forth."
   }
 }

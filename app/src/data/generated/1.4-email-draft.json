@@ -1,7 +1,7 @@
 {
   "scenarioId": "1.4-email-draft",
-  "generatedAt": "2026-03-22T16:44:18.011Z",
-  "generatedWith": "claude-sonnet-4-20250514",
+  "generatedAt": "2026-03-22T20:00:00.000Z",
+  "generatedWith": "claude-opus-4-6-20260322",
   "options": [
     {
       "id": "a",
@@ -20,30 +20,14 @@
     }
   ],
   "responses": {
-    "response_weak": "Subject: Project Delay\n\nHi,\n\nI wanted to let you know that there will be a delay with the project. We're experiencing some issues that are causing us to fall behind schedule. I apologize for any inconvenience this may cause.\n\nI'll keep you updated on our progress.\n\nThanks,\n[Your name]",
-    "response_strong": "Subject: Q2 Report Delay - 3 Days Behind Schedule\n\nHi [Manager's name],\n\nI'm writing to inform you that the Q2 report will be delayed by 3 days from our original deadline. We're currently waiting on critical financial data from the finance team that's essential for completing the analysis.\n\nI understand this delay may impact your planning for upcoming meetings and presentations, and I sincerely apologize for any inconvenience.\n\nTo move forward, I've already followed up with the finance team and confirmed they'll have the data to us by [specific date]. Once received, I'll prioritize completing the report and can have it ready by [new deadline date].\n\nI'll send you a brief update tomorrow and notify you immediately once the report is complete.\n\nBest regards,\n[Your name]"
+    "response_weak": "Subject: Project Delay\n\nHi,\n\nI wanted to let you know that there will be a delay with the project. We've run into some issues that are pushing back our timeline. I apologize for any inconvenience this may cause and will keep you updated as things progress.\n\nPlease let me know if you have any questions.\n\nBest,\n[Your name]",
+    "response_medium": "Subject: Q2 Report Delay\n\nHi [Manager's name],\n\nI wanted to give you a heads-up that the Q2 report is going to be delayed. I'm currently waiting on some key data from the finance team that I need to complete the analysis, and I haven't received it yet.\n\nI've already reached out to their team to follow up and am hoping to get the data soon. I'll prioritize finishing the report as quickly as possible once I have what I need.\n\nI apologize for the delay and will keep you posted on the timeline. Let me know if you'd like to discuss this further.\n\nBest regards,\n[Your name]",
+    "response_strong": "Subject: Q2 Report — Updated Timeline (3-Day Delay)\n\nHi [Manager's name],\n\nI want to let you know that the Q2 report will be delivered 3 days past our original deadline. The analysis depends on financial data from the finance team, which I'm still waiting to receive.\n\nI understand this may affect your planning, and I apologize for the delay. Here's where things stand:\n\n- I've followed up with finance and they've confirmed delivery by **[specific date]**\n- Once I have the data, I'll prioritize completing the report\n- **Revised delivery date: [new deadline]**\n\nI'll send you a brief status update tomorrow and will notify you the moment the report is ready.\n\nBest regards,\n[Your name]"
   },
   "feedback": {
-    "weak": {
-      "what_happened": "Most people start with a question like this — it's a natural way to ask. The challenge is that when a request is this general, the AI gives a generic response that misses all the important details. It didn't mention the Q2 report, the 3-day delay, or the finance team issue. Compare that to the strong response, which included specific timelines, acknowledged impact, and outlined next steps — all because the prompt spelled out exactly what was needed.",
-      "principle": "Be specific, not vague — the more details you give an AI about what you want, the more useful and complete its response will be.",
-      "principle_name": "Be specific, not vague",
-      "tip": "Instead of asking for 'an email about X,' include the key facts you want covered: who, what, when, why, and how you want it to sound. Think of it like briefing a colleague who needs to write the email for you.",
-      "user_picked_best": false
-    },
-    "medium": {
-      "what_happened": "Your prompt got you a decent email, but it lacked the specific details and structure that would make it truly professional. The AI gave you the basics but missed key elements like acknowledging impact, providing a timeline, and outlining next steps because you didn't explicitly ask for these components.",
-      "principle": "Show what 'good' looks like by describing the specific elements, tone, and structure you want in your output.",
-      "principle_name": "Show what 'good' looks like",
-      "tip": "When asking AI to write something important, describe not just the content but also the structure you want. Say things like 'include an apology, explain next steps, and keep it under 150 words' rather than just describing the basic situation.",
-      "user_picked_best": false
-    },
-    "strong": {
-      "what_happened": "You picked the strongest option and got a complete, professional email that your manager could actually use. The weak prompt produced a vague message that left your manager guessing about what project, how long the delay would be, and what happens next. Your detailed prompt gave the AI everything it needed to write something specific and actionable.",
-      "principle": "When you give the AI specific details about what you want (tone, length, key points to include), it can craft a response that matches your exact needs instead of guessing.",
-      "principle_name": "Be specific, not vague",
-      "tip": "Next time you need to write something important, tell the AI the specific tone you want, roughly how long it should be, and list the key points that must be included. This works for emails, presentations, reports, or any written communication.",
-      "user_picked_best": true
-    }
+    "what_happened": "Compare the three emails side by side. The weak prompt produces a vague message that never mentions which project, how long the delay is, or what's being done about it — a manager reading this would immediately reply asking for details. The medium prompt gets closer by naming the Q2 report and the finance dependency, but it's still fuzzy on the timeline and next steps. The strong prompt specifies the tone, the key points to hit, and a word count, so the AI delivers a concise, professional email with a clear revised timeline, concrete next steps, and the right balance of accountability and action.",
+    "principle": "When asking the AI to write something, specifying the tone, structure, key points, and length gives it a clear blueprint instead of forcing it to guess what 'good' looks like for your situation.",
+    "principle_name": "Be specific, not vague",
+    "tip": "Before asking the AI to draft any written communication, list the 3-4 things it must include (like timeline, impact, and next steps) and mention the tone you want. Think of it as briefing a colleague who's writing on your behalf."
   }
 }

@@ -1,7 +1,7 @@
 {
   "scenarioId": "3.1-vague-rejection",
-  "generatedAt": "2026-03-22T16:52:01.145Z",
-  "generatedWith": "claude-sonnet-4-20250514",
+  "generatedAt": "2026-03-22T20:00:00.000Z",
+  "generatedWith": "claude-opus-4-6-20260322",
   "options": [
     {
       "id": "a",
@@ -20,30 +20,14 @@
     }
   ],
   "responses": {
-    "response_weak": "I'll make it less formal for you.\n\n[Provides a slightly less formal version but still maintains unnecessarily professional language, unclear what specific changes were made or why]",
-    "response_strong": "Here's the rewritten email with a casual, friendly tone:\n\n[Original]: \"I hope this message finds you well. I am writing to inform you that the quarterly reports will be delayed by approximately three business days due to unforeseen circumstances.\"\n\n[Revised]: \"Hey! Just wanted to give you a heads up that the quarterly reports are going to be about three days late - we hit a few snags but should have everything sorted soon.\"\n\nI've used contractions (\"we're\" → \"we hit\"), simplified the language (\"unforeseen circumstances\" → \"hit a few snags\"), removed formal greetings, and made it conversational while keeping all the important details about the delay."
+    "response_weak": "Sure, here's a less formal version. I wanted to let you know that the quarterly reports are going to be delayed by about three business days. Some issues came up that are causing the holdup. I apologize for the inconvenience and will keep you posted on the progress. Please reach out if you have any questions.",
+    "response_medium": "Here's a more casual take on the email:\n\nHey! Just a quick note — the quarterly reports are going to be about three days late. We ran into some unexpected issues but we're working on getting everything sorted. I'll update you once things are back on track.\n\nThe tone is lighter now, though without more detail about your specific voice or how you usually communicate with this colleague, I went with a generally friendly approach. Let me know if you'd like me to adjust anything further.",
+    "response_strong": "## Rewritten Email\n\nHey! Just a heads up — the quarterly reports are going to be about three days late. We hit a few snags, but nothing major, and we should have everything wrapped up soon.\n\nI'll shoot you an update once they're ready. Thanks for your patience!\n\n## What I Changed\n\n- **Greeting:** Swapped \"I hope this message finds you well\" for a simple \"Hey!\"\n- **Language:** Replaced \"unforeseen circumstances\" with \"hit a few snags\" and \"approximately three business days\" with \"about three days\"\n- **Contractions:** Used \"we're\" and \"I'll\" throughout to sound natural\n- **Sign-off:** Dropped the formal closing entirely — kept it breezy\n- **Kept intact:** The core info about the delay timeline and the commitment to follow up"
   },
   "feedback": {
-    "weak": {
-      "what_happened": "Most people start with feedback like this — it's completely natural to say something feels off. The challenge is that 'too formal, try again' doesn't give the AI enough to work with, so it made minimal changes without understanding what was actually wanted. The strong prompt worked because it explained exactly what 'too formal' meant (business formalities, complex language) and gave specific instructions (use contractions, simpler language, friendly tone).",
-      "principle": "Be specific, not vague — instead of just saying something is wrong, explain what you want changed and how.",
-      "principle_name": "Be specific, not vague",
-      "tip": "When giving feedback to AI tools, replace words like 'better,' 'more casual,' or 'fix this' with specific examples of what you want. Instead of 'make it casual,' try 'use contractions, simple words, and a friendly greeting like Hey instead of Dear.'",
-      "user_picked_best": false
-    },
-    "medium": {
-      "what_happened": "This is how most people would phrase it — naming the problem and the audience is a solid instinct. The result was decent, but the AI made improvements without explaining what it changed or why. The strong prompt got a much better response because it specified exactly what 'casual' means (contractions, simpler language, drop formalities) and asked the AI to show its work by comparing before and after.",
-      "principle": "Show what 'good' looks like by giving specific examples of the changes you want, rather than using vague terms like 'casual' or 'formal.'",
-      "principle_name": "Show what 'good' looks like",
-      "tip": "When asking for style changes, include 2-3 concrete examples of what you want: 'use contractions like you're instead of you are,' 'say hey instead of dear,' or 'write like you're texting a friend.' This helps the AI understand your exact vision.",
-      "user_picked_best": false
-    },
-    "strong": {
-      "what_happened": "You picked the strongest option and got a much better result! The weak prompt was too vague — the AI didn't know what 'less formal' meant to you, so it made minimal changes. Your detailed prompt told the AI exactly what casual tone looks like (contractions, simpler language, no business formalities) and even showed the AI its work by providing a clear before-and-after comparison.",
-      "principle": "Show what 'good' looks like by giving specific examples and criteria rather than vague descriptors like 'better' or 'more casual.'",
-      "principle_name": "Show what 'good' looks like",
-      "tip": "When you want an AI to change something, describe the specific qualities you want AND give an example if possible. Instead of 'make it more casual,' try 'use contractions, shorter sentences, and a friendly greeting like I'm talking to a work friend.'",
-      "user_picked_best": true
-    }
+    "what_happened": "Notice how the three prompts produce dramatically different results. The weak prompt — \"too formal, try again\" — gives the AI almost nothing to work with. It made a few surface-level tweaks but still sounds stiff because it had to guess what \"less formal\" means to you. The medium prompt names the audience and direction, which helps, but the AI still plays it safe with a generically friendly tone. The strong prompt spells out exactly what casual means — contractions, simpler language, drop formalities — so the AI delivers a rewrite that actually sounds like a real person talking to a colleague, and even shows its reasoning.",
+    "principle": "Vague feedback like 'try again' forces the AI to guess. The more specific you are about what's wrong and what you want instead, the fewer rounds of back-and-forth you need.",
+    "principle_name": "Show what 'good' looks like",
+    "tip": "When giving feedback on tone, replace adjectives like 'casual' or 'friendly' with concrete instructions: 'use contractions, short sentences, and greet them with Hey instead of Dear.'"
   }
 }

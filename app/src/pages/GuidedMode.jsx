@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import {
   ArrowLeft, ArrowRight, MessageSquare, Lightbulb, RefreshCw,
   PenTool, Send, Check,
 } from "lucide-react";
-import { shuffle } from "lodash-es";
 import { loadGuidedContent } from "../services/guided-data";
 import { hasApiKey, analyzeFreeform, simulateResponses } from "../services/llm";
 import { scorePrompt } from "../services/heuristic-scorer";
@@ -13,27 +12,21 @@ import ErrorBanner from "../components/ErrorBanner";
 import PrincipleBadge from "../components/PrincipleBadge";
 import ResponseComparison from "../components/ResponseComparison";
 import CopyButton from "../components/CopyButton";
+import MarkdownText from "../components/MarkdownText";
 
 import { GUIDED_SCENARIOS } from "../data/scenarios";
 import { getRecommendedScenarios, buildRecommendation } from "../services/recommendations";
 
 export default function GuidedMode({ scenario, onComplete, onBack, practicedPrinciples = [], completedScenarios = [] }) {
-  const [step, setStep] = useState("loading"); // loading | pick | results
+  const [step, setStep] = useState("loading"); // loading | explore | try-yourself | try-loading | try-results
   const [content, setContent] = useState(null); // { options, responses, feedback }
-  const [shuffledOptions, setShuffledOptions] = useState([]);
-  const [selectedOption, setSelectedOption] = useState(null);
   const [error, setError] = useState(null);
-  const [round, setRound] = useState(1);
-  const [round1Quality, setRound1Quality] = useState(null);
 
   // Try It Yourself state
   const [tryPrompt, setTryPrompt] = useState("");
   const [tryAnalysis, setTryAnalysis] = useState(null);
   const [tryResponses, setTryResponses] = useState(null);
   const [tryHeuristic, setTryHeuristic] = useState(null);
-
-  const weakOption = useRef(null);
-  const strongOption = useRef(null);
 
   // Load pre-generated content on mount
   useEffect(() => {
@@ -45,12 +38,7 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
         const data = await loadGuidedContent(scenario.id);
         if (cancelled) return;
         setContent(data);
-
-        const opts = data.options;
-        weakOption.current = opts.find(o => o.quality === "weak");
-        strongOption.current = opts.find(o => o.quality === "strong");
-        setShuffledOptions(shuffle([...opts]));
-        setStep("pick");
+        setStep("explore");
       } catch (e) {
         if (!cancelled) setError(e.message);
       }
@@ -59,34 +47,16 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
     return () => { cancelled = true; };
   }, [scenario]);
 
-  const handleSelect = (option) => {
-    setSelectedOption(option);
-    setStep("results");
-  };
-
   const retryFromError = () => {
     setError(null);
     setStep("loading");
     loadGuidedContent(scenario.id)
       .then(data => {
         setContent(data);
-        const opts = data.options;
-        weakOption.current = opts.find(o => o.quality === "weak");
-        strongOption.current = opts.find(o => o.quality === "strong");
-        setShuffledOptions(shuffle([...opts]));
-        setStep("pick");
+        setStep("explore");
       })
       .catch(e => setError(e.message));
   };
-
-  const qualityLabel = (q) => {
-    if (q === "strong") return { text: "Strong", color: "emerald" };
-    if (q === "medium") return { text: "Okay", color: "amber" };
-    return { text: "Weak", color: "rose" };
-  };
-
-  // Look up feedback by selected option quality
-  const currentFeedback = content?.feedback?.[selectedOption?.quality] ?? null;
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
@@ -113,107 +83,129 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
         <LoadingSpinner message="Loading scenario..." />
       )}
 
-      {/* Step: Pick an option */}
-      {step === "pick" && (
-        <div>
-          <h3 className="font-semibold text-stone-700 mb-1">Which request would get the best result?</h3>
-          <p className="text-stone-500 text-sm mb-4">Pick the one you think an AI would respond to most helpfully.</p>
-          <div className="space-y-3">
-            {shuffledOptions.map((opt, idx) => (
-              <button
-                key={opt.id}
-                onClick={() => handleSelect(opt)}
-                className="w-full text-left bg-white rounded-xl border-2 border-stone-200 p-4 hover:border-indigo-400 hover:shadow-md transition-all group"
-              >
-                <div className="flex items-start gap-3">
-                  <div className="w-7 h-7 rounded-full bg-stone-100 group-hover:bg-indigo-100 flex items-center justify-center flex-shrink-0 font-semibold text-sm text-stone-500 group-hover:text-indigo-600 transition-colors">
-                    {String.fromCharCode(65 + idx)}
-                  </div>
-                  <p className="text-stone-700 text-sm leading-relaxed flex-1">{opt.text}</p>
-                  <span onClick={(e) => e.stopPropagation()}>
-                    <CopyButton text={opt.text} label="Copy" className="text-xs opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </span>
-                </div>
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Step: Results */}
-      {step === "results" && content && selectedOption && (
+      {/* Step: Explore */}
+      {step === "explore" && content && (
         <div className="animate-fadeIn">
-          {/* User's pick indicator */}
-          <div className="mb-4 flex items-center gap-2">
-            <span className="text-sm text-stone-500">You picked:</span>
-            <span className={`text-sm font-medium px-2 py-0.5 rounded-full ${
-              selectedOption.quality === "strong" ? "bg-emerald-100 text-emerald-700" :
-              selectedOption.quality === "medium" ? "bg-amber-100 text-amber-700" :
-              "bg-rose-100 text-rose-700"
-            }`}>
-              {qualityLabel(selectedOption.quality).text}
-            </span>
+          {/* Section 1: Three prompt cards */}
+          <h3 className="font-semibold text-stone-700 mb-3">Compare three approaches to this scenario</h3>
+          <div className="space-y-3">
+            {/* Weak prompt card */}
+            <div className="bg-rose-50 border-2 border-rose-200 rounded-xl p-4">
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2 flex-1">
+                  <div className="w-7 h-7 rounded-full bg-rose-100 flex items-center justify-center flex-shrink-0">
+                    <span className="text-rose-500 text-sm font-bold">&times;</span>
+                  </div>
+                  <span className="text-sm font-medium text-rose-700">Weak</span>
+                </div>
+                <CopyButton text={content.options.find(o => o.quality === "weak")?.text} label="Copy" className="text-xs" />
+              </div>
+              <p className="text-stone-700 text-sm leading-relaxed mt-2">{content.options.find(o => o.quality === "weak")?.text}</p>
+            </div>
+
+            {/* Medium prompt card */}
+            <div className="bg-amber-50 border-2 border-amber-200 rounded-xl p-4">
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2 flex-1">
+                  <div className="w-7 h-7 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
+                    <ArrowRight className="w-4 h-4 text-amber-500" />
+                  </div>
+                  <span className="text-sm font-medium text-amber-700">Getting There</span>
+                </div>
+                <CopyButton text={content.options.find(o => o.quality === "medium")?.text} label="Copy" className="text-xs" />
+              </div>
+              <p className="text-stone-700 text-sm leading-relaxed mt-2">{content.options.find(o => o.quality === "medium")?.text}</p>
+            </div>
+
+            {/* Strong prompt card */}
+            <div className="bg-emerald-50 border-2 border-emerald-200 rounded-xl p-4">
+              <div className="flex items-center justify-between gap-3">
+                <div className="flex items-center gap-2 flex-1">
+                  <div className="w-7 h-7 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                    <Check className="w-4 h-4 text-emerald-500" />
+                  </div>
+                  <span className="text-sm font-medium text-emerald-700">Effective</span>
+                </div>
+                <CopyButton text={content.options.find(o => o.quality === "strong")?.text} label="Copy" className="text-xs" />
+              </div>
+              <p className="text-stone-700 text-sm leading-relaxed mt-2">{content.options.find(o => o.quality === "strong")?.text}</p>
+            </div>
           </div>
 
-          {/* Side-by-side comparison */}
-          <h3 className="font-semibold text-stone-700 mb-3">See the difference</h3>
-          <ResponseComparison
-            weakPrompt={weakOption.current?.text}
-            strongPrompt={strongOption.current?.text}
-            weakResponse={content.responses.response_weak}
-            strongResponse={content.responses.response_strong}
-          />
+          {/* Section 2: AI responses */}
+          <h3 className="font-semibold text-stone-700 mt-8 mb-4">See what the AI gives back</h3>
+          <div className="space-y-4">
+            {/* Weak response */}
+            <div className="border-2 border-rose-200 bg-gradient-to-b from-rose-50 to-white rounded-xl p-5">
+              <div className="flex items-center gap-2 mb-3">
+                <span className="text-rose-500 font-bold">&times;</span>
+                <span className="text-sm font-medium text-rose-700">Response to the weak prompt</span>
+              </div>
+              <MarkdownText text={content.responses.response_weak} />
+            </div>
 
-          {/* Copy the strong prompt */}
+            {/* Medium response */}
+            <div className="border-2 border-amber-200 bg-gradient-to-b from-amber-50 to-white rounded-xl p-5">
+              <div className="flex items-center gap-2 mb-3">
+                <ArrowRight className="w-4 h-4 text-amber-500" />
+                <span className="text-sm font-medium text-amber-700">Response to the 'getting there' prompt</span>
+              </div>
+              <MarkdownText text={content.responses.response_medium} />
+            </div>
+
+            {/* Strong response */}
+            <div className="border-2 border-emerald-200 bg-gradient-to-b from-emerald-50 to-white rounded-xl p-5">
+              <div className="flex items-center gap-2 mb-3">
+                <Check className="w-4 h-4 text-emerald-500" />
+                <span className="text-sm font-medium text-emerald-700">Response to the effective prompt</span>
+              </div>
+              <MarkdownText text={content.responses.response_strong} />
+            </div>
+          </div>
+
+          {/* Section 3: Copy the effective prompt CTA */}
           <div className="mt-4 flex justify-end">
             <CopyButton
-              text={strongOption.current?.text}
+              text={content.options.find(o => o.quality === "strong")?.text}
               label="Copy this prompt — try it in your own AI tool"
               className="bg-emerald-50 text-emerald-700 hover:bg-emerald-100"
             />
           </div>
 
-          {/* Feedback panel */}
-          {currentFeedback && (
+          {/* Section 4: Feedback panel */}
+          {content.feedback && (
             <div className="mt-6 bg-amber-50 border border-amber-200 rounded-xl p-5 mb-6">
               <div className="flex items-center gap-2 mb-3">
                 <Lightbulb className="w-5 h-5 text-amber-500" />
                 <span className="font-semibold text-amber-800">What happened here</span>
               </div>
-              <p className="text-stone-700 text-sm mb-4">{currentFeedback.what_happened}</p>
-
+              <p className="text-stone-700 text-sm mb-4">{content.feedback.what_happened}</p>
               <div className="bg-white rounded-lg p-4 mb-4 border border-amber-100">
                 <p className="text-xs text-amber-600 font-medium uppercase tracking-wide mb-1">The Principle</p>
-                <p className="font-semibold text-stone-800 mb-1">{currentFeedback.principle_name}</p>
-                <p className="text-stone-600 text-sm">{currentFeedback.principle}</p>
+                <p className="font-semibold text-stone-800 mb-1">{content.feedback.principle_name}</p>
+                <p className="text-stone-600 text-sm">{content.feedback.principle}</p>
               </div>
-
               <div className="bg-white rounded-lg p-4 border border-amber-100">
                 <p className="text-xs text-amber-600 font-medium uppercase tracking-wide mb-1">Try This Next Time</p>
-                <p className="text-stone-700 text-sm">{currentFeedback.tip}</p>
+                <p className="text-stone-700 text-sm">{content.feedback.tip}</p>
               </div>
             </div>
           )}
 
-          {/* Principle badges */}
+          {/* Section 5: Principle badges */}
           <div className="flex flex-wrap gap-2 mb-6">
             {scenario.principles.map(pid => (
               <PrincipleBadge key={pid} principleId={pid} />
             ))}
           </div>
 
-          {/* Round 2 improvement feedback */}
-          {round === 2 && round1Quality && (
-            <RoundImprovement round1Quality={round1Quality} round2Quality={selectedOption.quality} />
-          )}
-
-          {/* Recommendation callout */}
+          {/* Section 6: Recommendation callout */}
           <RecommendationCallout
             practicedPrinciples={[...new Set([...practicedPrinciples, ...(scenario.principles || [])])]}
             completedScenarios={[...new Set([...completedScenarios, scenario.id])]}
           />
 
-          {/* Action buttons */}
+          {/* Section 7: Action buttons */}
           <div className="flex flex-wrap gap-3">
             <button
               onClick={() => onComplete(scenario)}
@@ -221,20 +213,6 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
             >
               Next Scenario <ArrowRight className="w-4 h-4" />
             </button>
-            {round === 1 && (
-              <button
-                onClick={() => {
-                  setRound1Quality(selectedOption.quality);
-                  setShuffledOptions(shuffle([...content.options]));
-                  setSelectedOption(null);
-                  setRound(2);
-                  setStep("pick");
-                }}
-                className="inline-flex items-center gap-2 px-6 py-2.5 bg-stone-100 hover:bg-stone-200 text-stone-600 rounded-xl font-medium transition-colors"
-              >
-                <RefreshCw className="w-4 h-4" /> Try Again
-              </button>
-            )}
             <button
               onClick={() => {
                 setTryPrompt("");
@@ -311,7 +289,7 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
               <Send className="w-4 h-4" /> Check My Prompt
             </button>
             <button
-              onClick={() => setStep("results")}
+              onClick={() => setStep("explore")}
               className="px-4 py-2.5 text-stone-500 hover:text-stone-700 text-sm transition-colors"
             >
               Back to results
@@ -440,34 +418,6 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
           </div>
         </div>
       )}
-    </div>
-  );
-}
-
-const QUALITY_RANK = { weak: 0, medium: 1, strong: 2 };
-
-function RoundImprovement({ round1Quality, round2Quality }) {
-  const r1 = QUALITY_RANK[round1Quality] ?? 0;
-  const r2 = QUALITY_RANK[round2Quality] ?? 0;
-
-  let message, bgClass;
-  if (r2 > r1) {
-    message = "Nice improvement! You recognized the stronger option this time.";
-    bgClass = "bg-emerald-50 border-emerald-200 text-emerald-800";
-  } else if (r2 === r1) {
-    message = "Same choice — that shows confidence in your understanding.";
-    bgClass = "bg-indigo-50 border-indigo-200 text-indigo-800";
-  } else {
-    message = "The shuffle changed the order, which can make it trickier. Review the feedback above to see why the strong option works.";
-    bgClass = "bg-amber-50 border-amber-200 text-amber-800";
-  }
-
-  return (
-    <div className={`rounded-xl border p-4 mb-6 ${bgClass}`}>
-      <p className="text-sm font-medium flex items-center gap-2">
-        <RefreshCw className="w-4 h-4" />
-        Round 2: {message}
-      </p>
     </div>
   );
 }

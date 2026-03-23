@@ -1,7 +1,7 @@
 {
   "scenarioId": "1.6-recipe-request",
-  "generatedAt": "2026-03-22T16:45:29.768Z",
-  "generatedWith": "claude-sonnet-4-20250514",
+  "generatedAt": "2026-03-22T20:00:00.000Z",
+  "generatedWith": "claude-opus-4-6-20260322",
   "options": [
     {
       "id": "a",
@@ -20,30 +20,14 @@
     }
   ],
   "responses": {
-    "response_weak": "Here's a basic chicken recipe:\n\nIngredients:\n- Chicken\n- Salt and pepper\n- Oil\n\nInstructions:\n1. Season chicken with salt and pepper\n2. Heat oil in pan\n3. Cook chicken until done\n4. Serve\n\nCook time varies depending on cut and size.",
-    "response_strong": "Here's a simple one-pan chicken and rice dinner that takes about 25 minutes:\n\n**Easy Chicken and Rice Skillet**\n\nIngredients:\n- 2-3 chicken breasts, cut into bite-sized pieces\n- 1 cup white rice\n- 2 cups water or chicken broth (if you have bouillon cubes)\n- 1 cup frozen mixed vegetables\n- 2 tbsp oil\n- 1 tsp garlic powder\n- 1 tsp onion powder\n- Salt and pepper to taste\n\nInstructions:\n1. Heat oil in a large skillet over medium-high heat\n2. Season chicken pieces with salt, pepper, garlic powder, and onion powder\n3. Cook chicken for 5-6 minutes until mostly cooked through\n4. Add rice and stir for 1 minute\n5. Add water, bring to a boil, then reduce heat to low\n6. Cover and simmer for 15 minutes\n7. Add frozen vegetables in the last 5 minutes\n8. Let stand 2 minutes before serving\n\nThis makes a complete meal in one pan with minimal cleanup!"
+    "response_weak": "Here's a basic chicken recipe: Season chicken pieces with salt and pepper. Heat oil in a pan over medium-high heat. Cook the chicken until golden brown on both sides and cooked through, about 6-8 minutes per side depending on thickness. Serve with your choice of sides. You can also bake it at 400°F for about 25 minutes if you prefer.",
+    "response_medium": "Here's a chicken and rice recipe you can make tonight:\n\nCook your rice according to package directions. While the rice cooks, slice the chicken into strips or cubes and season with salt, pepper, and any spices you like. Heat oil in a large pan and cook the chicken until done, about 6-7 minutes. Add your vegetables and cook for another 3-4 minutes until tender.\n\nFor extra flavor, you could add soy sauce, garlic, lemon juice, or whatever seasonings you have on hand. Serve the chicken and vegetables over the rice.\n\nThis is a flexible recipe — you can customize the seasonings and vegetables based on what you have available. It should take about 30-40 minutes total depending on your rice.",
+    "response_strong": "## Easy One-Pan Chicken and Rice Skillet (25 Minutes)\n\nEverything cooks in a single pan — minimal effort, minimal cleanup.\n\n### Ingredients\n- 2-3 chicken breasts, cut into bite-sized cubes\n- 1 cup white rice (uncooked)\n- 2 cups water (or chicken broth if you have bouillon cubes)\n- 1 cup frozen mixed vegetables (no need to thaw)\n- 2 tablespoons oil\n- 1 teaspoon garlic powder\n- 1 teaspoon onion powder\n- Salt and pepper to taste\n\n### Instructions\n1. **Heat oil** in a large skillet over medium-high heat\n2. **Season chicken cubes** with garlic powder, onion powder, salt, and pepper\n3. **Cook chicken** for 5-6 minutes, stirring occasionally, until mostly cooked through\n4. **Add rice** to the pan and stir for 1 minute to lightly toast it\n5. **Pour in water**, bring to a boil, then reduce heat to low\n6. **Cover and simmer** for 15 minutes — do not lift the lid\n7. **Add frozen vegetables** on top, replace lid, cook 5 more minutes\n8. **Remove from heat**, let stand 2 minutes, then fluff and stir everything together\n\n### Tips\n- Cutting chicken into small cubes means it cooks faster and you won't need to check internal temp\n- If the rice looks dry before it's done, add a splash more water\n- This makes enough for 2-3 servings and reheats well for lunch tomorrow\n\nOne pan, 25 minutes, done."
   },
   "feedback": {
-    "weak": {
-      "what_happened": "Your two-word prompt gave you a bare-bones recipe that ignored most of your ingredients and situation. The AI had no idea you were tired, wanted to use your rice and vegetables, or needed something quick. Meanwhile, the detailed prompt got you a complete one-pan meal using exactly what you had, with a realistic timeline and minimal cleanup.",
-      "principle": "Be specific, not vague — the more details you give an AI about your situation and constraints, the more useful and tailored its response will be.",
-      "principle_name": "Be specific, not vague",
-      "tip": "Next time, include your key constraints upfront: what ingredients you have, how much time you want to spend, and what you're trying to avoid (like going to the store or complicated techniques).",
-      "user_picked_best": false
-    },
-    "medium": {
-      "what_happened": "Your prompt got a decent response, but it missed some key details that would have made it much more helpful. The AI gave you a basic chicken and rice recipe, but it didn't know you wanted something quick and easy, or what specific ingredients you had available. Compare that to the detailed response the stronger prompt received — it got a complete one-pan meal with exact timing and ingredients you actually have.",
-      "principle": "Provide context about your situation and constraints so the AI can tailor its response to your specific needs.",
-      "principle_name": "Provide context",
-      "tip": "Next time, include your constraints upfront — like 'I'm tired and want something quick' or 'I only have these specific ingredients.' This helps the AI understand not just what you want, but why you want it and what limitations to work within.",
-      "user_picked_best": false
-    },
-    "strong": {
-      "what_happened": "You chose the strongest option and got a complete, actionable recipe! The weak prompt only asked for 'chicken recipe' so the AI had to guess what you wanted, resulting in a bare-bones response that ignored your rice and vegetables. Your detailed prompt told the AI exactly what ingredients you had, your time constraints, and skill level, so it could create a perfect one-pan solution that used everything you mentioned.",
-      "principle": "When you provide specific context about your situation, constraints, and available resources, AI tools can give you solutions that actually fit your real-world needs.",
-      "principle_name": "Provide context",
-      "tip": "Next time you ask any AI for help, include your constraints upfront — like time limits, available ingredients, skill level, or tools you have. This helps the AI tailor its response to what you can actually do, not just what's theoretically possible.",
-      "user_picked_best": true
-    }
+    "what_happened": "Compare what the AI had to work with in each case. The weak prompt says only 'chicken recipe' — the AI has no idea what ingredients are available, what kind of meal is wanted, or how much effort the person is willing to put in, so it gives a bare-bones cooking instruction that ignores the rice and vegetables entirely. The medium prompt gets closer by mentioning chicken, rice, and vegetables, but the AI still has to guess about time, skill level, and exact ingredients, producing a flexible but generic recipe. The strong prompt tells the AI exactly what's in the kitchen, the energy level, and the time constraint — so the response is a precise, one-pan recipe using only those specific ingredients with step-by-step timing.",
+    "principle": "When you tell the AI exactly what you have to work with and what your limitations are, it stops giving generic templates and starts giving you a solution built around your actual situation.",
+    "principle_name": "Be specific, not vague",
+    "tip": "List your actual ingredients and constraints instead of using general categories. Saying 'I have chicken breasts, white rice, and frozen vegetables' gets a much better recipe than 'I have chicken and some vegetables.'"
   }
 }

@@ -21,7 +21,7 @@ NeuroBridge trains neurotypical people to communicate more clearly with autistic
 | Provide explicit context | Tell the AI who you are and what you need |
 | Don't assume shared knowledge | State your intent and constraints |
 
-NeuroBridge uses a pick-from-options, see-consequences, receive-feedback interaction model. PromptBridge adapts this same pedagogical approach for AI communication training: users pick prompts (or write their own), see side-by-side AI responses, and get specific feedback tied to communication principles.
+NeuroBridge uses a see-consequences, compare-approaches, receive-feedback interaction model. PromptBridge adapts this same pedagogical approach for AI communication training: users compare weak, medium, and strong prompts side by side, see the dramatically different AI responses each produces, and get specific feedback tied to communication principles.
 
 **Citation:**
 > Haroon, R., Wigdor, K., Yang, K., Toumanios, N., Crehan, E.T., & Dogar, F. (2025). "NeuroBridge: Using Generative AI to Bridge Cross-neurotype Communication Differences through Neurotypical Perspective-taking." In *Proceedings of the 27th International ACM SIGACCESS Conference on Computers and Accessibility (ASSETS '25)*. ACM. DOI: [10.1145/3663547.3746337](https://dl.acm.org/doi/10.1145/3663547.3746337)
@@ -43,14 +43,14 @@ Every scenario teaches one or more of these principles:
 7. **Ask the AI to ask you questions** — Let it interview you instead of guessing
 8. **Ask the AI to write prompts for you** — Let it crystallize your request
 
-### 33 Practice Scenarios
+### 45 Practice Scenarios
 
-30 guided scenarios across 4 categories (Vague vs. Specific, Context & Framing, Iterative Refinement, Smart Strategies) plus 3 freeform scenarios for multi-skill practice.
+30 guided scenarios across 4 categories (Vague vs. Specific, Context & Framing, Iterative Refinement, Smart Strategies) plus 15 freeform "Write Your Own" scenarios spread across all 5 categories covering personal, work, school, and coding contexts.
 
 ### 4 Learning Modes
 
-- **Guided Practice** — Pick from 3 prompt options, see side-by-side AI responses, get feedback. Try again with shuffled options. Then write your own version and get scored.
-- **Write Your Own** — Write a prompt from scratch, get AI-powered analysis (with API key) or copy & try it in your own tool.
+- **Guided Practice** — Compare 3 prompt approaches (weak, medium, effective) side by side. See the AI response each one produces. Learn why specific, context-rich prompts get dramatically better results. Then write your own version and get scored.
+- **Write Your Own** — Write a prompt from scratch for any of 15 diverse scenarios, get AI-powered analysis (with API key) or copy & paste it into ChatGPT, Gemini, Claude, or Copilot to test in a real AI tool.
 - **Write First** — Write your prompt, then evaluate 3 AI-generated variations of it. *(Requires API key)*
 - **Practice Iterating** — Write an initial prompt, see a mediocre response, write a follow-up, see the improvement. *(Requires API key)*
 
@@ -78,8 +78,8 @@ Every scenario teaches one or more of these principles:
 
 The app is a fully functional Vite + React standalone application. All features are implemented and building cleanly. The current state:
 
-- 30 guided scenarios with pre-generated content (options, responses, feedback for all 3 user choices)
-- 3 freeform scenarios with AI-powered or copy-and-try paths
+- 30 guided scenarios with pre-generated content (3 prompt options, 3 AI responses, unified feedback per scenario)
+- 15 freeform "Write Your Own" scenarios across all 5 categories with AI-powered or copy-and-try paths
 - Multi-provider LLM adapter (Gemini, Claude, OpenAI) for real-time features
 - All 4 learning modes (Guided, Write Your Own, Write First, Practice Iterating)
 - Pre/post skill assessment with heuristic scoring
@@ -207,7 +207,7 @@ promptbridge/
         ├── App.jsx              # Main app — state management and routing
         ├── index.css            # Tailwind CSS + animations
         ├── data/
-        │   ├── scenarios.js     # All 33 scenario definitions
+        │   ├── scenarios.js     # All 45 scenario definitions
         │   ├── principles.js    # 8 communication principles
         │   ├── prompts.js       # LLM system prompts and message builders
         │   ├── categories.js    # Scenario category definitions
@@ -251,7 +251,7 @@ promptbridge/
 - **User testing** — Conduct 5-10 informal usability sessions using the [testing protocol](USER_TESTING_PROTOCOL.md) to identify confusion points and feedback tone issues
 - **QA pass** — Work through the [96-item QA checklist](QA_CHECKLIST.csv) to document what works and what needs fixes
 - **Cross-browser testing** — Verify Firefox, Safari, Edge, and mobile browsers
-- **Content quality review** — Review all 30 generated scenario files for response quality and feedback accuracy
+- **Content quality review** — Review all 30 generated scenario files for response quality and feedback accuracy across all 3 response tiers (weak, medium, strong)
 
 ### Mid-term: Public Deployment
 

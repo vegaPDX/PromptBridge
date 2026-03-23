@@ -1,7 +1,7 @@
 {
   "scenarioId": "4a.2-task-breakdown",
-  "generatedAt": "2026-03-22T16:56:51.843Z",
-  "generatedWith": "claude-sonnet-4-20250514",
+  "generatedAt": "2026-03-22T20:00:00.000Z",
+  "generatedWith": "claude-opus-4-6-20260322",
   "options": [
     {
       "id": "a",
@@ -20,30 +20,14 @@
     }
   ],
   "responses": {
-    "response_weak": "I can help you plan a birthday party! You'll need to consider the venue, food, decorations, guest list, and timeline. Start by deciding on a budget and theme, then choose a location that fits your group size. Plan the menu, send invitations, and don't forget decorations and entertainment.",
-    "response_strong": "For choosing the right venue for your friend's surprise 28th birthday party, here are the key factors to evaluate:\n\n**Your apartment pros/cons:**\n- Pros: Free, intimate setting, full control over timing/setup, easy to coordinate surprise\n- Cons: 15-person limit, cleanup responsibility, noise restrictions, limited parking\n\n**Restaurant pros/cons:**\n- Pros: No cleanup, professional service, guaranteed food quality\n- Cons: Less privacy, timing restrictions, harder to coordinate surprise arrival, potentially expensive\n\n**Event space pros/cons:**\n- Pros: Accommodates larger groups, party atmosphere, often includes tables/chairs\n- Cons: Additional cost, booking requirements, may need separate catering\n\n**Key questions for any venue:**\n1. What's the maximum capacity and minimum booking requirements?\n2. What's included (tables, chairs, sound system, parking)?\n3. Can you decorate in advance? What are the setup/breakdown timeframes?\n4. Are there noise restrictions or time limits?\n5. What's the cancellation policy?\n6. For restaurants: Can they accommodate a surprise arrival and do they have a private area?\n\nI'd recommend starting with your apartment if the 15-person limit works - it offers the most control for coordinating the surprise element."
+    "response_weak": "Sure, I can help you plan a birthday party! Here are some things to think about: pick a date and time, decide on a venue, create a guest list, choose a theme, plan the food and drinks, send out invitations, arrange decorations, plan activities or entertainment, order a cake, and prepare a playlist. Start with your budget and work from there. Let me know if you need more details on any of these!",
+    "response_medium": "Planning a surprise birthday party is exciting! Here's a general checklist to help you stay organized.\n\nFirst, nail down the basics: set a budget, pick a date that works for most guests, and decide on a venue. For a surprise party, the venue matters a lot because you need a place where the guest of honor won't suspect anything. Think about whether you want to host at home, at a restaurant, or at a rented space.\n\nNext, handle the logistics: create a guest list and send invitations (make sure everyone knows it's a surprise), plan the food and drinks, choose decorations, and coordinate the surprise arrival. You'll also want to think about entertainment, a birthday cake, and a backup plan in case the surprise doesn't go exactly as planned. I'd suggest creating a timeline working backward from the party date so you know what to do each week leading up to it.",
+    "response_strong": "## Venue Decision Framework for a Surprise 28th Birthday\n\nGreat instinct to start with the venue -- it shapes every other decision. Here's a structured comparison:\n\n### Option 1: Your Apartment\n**Pros:**\n- Free (more budget for food, drinks, decorations)\n- Full control over timing, setup, and the surprise moment\n- Intimate, personal atmosphere\n- No noise complaints from other customers\n\n**Cons:**\n- 15-person cap limits your guest list\n- You handle all setup, food, and cleanup\n- Parking could be an issue depending on your building\n- Hard to keep the surprise if your friend visits often\n\n### Option 2: Local Restaurant\n**Pros:**\n- Food and service handled for you\n- No cleanup\n- Professional atmosphere\n\n**Cons:**\n- Less control over timing (the surprise entrance is harder to coordinate)\n- Background noise from other diners\n- Likely the most expensive option\n- Menu restrictions and minimum spend requirements\n\n### Option 3: Rented Event Space\n**Pros:**\n- Can accommodate more than 15 people if needed\n- Designed for parties (sound system, tables, dance floor)\n- Easier to decorate and control the environment\n\n**Cons:**\n- Rental cost plus you still need catering\n- May require booking well in advance\n- Could feel impersonal if the group is small\n\n## Questions to Ask Any Venue\n1. What is the maximum capacity, and is there a minimum guest count?\n2. What's included in the price (tables, chairs, AV equipment, parking)?\n3. How early can we arrive for setup and decorating?\n4. Are there noise or music restrictions, and what time does the event need to end?\n5. What's the cancellation and deposit policy?\n6. Can we bring our own cake, or is outside food allowed?\n7. **For restaurants specifically:** Do you have a private or semi-private area, and can you help coordinate a surprise arrival?\n\n## My Recommendation\nIf your guest list fits within 15 people, your apartment is probably the best choice -- it gives you the most control over the surprise element, costs nothing for the space, and creates a warm, personal vibe. Put the savings toward great food and drinks. If you expect more than 15 guests, the event space is worth exploring."
   },
   "feedback": {
-    "weak": {
-      "what_happened": "Most people start with a question like this -- it's a natural way to ask for help. The challenge is that when a request is this general, the AI gives a generic checklist that doesn't actually help move things forward. The stronger version asked for help with one specific decision (venue choice) and provided key details like the friend's age, constraints, and current options. This gave the AI enough information to provide concrete advice and specific questions to ask venues.",
-      "principle": "Be specific, not vague - instead of asking for help with everything at once, focus on one decision and give the AI the details it needs to actually help you.",
-      "principle_name": "Be specific, not vague",
-      "tip": "When you have a complex project, pick the first decision you need to make and ask about that specifically. Include your constraints (like budget, space limits, or timeline) so the AI can give you relevant advice instead of generic suggestions.",
-      "user_picked_best": false
-    },
-    "medium": {
-      "what_happened": "You saw the difference between asking for general help versus asking for specific guidance on one decision. The medium prompt got a generic checklist that dumps everything on you at once, while the strong prompt got detailed, actionable advice about venue selection with specific pros/cons and questions to ask.",
-      "principle": "Break complex requests into smaller, specific parts rather than asking for help with everything at once.",
-      "principle_name": "Be specific, not vague",
-      "tip": "When facing a multi-step project, pick the first or most important decision and ask the AI to help you think through just that one piece thoroughly. You'll get much more useful guidance than if you ask for help with the whole project.",
-      "user_picked_best": false
-    },
-    "strong": {
-      "what_happened": "You picked the strongest option, which gave you a detailed, actionable response focused on your specific venue decision. The weak prompt got generic party planning advice that didn't help with your immediate choice, while your selected prompt received a thorough breakdown of each venue option with specific pros/cons and targeted questions to ask.",
-      "principle": "When you're specific about what decision you need help with first, AI tools can give you focused, practical guidance instead of overwhelming you with everything at once.",
-      "principle_name": "Be specific, not vague",
-      "tip": "When facing complex projects, identify the one decision that unlocks everything else and ask about that specific choice first. Instead of 'help me plan X,' try 'I need to decide between A, B, and C for my project - what factors should I consider?'",
-      "user_picked_best": true
-    }
+    "what_happened": "Compare the three responses side by side. The weak prompt produces a generic checklist that covers everything and nothing -- it's the same list you'd get for any party, any person, any situation. The medium prompt adds helpful structure and mentions the surprise element, but it's still a general-purpose planning guide. The strong prompt zeroes in on one specific decision (venue) with real constraints (15-person apartment, turning 28, surprise element), and the AI responds with a detailed comparison chart, specific questions to ask, and a concrete recommendation. Instead of giving you homework, it helps you actually make a decision.",
+    "principle": "Breaking a big project into focused decisions and tackling the most important one first gets you actionable help instead of an overwhelming checklist.",
+    "principle_name": "Be specific, not vague",
+    "tip": "When facing a multi-step project, identify the one decision that everything else depends on and ask about that first. Instead of 'help me plan X,' try 'help me decide between A, B, and C -- here are my constraints.'"
   }
 }

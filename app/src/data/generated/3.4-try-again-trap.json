@@ -1,7 +1,7 @@
 {
   "scenarioId": "3.4-try-again-trap",
-  "generatedAt": "2026-03-22T16:53:50.212Z",
-  "generatedWith": "claude-sonnet-4-20250514",
+  "generatedAt": "2026-03-22T20:00:00.000Z",
+  "generatedWith": "claude-opus-4-6-20260322",
   "options": [
     {
       "id": "a",
@@ -20,30 +20,14 @@
     }
   ],
   "responses": {
-    "response_weak": "Here's another version:\n\nOur premium handcrafted candles deliver exceptional quality and superior performance. These artisanal products feature carefully selected materials and innovative design elements that enhance any living space. Each candle represents our commitment to excellence and attention to detail, providing customers with a luxury experience that exceeds expectations.",
-    "response_strong": "Here's a warmer, more personal version:\n\nI pour my heart into every single one of these candles in my little home studio. There's something magical about watching the wax slowly melt and blend with carefully chosen scents that just make a house feel like home. When you light one of these beauties, you're not just getting a candle – you're getting a piece of the love and care I put into hand-selecting each wick, testing every scent blend until it's just right, and pouring each one by hand. These aren't mass-produced – they're made the old-fashioned way, with patience and a whole lot of passion for creating something that brings a little extra coziness to your space."
+    "response_weak": "Here's another attempt at the product description. Our handcrafted candles offer an unparalleled sensory experience with premium-grade wax blends and expertly curated fragrance profiles. Each product in our collection is meticulously crafted to deliver consistent performance and long-lasting ambiance. Elevate your space with our signature collection, designed for the discerning customer who values quality and sophistication.",
+    "response_medium": "Here's a more casual version for your candle business:\n\nWe make candles by hand, one at a time, because we think that's the way it should be done. Our small-batch candles are made with natural wax and real essential oils, so when you light one, you're getting the real deal — not some factory-made imitation. Whether you're unwinding after a long day or just want your place to smell amazing, our candles are here to set the mood.\n\nWe're a small operation and proud of it. Every candle gets personal attention from start to finish.",
+    "response_strong": "## Rewritten Product Description\n\nHonestly? I started making candles in my kitchen because I couldn't find ones that smelled like actual things — not \"Ocean Breeze Fantasy\" or whatever, but real lavender from the garden, real vanilla, real woodsmoke on a fall evening.\n\nEvery candle I make is poured by hand in small batches. I pick each scent myself, test it obsessively (my friends and family can confirm), and only sell the ones that make me walk back into the room and go, \"Oh, that's nice.\" There's no factory, no assembly line — just me, a pile of wax, and a stubborn commitment to getting the scent right.\n\nWhen you light one of these at home, I want it to feel like a little moment of calm. Like the room just gave you a hug. That's it. That's the whole point.\n\n## What Changed\n- **Removed:** \"premium quality,\" \"unparalleled,\" \"meticulously crafted,\" \"discerning customer\"\n- **Added:** First-person storytelling, specific sensory details, humor, honesty\n- **Tone shift:** From corporate brochure to a real person sharing something they love"
   },
   "feedback": {
-    "weak": {
-      "what_happened": "Most people start with feedback like this — it's completely natural to express frustration when something misses the mark. The challenge is that 'that's not right, try again' gives the AI no information about what was wrong or what to do instead. So it just generated another corporate-sounding description with the same problems. The AI had no way to know a warmer, more personal tone was needed.",
-      "principle": "Be specific about what's wrong and what you want instead — vague feedback like 'try again' doesn't give the AI enough information to improve.",
-      "principle_name": "Give specific feedback",
-      "tip": "When an AI's response misses the mark, point out exactly what's wrong AND describe what you want instead. Say something like 'This is too formal — I need a casual, friendly tone' rather than just 'this isn't right.'",
-      "user_picked_best": false
-    },
-    "medium": {
-      "what_happened": "This is how most people would phrase it — naming the problem and the context is a good instinct that got the AI moving in the right direction. The challenge is that without enough detail about what 'casual and personal' actually means for a specific brand, the AI had to guess at the voice, so it played it safe with generic business language.",
-      "principle": "Show what 'good' looks like by giving specific examples of the tone, style, or approach you want rather than just naming it.",
-      "principle_name": "Show what 'good' looks like",
-      "tip": "Instead of just saying 'make it more casual,' describe your brand voice like you're briefing a friend: 'Write like I'm chatting with a neighbor about why I love making these' or give a specific example of the feeling you want to create.",
-      "user_picked_best": false
-    },
-    "strong": {
-      "what_happened": "You chose the strongest option and got exactly what you needed! The weak prompt gave you another corporate-sounding description because the AI didn't understand what 'not right' meant or what you wanted instead. Your detailed prompt worked because you explained both what to avoid (corporate buzzwords) AND what to include (warm, conversational tone), plus you gave specific examples of your brand voice.",
-      "principle": "Show what 'good' looks like by giving concrete examples of the tone, style, or approach you want, rather than just saying what you don't want.",
-      "principle_name": "Show what 'good' looks like",
-      "tip": "When an AI's output misses the mark on tone or style, describe your desired voice like you're briefing a human writer — include specific words to avoid, words to use, and even reference points like 'imagine you're talking to a close friend' or 'write like a cozy coffee shop owner.'",
-      "user_picked_best": true
-    }
+    "what_happened": "Compare what happens with each level of feedback. The weak prompt — \"that's not right, try again\" — gives the AI zero information about what went wrong, so it produces another corporate-sounding description with the exact same problems. The medium prompt names the issue (too corporate) and the context (handmade candle business), which gets a friendlier result but still reads like a small-business template. The strong prompt paints a vivid picture of the desired brand voice — conversational, cozy, authentic — names specific phrases to avoid, and describes the feeling the writing should create. The AI delivers copy that actually sounds like a passionate maker talking about their craft.",
+    "principle": "Telling the AI what's wrong is only half the job. The other half is showing it what right looks like — with specific tone words, examples to avoid, and the feeling you want the reader to have.",
+    "principle_name": "Show what 'good' looks like",
+    "tip": "When an AI response misses on tone, describe the voice you want as if you're briefing a writer: 'Write like a passionate maker sharing their craft with a friend' is far more useful than 'make it less corporate.'"
   }
 }

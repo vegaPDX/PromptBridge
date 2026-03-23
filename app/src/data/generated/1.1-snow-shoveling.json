@@ -1,7 +1,7 @@
 {
   "scenarioId": "1.1-snow-shoveling",
-  "generatedAt": "2026-03-22T16:42:30.425Z",
-  "generatedWith": "claude-sonnet-4-20250514",
+  "generatedAt": "2026-03-22T20:00:00.000Z",
+  "generatedWith": "claude-opus-4-6-20260322",
   "options": [
     {
       "id": "a",
@@ -20,30 +20,14 @@
     }
   ],
   "responses": {
-    "response_weak": "Yes, I can help with snow shoveling. It involves using a shovel to remove snow from surfaces like driveways and walkways. Make sure to lift with your legs and take breaks to avoid injury.",
-    "response_strong": "Here's your efficient 45-minute snow clearing strategy:\n\n**Preparation (5 minutes):**\n- Use a snow pusher/scoop shovel rather than a lifting shovel for heavy wet snow\n- Spray cooking spray on the blade to prevent sticking\n- Dress in layers you can remove as you warm up\n\n**Technique for 8 inches of heavy snow:**\n- Clear in two 4-inch passes rather than trying to lift the full depth\n- Push rather than lift whenever possible - wet snow is extremely heavy\n- Work from the center of the driveway outward to avoid moving snow twice\n- Create a path down the middle first, then push snow to alternating sides\n\n**Time-saving strategy:**\n- Start with the area behind your car so you can back out immediately when done\n- Focus on tire tracks first - you don't need to clear every inch perfectly\n- Leave a 6-foot width rather than clearing the entire driveway if time runs short\n\n**Injury prevention:**\n- Bend your knees, keep your back straight\n- Take 30-second breaks every 10 minutes\n- Switch hand positions frequently\n\nThis approach should have your driveway passable in 35-40 minutes."
+    "response_weak": "Yes, I know about snow shoveling! It's the process of removing snow from driveways, walkways, and other surfaces using a shovel. Make sure to lift with your legs rather than your back, take breaks when you need to, and dress warmly. Let me know if you have a more specific question.",
+    "response_medium": "The best way to shovel snow from a driveway is to push the snow to the sides rather than lifting it whenever possible. Start from the center and work outward so you aren't moving the same snow twice. Use a wide pusher shovel for flat surfaces and switch to a scoop shovel for heavier patches.\n\nBend your knees, keep your back straight, and avoid twisting while lifting. Take breaks every 15-20 minutes, especially if the snow is heavy or wet. If you have a long driveway, work in sections to avoid overexerting yourself.\n\nIt also helps to apply a layer of salt or de-icer beforehand if you know snow is coming, as this prevents ice from bonding to the surface and makes removal much easier.",
+    "response_strong": "## 45-Minute Battle Plan for 8 Inches of Heavy Wet Snow\n\n### Gear Up First (3 minutes)\n- Use a **snow pusher or scoop shovel**, not a flat-blade shovel — wet snow is brutally heavy\n- Spray the blade with **cooking spray** to stop snow from sticking\n- Wear layers you can shed as you heat up\n\n### Technique for Heavy, Wet Snow\n- **Do NOT try to lift the full 8 inches at once** — make two passes at 4-inch depth to avoid back strain\n- **Push, don't lift** whenever possible — pushing uses your legs and body weight instead of your lower back\n- Keep your hands spread wide on the handle for better leverage\n- Switch your grip hand every few minutes to balance the load\n\n### Efficient Driveway Strategy\n1. **Clear behind your car first** so you can back out the moment you finish\n2. **Cut a path down the center** of the driveway, then push snow outward to alternating sides\n3. **Focus on tire-width tracks** if time gets tight — you do not need a perfectly clean driveway to drive out safely\n4. Leave a 6-foot-wide path if you're running short on time\n\n### Injury Prevention\n- Take a **30-second standing break every 10 minutes** — wet snow shoveling is as intense as heavy weightlifting\n- **Never twist your torso while holding a loaded shovel** — pivot your feet instead\n- If you feel any chest tightness or dizziness, stop immediately\n\nThis approach should get your driveway passable in **35-40 minutes** with energy to spare."
   },
   "feedback": {
-    "weak": {
-      "what_happened": "This is how most people would phrase it — it's completely natural. The challenge is that when a request is this general, the AI gives basic information instead of solving your specific problem. The strong prompt included crucial details (8 inches, heavy wet snow, 30-foot driveway, 45-minute deadline) that let the AI create a detailed action plan tailored to the exact situation.",
-      "principle": "Be specific, not vague — the more details you provide about your situation, the more useful and actionable the AI's response will be.",
-      "principle_name": "Be specific, not vague",
-      "tip": "Before asking any AI tool for help, pause and include the key specifics: What exactly are you dealing with? What constraints do you have? What's your goal? These details transform generic advice into a custom solution.",
-      "user_picked_best": false
-    },
-    "medium": {
-      "what_happened": "Your question got a decent answer, but notice the difference: the weak prompt got generic advice anyone could find online, while the strong prompt got a complete action plan tailored to your exact situation. The AI gave you a step-by-step strategy because it knew your specific constraints (45 minutes, 8 inches of heavy snow, 30-foot driveway).",
-      "principle": "When you give the AI specific details about your situation, it can create solutions that actually fit your needs instead of giving generic advice.",
-      "principle_name": "Provide context",
-      "tip": "Next time you ask any AI tool for help, include the key details that make your situation unique - your timeline, the specific challenge you're facing, and what success looks like for you.",
-      "user_picked_best": false
-    },
-    "strong": {
-      "what_happened": "You chose the most specific option and got a detailed, actionable plan instead of generic advice. The weak prompt was too vague ('Do you know about...?') so the AI gave basic information. Your choice included crucial details — 8 inches of heavy wet snow, 30-foot driveway, 45-minute deadline — which let the AI create a step-by-step strategy tailored to your exact situation.",
-      "principle": "When you give the AI specific context about your situation (measurements, timeframes, constraints), it can provide solutions that actually fit your needs instead of generic advice.",
-      "principle_name": "Provide context",
-      "tip": "Before asking any AI tool for help, include the key details of your situation: What exactly are you working with? What's your timeline? What constraints do you have? This transforms vague responses into practical, personalized guidance.",
-      "user_picked_best": true
-    }
+    "what_happened": "Notice how the three responses escalate dramatically. The weak prompt gets a dictionary-style definition of snow shoveling that could apply to anyone, anywhere. The medium prompt gets decent general advice about technique and posture, but nothing tailored to the actual situation. The strong prompt gives the AI real constraints to work with — 8 inches, heavy wet snow, 30-foot driveway, 45-minute deadline — and the response becomes a complete, time-boxed action plan with prioritized steps and injury prevention specific to heavy wet snow.",
+    "principle": "The more specific details you provide about your situation — measurements, timeframes, constraints — the more the AI can move from generic advice to a plan that actually solves your problem.",
+    "principle_name": "Be specific, not vague",
+    "tip": "Before asking for help, spend 10 seconds listing the key facts: how much, how big, how long do you have, and what makes your situation different from the generic case. Include those details in your prompt."
   }
 }

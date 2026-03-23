@@ -1,7 +1,7 @@
 {
   "scenarioId": "4a.1-step-by-step",
-  "generatedAt": "2026-03-22T16:56:09.842Z",
-  "generatedWith": "claude-sonnet-4-20250514",
+  "generatedAt": "2026-03-22T20:00:00.000Z",
+  "generatedWith": "claude-opus-4-6-20260322",
   "options": [
     {
       "id": "a",
@@ -20,30 +20,14 @@
     }
   ],
   "responses": {
-    "response_weak": "To split $187 among 5 people equally, each person would pay $37.40.",
-    "response_strong": "I'll work through this step-by-step to split the bill fairly based on what each person consumed.\n\n**Step 1: Break down the costs**\n- 3 steak specials: 3 × $38 = $114\n- Shared appetizer: $16\n- 2 bottles of wine: 2 × $45 = $90\n- Other items: $187 - $114 - $16 - $90 = -$33\n\nWait, let me recalculate. The itemized costs ($114 + $16 + $90 = $220) exceed the total bill of $187. Let me assume the $187 total is correct and work backwards.\n\n**Step 2: Allocate costs fairly**\n- Each person who had steak: pays for their $38 steak\n- Appetizer: $16 ÷ 2 people = $8 each for those who shared it\n- Wine: $90 ÷ 4 people = $22.50 each for those who drank\n- Remaining amount ($187 - $114 - $16 - $90 = -$33): This suggests the itemized prices don't match the total\n\n**Final amounts per person:**\nGiven the $187 total, I'll proportionally adjust:\n- 3 people with steak + wine: ~$43 each\n- 1 person with appetizer + wine: ~$31\n- 1 person with appetizer only (no alcohol): ~$8\n\nPlease verify the individual item prices, as they don't sum to $187."
+    "response_weak": "To split $187 among 5 people equally, each person would pay $37.40. You may want to round up to $38 each to cover any rounding and leave a small buffer for tip.",
+    "response_medium": "Here's a breakdown of the bill based on what each person ordered. The steaks come to $114, the appetizer is $16, and the wine totals $90. That adds up to $220 in itemized costs, but the total bill is only $187. There seems to be a discrepancy in the numbers you provided, so the itemized prices may include tax or discounts that affect the total differently.\n\nAssuming we go with the $187 total and allocate proportionally, the three steak-eaters who also drank wine would owe around $43-45 each, and the two who shared the appetizer would owe less depending on whether they drank. You may want to double-check the receipt to clarify the gap between the itemized prices and the total.",
+    "response_strong": "## Step-by-Step Bill Breakdown\n\n**Step 1: Identify what each person ordered**\n- Persons 1, 2, 3: Steak special ($38 each)\n- Persons 4 and 5: Shared appetizer ($16 total, so $8 each)\n- Persons 1, 2, 3, 4: Split two bottles of wine ($90 total, so $22.50 each)\n- Person 5: No alcohol\n\n**Step 2: Add up the itemized costs**\n- Steaks: 3 x $38 = $114\n- Appetizer: $16\n- Wine: 2 x $45 = $90\n- **Itemized total: $220**\n\n**Step 3: Compare to actual bill**\n- Actual bill: $187\n- Itemized total: $220\n- **Difference: $33 less on the actual bill**\n\nThis means the menu prices don't match the final bill exactly. There may be a happy hour discount, a shared plate credit, or the prices you recalled might be slightly off. I'll use the actual $187 total and allocate proportionally based on each person's share of the itemized costs.\n\n**Step 4: Calculate each person's proportional share**\n- Adjustment ratio: $187 / $220 = 0.85\n- **Person 1, 2, 3** (steak + wine): ($38 + $22.50) x 0.85 = **$51.43 each**\n- **Person 4** (appetizer + wine): ($8 + $22.50) x 0.85 = **$25.93**\n- **Person 5** (appetizer only): $8 x 0.85 = **$6.80**\n\n**Step 5: Verify the total**\n- 3 x $51.43 = $154.29\n- $25.93 + $6.80 = $32.73\n- **Grand total: $187.02** (penny rounding -- close enough)\n\n**Final amounts:**\n| Person | What they had | Owes |\n|--------|--------------|------|\n| 1, 2, 3 | Steak + wine | $51.43 each |\n| 4 | Appetizer + wine | $25.93 |\n| 5 | Appetizer only | $6.80 |"
   },
   "feedback": {
-    "weak": {
-      "what_happened": "Most people start with a quick request like this -- it's completely natural. The challenge is that a simple 'Split this bill' gets an equal split ($37.40 each) that ignores who ordered what. The detailed prompt got a step-by-step breakdown that fairly allocated costs based on what each person actually consumed, and even caught a math error in the numbers.",
-      "principle": "When you give AI tools specific details and context, they can provide much more useful and accurate help than when you're vague.",
-      "principle_name": "Be specific, not vague",
-      "tip": "Next time you need help with calculations or problem-solving, include all the relevant details in your first message rather than expecting the AI to guess what you need.",
-      "user_picked_best": false
-    },
-    "medium": {
-      "what_happened": "This is how most people would phrase it -- it includes the key details, which is a great instinct. The challenge is that the AI got confused because the math didn't add up ($220 in items vs $187 total bill). The strong prompt asked the AI to 'work through this step by step,' which helped it catch the discrepancy and explain the problem clearly. Without that instruction, the AI had to guess how to handle the mismatch.",
-      "principle": "When you ask AI to show its work step-by-step, it catches errors and explains problems instead of just giving you a potentially wrong answer.",
-      "principle_name": "Show what 'good' looks like",
-      "tip": "When asking AI to solve complex problems, add 'work through this step by step' or 'show your calculations' to your request. This helps the AI catch mistakes and gives you confidence in the answer.",
-      "user_picked_best": false
-    },
-    "strong": {
-      "what_happened": "You picked the strongest option and got a much better response! The weak prompt treated this as simple division, ignoring who ordered what. Your strong prompt asked the AI to work step-by-step and be fair, so it caught the math error in your scenario and showed its reasoning throughout.",
-      "principle": "When you ask AI tools to 'work step-by-step' and explain their thinking, they catch errors and show you how they reached their answer.",
-      "principle_name": "Show what 'good' looks like",
-      "tip": "For any complex calculation or analysis, add 'work through this step-by-step' to your request. This forces the AI to break down its thinking and makes it much more likely to spot mistakes.",
-      "user_picked_best": true
-    }
+    "what_happened": "Notice how the three responses differ dramatically. The weak prompt gives the AI nothing to work with except a total, so it just divides equally -- ignoring that one person only had appetizer while others had steak and wine. The medium prompt provides the item details, and the AI spots the math discrepancy but gets stuck trying to resolve it. The strong prompt asks the AI to 'work through this step by step,' which produces a clear, numbered walkthrough that catches the $33 gap, explains possible reasons, calculates a proportional adjustment, and presents a final table everyone can use at the dinner table.",
+    "principle": "Asking the AI to show its reasoning step by step forces it to organize its thinking, catch errors along the way, and produce a result you can actually verify.",
+    "principle_name": "Show what 'good' looks like",
+    "tip": "For any math, logic, or multi-step problem, add 'work through this step by step' to your prompt. This turns a black-box answer into a transparent process you can check at each stage."
   }
 }

@@ -1,7 +1,7 @@
 {
   "scenarioId": "1.2-meal-plan",
-  "generatedAt": "2026-03-22T16:43:06.262Z",
-  "generatedWith": "claude-sonnet-4-20250514",
+  "generatedAt": "2026-03-22T20:00:00.000Z",
+  "generatedWith": "claude-opus-4-6-20260322",
   "options": [
     {
       "id": "a",
@@ -20,30 +20,14 @@
     }
   ],
   "responses": {
-    "response_weak": "Here are some healthy dinner ideas: grilled chicken with vegetables, salmon with rice, salad with protein, stir-fry with tofu, and quinoa bowls. These options provide good nutrition and can be prepared in various ways.",
-    "response_strong": "Here are 5 nutritious 30-minute dinner ideas using common ingredients:\n\n1. **Sheet Pan Chicken & Vegetables** (25 mins)\n   - Chicken thighs, broccoli, bell peppers, olive oil, garlic powder\n   - Season everything, roast at 425°F\n\n2. **Black Bean & Sweet Potato Tacos** (20 mins)\n   - Microwave diced sweet potato (8 mins), sauté with canned black beans\n   - Serve in whole wheat tortillas with avocado\n\n3. **Lemon Garlic Salmon with Green Beans** (18 mins)\n   - Pan-sear salmon fillets, steam green beans in same pan\n   - Finish with lemon and minced garlic\n\n4. **Turkey & Vegetable Stir-fry** (15 mins)\n   - Ground turkey, frozen mixed vegetables, soy sauce, ginger\n   - Serve over quick-cooking brown rice or cauliflower rice\n\n5. **Chickpea & Spinach Curry** (22 mins)\n   - Canned chickpeas, canned diced tomatoes, spinach, curry powder\n   - Simmer together, serve over microwaved quinoa\n\nAll recipes serve 2-3 people and use ingredients typically found at any grocery store."
+    "response_weak": "Here are some healthy dinner ideas: grilled chicken with vegetables, salmon with rice, a big salad with protein, stir-fry with tofu, and quinoa bowls. These are all nutritious options that you can prepare in different ways depending on your preferences. You could also try soups, wraps, or grain bowls for variety.",
+    "response_medium": "Here are some quick, nutritious dinner ideas to help you eat healthier this week:\n\nFor protein-focused meals, try baked chicken breast with roasted vegetables, pan-seared salmon with a side salad, or turkey lettuce wraps with avocado. These are all high in protein and relatively simple to prepare.\n\nFor plant-based options, consider a chickpea and vegetable curry, black bean tacos with fresh salsa, or a lentil soup with crusty bread. These are budget-friendly and packed with fiber and nutrients.\n\nTo keep things quick, batch-cook your grains and proteins on Sunday so weeknight assembly takes just 10-15 minutes. Pre-washed salad greens and pre-cut vegetables are also great time-savers.",
+    "response_strong": "## 5 Healthy Weeknight Dinners (30 Minutes or Less)\n\n### 1. Sheet Pan Chicken and Vegetables — 25 min\n- **Ingredients:** chicken thighs, broccoli, bell peppers, olive oil, garlic powder, paprika\n- Cut everything into similar-sized pieces, toss with oil and seasoning, roast at 425°F\n- **Why it works:** One pan, minimal prep, minimal cleanup\n\n### 2. Black Bean Sweet Potato Tacos — 20 min\n- **Ingredients:** sweet potato (diced small), canned black beans, whole wheat tortillas, avocado, lime\n- Microwave sweet potato 8 min, warm beans with cumin and chili powder, assemble\n- **Why it works:** No meat to cook, hearty and filling\n\n### 3. Lemon Garlic Salmon with Green Beans — 18 min\n- **Ingredients:** salmon fillets, green beans, lemon, garlic, butter or olive oil\n- Pan-sear salmon 4 min per side, steam green beans in the same pan with a lid\n- **Why it works:** Fast-cooking protein, one-pan method\n\n### 4. Turkey Veggie Stir-Fry — 15 min\n- **Ingredients:** ground turkey, frozen stir-fry vegetables, soy sauce, ginger, rice or cauliflower rice\n- Brown turkey, add frozen veggies and sauce, serve over microwave rice\n- **Why it works:** Frozen vegetables make this the fastest option\n\n### 5. Chickpea Spinach Curry — 22 min\n- **Ingredients:** canned chickpeas, canned diced tomatoes, fresh or frozen spinach, curry powder, rice or naan\n- Simmer chickpeas, tomatoes, and curry powder 15 min, stir in spinach at the end\n- **Why it works:** Entirely from pantry and freezer staples\n\n**Note:** All recipes serve 2-3 people and use ingredients found at any standard grocery store. None contain shellfish."
   },
   "feedback": {
-    "weak": {
-      "what_happened": "Your prompt got generic suggestions without the practical details you actually needed. The AI gave you broad categories like 'grilled chicken with vegetables' but no cooking times, specific ingredients, or consideration of your time constraints. The stronger prompt got you 5 complete recipes with exact prep times, ingredient lists, and step-by-step instructions because it told the AI exactly what information would be useful.",
-      "principle": "Be specific about what you need rather than asking for general categories — the more details you provide about your situation and constraints, the more tailored and actionable the response will be.",
-      "principle_name": "Be specific, not vague",
-      "tip": "Next time, include your key constraints upfront (like '30 minutes max') and specify the format you want (like 'include prep times and ingredients'). This helps the AI give you information you can actually use instead of ideas you'll need to research further.",
-      "user_picked_best": false
-    },
-    "medium": {
-      "what_happened": "Your choice got you decent suggestions, but notice how the stronger prompt produced much more actionable results. The weak prompt gave vague ideas like 'grilled chicken with vegetables' while the strong prompt delivered specific recipes with exact prep times, ingredients, and cooking methods. The key difference was that the strong prompt told the AI exactly what constraints you were working with.",
-      "principle": "Provide context about your specific situation so the AI can give you tailored advice instead of generic suggestions.",
-      "principle_name": "Provide context",
-      "tip": "Next time you ask for recommendations, include your key constraints upfront — like time limits, dietary restrictions, or what equipment you have available. This helps the AI give you solutions that actually fit your real situation.",
-      "user_picked_best": false
-    },
-    "strong": {
-      "what_happened": "You chose the strongest option and got exactly what you needed! The weak prompt produced generic suggestions without timing or specifics, while your detailed request got you 5 complete recipes with prep times, ingredient lists, and cooking methods. The AI could give you practical help because you told it your constraints (30 minutes, common ingredients, dietary restrictions).",
-      "principle": "When you provide specific context about your situation and constraints, AI tools can give you much more useful and actionable advice.",
-      "principle_name": "Provide context",
-      "tip": "Before asking for suggestions, always include your key limitations or requirements — like time constraints, skill level, budget, or what you have available. This helps any AI tool tailor its response to your actual situation.",
-      "user_picked_best": true
-    }
+    "what_happened": "Compare the three responses side by side. The weak prompt produces a generic grocery list of ideas — 'grilled chicken with vegetables' tells you almost nothing you didn't already know. The medium prompt gets better general advice with some useful categories, but no specific timing, ingredient lists, or consideration of real-world constraints. The strong prompt specifies the 30-minute limit, requests 5 ideas with prep times, and mentions the shellfish restriction — so the AI delivers a complete weekly plan with exact cook times, ingredient lists, and practical notes for each recipe.",
+    "principle": "When you tell the AI your real constraints — time limits, dietary needs, how many ideas you want — it stops giving you a vague brainstorm and starts giving you a usable plan.",
+    "principle_name": "Be specific, not vague",
+    "tip": "Include your top 2-3 constraints (time, dietary needs, skill level) and specify the format you want (like 'include prep times and ingredients'). This turns generic suggestions into a plan you can actually follow."
   }
 }
