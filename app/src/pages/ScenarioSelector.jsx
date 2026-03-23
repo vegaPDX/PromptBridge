@@ -97,21 +97,19 @@ export default function ScenarioSelector({ onSelectScenario, completedScenarios,
           <PenTool className="w-4 h-4 inline mr-1.5 -mt-0.5" />
           Write Your Own
         </button>
-        <button
-          onClick={() => setActiveTab("hybrid")}
-          disabled={!hasApiKey()}
-          className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-            activeTab === "hybrid"
-              ? "bg-indigo-600 text-white"
-              : hasApiKey()
-                ? "bg-stone-100 text-stone-600 hover:bg-stone-200"
-                : "bg-stone-100 text-stone-300 cursor-not-allowed"
-          }`}
-        >
-          <MessageSquare className="w-4 h-4 inline mr-1.5 -mt-0.5" />
-          Write First
-          {!hasApiKey() && <span className="text-xs ml-1 opacity-60">(API key)</span>}
-        </button>
+        {hasApiKey() && (
+          <button
+            onClick={() => setActiveTab("hybrid")}
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+              activeTab === "hybrid"
+                ? "bg-indigo-600 text-white"
+                : "bg-stone-100 text-stone-600 hover:bg-stone-200"
+            }`}
+          >
+            <MessageSquare className="w-4 h-4 inline mr-1.5 -mt-0.5" />
+            Write First
+          </button>
+        )}
       </div>
 
       {/* Scenario cards grouped by category */}
@@ -170,10 +168,12 @@ export default function ScenarioSelector({ onSelectScenario, completedScenarios,
                           onSelectScenario(scenario, "multiturn");
                         }}
                         className="mt-2 inline-flex items-center gap-1 text-xs px-2 py-1 bg-amber-50 text-amber-700 border border-amber-200 rounded-full hover:bg-amber-100 transition-colors"
+                        title="Practice refining your prompt across multiple turns"
                       >
                         <RefreshCw className="w-3 h-3" /> Practice iterating
                       </button>
                     )}
+
                   </button>
                 );
               })}

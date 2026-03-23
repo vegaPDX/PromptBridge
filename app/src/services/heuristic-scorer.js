@@ -110,3 +110,16 @@ export function scorePrompt(userPrompt, scenario) {
     suggestions,
   };
 }
+
+/**
+ * Generate a friendly one-line summary from heuristic results.
+ */
+export function getFeedbackSummary(result) {
+  const { score, principlesDetected, principlesMissing } = result;
+  if (score >= 75) return "Strong prompt! You applied the key skills for this scenario.";
+  const missingNames = principlesMissing.map(id => PRINCIPLE_MAP[id]?.name).filter(Boolean);
+  if (score >= 40) {
+    return `Good start — you applied ${principlesDetected.length} skill${principlesDetected.length !== 1 ? "s" : ""}. Try adding ${missingNames.join(" and ")} to strengthen it.`;
+  }
+  return `Keep practicing! Try adding more detail — ${missingNames.join(", ")}.`;
+}

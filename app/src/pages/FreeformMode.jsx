@@ -1,55 +1,72 @@
 import React, { useState } from "react";
 import {
   ArrowLeft, ArrowRight, PenTool, Send, Lightbulb,
-  RefreshCw, Check, Copy, ExternalLink,
+  RefreshCw, Check,
 } from "lucide-react";
 import { PRINCIPLE_MAP } from "../data/principles";
 import { FREEFORM_SCENARIOS } from "../data/scenarios";
 import { hasApiKey, analyzeFreeform, simulateResponses } from "../services/llm";
+import { scorePrompt, getFeedbackSummary } from "../services/heuristic-scorer";
 import { getRecommendedScenarios, buildRecommendation } from "../services/recommendations";
 import LoadingSpinner from "../components/LoadingSpinner";
 import ErrorBanner from "../components/ErrorBanner";
 import PrincipleBadge from "../components/PrincipleBadge";
 import ResponseComparison from "../components/ResponseComparison";
 import CopyButton from "../components/CopyButton";
+import AiToolLinks from "../components/AiToolLinks";
 
 export default function FreeformMode({ scenario, onComplete, onBack, practicedPrinciples = [], completedScenarios = [], userContext }) {
-  // States: write | tips | loading-analysis | loading-responses | results
+  // States: write | tips | loading-analysis | loading-responses | results | heuristic-results
   const [step, setStep] = useState("write");
   const [userPrompt, setUserPrompt] = useState("");
   const [analysis, setAnalysis] = useState(null);
   const [responses, setResponses] = useState(null);
+  const [heuristic, setHeuristic] = useState(null);
   const [error, setError] = useState(null);
 
-  const apiKeyAvailable = hasApiKey();
+  // ── Check My Skills: API if available, heuristic otherwise ──
 
-  // ── Path 1: Full AI-powered flow ──────────────────────────
-
-  const handleSubmit = async () => {
+  const handleCheckSkills = async () => {
     if (!userPrompt.trim()) return;
-    setStep("loading-analysis");
-    setError(null);
-    try {
-      const result = await analyzeFreeform(scenario, userPrompt.trim(), userContext);
-      setAnalysis(result);
-
-      // Now simulate responses
-      setStep("loading-responses");
-      const resp = await simulateResponses(
-        userPrompt.trim(),
-        result.improved_prompt,
-        scenario.situation
-      );
-      setResponses(resp);
-      setStep("results");
-    } catch (e) {
-      setError(e.message);
+    if (hasApiKey()) {
+      setStep("loading-analysis");
+      setError(null);
+      try {
+        const result = await analyzeFreeform(scenario, userPrompt.trim(), userContext);
+        setAnalysis(result);
+        setStep("loading-responses");
+        const resp = await simulateResponses(
+          userPrompt.trim(),
+          result.improved_prompt,
+          scenario.situation
+        );
+        setResponses(resp);
+        setStep("results");
+      } catch (e) {
+        setError(e.message);
+        setStep("write");
+      }
+    } else {
+      const result = scorePrompt(userPrompt.trim(), scenario);
+      setHeuristic(result);
+      setStep("heuristic-results");
     }
+  };
+
+  // ── Copy & Try ──
+
+  const handleCopyAndTry = async () => {
+    try {
+      await navigator.clipboard.writeText(userPrompt.trim());
+    } catch (err) {
+      console.error("Failed to copy:", err);
+    }
+    setStep("tips");
   };
 
   const retryFromError = () => {
     if (!analysis) {
-      handleSubmit();
+      handleCheckSkills();
     } else {
       setStep("loading-responses");
       setError(null);
@@ -62,23 +79,12 @@ export default function FreeformMode({ scenario, onComplete, onBack, practicedPr
     }
   };
 
-  // ── Path 2: No API key — Copy & Tips ──────────────────────
-
-  const handleCopyAndTry = async () => {
-    try {
-      await navigator.clipboard.writeText(userPrompt.trim());
-    } catch (err) {
-      // If clipboard fails, still proceed
-      console.error("Failed to copy:", err);
-    }
-    setStep("tips");
-  };
-
   const resetForm = () => {
     setStep("write");
     setUserPrompt("");
     setAnalysis(null);
     setResponses(null);
+    setHeuristic(null);
     setError(null);
   };
 
@@ -108,9 +114,9 @@ export default function FreeformMode({ scenario, onComplete, onBack, practicedPr
           <p className="text-stone-500 text-sm mb-4">How would you ask an AI to help with this? Write the message you'd actually send.</p>
           <div className="bg-indigo-50 border border-indigo-100 rounded-lg p-3 mb-4">
             <p className="text-stone-600 text-sm">
-              <strong>Tip:</strong> After writing your prompt, copy it and paste it into any AI tool —{" "}
-              <strong>ChatGPT</strong>, <strong>Gemini</strong>, <strong>Claude</strong>, or{" "}
-              <strong>Copilot</strong>. See how a real AI responds, then come back and refine your approach.
+              <strong>Tip:</strong> After writing your prompt, check your skills and then try it in a real AI tool —{" "}
+              <strong>ChatGPT</strong>, <strong>Claude</strong>, <strong>Gemini</strong>, or{" "}
+              <strong>Copilot</strong>.
             </p>
           </div>
           <textarea
@@ -121,58 +127,25 @@ export default function FreeformMode({ scenario, onComplete, onBack, practicedPr
             className="w-full bg-white border border-stone-300 rounded-xl p-4 text-stone-700 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-300 placeholder:text-stone-300"
           />
           <div className="flex items-center justify-end gap-3 mt-3">
-            {apiKeyAvailable ? (
-              /* Path 1: API key exists -- Submit for AI analysis */
-              <>
-                <button
-                  onClick={handleSubmit}
-                  disabled={!userPrompt.trim()}
-                  className="inline-flex items-center gap-2 px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 disabled:bg-stone-300 disabled:cursor-not-allowed text-white rounded-xl font-medium transition-colors"
-                >
-                  <Send className="w-4 h-4" /> Submit
-                </button>
-                <CopyButton
-                  text={userPrompt}
-                  label="Copy to clipboard"
-                  className="bg-stone-100 text-stone-600 hover:bg-stone-200"
-                />
-              </>
-            ) : (
-              /* Path 2: No API key -- Copy & Try + disabled Analyze */
-              <>
-                <button
-                  onClick={handleCopyAndTry}
-                  disabled={!userPrompt.trim()}
-                  className="inline-flex items-center gap-2 px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 disabled:bg-stone-300 disabled:cursor-not-allowed text-white rounded-xl font-medium transition-colors"
-                >
-                  <Copy className="w-4 h-4" /> Copy &amp; Try It
-                </button>
-                <div className="text-right">
-                  <button
-                    disabled
-                    className="inline-flex items-center gap-2 px-6 py-2.5 bg-stone-200 text-stone-400 rounded-xl font-medium cursor-not-allowed"
-                  >
-                    <Send className="w-4 h-4" /> Analyze with AI
-                  </button>
-                  <p className="text-xs text-stone-400 mt-1">
-                    Requires a free Gemini key &mdash;{" "}
-                    <a
-                      href="https://aistudio.google.com/apikey"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-indigo-500 hover:text-indigo-700 underline"
-                    >
-                      Get one at Google AI Studio
-                    </a>
-                  </p>
-                </div>
-              </>
-            )}
+            <button
+              onClick={handleCheckSkills}
+              disabled={!userPrompt.trim()}
+              className="inline-flex items-center gap-2 px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 disabled:bg-stone-300 disabled:cursor-not-allowed text-white rounded-xl font-medium transition-colors"
+            >
+              <Send className="w-4 h-4" /> Check My Skills
+            </button>
+            <button
+              onClick={handleCopyAndTry}
+              disabled={!userPrompt.trim()}
+              className="inline-flex items-center gap-2 px-6 py-2.5 bg-emerald-50 hover:bg-emerald-100 disabled:bg-stone-100 disabled:text-stone-300 disabled:cursor-not-allowed text-emerald-700 border border-emerald-200 rounded-xl font-medium transition-colors"
+            >
+              Copy &amp; Try It
+            </button>
           </div>
         </div>
       )}
 
-      {/* ── Step: Tips (no API key path) ────────────────────── */}
+      {/* ── Step: Tips (Copy & Try path) ──────────────────────── */}
       {step === "tips" && (
         <div className="animate-fadeIn space-y-6">
           {/* Success message */}
@@ -181,21 +154,11 @@ export default function FreeformMode({ scenario, onComplete, onBack, practicedPr
               <Check className="w-5 h-5 text-emerald-500" />
             </div>
             <p className="font-semibold text-emerald-800 mb-1">Prompt copied!</p>
-            <p className="text-stone-600 text-sm">Now paste it into any AI tool.</p>
+            <p className="text-stone-600 text-sm">Now paste it into your AI tool and compare what you get to what you expected.</p>
           </div>
 
-          {/* Tips panel */}
-          <div className="bg-white rounded-xl border border-stone-200 p-5">
-            <div className="flex items-center gap-2 mb-3">
-              <Lightbulb className="w-5 h-5 text-amber-500" />
-              <span className="font-semibold text-stone-800">Try it out</span>
-            </div>
-            <ul className="space-y-2 text-stone-600 text-sm">
-              <li>Open <strong>ChatGPT</strong>, <strong>Gemini</strong>, <strong>Claude</strong>, or <strong>Copilot</strong> in a new tab and paste your prompt.</li>
-              <li>Compare what you get back to what you expected.</li>
-              <li>If the result isn't useful, think about what context or details were missing — then come back and try a different approach.</li>
-            </ul>
-          </div>
+          {/* AI tool links */}
+          <AiToolLinks message="Open any of these and paste your prompt:" />
 
           {/* Principles to think about */}
           <div>
@@ -222,21 +185,6 @@ export default function FreeformMode({ scenario, onComplete, onBack, practicedPr
               Back to List
             </button>
           </div>
-
-          {/* API key callout */}
-          <div className="bg-stone-50 border border-stone-200 rounded-xl p-4 text-center">
-            <p className="text-stone-600 text-sm">
-              Want AI-powered feedback on your prompts?{" "}
-              <a
-                href="https://aistudio.google.com/apikey"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-indigo-600 hover:text-indigo-700 font-medium underline inline-flex items-center gap-1"
-              >
-                Get a free Gemini API key <ExternalLink className="w-3 h-3" />
-              </a>
-            </p>
-          </div>
         </div>
       )}
 
@@ -247,6 +195,82 @@ export default function FreeformMode({ scenario, onComplete, onBack, practicedPr
 
       {step === "loading-responses" && !error && (
         <LoadingSpinner message="Simulating AI responses..." />
+      )}
+
+      {/* ── Step: Heuristic Results (no API key) ─────────────── */}
+      {step === "heuristic-results" && heuristic && (
+        <div className="space-y-6 animate-fadeIn">
+          <div className="bg-white rounded-xl border border-stone-200 p-5">
+            <h3 className="font-semibold text-stone-800 mb-4">How you did</h3>
+
+            {/* Score */}
+            <div className="flex items-center gap-4 mb-4">
+              <div className={`w-14 h-14 rounded-full flex items-center justify-center text-lg font-bold ${
+                heuristic.score >= 75 ? "bg-emerald-100 text-emerald-700" :
+                heuristic.score >= 40 ? "bg-amber-100 text-amber-700" :
+                "bg-rose-100 text-rose-700"
+              }`}>
+                {heuristic.score}
+              </div>
+              <div>
+                <p className="font-medium text-stone-800">{getFeedbackSummary(heuristic)}</p>
+                <p className="text-stone-500 text-xs">
+                  {heuristic.principlesDetected.length} of {heuristic.principlesDetected.length + heuristic.principlesMissing.length} skills applied
+                </p>
+              </div>
+            </div>
+
+            {/* Detected */}
+            {heuristic.principlesDetected.length > 0 && (
+              <div className="mb-3">
+                <p className="text-xs text-emerald-600 font-medium uppercase tracking-wide mb-2">Skills detected</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {heuristic.principlesDetected.map(pid => (
+                    <span key={pid} className="text-xs px-2 py-0.5 bg-emerald-50 text-emerald-700 rounded-full font-medium border border-emerald-200 inline-flex items-center gap-1">
+                      <Check className="w-3 h-3" /> {PRINCIPLE_MAP[pid]?.name}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Missing */}
+            {heuristic.suggestions.length > 0 && (
+              <div>
+                <p className="text-xs text-amber-600 font-medium uppercase tracking-wide mb-2">Try adding</p>
+                <div className="space-y-2">
+                  {heuristic.suggestions.map((s, i) => (
+                    <div key={i} className="bg-amber-50 rounded-lg p-3 border border-amber-100">
+                      <p className="text-stone-700 text-sm">{s}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* Try it for real */}
+          <AiToolLinks
+            prompt={userPrompt}
+            message="Now try it for real — paste your prompt and see how the AI responds. Then come back and improve it."
+          />
+
+          {/* Actions */}
+          <div className="flex gap-3">
+            <button
+              onClick={() => onComplete(scenario, [...(heuristic.principlesDetected || []), ...(heuristic.principlesMissing || [])])}
+              className="inline-flex items-center gap-2 px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-medium transition-colors"
+            >
+              Next Scenario <ArrowRight className="w-4 h-4" />
+            </button>
+            <button
+              onClick={resetForm}
+              className="inline-flex items-center gap-2 px-6 py-2.5 bg-stone-100 hover:bg-stone-200 text-stone-600 rounded-xl font-medium transition-colors"
+            >
+              <RefreshCw className="w-4 h-4" /> Try Again
+            </button>
+          </div>
+        </div>
       )}
 
       {/* ── Step: Results (API key path) ────────────────────── */}
@@ -320,6 +344,12 @@ export default function FreeformMode({ scenario, onComplete, onBack, practicedPr
               ))}
             </div>
           </div>
+
+          {/* Try it for real */}
+          <AiToolLinks
+            prompt={analysis.improved_prompt}
+            message="Try the improved version in a real AI tool and see the difference:"
+          />
 
           {/* Recommendation callout */}
           <FreeformRecommendation

@@ -3,9 +3,10 @@ import {
   ArrowLeft, ArrowRight, MessageSquare, Lightbulb, RefreshCw,
   PenTool, Send, Check, ChevronDown,
 } from "lucide-react";
+import { shuffle } from "lodash-es";
 import { loadGuidedContent } from "../services/guided-data";
 import { hasApiKey, analyzeFreeform, simulateResponses } from "../services/llm";
-import { scorePrompt } from "../services/heuristic-scorer";
+import { scorePrompt, getFeedbackSummary } from "../services/heuristic-scorer";
 import { PRINCIPLE_MAP } from "../data/principles";
 import LoadingSpinner from "../components/LoadingSpinner";
 import ErrorBanner from "../components/ErrorBanner";
@@ -13,17 +14,23 @@ import PrincipleBadge from "../components/PrincipleBadge";
 import ResponseComparison from "../components/ResponseComparison";
 import CopyButton from "../components/CopyButton";
 import MarkdownText from "../components/MarkdownText";
+import AiToolLinks from "../components/AiToolLinks";
 
 import { GUIDED_SCENARIOS } from "../data/scenarios";
 import { getRecommendedScenarios, buildRecommendation } from "../services/recommendations";
 
 export default function GuidedMode({ scenario, onComplete, onBack, practicedPrinciples = [], completedScenarios = [] }) {
-  const [step, setStep] = useState("loading"); // loading | explore | try-yourself | try-loading | try-results
-  const [content, setContent] = useState(null); // { options, responses, feedback }
+  // Steps: loading | predict | reveal | write-own | write-loading | write-results
+  const [step, setStep] = useState("loading");
+  const [content, setContent] = useState(null);
   const [error, setError] = useState(null);
-  const [expandedTier, setExpandedTier] = useState("weak");
+  const [expandedTier, setExpandedTier] = useState(null);
 
-  // Try It Yourself state
+  // Prediction state
+  const [shuffledOptions, setShuffledOptions] = useState([]);
+  const [userPick, setUserPick] = useState(null);
+
+  // Write Your Own state
   const [tryPrompt, setTryPrompt] = useState("");
   const [tryAnalysis, setTryAnalysis] = useState(null);
   const [tryResponses, setTryResponses] = useState(null);
@@ -39,7 +46,8 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
         const data = await loadGuidedContent(scenario.id);
         if (cancelled) return;
         setContent(data);
-        setStep("explore");
+        setShuffledOptions(shuffle([...data.options]));
+        setStep("predict");
       } catch (e) {
         if (!cancelled) setError(e.message);
       }
@@ -54,9 +62,45 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
     loadGuidedContent(scenario.id)
       .then(data => {
         setContent(data);
-        setStep("explore");
+        setShuffledOptions(shuffle([...data.options]));
+        setStep("predict");
       })
       .catch(e => setError(e.message));
+  };
+
+  const handlePick = (option) => {
+    setUserPick(option);
+    setExpandedTier(option.quality === "strong" ? "strong" : "weak");
+    setStep("reveal");
+  };
+
+  const goToWriteOwn = () => {
+    setTryPrompt("");
+    setTryAnalysis(null);
+    setTryResponses(null);
+    setTryHeuristic(null);
+    setStep("write-own");
+  };
+
+  const handleCheckSkills = async () => {
+    if (!tryPrompt.trim()) return;
+    if (hasApiKey()) {
+      setStep("write-loading");
+      try {
+        const analysis = await analyzeFreeform(scenario, tryPrompt.trim());
+        setTryAnalysis(analysis);
+        const resp = await simulateResponses(tryPrompt.trim(), analysis.improved_prompt, scenario.situation);
+        setTryResponses(resp);
+        setStep("write-results");
+      } catch (e) {
+        setError(e.message);
+        setStep("write-own");
+      }
+    } else {
+      const result = scorePrompt(tryPrompt.trim(), scenario);
+      setTryHeuristic(result);
+      setStep("write-results");
+    }
   };
 
   return (
@@ -84,13 +128,38 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
         <LoadingSpinner message="Loading scenario..." />
       )}
 
-      {/* Step: Explore */}
-      {step === "explore" && content && (
+      {/* ── Step: Predict ─────────────────────────────────────── */}
+      {step === "predict" && content && (
         <div className="animate-fadeIn">
-          {/* Collapsible prompt + response accordion */}
-          <h3 className="font-semibold text-stone-700 mb-3">Compare three approaches to this scenario</h3>
-          <p className="text-stone-500 text-sm mb-4">Click each tier to see the prompt and what the AI gives back.</p>
+          <h3 className="font-semibold text-stone-700 mb-1">Which prompt would get the best result?</h3>
+          <p className="text-stone-500 text-sm mb-4">Read these three ways to ask an AI for help with this scenario. Pick the one you think works best.</p>
           <div className="space-y-3">
+            {shuffledOptions.map((opt, idx) => (
+              <button
+                key={opt.id}
+                onClick={() => handlePick(opt)}
+                className="w-full text-left bg-white rounded-xl border-2 border-stone-200 p-4 hover:border-indigo-400 hover:shadow-md transition-all group"
+              >
+                <div className="flex items-start gap-3">
+                  <div className="w-7 h-7 rounded-full bg-stone-100 group-hover:bg-indigo-100 flex items-center justify-center flex-shrink-0 font-semibold text-sm text-stone-500 group-hover:text-indigo-600 transition-colors">
+                    {String.fromCharCode(65 + idx)}
+                  </div>
+                  <p className="text-stone-700 text-sm leading-relaxed flex-1">{opt.text}</p>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* ── Step: Reveal ──────────────────────────────────────── */}
+      {step === "reveal" && content && userPick && (
+        <div className="animate-fadeIn">
+          {/* Prediction result banner */}
+          <PredictionBanner quality={userPick.quality} />
+
+          {/* Three tiers accordion */}
+          <div className="space-y-3 mt-4">
             {[
               { key: "weak", label: "Weak", quality: "weak", response: content.responses.response_weak,
                 icon: <span className="text-rose-500 text-sm font-bold">&times;</span>,
@@ -104,8 +173,9 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
             ].map(tier => {
               const isOpen = expandedTier === tier.key;
               const promptText = content.options.find(o => o.quality === tier.quality)?.text;
+              const isPick = userPick.quality === tier.quality;
               return (
-                <div key={tier.key} className={`border-2 ${tier.colors.border} rounded-xl overflow-hidden transition-all`}>
+                <div key={tier.key} className={`border-2 ${tier.colors.border} rounded-xl overflow-hidden transition-all ${isPick ? "ring-2 ring-indigo-300 ring-offset-1" : ""}`}>
                   {/* Clickable header */}
                   <button
                     onClick={() => setExpandedTier(isOpen ? null : tier.key)}
@@ -116,6 +186,11 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
                         {tier.icon}
                       </div>
                       <span className={`text-sm font-medium ${tier.colors.headerText}`}>{tier.label}</span>
+                      {isPick && (
+                        <span className="text-xs px-2 py-0.5 bg-indigo-100 text-indigo-700 rounded-full font-medium">
+                          Your pick
+                        </span>
+                      )}
                     </div>
                     <div className="flex items-center gap-2">
                       <span onClick={(e) => e.stopPropagation()}>
@@ -134,6 +209,14 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
                         <p className="text-stone-700 text-sm leading-relaxed italic">"{promptText}"</p>
                       </div>
 
+                      {/* Clarification response — weak tier only */}
+                      {tier.quality === "weak" && content.feedback?.clarification_response && (
+                        <div className="px-5 py-3 bg-amber-50 border-t border-amber-100">
+                          <p className="text-xs text-amber-600 font-medium uppercase tracking-wide mb-1">A good AI might ask instead</p>
+                          <p className="text-stone-600 text-sm italic">"{content.feedback.clarification_response}"</p>
+                        </div>
+                      )}
+
                       {/* The AI response */}
                       <div className={`px-5 pt-3 pb-5 bg-gradient-to-b ${tier.colors.responseFrom} to-white`}>
                         <p className="text-xs text-stone-400 font-medium uppercase tracking-wide mb-2">What the AI gives back</p>
@@ -148,7 +231,7 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
             })}
           </div>
 
-          {/* Section 3: Copy the effective prompt CTA */}
+          {/* Copy the effective prompt CTA */}
           <div className="mt-4 flex justify-end">
             <CopyButton
               text={content.options.find(o => o.quality === "strong")?.text}
@@ -157,7 +240,7 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
             />
           </div>
 
-          {/* Section 4: Feedback panel */}
+          {/* Feedback panel */}
           {content.feedback && (
             <div className="mt-6 bg-amber-50 border border-amber-200 rounded-xl p-5 mb-6">
               <div className="flex items-center gap-2 mb-3">
@@ -177,42 +260,36 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
             </div>
           )}
 
-          {/* Section 5: Principle badges */}
+          {/* Principle badges */}
           <div className="flex flex-wrap gap-2 mb-6">
             {scenario.principles.map(pid => (
               <PrincipleBadge key={pid} principleId={pid} />
             ))}
           </div>
 
-          {/* Section 6: Recommendation callout */}
+          {/* Recommendation callout */}
           <RecommendationCallout
             practicedPrinciples={[...new Set([...practicedPrinciples, ...(scenario.principles || [])])]}
             completedScenarios={[...new Set([...completedScenarios, scenario.id])]}
           />
 
-          {/* Section 7: Action buttons */}
+          {/* Action buttons — Write Your Own is primary */}
           <div className="flex flex-wrap gap-3">
             <button
-              onClick={() => onComplete(scenario)}
-              className="inline-flex items-center gap-2 px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-medium transition-colors"
-            >
-              Next Scenario <ArrowRight className="w-4 h-4" />
-            </button>
-            <button
-              onClick={() => {
-                setTryPrompt("");
-                setTryAnalysis(null);
-                setTryResponses(null);
-                setTryHeuristic(null);
-                setStep("try-yourself");
-              }}
-              className="inline-flex items-center gap-2 px-6 py-2.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 border border-emerald-200 rounded-xl font-medium transition-colors"
+              onClick={goToWriteOwn}
+              className="inline-flex items-center gap-2 px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-medium transition-colors"
             >
               <PenTool className="w-4 h-4" /> Now Write Your Own
             </button>
             <button
+              onClick={() => onComplete(scenario)}
+              className="inline-flex items-center gap-2 px-6 py-2.5 bg-stone-100 hover:bg-stone-200 text-stone-600 rounded-xl font-medium transition-colors"
+            >
+              Next Scenario <ArrowRight className="w-4 h-4" />
+            </button>
+            <button
               onClick={onBack}
-              className="px-6 py-2.5 bg-stone-100 hover:bg-stone-200 text-stone-600 rounded-xl font-medium transition-colors"
+              className="px-4 py-2.5 text-stone-400 hover:text-stone-600 text-sm transition-colors"
             >
               Back to List
             </button>
@@ -220,8 +297,8 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
         </div>
       )}
 
-      {/* Step: Try It Yourself — write */}
-      {step === "try-yourself" && (
+      {/* ── Step: Write Your Own ──────────────────────────────── */}
+      {step === "write-own" && (
         <div className="animate-fadeIn">
           <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 mb-4">
             <div className="flex items-center gap-2 mb-2">
@@ -229,7 +306,7 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
               <span className="text-sm font-medium text-emerald-800">Now it's your turn</span>
             </div>
             <p className="text-stone-600 text-sm">
-              Write your own request for this scenario. Try to include these skills:
+              Write your own request for this scenario. Apply what you just learned, then try it in a real AI tool.
             </p>
             <div className="flex flex-wrap gap-1.5 mt-2">
               {scenario.principles.map(pid => (
@@ -248,33 +325,19 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
           />
           <div className="flex items-center gap-3 mt-3">
             <button
-              onClick={async () => {
-                if (!tryPrompt.trim()) return;
-                if (hasApiKey()) {
-                  setStep("try-loading");
-                  try {
-                    const analysis = await analyzeFreeform(scenario, tryPrompt.trim());
-                    setTryAnalysis(analysis);
-                    const resp = await simulateResponses(tryPrompt.trim(), analysis.improved_prompt, scenario.situation);
-                    setTryResponses(resp);
-                    setStep("try-results");
-                  } catch (e) {
-                    setError(e.message);
-                    setStep("try-yourself");
-                  }
-                } else {
-                  const result = scorePrompt(tryPrompt.trim(), scenario);
-                  setTryHeuristic(result);
-                  setStep("try-results");
-                }
-              }}
+              onClick={handleCheckSkills}
               disabled={!tryPrompt.trim()}
               className="inline-flex items-center gap-2 px-6 py-2.5 bg-emerald-600 hover:bg-emerald-700 disabled:bg-stone-300 disabled:cursor-not-allowed text-white rounded-xl font-medium transition-colors"
             >
-              <Send className="w-4 h-4" /> Check My Prompt
+              <Send className="w-4 h-4" /> Check My Skills
             </button>
+            <CopyButton
+              text={tryPrompt}
+              label="Copy & Try It"
+              className="bg-indigo-50 text-indigo-700 hover:bg-indigo-100 border border-indigo-200"
+            />
             <button
-              onClick={() => setStep("explore")}
+              onClick={() => setStep("reveal")}
               className="px-4 py-2.5 text-stone-500 hover:text-stone-700 text-sm transition-colors"
             >
               Back to results
@@ -283,13 +346,13 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
         </div>
       )}
 
-      {/* Step: Try It Yourself — loading */}
-      {step === "try-loading" && !error && (
+      {/* Step: Write loading */}
+      {step === "write-loading" && !error && (
         <LoadingSpinner message="Analyzing your prompt..." />
       )}
 
-      {/* Step: Try It Yourself — results */}
-      {step === "try-results" && (
+      {/* ── Step: Write Results ───────────────────────────────── */}
+      {step === "write-results" && (
         <div className="animate-fadeIn space-y-6">
           {/* API-powered results */}
           {tryAnalysis && tryResponses && (
@@ -342,7 +405,7 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
                 </div>
                 <div>
                   <p className="font-medium text-stone-800">
-                    {tryHeuristic.score >= 75 ? "Strong prompt!" : tryHeuristic.score >= 40 ? "Good start — room to grow" : "Keep practicing!"}
+                    {getFeedbackSummary(tryHeuristic)}
                   </p>
                   <p className="text-stone-500 text-xs">
                     {tryHeuristic.principlesDetected.length} of {tryHeuristic.principlesDetected.length + tryHeuristic.principlesMissing.length} skills applied
@@ -380,6 +443,12 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
             </div>
           )}
 
+          {/* Try it for real — always shown */}
+          <AiToolLinks
+            prompt={tryPrompt}
+            message="Paste your prompt into any AI tool and see how it responds. Then come back and try to improve it."
+          />
+
           {/* Action buttons */}
           <div className="flex gap-3">
             <button
@@ -389,13 +458,7 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
               Next Scenario <ArrowRight className="w-4 h-4" />
             </button>
             <button
-              onClick={() => {
-                setTryPrompt("");
-                setTryAnalysis(null);
-                setTryResponses(null);
-                setTryHeuristic(null);
-                setStep("try-yourself");
-              }}
+              onClick={goToWriteOwn}
               className="inline-flex items-center gap-2 px-6 py-2.5 bg-stone-100 hover:bg-stone-200 text-stone-600 rounded-xl font-medium transition-colors"
             >
               <RefreshCw className="w-4 h-4" /> Try Again
@@ -406,6 +469,47 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
     </div>
   );
 }
+
+/* ── Prediction result banner ────────────────────────────── */
+
+function PredictionBanner({ quality }) {
+  if (quality === "strong") {
+    return (
+      <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 flex items-center gap-3">
+        <div className="w-8 h-8 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+          <Check className="w-4 h-4 text-emerald-600" />
+        </div>
+        <p className="text-emerald-800 text-sm font-medium">
+          Nice instinct! You picked the most effective version. See below for why it works so well.
+        </p>
+      </div>
+    );
+  }
+  if (quality === "medium") {
+    return (
+      <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-center gap-3">
+        <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0">
+          <ArrowRight className="w-4 h-4 text-amber-600" />
+        </div>
+        <p className="text-amber-800 text-sm font-medium">
+          Close! That one is decent, but see how the effective version goes further. The difference is worth seeing.
+        </p>
+      </div>
+    );
+  }
+  return (
+    <div className="bg-stone-50 border border-stone-200 rounded-xl p-4 flex items-center gap-3">
+      <div className="w-8 h-8 rounded-full bg-stone-100 flex items-center justify-center flex-shrink-0">
+        <Lightbulb className="w-4 h-4 text-stone-500" />
+      </div>
+      <p className="text-stone-700 text-sm font-medium">
+        Most people would pick that one too — it's the most natural way to ask. But see what the AI actually does with it versus the effective version.
+      </p>
+    </div>
+  );
+}
+
+/* ── Recommendation callout ──────────────────────────────── */
 
 function RecommendationCallout({ practicedPrinciples, completedScenarios }) {
   const recs = getRecommendedScenarios(practicedPrinciples, completedScenarios, GUIDED_SCENARIOS, 1);

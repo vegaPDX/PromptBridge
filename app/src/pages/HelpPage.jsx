@@ -32,31 +32,37 @@ export default function HelpPage({ onNavigate }) {
       {/* How does it work? */}
       <Section title="How does it work?">
         <p className="mb-3">
-          You'll practice with real-world scenarios across four modes, from structured to open-ended:
+          You'll practice with real-world scenarios — no setup required:
         </p>
         <div className="space-y-3">
           <ModeCard
             icon={<BookOpen className="w-4 h-4 text-indigo-500" />}
             title="Guided Practice"
-            description="You see a situation and three ways to ask an AI for help. Pick the one you think works best, then see what each one actually produces — side by side. You'll get feedback on why one works better. After that, you can try the scenario again with shuffled options, or write your own version from scratch."
+            description="See a situation and predict which of three prompts would work best. Then see what each one actually produces — side by side. You'll get feedback on why one works better, then write your own version and try it in a real AI tool."
           />
           <ModeCard
             icon={<PenTool className="w-4 h-4 text-indigo-500" />}
             title="Write Your Own"
-            description="Write your own request from scratch for a given scenario. With an API key, you'll get AI-powered feedback showing what's strong, what to improve, and a side-by-side comparison. Without one, you can copy your prompt and try it in any AI tool."
+            description="Write your own request from scratch, check which skills you applied, then copy it and try it in any AI tool — ChatGPT, Claude, Gemini, or Copilot."
           />
-          <ModeCard
-            icon={<MessageSquare className="w-4 h-4 text-indigo-500" />}
-            title="Write First"
-            badge="Requires API key"
-            description="Write your request first, then see three variations of it at different quality levels. Evaluate which version is strongest and see the difference in AI responses. This helps you spot patterns in your own writing."
-          />
-          <ModeCard
-            icon={<RefreshCw className="w-4 h-4 text-indigo-500" />}
-            title="Practice Iterating"
-            badge="Requires API key"
-            description="Available on some scenarios. Write an initial request, see a mediocre AI response, then write a follow-up to improve it. You'll see how iterating on your request transforms the result — and get feedback on the full conversation."
-          />
+        </div>
+        <div className="mt-4">
+          <p className="text-xs text-stone-400 font-medium uppercase tracking-wide mb-2">Advanced modes</p>
+          <p className="text-stone-500 text-xs mb-3">These unlock when you add an API key in <button onClick={() => onNavigate("settings")} className="text-indigo-500 hover:text-indigo-700 underline">Settings</button>.</p>
+          <div className="space-y-3">
+            <ModeCard
+              icon={<MessageSquare className="w-4 h-4 text-stone-400" />}
+              title="Write First"
+              badge="API key"
+              description="Write your request first, then see three AI-generated variations at different quality levels. Evaluate which is strongest and see the difference in AI responses."
+            />
+            <ModeCard
+              icon={<RefreshCw className="w-4 h-4 text-stone-400" />}
+              title="Practice Iterating"
+              badge="API key"
+              description="Write an initial request, see a mediocre AI response, then write a follow-up to improve it. You'll see how iterating transforms the result."
+            />
+          </div>
         </div>
       </Section>
 
@@ -223,34 +229,75 @@ export default function HelpPage({ onNavigate }) {
         </p>
       </Section>
 
-      {/* What's a Gemini API key? */}
+      {/* How to use with your favorite AI tool */}
+      <Section title="How to use with your favorite AI tool">
+        <p className="mb-3">
+          PromptBridge teaches the skills — then you practice them in real AI tools. Here's the workflow:
+        </p>
+        <ol className="space-y-2 list-none">
+          <li className="flex items-start gap-2">
+            <span className="w-5 h-5 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5">1</span>
+            <span><strong>Practice a scenario</strong> in PromptBridge to learn the skill.</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="w-5 h-5 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5">2</span>
+            <span><strong>Write your own prompt</strong> and check which skills you applied.</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="w-5 h-5 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5">3</span>
+            <span><strong>Copy your prompt</strong> and open your favorite AI tool.</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="w-5 h-5 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5">4</span>
+            <span><strong>Paste and send.</strong> See how the AI responds to your prompt.</span>
+          </li>
+          <li className="flex items-start gap-2">
+            <span className="w-5 h-5 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5">5</span>
+            <span><strong>Come back and improve.</strong> Try again with what you learned.</span>
+          </li>
+        </ol>
+        <div className="flex flex-wrap gap-2 mt-4">
+          {[
+            { name: "ChatGPT", url: "https://chatgpt.com" },
+            { name: "Claude", url: "https://claude.ai" },
+            { name: "Gemini", url: "https://gemini.google.com" },
+            { name: "Copilot", url: "https://copilot.microsoft.com" },
+          ].map(tool => (
+            <a
+              key={tool.name}
+              href={tool.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-indigo-50 border border-indigo-200 rounded-lg text-sm font-medium text-indigo-700 hover:bg-indigo-100 transition-colors"
+            >
+              {tool.name} <ExternalLink className="w-3 h-3" />
+            </a>
+          ))}
+        </div>
+      </Section>
+
+      {/* What's an API key? */}
       <Section title="What's an API key? Do I need one?">
         <p>
-          <strong>Guided Practice works with no setup at all</strong> — you can start right now.
-          But some features use AI to analyze your writing in real time, and those need an API
-          key. Think of it as a password that lets the app talk to an AI service on your behalf.
+          <strong>You don't need one.</strong> PromptBridge is fully functional without any setup —
+          all Guided Practice scenarios, skill checking, and the copy-and-try workflow work immediately.
+        </p>
+        <p className="mt-2">
+          Power users can optionally add a free API key to unlock advanced features like
+          AI-powered analysis, the Write First mode, and multi-turn practice. Think of an API key
+          as a password that lets the app talk to an AI service on your behalf.
         </p>
         <div className="mt-3 bg-stone-50 rounded-lg border border-stone-200 p-3">
-          <p className="text-xs text-stone-500 font-medium uppercase tracking-wide mb-2">What works without a key</p>
+          <p className="text-xs text-stone-500 font-medium uppercase tracking-wide mb-2">What unlocks with a free API key</p>
           <ul className="text-stone-600 text-xs space-y-1">
-            <li>All 30 Guided Practice scenarios (pick from options, see comparison, get feedback)</li>
-            <li>Try Again (round 2) in guided mode</li>
-            <li>Write Your Own with Copy & Try (no AI feedback, but you can paste into any AI tool)</li>
-            <li>"Now Write Your Own" in guided mode with basic skill scoring</li>
-            <li>Pre/post skill assessment</li>
-          </ul>
-        </div>
-        <div className="mt-2 bg-stone-50 rounded-lg border border-stone-200 p-3">
-          <p className="text-xs text-stone-500 font-medium uppercase tracking-wide mb-2">What unlocks with a free key</p>
-          <ul className="text-stone-600 text-xs space-y-1">
-            <li>AI-powered feedback in Write Your Own mode (analysis + side-by-side comparison)</li>
-            <li>Full AI analysis in "Now Write Your Own" within guided mode</li>
+            <li>AI-powered feedback in Write Your Own mode (detailed analysis + side-by-side comparison)</li>
+            <li>Richer AI analysis in guided mode's "Write Your Own" step</li>
             <li>Write First mode (the AI creates variations of your prompt)</li>
             <li>Practice Iterating mode (multi-turn conversation practice)</li>
           </ul>
         </div>
         <p className="mt-3">
-          Google offers free Gemini API keys that work great with PromptBridge.
+          If you'd like to try these features, Google offers free Gemini API keys:
         </p>
         <a
           href="https://aistudio.google.com/apikey"
@@ -261,7 +308,7 @@ export default function HelpPage({ onNavigate }) {
           Get a free key at Google AI Studio <ExternalLink className="w-3.5 h-3.5" />
         </a>
         <p className="mt-2 text-stone-500 text-xs">
-          You can also use your own Claude (Anthropic) or OpenAI key if you have one.
+          You can also use your own Claude (Anthropic) or OpenAI key.
           Go to <button onClick={() => onNavigate("settings")} className="text-indigo-500 hover:text-indigo-700 underline">Settings</button> to
           configure your key.
         </p>
