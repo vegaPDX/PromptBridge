@@ -94,12 +94,21 @@ The public web app is a **fully static site** with no backend and no outbound ne
 
 PromptBridge is designed as a zero-trust static site:
 
+**Application security:**
+
 - **No API keys in the public app** — The deployed web app makes no network requests. There are no API keys, no secrets, and nothing sensitive stored in the browser.
 - **XSS prevention** — All pre-generated content is HTML-escaped before rendering via `dangerouslySetInnerHTML`. All other dynamic content uses React text nodes (auto-escaped).
 - **Content Security Policy** — Strict `<meta>` CSP blocks inline scripts, explicitly disallows all outbound connections (`connect-src 'none'`), prevents plugin embedding (`object-src 'none'`), and restricts base URIs and form targets.
 - **Clickjacking protection** — JavaScript frame-buster in `main.jsx` (CSP `frame-ancestors` doesn't work in `<meta>` tags, and GitHub Pages doesn't support custom HTTP headers).
 - **Input length limits** — All user prompt textareas are capped at 4,000 characters.
 - **No bundled secrets** — The `.env.example` only contains non-`VITE_` prefixed variables used by the local content generation script.
+
+**GitHub & supply chain security:**
+
+- **GitHub Actions pinned to commit SHAs** — All actions in the deploy workflow use immutable commit hashes, not mutable version tags, to prevent supply chain attacks.
+- **Secret scanning & push protection** — GitHub secret scanning is enabled with push protection to block accidental commits containing API keys or tokens.
+- **Dependabot security updates** — Automated vulnerability alerts and security PRs for dependencies.
+- **Branch protection** — `main` requires code owner review, blocks force pushes and branch deletions, and enforces rules for admins.
 
 If you find a security issue, please open an issue or contact the maintainer directly.
 
@@ -229,8 +238,8 @@ promptbridge/
         │   ├── AssessmentMode.jsx  # Pre/post skill assessment
         │   ├── ProgressPage.jsx    # Progress tracking dashboard
         │   └── HelpPage.jsx        # Help and AI safety guide
-        ├── services/               # Storage, heuristic scoring, recommendations
-        └── components/             # Shared UI components
+        ├── services/               # Storage, heuristic scoring, guided data, recommendations
+        └── components/             # Header, CopyButton, AiToolLinks, MarkdownText, etc.
 ```
 
 ---
