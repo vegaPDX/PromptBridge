@@ -124,13 +124,13 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
           <div className="space-y-3">
             {[
               { key: "weak", label: "Weak", quality: "weak", response: content.responses.response_weak,
-                icon: <span className="text-rose-500 text-sm font-bold">&times;</span>,
+                icon: <span className="text-rose-500 text-sm font-bold" aria-hidden="true">&times;</span>,
                 colors: { border: "border-rose-200", bg: "bg-rose-50", headerBg: "bg-rose-50", headerText: "text-rose-700", iconBg: "bg-rose-100", responseBorder: "border-rose-100", responseFrom: "from-rose-50" } },
               { key: "medium", label: "Getting There", quality: "medium", response: content.responses.response_medium,
-                icon: <ArrowRight className="w-4 h-4 text-amber-500" />,
+                icon: <ArrowRight className="w-4 h-4 text-amber-500" aria-hidden="true" />,
                 colors: { border: "border-amber-200", bg: "bg-amber-50", headerBg: "bg-amber-50", headerText: "text-amber-700", iconBg: "bg-amber-100", responseBorder: "border-amber-100", responseFrom: "from-amber-50" } },
               { key: "strong", label: "Effective", quality: "strong", response: content.responses.response_strong,
-                icon: <Check className="w-4 h-4 text-emerald-500" />,
+                icon: <Check className="w-4 h-4 text-emerald-500" aria-hidden="true" />,
                 colors: { border: "border-emerald-200", bg: "bg-emerald-50", headerBg: "bg-emerald-50", headerText: "text-emerald-700", iconBg: "bg-emerald-100", responseBorder: "border-emerald-100", responseFrom: "from-emerald-50" } },
             ].map(tier => {
               const isOpen = expandedTier === tier.key;
@@ -140,6 +140,7 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
                   {/* Clickable header */}
                   <button
                     onClick={() => setExpandedTier(isOpen ? null : tier.key)}
+                    aria-expanded={isOpen}
                     className={`w-full flex items-center justify-between gap-3 p-4 ${tier.colors.headerBg} hover:brightness-95 transition-all`}
                   >
                     <div className="flex items-center gap-2">
@@ -275,6 +276,7 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
             value={tryPrompt}
             onChange={(e) => setTryPrompt(e.target.value)}
             maxLength={4000}
+            aria-label="Write your prompt"
             placeholder="Type your request here..."
             rows={5}
             className="w-full bg-white border border-stone-300 rounded-xl p-4 text-stone-700 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-emerald-300 focus:border-emerald-300 placeholder:text-stone-300"

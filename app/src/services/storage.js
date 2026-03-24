@@ -37,8 +37,10 @@ export function loadProgress() {
 export function saveProgress(data) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    return true;
   } catch (e) {
     console.error("Failed to save progress:", e);
+    return false;
   }
 }
 
@@ -59,8 +61,10 @@ export function loadAssessment() {
 export function saveAssessment(data) {
   try {
     localStorage.setItem(ASSESSMENT_KEY, JSON.stringify(data));
+    return true;
   } catch (e) {
     console.error("Failed to save assessment:", e);
+    return false;
   }
 }
 
@@ -81,7 +85,9 @@ export function loadUserContext() {
 export function saveUserContext(data) {
   try {
     localStorage.setItem(CONTEXT_KEY, JSON.stringify(data));
+    return true;
   } catch (e) {
     console.error("Failed to save user context:", e);
+    return false;
   }
 }
