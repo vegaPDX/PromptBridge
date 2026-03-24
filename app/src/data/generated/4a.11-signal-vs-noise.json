@@ -1,0 +1,34 @@
+{
+  "scenarioId": "4a.11-signal-vs-noise",
+  "generatedAt": "2026-03-24T05:10:14.198Z",
+  "generatedWith": "claude-sonnet-4-20250514",
+  "options": [
+    {
+      "id": "a",
+      "text": "Help me write a product review",
+      "quality": "weak"
+    },
+    {
+      "id": "b",
+      "text": "I need help writing a review for a blender I bought. Order #12345, shipped via UPS tracking 1Z999AA1234567890, delivered to 123 Main St on March 15th. Account email: user@email.com. The blender works pretty well and is easy to clean. Can you help me write a good review?",
+      "quality": "medium"
+    },
+    {
+      "id": "c",
+      "text": "Help me write a product review for a blender I recently purchased. The blender performs well for smoothies and protein shakes, blends ice effectively, and is easy to clean. The motor is powerful but quite loud. The pitcher feels sturdy but the lid can be tricky to align properly. Overall I'm satisfied with the purchase. Please help me organize these thoughts into a helpful review.",
+      "quality": "strong"
+    }
+  ],
+  "responses": {
+    "response_weak": "I can help you write a product review. A good review should include your honest opinion about the product, mention its key features, discuss pros and cons, and rate it appropriately. Include details about performance, quality, and value for money.",
+    "response_medium": "I can help you write a review for your blender. Based on your positive experience, here's a draft:\n\n\"Good blender overall. Works well and is easy to clean as mentioned. The performance meets expectations and I'm happy with my purchase. Would recommend to others looking for a reliable blender.\"\n\nYou might want to add more specific details about what you used it for and any particular features you liked or disliked.",
+    "response_strong": "Here's a helpful review based on your experience:\n\n**4/5 Stars - Solid Performance with Minor Quirks**\n\n\"This blender has been great for my daily smoothies and protein shakes. The motor is impressively powerful and handles ice cubes without any issues, creating smooth, consistent blends every time.\n\nPros:\n- Powerful motor that crushes ice effectively\n- Easy cleanup - parts rinse clean quickly\n- Sturdy pitcher feels durable and well-made\n- Excellent for smoothies and protein drinks\n\nCons:\n- Motor is quite loud during operation\n- Lid alignment can be finicky - takes a moment to get it seated properly\n\nOverall, I'm satisfied with this purchase. It delivers on performance where it matters most, and the minor inconveniences don't outweigh the solid blending results. Recommended for anyone wanting a reliable everyday blender.\""
+  },
+  "feedback": {
+    "what_happened": "The weak prompt gives no details, so the AI can only offer generic review-writing advice. The medium prompt includes your actual thoughts but buries them in irrelevant order details, leading to a basic review that misses your specific experiences. The effective prompt focuses purely on your product experience with concrete details (loud motor, tricky lid, handles ice well), allowing the AI to craft a detailed, helpful review that highlights both strengths and weaknesses in an organized format.",
+    "principle": "Include everything needed — but nothing extra",
+    "principle_name": "Include everything needed — but nothing extra",
+    "tip": "Before asking for help, separate what's relevant to your request from what isn't. For a product review, share your actual experience with the item — not your purchase details."
+  },
+  "feedbackUpdatedAt": "2026-03-24T05:48:30.489Z"
+}

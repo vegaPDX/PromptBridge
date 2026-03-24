@@ -1,0 +1,34 @@
+{
+  "scenarioId": "3.11-long-thread",
+  "generatedAt": "2026-03-24T05:07:43.602Z",
+  "generatedWith": "claude-sonnet-4-20250514",
+  "options": [
+    {
+      "id": "a",
+      "text": "You keep forgetting things. Can you remember what I told you?",
+      "quality": "weak"
+    },
+    {
+      "id": "b",
+      "text": "I've mentioned several requirements for this presentation already but you seem to be forgetting them. Can you help me make sure we're on the same page about what I need?",
+      "quality": "medium"
+    },
+    {
+      "id": "c",
+      "text": "Let me re-anchor our conversation with a summary. I'm creating a 15-minute sales presentation for enterprise clients about our new CRM software. Key requirements I mentioned earlier: must include ROI calculator, 3 customer case studies, demo screenshots, and pricing comparison chart. You've been forgetting the ROI calculator requirement in your recent suggestions. Please acknowledge these requirements and continue helping me structure the remaining slides with all four elements included.",
+      "quality": "strong"
+    }
+  ],
+  "responses": {
+    "response_weak": "Yes, I can help you remember things. What specific information would you like me to recall?",
+    "response_medium": "You're right, and I apologize for any confusion. Since our conversation has been ongoing, I may not have all the context readily available. Could you remind me of the key requirements for your presentation? This will help me provide more consistent and relevant suggestions moving forward.",
+    "response_strong": "Thank you for the clear summary. I acknowledge all four key requirements for your 15-minute enterprise CRM sales presentation:\n\n1. ROI calculator\n2. 3 customer case studies  \n3. Demo screenshots\n4. Pricing comparison chart\n\nI apologize for missing the ROI calculator in recent suggestions. For the remaining slides, I recommend this structure:\n\n- Slides 1-3: Problem/solution intro with demo screenshots\n- Slides 4-6: Customer case studies (one per slide)\n- Slide 7: ROI calculator with input fields for company size/current costs\n- Slide 8: Pricing comparison chart showing your tiers vs competitors\n- Slide 9: Next steps/contact info\n\nWould you like me to help develop content for any specific slide, keeping all four required elements integrated throughout?"
+  },
+  "feedback": {
+    "what_happened": "The weak prompt expresses frustration but gives the AI nothing concrete to work with, so it responds with a generic offer to help. The medium prompt acknowledges the problem and asks for alignment, which gets a more thoughtful response but still requires you to repeat everything. The effective prompt takes a completely different approach — it re-establishes the full context upfront with specific details (15-minute presentation, enterprise clients, CRM software, four exact requirements). This allows the AI to immediately acknowledge what it missed, apologize specifically, and provide a detailed slide structure that incorporates all requirements.",
+    "principle": "When AI tools lose track in long conversations, provide context instead of expressing frustration — give them everything they need to get back on track.",
+    "principle_name": "Provide context",
+    "tip": "When an AI starts forgetting things in a long conversation, pause and create a 'reset summary' that includes your goal, key requirements, and what's been missed. This gets you back on track faster than asking the AI to remember."
+  },
+  "feedbackUpdatedAt": "2026-03-24T05:46:49.086Z"
+}

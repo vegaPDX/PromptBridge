@@ -20,7 +20,7 @@ const VALID_CATEGORIES = [
   "full_conversation_loop",
 ];
 
-const VALID_PRINCIPLES = ["P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8"];
+const VALID_PRINCIPLES = ["P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8", "P9", "P10", "P11", "P12"];
 const VALID_MODES = ["guided", "freeform"];
 const VALID_RELEVANCE = ["work", "coding", "school", "personal", "other"];
 

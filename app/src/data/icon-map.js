@@ -1,11 +1,13 @@
 import {
   Target, Users, Lightbulb, AlertCircle, Eye,
-  PenTool, HelpCircle, Sparkles, RefreshCw, Zap
+  PenTool, HelpCircle, Sparkles, RefreshCw, Zap,
+  ShieldCheck, Scale, EyeOff, Heart
 } from "lucide-react";
 
 const ICON_MAP = {
   Target, Users, Lightbulb, AlertCircle, Eye,
-  PenTool, HelpCircle, Sparkles, RefreshCw, Zap
+  PenTool, HelpCircle, Sparkles, RefreshCw, Zap,
+  ShieldCheck, Scale, EyeOff, Heart
 };
 
 export function resolveIcon(name) {

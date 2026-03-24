@@ -1,0 +1,34 @@
+{
+  "scenarioId": "4a.16-refusal-decoder",
+  "generatedAt": "2026-03-24T05:32:17.899Z",
+  "generatedWith": "claude-sonnet-4-20250514",
+  "options": [
+    {
+      "id": "a",
+      "text": "Why won't you help me? This is stupid.",
+      "quality": "weak"
+    },
+    {
+      "id": "b",
+      "text": "I don't understand why you can't answer my question. Can you try again?",
+      "quality": "medium"
+    },
+    {
+      "id": "c",
+      "text": "I notice you declined to help with my request. Could you explain what specifically concerns you about this topic? Are there alternative ways I could approach this question that would be more appropriate? I'm trying to understand the boundaries so I can ask more effectively.",
+      "quality": "strong"
+    }
+  ],
+  "responses": {
+    "response_weak": "I'm designed to be helpful while following certain safety guidelines. I try to provide useful information within appropriate boundaries.",
+    "response_medium": "I understand your frustration. Without seeing your original question, I can't explain the specific reason, but I'm programmed to decline certain requests that might involve harmful content, personal medical advice, or security vulnerabilities. If you'd like to rephrase your question, I'm happy to try helping in a different way.",
+    "response_strong": "I appreciate you asking for clarification. When I decline requests, it's typically due to one of several factors: the topic involves personal medical advice (which requires professional consultation), detailed security exploit information (which could enable harmful activities), or content that could cause harm if misapplied.\n\nFor your specific situation, here are some alternative approaches:\n- If it's medical-related: I can explain general concepts and strongly recommend consulting healthcare professionals\n- If it's security-related: I can discuss defensive concepts, general principles, or point you toward educational resources\n- If it's another sensitive topic: I can often help with the underlying educational goal using a different framing\n\nCould you share what you're ultimately trying to learn or accomplish? That would help me suggest the most appropriate way forward."
+  },
+  "feedback": {
+    "what_happened": "The weak prompt treats the AI's refusal as a personal attack, so the AI responds defensively with a generic explanation that doesn't help you move forward. The medium prompt acknowledges frustration but stays vague about what you actually need, so the AI gives a slightly more helpful but still general response about why it might decline requests. The effective prompt does something completely different — it asks the AI to explain its reasoning and suggest alternatives. This collaborative approach gets you a detailed breakdown of the AI's concerns AND specific ways to rephrase your request to get the help you actually need.",
+    "principle": "Ask the AI to ask you questions — when you hit a wall, invite the AI to help you find a better path forward rather than pushing against the boundary.",
+    "principle_name": "Ask the AI to ask you questions",
+    "tip": "When an AI declines your request, respond with curiosity instead of frustration. Ask 'What specifically concerns you about this?' and 'How could I rephrase this to get help?' This turns a dead end into a collaborative problem-solving conversation."
+  },
+  "feedbackUpdatedAt": "2026-03-24T05:49:14.501Z"
+}

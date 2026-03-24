@@ -1,0 +1,34 @@
+{
+  "scenarioId": "2.9-medical-research",
+  "generatedAt": "2026-03-24T05:03:54.565Z",
+  "generatedWith": "claude-sonnet-4-20250514",
+  "options": [
+    {
+      "id": "a",
+      "text": "Can my medication cause headaches?",
+      "quality": "weak"
+    },
+    {
+      "id": "b",
+      "text": "I started a new medication recently and have been getting headaches. Could there be a connection between the two?",
+      "quality": "medium"
+    },
+    {
+      "id": "c",
+      "text": "I started taking [medication name] two weeks ago and have been experiencing daily headaches since then, which is unusual for me. Can you help me understand what's well-documented versus uncertain about this potential connection, and what specific questions I should ask my doctor at my appointment next week?",
+      "quality": "strong"
+    }
+  ],
+  "responses": {
+    "response_weak": "Yes, medications can cause headaches as a side effect.",
+    "response_medium": "Yes, there could be a connection between your new medication and the headaches you're experiencing. Many medications list headaches as a potential side effect. The timing of starting a new medication and developing headaches suggests this could be related. You should discuss this with your doctor, as they can review your specific medication and determine if this is a known side effect or if other factors might be involved.",
+    "response_strong": "The timing strongly suggests a potential connection between your new medication and these daily headaches, especially since this pattern is unusual for you. Here's what you should know:\n\n**Well-documented facts:**\n- Many medications can cause headaches through various mechanisms (blood vessel changes, dehydration, sleep disruption, etc.)\n- Side effects often appear within the first few weeks of starting a medication\n- The consistent daily pattern since starting the medication is a significant indicator\n\n**Areas of uncertainty:**\n- Whether this specific medication commonly causes headaches (depends on the drug)\n- If the headaches will subside as your body adjusts\n- Whether dosage adjustment might help\n\n**Questions for your doctor:**\n1. \"Is headache a known side effect of [medication name] and how common is it?\"\n2. \"Should I expect these to improve with time, or do we need to consider alternatives?\"\n3. \"Are there ways to minimize this side effect while continuing the medication?\"\n4. \"What warning signs should prompt me to stop the medication before our next appointment?\"\n5. \"Could the timing or dosage be adjusted to reduce headaches?\"\n\nDocument the headache frequency, intensity, and timing relative to when you take the medication - this information will be valuable for your appointment."
+  },
+  "feedback": {
+    "what_happened": "The weak prompt gets a generic yes/no answer because it asks about medications in general rather than your specific situation. The medium prompt improves by mentioning the timing, so the AI acknowledges the potential connection and suggests talking to your doctor - but it stays surface-level. The effective prompt transforms the response by providing specific details (daily headaches, unusual pattern, two-week timeline) and clearly stating your goal (preparing for a doctor visit). This gives the AI enough context to organize information into what's certain versus uncertain, generate targeted questions for your appointment, and offer practical next steps like documenting symptoms.",
+    "principle": "Provide context so the AI understands your specific situation and can give you targeted, actionable information instead of generic advice.",
+    "principle_name": "Provide context",
+    "tip": "When asking about health concerns, include the timeline, your normal patterns, and what you're trying to accomplish - this helps the AI give you information that's actually useful for your specific situation."
+  },
+  "feedbackUpdatedAt": "2026-03-24T05:44:40.220Z"
+}

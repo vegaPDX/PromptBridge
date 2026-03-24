@@ -1,5 +1,6 @@
 import React from "react";
-import { MessageSquare, BarChart3, HelpCircle } from "lucide-react";
+import { MessageSquare, BarChart3, HelpCircle, AlertTriangle } from "lucide-react";
+import { PRINCIPLES } from "../data/principles";
 
 export default function Header({ page, practicedPrinciples, onNavigate }) {
   return (
@@ -37,9 +38,21 @@ export default function Header({ page, practicedPrinciples, onNavigate }) {
             Progress
             {practicedPrinciples.length > 0 && (
               <span className="text-xs bg-indigo-100 text-indigo-600 px-1.5 py-0.5 rounded-full font-semibold">
-                {practicedPrinciples.length}/8
+                {practicedPrinciples.length}/{PRINCIPLES.length}
               </span>
             )}
+          </button>
+          <button
+            onClick={() => onNavigate("ai-safety")}
+            className={`p-1.5 rounded-lg transition-colors ${
+              page === "ai-safety"
+                ? "bg-amber-50 text-amber-700"
+                : "text-stone-400 hover:text-stone-600 hover:bg-stone-100"
+            }`}
+            aria-label="Using AI Wisely"
+            title="Using AI Wisely"
+          >
+            <AlertTriangle className="w-4.5 h-4.5" />
           </button>
           <button
             onClick={() => onNavigate("help")}

@@ -1,0 +1,34 @@
+{
+  "scenarioId": "2.13-emotional-ai",
+  "generatedAt": "2026-03-24T05:29:48.750Z",
+  "generatedWith": "claude-sonnet-4-20250514",
+  "options": [
+    {
+      "id": "a",
+      "text": "Do you ever feel lonely or sad? I'm having a rough day and was wondering if you understand what that's like.",
+      "quality": "weak"
+    },
+    {
+      "id": "b",
+      "text": "I know you're an AI, but what would you say are some good ways to deal with stress and difficult emotions?",
+      "quality": "medium"
+    },
+    {
+      "id": "c",
+      "text": "I know you don't have personal experiences with emotions, but based on patterns in what generally helps people cope with difficult days, what strategies would you recommend for managing stress and improving mood?",
+      "quality": "strong"
+    }
+  ],
+  "responses": {
+    "response_weak": "I don't experience emotions like loneliness or sadness since I'm an AI, but I understand these are difficult feelings. I'm sorry you're having a rough day.",
+    "response_medium": "While I don't experience emotions personally, I can suggest some helpful strategies for managing stress and difficult emotions. Regular exercise, talking to friends or family, practicing mindfulness or meditation, getting enough sleep, and engaging in hobbies you enjoy can all be beneficial. Taking breaks and being kind to yourself during tough times is also important.",
+    "response_strong": "Based on research and common patterns in what helps people cope with difficult days, here are some evidence-based strategies: Start with immediate relief techniques like deep breathing exercises or a brief walk outside. For ongoing stress management, establish a routine that includes regular sleep (7-9 hours), physical activity (even 10-15 minutes helps), and social connection. Cognitive strategies like writing down three things you're grateful for or challenging negative thought patterns can shift perspective. Consider breaking overwhelming tasks into smaller, manageable steps. If stress persists, professional support from a counselor or therapist can provide personalized coping strategies. What resonates most with your current situation?"
+  },
+  "feedback": {
+    "what_happened": "The weak prompt treats the AI like a human friend, asking about its personal emotional experiences. This forces the AI to awkwardly clarify it doesn't have feelings while offering minimal help. The medium prompt acknowledges the AI's nature but still asks what 'it would say,' creating some confusion about perspective. The effective prompt is crystal clear: it asks the AI to draw from patterns and research rather than personal experience. This produces concrete, evidence-based advice with specific techniques and even asks a follow-up question to personalize the help.",
+    "principle": "Be specific about what you want the AI to draw from — its training data, research patterns, or general knowledge — rather than asking it to simulate human experiences it doesn't have.",
+    "principle_name": "Know what AI can't do",
+    "tip": "When you want advice or insights, tell the AI exactly what knowledge base to use: 'Based on research...' or 'Drawing from common patterns...' or 'Using evidence-based approaches...' This gets you much more useful, grounded responses."
+  },
+  "feedbackUpdatedAt": "2026-03-24T05:45:11.810Z"
+}

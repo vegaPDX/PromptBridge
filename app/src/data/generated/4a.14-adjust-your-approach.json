@@ -1,0 +1,34 @@
+{
+  "scenarioId": "4a.14-adjust-your-approach",
+  "generatedAt": "2026-03-24T05:12:13.349Z",
+  "generatedWith": "claude-sonnet-4-20250514",
+  "options": [
+    {
+      "id": "a",
+      "text": "Write about climate change for different audiences",
+      "quality": "weak"
+    },
+    {
+      "id": "b",
+      "text": "I need to write about climate change for three different audiences: children, business leaders, and technical experts. Can you help me create content that works for each group?",
+      "quality": "medium"
+    },
+    {
+      "id": "c",
+      "text": "I need to create three distinct pieces about climate change, each tailored for a specific audience and purpose. First, a children's explanation (ages 8-12) that uses simple language, relatable analogies, and focuses on basic concepts without causing anxiety. Second, a business case for corporate executives that emphasizes economic impacts, regulatory risks, and competitive advantages of climate action, written in professional tone with data-driven arguments. Third, a technical overview for environmental scientists that includes specific data, methodologies, and current research findings, using appropriate scientific terminology. Please create one piece at a time, starting with the children's version.",
+      "quality": "strong"
+    }
+  ],
+  "responses": {
+    "response_weak": "Climate change refers to long-term shifts in global temperatures and weather patterns. It's caused primarily by human activities like burning fossil fuels. Different audiences need different approaches - children need simple explanations, businesses need economic focus, and technical audiences need detailed data and scientific terminology.",
+    "response_medium": "I can help you create climate change content for those three audiences. For children, you'll want to use simple language and avoid scary details. For business leaders, focus on costs, risks, and opportunities. For technical experts, include scientific data and research. Each version should match the audience's knowledge level and interests. Would you like me to start with one specific audience, or would you prefer an outline for all three approaches?",
+    "response_strong": "I'll help you create the children's explanation first, as requested. Here's a climate change explanation for ages 8-12:\n\n**Our Changing Planet: A Simple Guide to Climate Change**\n\nImagine Earth is wearing a big, invisible blanket made of gases in the air. This blanket helps keep our planet warm enough for people, animals, and plants to live comfortably - just like how your blanket keeps you cozy at night.\n\nBut here's what's happening: when we drive cars, use electricity, and make things in factories, we add more 'stuff' to this invisible blanket, making it thicker. A thicker blanket means our planet gets warmer, just like you'd get too hot with too many blankets on your bed.\n\nWhen Earth gets warmer, some places might have stronger storms, others might not get enough rain, and ice at the North and South Poles starts to melt (like ice cubes melting in a warm drink).\n\nThe good news? We can help! We can walk or bike instead of always riding in cars, turn off lights when we leave a room, and recycle. Every small action is like removing a tiny bit from that thick blanket.\n\nReady for the business case next?"
+  },
+  "feedback": {
+    "what_happened": "The weak prompt just asks for 'different audiences' without any details, so the AI gives a generic overview that doesn't actually create the content — it just describes what each audience needs. The medium prompt identifies the three audiences and asks for help, which gets the AI to offer guidance and ask clarifying questions, but still doesn't produce actual content. The effective prompt goes much further: it specifies exactly what each piece should accomplish (children's version shouldn't cause anxiety, business case should emphasize economics, technical version should include methodologies), defines the target age range, sets the tone for each audience, and asks for one piece at a time. This specificity lets the AI immediately create a complete, age-appropriate children's explanation with concrete analogies and actionable advice.",
+    "principle": "When you're specific about what you want the AI to create — including audience, purpose, tone, and format — it can produce exactly what you need instead of just talking about what it could do.",
+    "principle_name": "Be specific, not vague",
+    "tip": "When you need content for different audiences, define each one precisely: Who are they? What's their knowledge level? What should they do after reading? What tone works best? The more specific you are about each audience's needs, the better the AI can tailor each piece."
+  },
+  "feedbackUpdatedAt": "2026-03-24T05:48:57.110Z"
+}

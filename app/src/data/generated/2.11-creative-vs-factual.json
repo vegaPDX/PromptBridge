@@ -1,0 +1,34 @@
+{
+  "scenarioId": "2.11-creative-vs-factual",
+  "generatedAt": "2026-03-24T05:05:12.456Z",
+  "generatedWith": "claude-sonnet-4-20250514",
+  "options": [
+    {
+      "id": "a",
+      "text": "Tell me about space exploration",
+      "quality": "weak"
+    },
+    {
+      "id": "b",
+      "text": "I need information about space exploration for a project. Can you help me with both creative and factual content?",
+      "quality": "medium"
+    },
+    {
+      "id": "c",
+      "text": "I'm working on two different projects about space exploration. For the first, I need a factual summary covering key milestones and current missions that I can use in a research report. For the second, I need a creative short story set in space that explores themes of discovery and human ambition for my creative writing class. Can you provide both - the factual summary first, then the creative story?",
+      "quality": "strong"
+    }
+  ],
+  "responses": {
+    "response_weak": "Space exploration involves humans and robotic missions studying outer space. It began in the 1950s with the Space Race between the US and Soviet Union. Key achievements include Sputnik, moon landings, space stations, and Mars rovers. Today, agencies like NASA, ESA, and private companies continue exploring space through various missions and technologies.",
+    "response_medium": "I can help with both creative and factual content about space exploration.\n\nFor factual information: Space exploration has progressed from early satellite launches to moon landings, space stations, and planetary missions. Current efforts include Mars exploration, the James Webb Space Telescope, and commercial spaceflight.\n\nFor creative content: Space exploration offers rich material for storytelling, with themes like human curiosity, technological advancement, isolation, discovery, and the unknown. Stories can focus on astronauts, alien encounters, colonization, or scientific breakthroughs.\n\nWhat specific aspects would you like me to develop further for your projects?",
+    "response_strong": "Here's content for both your projects:\n\n**FACTUAL SUMMARY FOR RESEARCH REPORT:**\nSpace exploration began with the 1957 launch of Sputnik 1, followed by major milestones including Yuri Gagarin's first human spaceflight (1961), the Apollo 11 moon landing (1969), and the first space stations. The Space Shuttle program (1981-2011) enabled satellite deployment and ISS construction. Current missions include NASA's Artemis lunar program, the James Webb Space Telescope discoveries, Mars rovers Perseverance and Curiosity, and private ventures like SpaceX's crewed missions. Future goals encompass lunar bases, Mars colonization, and deep space exploration.\n\n**CREATIVE SHORT STORY:**\n\n*The Signal*\n\nCommander Sarah Chen floated in the observation deck of the research vessel *Endeavor*, watching Europa's ice-covered surface rotate below. Three years into humanity's first mission to Jupiter's moons, her team had found nothing but frozen silence.\n\nThen the scanner chirped.\n\n\"Subsurface movement,\" reported Dr. Martinez, his voice tight with excitement. \"Fifteen kilometers down, in the ocean.\"\n\nSarah's heart raced. After centuries of wondering if we were alone, the answer might lie beneath that ancient ice. She thought of Earth, of the children who would inherit whatever they discovered here.\n\n\"Prepare the deep probe,\" she commanded, knowing this moment would define humanity's place in the cosmos.\n\nSometimes the greatest discoveries come not from reaching new worlds, but from finding we were never truly alone."
+  },
+  "feedback": {
+    "what_happened": "The weak prompt treats AI like a search engine, so it delivers generic encyclopedia-style information that doesn't match either project need. The medium prompt mentions both requirements but stays vague about specifics, so the AI gives broad overviews and asks follow-up questions instead of delivering usable content. The effective prompt acts like a detailed work order — it specifies exactly what each piece should contain, the intended use, and even the sequence. This lets the AI immediately produce two distinct, polished pieces: a research-ready factual summary with specific milestones and dates, plus a complete creative story with character development and thematic elements.",
+    "principle": "State your intent clearly so the AI knows exactly what you need and can tailor its response accordingly.",
+    "principle_name": "State your intent",
+    "tip": "When you have multiple needs from one conversation, treat each one like a separate mini-assignment with its own specifications — describe the format, purpose, and audience for each piece you want."
+  },
+  "feedbackUpdatedAt": "2026-03-24T05:44:55.915Z"
+}

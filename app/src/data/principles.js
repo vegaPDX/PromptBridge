@@ -55,6 +55,34 @@ export const PRINCIPLES = [
     learnMoreUrl: "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/prompting-tools#prompt-generator",
     learnMoreLabel: "Anthropic: Prompt generator",
   },
+  {
+    id: "P9", name: "Verify before you trust",
+    description: "Don't take AI answers at face value — ask it to show its work and flag what it's unsure about",
+    icon: "ShieldCheck",
+    learnMoreUrl: "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices#ask-for-step-by-step-reasoning",
+    learnMoreLabel: "Anthropic: Ask AI to verify its reasoning",
+  },
+  {
+    id: "P10", name: "Include everything needed — but nothing extra",
+    description: "Give the AI all the important details, but cut anything that doesn't help it answer your question",
+    icon: "Scale",
+    learnMoreUrl: "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices#be-clear-and-direct",
+    learnMoreLabel: "Anthropic: Be clear and direct",
+  },
+  {
+    id: "P11", name: "Know what AI can't do",
+    description: "AI has a training cutoff, can't browse the web, has no personal experience, and sometimes avoids topics without explaining why",
+    icon: "EyeOff",
+    learnMoreUrl: "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices#be-clear-and-direct",
+    learnMoreLabel: "Anthropic: Understand model limitations",
+  },
+  {
+    id: "P12", name: "Use AI responsibly",
+    description: "AI can reflect biases, agree when it shouldn't, and produce harmful content — you're the human quality filter",
+    icon: "Heart",
+    learnMoreUrl: "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/claude-4-best-practices#be-clear-and-direct",
+    learnMoreLabel: "Anthropic: Responsible AI use",
+  },
 ];
 
 export const PRINCIPLE_MAP = Object.fromEntries(PRINCIPLES.map(p => [p.id, p]));

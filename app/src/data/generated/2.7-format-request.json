@@ -25,10 +25,10 @@
     "response_strong": "I am ready to extract the key productivity techniques for you! I do not see the article content in your message yet, but once you share it, here is exactly what I will deliver:\n\n**Format:**\n1. **[Technique Name]** — One-sentence explanation of how to implement it in your workday\n2. **[Technique Name]** — One-sentence explanation of how to implement it in your workday\n3. *(and so on, up to 5 techniques)*\n\nEach point will be concise enough to scan in under 30 seconds so you can reference it quickly between tasks. Go ahead and paste the article whenever you are ready."
   },
   "feedback": {
-    "what_happened": "The weak prompt asks 'Summarize this article' — you'd mean 'pull out the useful parts in a format I can actually reference,' but the AI reads it as a wide-open request and doesn't know what kind of summary you need, how long it should be, or how you'll use it. The medium prompt adds that you want productivity techniques for later reference, so the AI knows the topic — but it's still guessing about format. The strong prompt specifies exactly 5 numbered bullet points, technique name in bold with implementation explanation, for quick workday reference — so the AI mirrors back that precise structure, confirming full alignment before work even begins.",
-    "clarification_response": "I'd be happy to summarize an article for you! To make the summary as useful as possible, could you tell me: What do you want to pull out of it (key arguments, action items, techniques)? How will you use the summary (quick reference, sharing with someone, studying)? And do you have a preferred format (bullet points, paragraph, table)? Also, please paste the article text!",
-    "principle": "Describing the exact format you want — number of items, structure of each item, level of detail — eliminates guesswork and ensures the output is immediately usable.",
-    "principle_name": "Show what 'good' looks like",
-    "tip": "Include a format description in your prompt: 'Give me 5 numbered bullet points with the name in bold and one sentence of explanation.' The AI will match your structure precisely, saving you from reformatting later."
-  }
+    "what_happened": "All three prompts had the same problem — no article was included — but notice how differently the AI responded. The weak prompt got a basic 'I need the article' response. The medium prompt was better because it mentioned your goal (quick reference), so the AI could explain what it would do once you shared the content. The effective prompt was specific about format (5 numbered points) and purpose (workday reference), so the AI could show you exactly what the output would look like and confirm it matched your needs before you even shared the article.",
+    "principle": "When you're specific about the format and context you need, AI can preview exactly what it will deliver and make sure it fits your situation.",
+    "principle_name": "Be specific, not vague",
+    "tip": "When asking for summaries or extracts, always specify the format you want (bullet points, numbered list, table) and mention how you'll use it (quick reference, presentation, study notes) — this helps the AI tailor the response to your actual needs."
+  },
+  "feedbackUpdatedAt": "2026-03-24T05:44:22.831Z"
 }
