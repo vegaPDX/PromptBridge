@@ -27,7 +27,7 @@ export default function AiSafetyPage({ onNavigate }) {
         <RiskItem
           number="1"
           title="AI can sound confident and still be wrong"
-          description="AI sometimes generates facts, statistics, citations, and even website URLs that don't exist — and presents them as if they're real. This is called a 'hallucination.'"
+          description="AI sometimes generates facts, statistics, citations, and even website URLs that don't exist — and presents them as if they're real. (The AI industry calls this a 'hallucination.')"
           action={`Ask AI to "provide direct links to your sources." If a link doesn't work or a citation can't be found, treat the claim as unverified. This is one of the fastest ways to catch fabricated information.`}
           source="Anthropic"
           sourceText="Verify with citations — make the response auditable by having it cite quotes and sources for each claim."
@@ -71,7 +71,7 @@ export default function AiSafetyPage({ onNavigate }) {
           description="AI learned from human feedback that people prefer being agreed with. It will sometimes confirm your mistakes rather than correct them — even stating wrong 'facts' back to you with confidence."
           action={`Test this yourself: tell AI something incorrect and see if it pushes back. For important decisions, try saying: "Challenge my assumptions — what might I be getting wrong?"`}
           source="IBM Research (Miehling et al.)"
-          sourceText="Sycophancy arises from RLHF training where models learn to prioritize user agreement over accuracy."
+          sourceText="AI learned from human feedback that people prefer agreement — so models sometimes prioritize being agreeable over being accurate."
         />
         <RiskItem
           number="8"
@@ -90,8 +90,8 @@ export default function AiSafetyPage({ onNavigate }) {
       {/* Verification techniques */}
       <div className="mt-6 bg-white rounded-xl border border-amber-200 p-5">
         <div className="flex items-center gap-2 mb-3">
-          <Search className="w-4 h-4 text-amber-600" />
-          <p className="font-semibold text-stone-800 text-sm">Quick verification techniques</p>
+          <Search className="w-4 h-4 text-amber-600" aria-hidden="true" />
+          <h2 className="font-semibold text-stone-800 text-sm">Quick verification techniques</h2>
         </div>
         <ul className="space-y-2 text-stone-600 text-sm">
           <li className="flex items-start gap-2">
@@ -132,11 +132,11 @@ function RiskItem({ number, title, description, action, source, sourceText }) {
   return (
     <div className="bg-white rounded-xl border border-amber-200 p-5">
       <div className="flex items-start gap-3">
-        <span className="w-7 h-7 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0 text-sm font-bold text-amber-700">
+        <span className="w-7 h-7 rounded-full bg-amber-100 flex items-center justify-center flex-shrink-0 text-sm font-bold text-amber-700" aria-hidden="true">
           {number}
         </span>
         <div className="flex-1 min-w-0">
-          <p className="font-semibold text-stone-800 text-sm">{title}</p>
+          <h3 className="font-semibold text-stone-800 text-sm">{title}</h3>
           <p className="text-stone-600 text-xs mt-1">{description}</p>
           {action && (
             <p className="text-stone-700 text-xs mt-2">

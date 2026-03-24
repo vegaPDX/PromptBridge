@@ -119,6 +119,7 @@ export default function ScenarioSelector({ onSelectScenario, completedScenarios,
           <section key={catKey} aria-labelledby={`cat-${catKey}`} className="mb-4">
             <button
               onClick={() => toggleCategory(catKey)}
+              aria-expanded={isExpanded}
               className="w-full text-left bg-white rounded-xl border border-stone-200 p-4 hover:border-indigo-200 transition-all"
             >
               <div className="flex items-center justify-between">

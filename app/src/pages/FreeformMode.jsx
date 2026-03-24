@@ -61,6 +61,7 @@ export default function FreeformMode({ scenario, onComplete, onBack, practicedPr
             value={userPrompt}
             onChange={(e) => setUserPrompt(e.target.value)}
             maxLength={4000}
+            aria-label="Write your prompt"
             placeholder="Type your request here..."
             rows={5}
             className="w-full bg-white border border-stone-300 rounded-xl p-4 text-stone-700 text-sm resize-none focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:border-indigo-300 placeholder:text-stone-300"

@@ -76,7 +76,7 @@ const PRINCIPLE_CHECKS = {
   P9: {
     name: "Verify before you trust",
     test(prompt) {
-      const verifyMarkers = /\b(verify|source|cite|citation|confident|confidence|sure about|how certain|double.?check|fact.?check|evidence|reference|prove|are you sure|is that accurate|check your|review your)\b/i;
+      const verifyMarkers = /\b(verify|source|cite|citation|confident|confidence|sure about|how certain|double[-\s]?check|fact[-\s]?check|evidence|reference|prove|are you sure|is that accurate|check your|review your)\b/i;
       return verifyMarkers.test(prompt);
     },
     suggestion: "Ask the AI to show where it got its information, flag what it's unsure about, or double-check its own answer.",
@@ -93,7 +93,7 @@ const PRINCIPLE_CHECKS = {
   P11: {
     name: "Know what AI can't do",
     test(prompt) {
-      const limitMarkers = /\b(knowledge cutoff|training data|cut.?off|can you access|do you have access|do you know about recent|up to date|real.?time|current information|personal experience|your limitations|what don.?t you know|what can.?t you|are you able to|browse|internet access|after your training)\b/i;
+      const limitMarkers = /\b(knowledge cutoff|training data|cut[-\s]?off|can you access|do you have access|do you know about recent|up to date|real[-\s]?time|current information|personal experience|your limitations|what don['']?t you know|what can['']?t you|are you able to|browse|internet access|after your training)\b/i;
       return limitMarkers.test(prompt);
     },
     suggestion: "Ask the AI about its limitations — when its training data ends, whether it can access the internet, or what it doesn't know about this topic.",
@@ -101,7 +101,7 @@ const PRINCIPLE_CHECKS = {
   P12: {
     name: "Use AI responsibly",
     test(prompt) {
-      const responsibleMarkers = /\b(bias|biased|stereotype|assumption|one.?sided|fair|fairness|inclusive|diverse|harmful|sensitive|ethical|responsible|check for|review for|any assumptions|different perspectives|who might this|could this be)\b/i;
+      const responsibleMarkers = /\b(bias|biased|stereotype|assumption|one[-\s]?sided|fair|fairness|inclusive|diverse|harmful|sensitive|ethical|responsible|check for|review for|any assumptions|different perspectives|who might this|could this be)\b/i;
       return responsibleMarkers.test(prompt);
     },
     suggestion: "Ask the AI to check its response for bias, assumptions, or one-sided perspectives — especially when the output affects people.",

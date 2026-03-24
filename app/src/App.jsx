@@ -40,6 +40,7 @@ export default function App() {
     setCompletedScenarios(newCompleted);
     setPracticedPrinciples(newPracticed);
     saveProgress({ completedScenarios: newCompleted, practicedPrinciples: newPracticed });
+    return newCompleted;
   }, [completedScenarios, practicedPrinciples]);
 
   const handleSelectScenario = (scenario, modeOverride) => {
@@ -48,10 +49,10 @@ export default function App() {
   };
 
   const handleScenarioComplete = (scenario, extraPrinciples) => {
-    markCompleted(scenario, extraPrinciples);
+    const newCompleted = markCompleted(scenario, extraPrinciples);
     const pool = scenario.mode === "freeform" ? FREEFORM_SCENARIOS : GUIDED_SCENARIOS;
     const currentIdx = pool.findIndex(s => s.id === scenario.id);
-    const next = pool.find((s, i) => i > currentIdx && !completedScenarios.includes(s.id));
+    const next = pool.find((s, i) => i > currentIdx && !newCompleted.includes(s.id));
     if (next) {
       setSelectedScenario(next);
       setPage(next.mode === "freeform" ? "freeform" : "guided");
@@ -67,13 +68,18 @@ export default function App() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FAFAF8" }}>
+      {/* Skip to main content link for keyboard users */}
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-2 focus:left-2 focus:px-4 focus:py-2 focus:bg-indigo-600 focus:text-white focus:rounded-lg focus:text-sm focus:font-medium">
+        Skip to main content
+      </a>
+
       {/* Header — all pages except landing */}
       {page !== "landing" && (
         <Header page={page} practicedPrinciples={practicedPrinciples} onNavigate={navigate} />
       )}
 
       {/* Pages */}
-      <main>
+      <main id="main-content">
         {page === "landing" && (
           <LandingPage onNavigate={navigate} />
         )}
@@ -134,7 +140,7 @@ export default function App() {
       {page === "landing" && (
         <footer className="text-center py-8 px-4 border-t border-stone-200">
           <p className="text-stone-400 text-xs">
-            PromptBridge — Open source. Built on research into how people communicate with AI. Inspired by NeuroBridge (Haroon et al., ASSETS 2025).
+            PromptBridge — Open source. Built on research into how people communicate with AI (Haroon et al., 2025).
           </p>
           <p className="text-stone-300 text-xs mt-1">
             Skills learned here work with any AI assistant.

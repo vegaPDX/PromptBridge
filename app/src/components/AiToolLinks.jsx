@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ExternalLink, Copy, Check } from "lucide-react";
+import { ExternalLink, Copy, Check, AlertCircle } from "lucide-react";
 
 const AI_TOOLS = [
   { name: "ChatGPT", url: "https://chatgpt.com" },
@@ -9,21 +9,22 @@ const AI_TOOLS = [
 ];
 
 export default function AiToolLinks({ prompt, message }) {
-  const [copied, setCopied] = useState(false);
+  const [status, setStatus] = useState("idle"); // idle | copied | error
 
   useEffect(() => {
-    if (!copied) return;
-    const timer = setTimeout(() => setCopied(false), 2000);
+    if (status === "idle") return;
+    const timer = setTimeout(() => setStatus("idle"), 2000);
     return () => clearTimeout(timer);
-  }, [copied]);
+  }, [status]);
 
   const handleCopy = async () => {
     if (!prompt) return;
     try {
       await navigator.clipboard.writeText(prompt);
-      setCopied(true);
+      setStatus("copied");
     } catch (err) {
       console.error("Failed to copy:", err);
+      setStatus("error");
     }
   };
 
@@ -33,16 +34,22 @@ export default function AiToolLinks({ prompt, message }) {
         <button
           onClick={handleCopy}
           className={`w-full flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-medium text-sm transition-colors mb-4 ${
-            copied
+            status === "copied"
               ? "bg-emerald-100 text-emerald-700 border border-emerald-200"
+              : status === "error"
+              ? "bg-rose-100 text-rose-700 border border-rose-200"
               : "bg-indigo-600 hover:bg-indigo-700 text-white"
           }`}
         >
-          {copied ? (
-            <><Check className="w-4 h-4" /> Copied!</>
-          ) : (
-            <><Copy className="w-4 h-4" /> Copy your prompt</>
-          )}
+          <span aria-live="polite">
+            {status === "copied" ? (
+              <><Check className="w-4 h-4 inline" /> Copied!</>
+            ) : status === "error" ? (
+              <><AlertCircle className="w-4 h-4 inline" /> Copy failed — try selecting and copying manually</>
+            ) : (
+              <><Copy className="w-4 h-4 inline" /> Copy your prompt</>
+            )}
+          </span>
         </button>
       )}
       <p className="text-sm text-stone-600 mb-3">
