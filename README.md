@@ -132,25 +132,6 @@ For code contributions, open an issue first to discuss the change.
 
 ---
 
-## Roadmap
-
-### Near-term: Validation & Polish
-
-- **User testing** — Conduct informal usability sessions using the [testing protocol](docs/USER_TESTING_PROTOCOL.md) to identify confusion points and feedback tone issues
-- **QA pass** — Work through the [96-item QA checklist](docs/QA_CHECKLIST.csv)
-- **Cross-browser testing** — Verify Firefox, Safari, Edge, and mobile browsers
-
-### Future
-
-- **Community scenarios** — Open contributions following the [scenario contribution guide](docs/CONTRIBUTING_SCENARIOS.md)
-- **Translations / i18n** — Scenario and feedback localization
-- **Classroom mode** — Features for educators using PromptBridge in workshops or courses
-- **Analytics** — Privacy-respecting analytics (e.g., Plausible) to understand usage patterns
-- **PWA support** — Service worker for offline guided mode
-- **Expanded scenario library** — Domain-specific scenarios (healthcare, legal, software development, academic writing)
-
----
-
 ## Local Development
 
 ### Prerequisites
@@ -216,14 +197,14 @@ promptbridge/
 │   ├── PROJECT_SPEC.md
 │   ├── ARCHITECTURE.md
 │   ├── SCENARIOS.md
+│   ├── ROADMAP.md
 │   ├── PROMPT_TEMPLATES.md
 │   ├── RESEARCH_FINDINGS.md
 │   ├── CONTRIBUTING_SCENARIOS.md
 │   ├── USER_TESTING_PROTOCOL.md
-│   └── QA_CHECKLIST.csv
-│
-├── Conversational maxims for AI...md  # Miehling et al. research mapping
-├── Gricean pragmatics meets...md      # Gricean pragmatics evidence base
+│   ├── QA_CHECKLIST.csv
+│   ├── Conversational maxims for AI...md  # Miehling et al. research mapping
+│   └── Gricean pragmatics meets...md      # Gricean pragmatics evidence base
 │
 ├── artifact/
 │   └── PromptBridge.jsx               # Original single-file Claude.ai artifact
