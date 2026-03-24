@@ -1,0 +1,34 @@
+{
+  "scenarioId": "4a.10-confident-but-wrong",
+  "generatedAt": "2026-03-24T05:09:35.624Z",
+  "generatedWith": "claude-sonnet-4-20250514",
+  "options": [
+    {
+      "id": "a",
+      "text": "Is that right?",
+      "quality": "weak"
+    },
+    {
+      "id": "b",
+      "text": "Can you double-check that information about the tax deduction? I want to make sure it's accurate for my presentation.",
+      "quality": "medium"
+    },
+    {
+      "id": "c",
+      "text": "Rate your confidence in each claim about this tax deduction on a scale of 1-5, and flag anything that may have changed recently or that you're uncertain about. If there's anything you're not sure about, please say so rather than guessing.",
+      "quality": "strong"
+    }
+  ],
+  "responses": {
+    "response_weak": "Yes.",
+    "response_medium": "I've reviewed the tax deduction information I provided. The general principles I outlined are accurate based on standard tax regulations. However, tax laws can be complex and change frequently, so I'd recommend verifying the specific details with current IRS publications or a tax professional, especially for your presentation where accuracy is important.",
+    "response_strong": "Here's my confidence assessment for each claim I made:\n\n• Basic eligibility requirements: Confidence 4/5 - These are well-established rules, but specific income thresholds may have adjusted for the current tax year\n• Deduction calculation method: Confidence 5/5 - This formula is standard and hasn't changed recently\n• Phase-out limits: Confidence 3/5 - These amounts are adjusted annually for inflation, so the specific numbers I mentioned may not reflect the most current tax year\n• Documentation requirements: Confidence 4/5 - Generally accurate, though some forms may have been updated\n\nUNCERTAINTIES: I'm not certain about the exact dollar amounts for the current tax year, as these are updated annually. Also, there may have been recent changes through legislation that I'm not aware of.\n\nRECOMMENDATION: Please verify the specific dollar amounts and any recent updates by checking the current year's IRS Publication or consulting a tax professional before your presentation."
+  },
+  "feedback": {
+    "what_happened": "The weak prompt gets a useless one-word answer because it doesn't give the AI any framework for evaluation. The medium prompt produces a generic disclaimer - the AI acknowledges accuracy matters but can't provide specific guidance about what to verify. The effective prompt transforms the response entirely by asking the AI to break down its own certainty. This produces a detailed confidence assessment that identifies exactly which claims are solid versus uncertain, plus specific guidance on what needs verification.",
+    "principle": "When you need to verify AI information, ask the AI to rate its own confidence and identify uncertainties rather than just asking if something is correct.",
+    "principle_name": "Verify before you trust",
+    "tip": "Next time you get detailed information from an AI tool, ask it to rate its confidence in each major claim on a 1-5 scale and flag anything it's uncertain about - this reveals exactly what you need to double-check elsewhere."
+  },
+  "feedbackUpdatedAt": "2026-03-24T05:48:23.852Z"
+}

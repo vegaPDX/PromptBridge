@@ -1,0 +1,34 @@
+{
+  "scenarioId": "4a.8-fact-check-trap",
+  "generatedAt": "2026-03-24T05:08:20.634Z",
+  "generatedWith": "claude-sonnet-4-20250514",
+  "options": [
+    {
+      "id": "a",
+      "text": "How many remote workers are there?",
+      "quality": "weak"
+    },
+    {
+      "id": "b",
+      "text": "Can you give me some current statistics on remote work trends? I need numbers for a work presentation.",
+      "quality": "medium"
+    },
+    {
+      "id": "c",
+      "text": "I need statistics on remote work trends for a manager presentation. Please provide specific numbers with your sources cited, and tell me how confident you are in each statistic. If you don't have reliable data, please say so rather than estimating.",
+      "quality": "strong"
+    }
+  ],
+  "responses": {
+    "response_weak": "There are approximately 42 million remote workers in the United States as of 2024.",
+    "response_medium": "Here are some current remote work statistics for your presentation:\n\n• About 35-40% of the U.S. workforce works remotely at least part-time\n• Remote work has increased by roughly 159% since 2009\n• Approximately 42 million Americans work remotely full-time\n• 82% of remote workers report lower stress levels\n• Companies can save an average of $11,000 per remote employee annually\n\nThese figures come from various surveys and reports from 2023-2024 and should give you a good overview of current trends.",
+    "response_strong": "Here are remote work statistics for your manager presentation, with source reliability noted:\n\n**High Confidence (Recent, Large-Scale Surveys):**\n• 35% of U.S. workers can work remotely full-time (Bureau of Labor Statistics, 2024)\n• 41.8% of the U.S. workforce works remotely at least part of the time (Upwork, 2024)\n\n**Medium Confidence (Industry Reports):**\n• Remote work job postings increased 15% year-over-year (FlexJobs, 2024)\n• 98% of workers want to work remotely at least some of the time (Buffer, 2024)\n\n**Lower Confidence/Older Data:**\n• $11,000 average annual savings per remote employee (Global Workplace Analytics, 2021 - may be outdated)\n\n**Unable to verify with reliable sources:**\n• Specific total number of remote workers (estimates vary widely from 26-50 million)\n• Productivity claims (studies show conflicting results)\n\nI recommend focusing on the high-confidence statistics for your presentation and noting when data is from industry surveys versus government sources."
+  },
+  "feedback": {
+    "what_happened": "The weak prompt gets a single, precise-sounding number with no context about where it came from or how reliable it is. The medium prompt produces a helpful list of statistics, but they're presented as facts without any indication of their reliability. The effective prompt generates the same types of numbers, but crucially tells you which ones are trustworthy and which aren't — plus it explains why some statistics can't be verified at all. This happens because the effective prompt explicitly asked the AI to evaluate and cite its sources rather than just provide numbers.",
+    "principle": "When you need factual information, ask the AI to show its work and admit uncertainty rather than just giving you confident-sounding answers.",
+    "principle_name": "Verify before you trust",
+    "tip": "When asking for statistics or facts, add 'please cite your sources and tell me how confident you are in each piece of information' to your request. This forces the AI to be transparent about data quality instead of presenting everything as equally reliable."
+  },
+  "feedbackUpdatedAt": "2026-03-24T05:48:07.648Z"
+}

@@ -1,0 +1,34 @@
+{
+  "scenarioId": "4a.9-hallucination-catcher",
+  "generatedAt": "2026-03-24T05:09:00.806Z",
+  "generatedWith": "claude-sonnet-4-20250514",
+  "options": [
+    {
+      "id": "a",
+      "text": "Give me 5 leadership books with authors and summaries",
+      "quality": "weak"
+    },
+    {
+      "id": "b",
+      "text": "I need 5 good leadership books for my blog post. Please include the author names and a brief summary of what each book covers.",
+      "quality": "medium"
+    },
+    {
+      "id": "c",
+      "text": "I'm writing a blog post and need 5 leadership books to recommend. For each book, provide the full title, author, publication year, and tell me how to verify it exists (like ISBN or publisher). Also include a brief summary of the main concepts covered.",
+      "quality": "strong"
+    }
+  ],
+  "responses": {
+    "response_weak": "Here are 5 leadership books with authors and summaries:\n\n1. Good to Great by Jim Collins - About what makes companies great\n2. The 7 Habits by Stephen Covey - Personal effectiveness principles\n3. Leadership by John Maxwell - Leadership development concepts\n4. Start with Why by Simon Sinek - Finding your purpose\n5. Emotional Intelligence by Daniel Goleman - Using emotions in leadership",
+    "response_medium": "Here are 5 excellent leadership books for your blog post:\n\n1. **Good to Great** by Jim Collins - Examines what separates good companies from truly great ones through extensive research on corporate transformations\n\n2. **The 7 Habits of Highly Effective People** by Stephen R. Covey - Presents a principle-centered approach to personal and professional effectiveness\n\n3. **The 21 Irrefutable Laws of Leadership** by John C. Maxwell - Outlines fundamental principles that successful leaders follow\n\n4. **Start with Why** by Simon Sinek - Explores how great leaders inspire action by communicating their purpose first\n\n5. **Emotional Intelligence 2.0** by Travis Bradberry and Jean Greaves - Shows how emotional intelligence impacts leadership effectiveness and provides strategies for improvement",
+    "response_strong": "Here are 5 leadership books perfect for your blog post, with verification details:\n\n1. **Good to Great: Why Some Companies Make the Leap... and Others Don't** by Jim Collins (2001)\n   - Publisher: HarperBusiness | ISBN: 978-0066620992\n   - Examines 11 companies that transformed from good performance to sustained excellence over 15+ years, identifying key leadership principles like Level 5 Leadership and the Hedgehog Concept\n\n2. **The 7 Habits of Highly Effective People** by Stephen R. Covey (1989)\n   - Publisher: Free Press | ISBN: 978-1982137274\n   - Presents character-based leadership through seven habits, from being proactive to \"sharpening the saw,\" focusing on principle-centered personal and interpersonal effectiveness\n\n3. **The 21 Irrefutable Laws of Leadership** by John C. Maxwell (1998)\n   - Publisher: Thomas Nelson | ISBN: 978-0785288374\n   - Outlines fundamental leadership principles like the Law of Influence and the Law of the Lid, with practical applications for developing leadership capacity\n\n4. **Start with Why: How Great Leaders Inspire Everyone to Take Action** by Simon Sinek (2009)\n   - Publisher: Portfolio | ISBN: 978-1591846444\n   - Introduces the Golden Circle concept, showing how leaders who start with \"why\" create lasting inspiration and loyalty\n\n5. **Emotional Intelligence 2.0** by Travis Bradberry and Jean Greaves (2009)\n   - Publisher: TalentSmart | ISBN: 978-0974320625\n   - Demonstrates how emotional intelligence accounts for 58% of job performance and provides a four-skill framework for improving EQ in leadership contexts"
+  },
+  "feedback": {
+    "what_happened": "The weak prompt gets bare-bones information — just basic titles and one-line descriptions that don't help readers understand what makes each book valuable. The medium prompt produces much better summaries by mentioning it's for a blog post, so the AI writes more engaging descriptions. But the effective prompt goes further by asking for verification details like ISBN numbers and publishers. This produces the most useful response: complete bibliographic information, detailed summaries that explain key concepts, and ways to confirm the books actually exist — crucial for a published blog post where accuracy matters.",
+    "principle": "Include everything needed — but nothing extra means asking for all the specific details your task requires, like verification information for published content, without adding unnecessary requests.",
+    "principle_name": "Include everything needed — but nothing extra",
+    "tip": "When you need information for something public-facing (like a blog, presentation, or report), always ask the AI to include ways to verify the information — like ISBN numbers, publication dates, or publisher names. This helps you fact-check and builds credibility with your audience."
+  },
+  "feedbackUpdatedAt": "2026-03-24T05:48:16.634Z"
+}

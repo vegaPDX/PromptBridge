@@ -38,6 +38,7 @@ const OUTPUT_DIR = path.join(__dirname, "..", "src", "data", "generated");
 const args = process.argv.slice(2);
 const providerFlag = args.includes("--provider") ? args[args.indexOf("--provider") + 1] : "claude";
 const scenarioFlag = args.includes("--scenario") ? args[args.indexOf("--scenario") + 1] : null;
+const feedbackOnly = args.includes("--feedback-only");
 
 const PROVIDER = providerFlag || "claude";
 const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
@@ -96,7 +97,7 @@ async function callClaude(systemPrompt, userMessage, { temperature = 0.7, maxTok
 }
 
 async function callGemini(systemPrompt, userMessage, { temperature = 0.7, maxTokens = 1024 } = {}) {
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${GEMINI_API_KEY}`;
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
   const res = await fetch(url, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -107,6 +108,7 @@ async function callGemini(systemPrompt, userMessage, { temperature = 0.7, maxTok
         temperature,
         maxOutputTokens: maxTokens,
         responseMimeType: "application/json",
+        thinkingConfig: { thinkingBudget: 0 },
       },
     }),
   });
@@ -167,6 +169,29 @@ function sleep(ms) {
 async function generateForScenario(scenario) {
   const outputPath = path.join(OUTPUT_DIR, `${scenario.id}.json`);
 
+  // ── Feedback-only mode: regenerate just the feedback for existing files ──
+  if (feedbackOnly) {
+    if (!fs.existsSync(outputPath)) {
+      console.log(`  ⏭  Skipping ${scenario.id} (no existing file)`);
+      return;
+    }
+    const existing = JSON.parse(fs.readFileSync(outputPath, "utf-8"));
+    console.log(`  💬 Regenerating feedback...`);
+    const fb = await callLLM(
+      FEEDBACK_GENERATOR_SYSTEM,
+      buildFeedbackGeneratorMessage(scenario, existing.options, null, existing.responses),
+      { temperature: 0.3, maxTokens: 600 }
+    );
+    await sleep(DELAY_MS);
+
+    existing.feedback = fb;
+    existing.feedbackUpdatedAt = new Date().toISOString();
+    fs.writeFileSync(outputPath, JSON.stringify(existing, null, 2));
+    console.log(`  ✅ Updated feedback for ${scenario.id}.json`);
+    return;
+  }
+
+  // ── Full generation mode ──
   // Skip if already generated (resumability)
   if (fs.existsSync(outputPath)) {
     console.log(`  ⏭  Skipping ${scenario.id} (already exists)`);
@@ -203,19 +228,14 @@ async function generateForScenario(scenario) {
   }
   await sleep(DELAY_MS);
 
-  // Generate feedback for each possible user choice
-  const feedback = {};
-  for (const quality of ["weak", "medium", "strong"]) {
-    const userChoice = options.find(o => o.quality === quality);
-    console.log(`  💬 Generating feedback (user picks ${quality})...`);
-    const fb = await callLLM(
-      FEEDBACK_GENERATOR_SYSTEM,
-      buildFeedbackGeneratorMessage(scenario, options, userChoice, responses),
-      { temperature: 0.3, maxTokens: 600 }
-    );
-    feedback[quality] = fb;
-    await sleep(DELAY_MS);
-  }
+  // Generate single neutral feedback explaining the contrast
+  console.log(`  💬 Generating feedback...`);
+  const feedback = await callLLM(
+    FEEDBACK_GENERATOR_SYSTEM,
+    buildFeedbackGeneratorMessage(scenario, options, null, responses),
+    { temperature: 0.3, maxTokens: 600 }
+  );
+  await sleep(DELAY_MS);
 
   const output = {
     scenarioId: scenario.id,
@@ -253,7 +273,8 @@ async function main() {
   }
 
   console.log(`   Scenarios: ${scenarios.length} guided scenarios`);
-  console.log(`   API calls: ~${scenarios.length * 5} total (5 per scenario)\n`);
+  console.log(`   Mode:      ${feedbackOnly ? "feedback-only (1 call per scenario)" : "full (3 calls per scenario)"}`);
+  console.log(`   API calls: ~${scenarios.length * (feedbackOnly ? 1 : 3)} total\n`);
 
   for (let i = 0; i < scenarios.length; i++) {
     const scenario = scenarios[i];

@@ -1,0 +1,34 @@
+{
+  "scenarioId": "3.8-verify-then-refine",
+  "generatedAt": "2026-03-24T05:05:50.727Z",
+  "generatedWith": "claude-sonnet-4-20250514",
+  "options": [
+    {
+      "id": "a",
+      "text": "Is this summary accurate?",
+      "quality": "weak"
+    },
+    {
+      "id": "b",
+      "text": "Can you double-check this summary and let me know if you missed anything important from the contract?",
+      "quality": "medium"
+    },
+    {
+      "id": "c",
+      "text": "Now review your summary for accuracy — flag anything you're less than fully confident about, and highlight any clauses you may have oversimplified. Also identify any critical terms, dates, or obligations that might need closer attention in the full contract text.",
+      "quality": "strong"
+    }
+  ],
+  "responses": {
+    "response_weak": "Yes, the summary appears accurate based on the contract content.",
+    "response_medium": "I've reviewed the summary and it covers the main points from the contract. The key terms, parties, and primary obligations are included. However, without seeing the full contract again, I may have missed some nuanced details or specific clauses that could be important depending on your particular concerns. The summary captures the general structure and main agreements accurately.",
+    "response_strong": "After reviewing my summary, here are areas requiring closer attention:\n\n**Items I'm less confident about:**\n- The exact calculation method for late fees (Section 4.3) - I simplified this as \"standard penalties\" but the formula may be more complex\n- Specific insurance requirements and coverage amounts - these details were condensed\n\n**Potentially oversimplified clauses:**\n- Termination conditions: I noted \"30-day notice\" but there are different notice periods for different breach types\n- Intellectual property rights: The summary states \"shared ownership\" but the actual allocation percentages and usage rights have specific restrictions\n\n**Critical items needing your attention:**\n- Payment due date: 15th of each month (this is firm - no grace period mentioned)\n- Renewal deadline: Must notify by March 1st, 2024 or auto-renews for full term\n- Liability cap: $50,000 maximum - significantly lower than typical\n- Governing law clause specifies Delaware courts exclusively\n\nI recommend reviewing Sections 7.2, 9.4, and the entire Exhibit B for the technical specifications I may have under-emphasized."
+  },
+  "feedback": {
+    "what_happened": "The weak prompt gets a simple yes/no answer that doesn't help you verify anything. The medium prompt produces a more thoughtful response, but the AI still speaks in generalities about 'main points' and 'nuanced details' without getting specific. The effective prompt transforms the AI into a careful reviewer that flags exactly where it might be wrong, identifies oversimplified areas, and points you to specific sections that need your attention. It's the difference between 'looks good' versus a detailed quality check with actionable next steps.",
+    "principle": "Ask the AI to examine its own work critically rather than just confirm it's correct.",
+    "principle_name": "Verify before you trust",
+    "tip": "When you need to check AI work, ask it to identify what it's uncertain about or might have oversimplified, rather than asking if it's accurate. This turns the AI into a collaborator helping you spot potential issues instead of just reassuring you."
+  },
+  "feedbackUpdatedAt": "2026-03-24T05:46:25.593Z"
+}

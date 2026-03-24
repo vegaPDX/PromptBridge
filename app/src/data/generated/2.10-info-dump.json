@@ -1,0 +1,34 @@
+{
+  "scenarioId": "2.10-info-dump",
+  "generatedAt": "2026-03-24T05:04:29.137Z",
+  "generatedWith": "claude-sonnet-4-20250514",
+  "options": [
+    {
+      "id": "a",
+      "text": "[Pastes entire 3-page project brief] Write a project update.",
+      "quality": "weak"
+    },
+    {
+      "id": "b",
+      "text": "[Pastes entire 3-page project brief] Can you write a brief 2-sentence status update for my team lead based on this project brief?",
+      "quality": "medium"
+    },
+    {
+      "id": "c",
+      "text": "Based on these key project details: We're in Phase 2 of the mobile app redesign, completed user research last week, currently working on wireframes (due Friday), and identified one technical constraint with the payment integration. Please write a 2-sentence status update for my team lead.",
+      "quality": "strong"
+    }
+  ],
+  "responses": {
+    "response_weak": "Here's a comprehensive project update covering all aspects of your project brief:\n\n**Project Overview**\nThe mobile app redesign project encompasses a complete overhaul of the user interface and user experience, targeting improved customer engagement and streamlined functionality. The project involves multiple stakeholders across design, development, and product teams.\n\n**Current Status**\nWe are currently in Phase 2 of development, having completed the initial planning phase. User research activities have been finalized, providing valuable insights into customer preferences and pain points.\n\n**Next Steps**\nThe team will proceed with wireframe development, followed by prototype creation and testing phases. Technical considerations around payment integration will need to be addressed in upcoming sprints.\n\n**Timeline**\nThe project remains on track for the projected completion date, with regular milestone reviews scheduled throughout the development cycle.",
+    "response_medium": "Based on the project brief, here's a brief status update:\n\nWe're currently in Phase 2 of the mobile app redesign project and have successfully completed the user research component. The team is now focused on wireframe development while working through some technical considerations around the payment integration system.",
+    "response_strong": "We've completed user research in Phase 2 of the mobile app redesign and are on track with wireframes due Friday. We've identified a technical constraint with payment integration that we're actively addressing."
+  },
+  "feedback": {
+    "what_happened": "The weak prompt dumps everything and asks vaguely, so the AI creates a lengthy, formal report that rehashes the entire brief instead of focusing on current status. The medium prompt asks for brevity but still includes unnecessary information, so the AI produces a shorter but still wordy response. The effective prompt extracts only the essential current details and specifies the exact format needed, resulting in a crisp, actionable update that tells the team lead exactly what they need to know.",
+    "principle": "Include everything needed — but nothing extra",
+    "principle_name": "Include everything needed — but nothing extra",
+    "tip": "Before hitting send, ask yourself: 'What's the minimum information the AI needs to give me exactly what I want?' Extract just those key details instead of copy-pasting entire documents."
+  },
+  "feedbackUpdatedAt": "2026-03-24T05:44:46.825Z"
+}

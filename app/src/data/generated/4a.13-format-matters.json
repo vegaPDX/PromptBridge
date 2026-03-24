@@ -1,0 +1,34 @@
+{
+  "scenarioId": "4a.13-format-matters",
+  "generatedAt": "2026-03-24T05:11:32.875Z",
+  "generatedWith": "claude-sonnet-4-20250514",
+  "options": [
+    {
+      "id": "a",
+      "text": "Compare cloud storage options for teams",
+      "quality": "weak"
+    },
+    {
+      "id": "b",
+      "text": "I need to compare Google Drive, Dropbox, and OneDrive for my team. Can you give me a comparison in table format?",
+      "quality": "medium"
+    },
+    {
+      "id": "c",
+      "text": "Compare Google Drive, Dropbox, and OneDrive for a 15-person marketing team. Format as a markdown table with columns for: Service Name, Monthly Cost (per user), Storage Limit, Key Features, Best For. I need to paste this directly into a proposal document.",
+      "quality": "strong"
+    }
+  ],
+  "responses": {
+    "response_weak": "There are several popular cloud storage options for teams including Google Drive, Dropbox, OneDrive, Box, and iCloud. Each offers different features like file sharing, collaboration tools, and storage amounts. Google Drive integrates well with Google Workspace, Dropbox has good syncing capabilities, and OneDrive works seamlessly with Microsoft Office. Consider factors like cost, storage space, security, and team collaboration features when making your decision.",
+    "response_medium": "Here's a comparison of Google Drive, Dropbox, and OneDrive for teams:\n\n**Google Drive:**\n- Storage: 30GB to unlimited depending on plan\n- Good integration with Google Workspace\n- Real-time collaboration on documents\n\n**Dropbox:**\n- Storage: 5TB+ for business plans\n- Excellent file syncing across devices\n- Advanced sharing controls\n\n**OneDrive:**\n- Storage: 1TB per user for business plans\n- Seamless Microsoft Office integration\n- Built-in security features\n\nAll three offer team collaboration features, mobile apps, and administrative controls. Pricing varies by plan level and number of users.",
+    "response_strong": "| Service Name | Monthly Cost (per user) | Storage Limit | Key Features | Best For |\n|--------------|------------------------|---------------|--------------|----------|\n| Google Drive | $6-18 | 30GB-5TB | Real-time collaboration, Google Workspace integration, advanced search, version history | Teams heavily using Google tools (Docs, Sheets, Gmail) |\n| Dropbox | $15-25 | 5TB+ | Superior sync speed, Smart Sync, advanced sharing permissions, Dropbox Paper | Creative teams needing fast file sync and external client sharing |\n| OneDrive | $5-22 | 1TB-unlimited | Native Office 365 integration, co-authoring, SharePoint connectivity, advanced compliance | Marketing teams using Microsoft Office suite and needing enterprise security |"
+  },
+  "feedback": {
+    "what_happened": "The weak prompt was too general, so the AI gave a broad overview mentioning five different services without specific details or formatting. The medium prompt specified three services and requested a table, which got the AI to focus and provide more concrete information, but it delivered bullet points instead of the requested table format. The effective prompt included team size, use case, exact column headers, and mentioned needing to paste it into a document — so the AI delivered a properly formatted markdown table with specific pricing, storage limits, and targeted recommendations.",
+    "principle": "Show what 'good' looks like by specifying exactly how you want information formatted and structured.",
+    "principle_name": "Show what 'good' looks like",
+    "tip": "When you need information in a specific format, describe the exact structure you want (like 'markdown table with columns for X, Y, Z') and mention what you'll do with it ('paste into a document'). This helps the AI match your exact needs instead of guessing."
+  },
+  "feedbackUpdatedAt": "2026-03-24T05:48:47.403Z"
+}

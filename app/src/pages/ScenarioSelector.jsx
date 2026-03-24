@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Check, BookOpen, PenTool, Sparkles, X } from "lucide-react";
+import { Check, BookOpen, PenTool, Sparkles, X, ChevronDown } from "lucide-react";
 import { groupBy } from "lodash-es";
 import { GUIDED_SCENARIOS, FREEFORM_SCENARIOS } from "../data/scenarios";
 import { CATEGORIES } from "../data/categories";
@@ -23,6 +23,16 @@ function getMatchingTags(userContext) {
 export default function ScenarioSelector({ onSelectScenario, completedScenarios, practicedPrinciples = [], userContext, onSetUserContext }) {
   const [activeTab, setActiveTab] = useState("guided");
   const [bannerDismissed, setBannerDismissed] = useState(false);
+  const [expandedCategories, setExpandedCategories] = useState(new Set());
+
+  const toggleCategory = (catKey) => {
+    setExpandedCategories(prev => {
+      const next = new Set(prev);
+      if (next.has(catKey)) next.delete(catKey);
+      else next.add(catKey);
+      return next;
+    });
+  };
   const scenarios = activeTab === "guided" ? GUIDED_SCENARIOS : FREEFORM_SCENARIOS;
 
   // Sort scenarios by relevance match within each category group
@@ -98,60 +108,75 @@ export default function ScenarioSelector({ onSelectScenario, completedScenarios,
         </button>
       </div>
 
-      {/* Scenario cards grouped by category */}
+      {/* Scenario cards grouped by category (collapsible) */}
       {Object.entries(grouped).map(([catKey, catScenarios]) => {
         const cat = CATEGORIES[catKey];
         if (!cat) return null;
         const CatIcon = resolveIcon(cat.icon);
+        const isExpanded = expandedCategories.has(catKey);
+        const completedCount = catScenarios.filter(s => completedScenarios.includes(s.id)).length;
         return (
-          <section key={catKey} aria-labelledby={`cat-${catKey}`} className="mb-8">
-            <div className="flex items-center gap-2 mb-3">
-              {CatIcon && <CatIcon className="w-5 h-5 text-stone-400" />}
-              <h2 id={`cat-${catKey}`} className="font-serif text-lg font-semibold text-stone-700">{cat.label}</h2>
-            </div>
-            <p className="text-stone-500 text-sm mb-4">{cat.description}</p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {catScenarios.map(scenario => {
-                const isCompleted = completedScenarios.includes(scenario.id);
-                const isRecommended = recommendedIds.has(scenario.id);
-                return (
-                  <button
-                    key={scenario.id}
-                    onClick={() => onSelectScenario(scenario)}
-                    className={`text-left bg-white rounded-xl border p-4 hover:border-indigo-300 hover:shadow-md transition-all group ${
-                      isRecommended && !isCompleted ? "border-indigo-200" : "border-stone-200"
-                    }`}
-                  >
-                    <div className="flex items-start justify-between mb-2">
-                      <div className="flex items-center gap-2 flex-1 min-w-0">
-                        <h3 className="font-semibold text-stone-800 group-hover:text-indigo-700 transition-colors text-sm">
-                          {scenario.title}
-                        </h3>
-                        {isRecommended && !isCompleted && (
-                          <span className="text-xs px-2 py-0.5 bg-indigo-100 text-indigo-600 rounded-full font-medium flex-shrink-0 inline-flex items-center gap-1">
-                            <Sparkles className="w-3 h-3" /> Next
-                          </span>
+          <section key={catKey} aria-labelledby={`cat-${catKey}`} className="mb-4">
+            <button
+              onClick={() => toggleCategory(catKey)}
+              className="w-full text-left bg-white rounded-xl border border-stone-200 p-4 hover:border-indigo-200 transition-all"
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  {CatIcon && <CatIcon className="w-5 h-5 text-stone-400" />}
+                  <h2 id={`cat-${catKey}`} className="font-serif text-lg font-semibold text-stone-700">{cat.label}</h2>
+                  <span className="text-xs px-2 py-0.5 bg-stone-100 text-stone-500 rounded-full font-medium">
+                    {completedCount}/{catScenarios.length}
+                  </span>
+                </div>
+                <ChevronDown className={`w-5 h-5 text-stone-400 transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`} />
+              </div>
+              <p className="text-stone-500 text-sm mt-2">{cat.description}</p>
+            </button>
+
+            {isExpanded && (
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3 ml-2 animate-fadeIn">
+                {catScenarios.map(scenario => {
+                  const isCompleted = completedScenarios.includes(scenario.id);
+                  const isRecommended = recommendedIds.has(scenario.id);
+                  return (
+                    <button
+                      key={scenario.id}
+                      onClick={() => onSelectScenario(scenario)}
+                      className={`text-left bg-white rounded-xl border p-4 hover:border-indigo-300 hover:shadow-md transition-all group ${
+                        isRecommended && !isCompleted ? "border-indigo-200" : "border-stone-200"
+                      }`}
+                    >
+                      <div className="flex items-start justify-between mb-2">
+                        <div className="flex items-center gap-2 flex-1 min-w-0">
+                          <h3 className="font-semibold text-stone-800 group-hover:text-indigo-700 transition-colors text-sm">
+                            {scenario.title}
+                          </h3>
+                          {isRecommended && !isCompleted && (
+                            <span className="text-xs px-2 py-0.5 bg-indigo-100 text-indigo-600 rounded-full font-medium flex-shrink-0 inline-flex items-center gap-1">
+                              <Sparkles className="w-3 h-3" /> Next
+                            </span>
+                          )}
+                        </div>
+                        {isCompleted && (
+                          <div className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                            <Check className="w-3 h-3 text-emerald-500" />
+                          </div>
                         )}
                       </div>
-                      {isCompleted && (
-                        <div className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
-                          <Check className="w-3 h-3 text-emerald-500" />
-                        </div>
-                      )}
-                    </div>
-                    <p className="text-stone-500 text-xs mb-3 line-clamp-2">{scenario.situation}</p>
-                    <div className="flex flex-wrap gap-1">
-                      {scenario.principles.map(pid => (
-                        <span key={pid} className="text-xs px-1.5 py-0.5 bg-indigo-50 text-indigo-600 rounded font-medium">
-                          {PRINCIPLE_MAP[pid]?.name}
-                        </span>
-                      ))}
-                    </div>
-
-                  </button>
-                );
-              })}
-            </div>
+                      <p className="text-stone-500 text-xs mb-3 line-clamp-2">{scenario.situation}</p>
+                      <div className="flex flex-wrap gap-1">
+                        {scenario.principles.map(pid => (
+                          <span key={pid} className="text-xs px-1.5 py-0.5 bg-indigo-50 text-indigo-600 rounded font-medium">
+                            {PRINCIPLE_MAP[pid]?.name}
+                          </span>
+                        ))}
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            )}
           </section>
         );
       })}

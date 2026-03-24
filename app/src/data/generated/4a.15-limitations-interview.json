@@ -1,0 +1,34 @@
+{
+  "scenarioId": "4a.15-limitations-interview",
+  "generatedAt": "2026-03-24T05:31:42.160Z",
+  "generatedWith": "claude-sonnet-4-20250514",
+  "options": [
+    {
+      "id": "a",
+      "text": "What health insurance plan should I choose?",
+      "quality": "weak"
+    },
+    {
+      "id": "b",
+      "text": "I need help choosing a health insurance plan. Can you tell me what factors I should consider and what you know about current insurance options?",
+      "quality": "medium"
+    },
+    {
+      "id": "c",
+      "text": "Before you help me choose a health insurance plan, I want to understand your limitations first. What don't you know about this topic? What are the limits of your knowledge when it comes to current insurance plans, pricing, and coverage details? What information would I need to provide or verify elsewhere?",
+      "quality": "strong"
+    }
+  ],
+  "responses": {
+    "response_weak": "I'd recommend looking at factors like premium costs, deductibles, network coverage, and prescription benefits. Consider plans like HMOs for lower costs or PPOs for more flexibility. Review the summary of benefits and compare options during open enrollment.",
+    "response_medium": "When choosing a health insurance plan, consider these key factors: monthly premiums, annual deductibles, out-of-pocket maximums, provider networks, prescription drug coverage, and specific benefits you need. I can help you understand plan types (HMO, PPO, EPO, HDHP) and general decision frameworks, but I don't have access to current plan details, pricing, or your specific market's options. You'll need to check your employer's offerings or marketplace plans for actual costs and coverage specifics.",
+    "response_strong": "I have significant limitations when it comes to health insurance guidance that you should know upfront:\n\nWhat I DON'T know:\n- Current plan prices, networks, or coverage details for any specific insurer\n- Your local market's available plans or participating providers\n- Real-time policy changes or 2024 plan updates\n- Your employer's specific plan options or contribution amounts\n- Exact formularies for prescription coverage\n\nWhat I CAN help with:\n- Explaining plan types and general concepts\n- Walking through decision frameworks\n- Helping you organize questions for insurers or HR\n- Understanding terminology and trade-offs\n\nFor actual plan selection, you'll need to:\n- Get current plan documents from your employer or marketplace\n- Verify provider networks directly with insurers\n- Check prescription coverage through plan formularies\n- Confirm costs and benefits for your specific situation\n\nWould you like me to help you create a systematic approach to evaluate your actual options once you have that current information?"
+  },
+  "feedback": {
+    "what_happened": "The weak prompt treats the AI like a human insurance agent, so it gives generic advice that sounds helpful but could be outdated or irrelevant to your situation. The medium prompt asks about the AI's knowledge, which gets you some useful caveats, but the AI still jumps into advice mode. The effective prompt flips the script entirely — it asks the AI to be upfront about what it can't do BEFORE offering help. This produces a completely different response: honest limitations, clear boundaries, and a realistic plan for how to actually use the AI effectively for this complex, regulated topic.",
+    "principle": "Always verify what AI knows and doesn't know about your topic before trusting its advice, especially for important decisions with current, regulated, or personalized information.",
+    "principle_name": "Verify before you trust",
+    "tip": "When asking AI about anything involving current prices, regulations, or personal decisions, start with 'What are your limitations on this topic?' before asking for advice. You'll get much more honest and useful guidance."
+  },
+  "feedbackUpdatedAt": "2026-03-24T05:49:05.904Z"
+}

@@ -1,0 +1,34 @@
+{
+  "scenarioId": "4a.12-framework-shortcut",
+  "generatedAt": "2026-03-24T05:10:54.682Z",
+  "generatedWith": "claude-sonnet-4-20250514",
+  "options": [
+    {
+      "id": "a",
+      "text": "Write interview questions for a job candidate",
+      "quality": "weak"
+    },
+    {
+      "id": "b",
+      "text": "Write behavioral interview questions for a marketing manager position. I need questions that assess leadership skills and problem-solving abilities.",
+      "quality": "medium"
+    },
+    {
+      "id": "c",
+      "text": "Create 8 behavioral interview questions for a marketing manager position using the STAR method framework (Situation, Task, Action, Result). Focus on assessing leadership experience, problem-solving under pressure, and cross-functional collaboration. Each question should prompt the candidate to provide specific examples with measurable outcomes.",
+      "quality": "strong"
+    }
+  ],
+  "responses": {
+    "response_weak": "Here are some interview questions:\n\n1. Tell me about yourself.\n2. What are your strengths and weaknesses?\n3. Why do you want this job?\n4. Where do you see yourself in 5 years?\n5. Why are you leaving your current position?\n6. What motivates you?\n7. Do you work well in teams?\n8. How do you handle stress?",
+    "response_medium": "Here are behavioral interview questions for a marketing manager position:\n\n1. Describe a time when you had to lead a team through a challenging project.\n2. Tell me about a marketing campaign that didn't go as planned. How did you handle it?\n3. Give an example of when you had to solve a problem with limited resources.\n4. Describe a situation where you had to influence others without direct authority.\n5. Tell me about a time you had to make a difficult decision quickly.\n6. Share an example of when you had to manage competing priorities.\n7. Describe how you've handled conflict within your team.\n8. Give an example of a time you had to adapt your leadership style.",
+    "response_strong": "Here are 8 STAR-method behavioral interview questions for a marketing manager position:\n\n**Leadership Experience:**\n1. \"Describe a situation where you had to lead a marketing team through a major campaign launch. What was your specific role, what actions did you take to ensure team alignment, and what were the measurable results?\"\n\n2. \"Tell me about a time when you had to motivate an underperforming team member. What was the situation, what specific steps did you take, and how did you measure the improvement?\"\n\n**Problem-Solving Under Pressure:**\n3. \"Walk me through a situation where a marketing campaign was failing mid-launch. What was at stake, what specific actions did you take to course-correct, and what were the final metrics compared to your original goals?\"\n\n4. \"Describe a time when you had to solve a marketing problem with a significantly reduced budget. What constraints were you working with, how did you approach the solution, and what ROI did you achieve?\"\n\n**Cross-Functional Collaboration:**\n5. \"Tell me about a project where you had to coordinate between marketing, sales, and product teams. What challenges arose, how did you facilitate collaboration, and what impact did this have on project delivery and results?\"\n\n6. \"Describe a situation where you disagreed with another department's approach to a shared initiative. How did you handle the conflict, what steps did you take to find common ground, and what was the outcome?\"\n\n**Additional Leadership & Results:**\n7. \"Share an example of when you had to implement a new marketing strategy or process. What resistance did you encounter, how did you drive adoption, and what measurable improvements resulted?\"\n\n8. \"Tell me about your most successful marketing initiative. What was the situation that prompted it, what specific actions did you take, and what quantifiable business impact did it generate?\""
+  },
+  "feedback": {
+    "what_happened": "The weak prompt produced generic interview questions that could apply to any job — mostly surface-level questions that don't reveal much about a candidate's actual abilities. The medium prompt improved by specifying the role and skills to assess, resulting in better behavioral questions, but they're still somewhat generic and don't guide the interviewer on how to evaluate responses. The effective prompt went further by specifying the STAR method framework, which gave the AI a clear structure to follow. This produced questions that explicitly prompt candidates to provide the situation, task, action, and result — making it much easier for you to assess their actual experience and measure their impact.",
+    "principle": "Show what 'good' looks like by giving the AI a specific framework or method to follow, rather than just describing what you want.",
+    "principle_name": "Show what 'good' looks like",
+    "tip": "When you need structured output, mention a specific framework, template, or methodology in your request. Instead of asking for 'good questions,' specify 'STAR method questions' or 'questions following the [specific format you want].'"
+  },
+  "feedbackUpdatedAt": "2026-03-24T05:48:39.055Z"
+}

@@ -1,0 +1,34 @@
+{
+  "scenarioId": "1.9-kitchen-sink",
+  "generatedAt": "2026-03-24T05:03:17.044Z",
+  "generatedWith": "claude-sonnet-4-20250514",
+  "options": [
+    {
+      "id": "a",
+      "text": "restaurant recommendations",
+      "quality": "weak"
+    },
+    {
+      "id": "b",
+      "text": "I need restaurant recommendations for tonight. I'm looking for something good but not too expensive. I usually like Italian food but I'm open to other options too. What do you suggest?",
+      "quality": "medium"
+    },
+    {
+      "id": "c",
+      "text": "I need restaurant recommendations for tonight in downtown Seattle for 2 people. We're looking for casual dining under $30 per person, preferably Italian or Mediterranean cuisine. We have no dietary restrictions.",
+      "quality": "strong"
+    }
+  ],
+  "responses": {
+    "response_weak": "Here are some popular restaurant types to consider: Italian, Mexican, Chinese, American, Thai, Indian, and Mediterranean. You might want to check online reviews and menus to find something that suits your preferences and budget.",
+    "response_medium": "For tonight, here are some good restaurant options that aren't too expensive:\n\n• Italian: Look for local trattorias or pizzerias - they usually offer good value\n• Casual dining chains like Olive Garden or local Italian spots\n• Other options: Mexican restaurants, Asian cuisine, or American bistros\n\nI'd recommend checking recent reviews online and calling ahead to see if they take reservations. Most casual Italian places will be in the $15-25 per person range.",
+    "response_strong": "Here are great casual Italian/Mediterranean options in downtown Seattle under $30 per person for tonight:\n\n**Italian:**\n• Spinasse (Capitol Hill) - Fresh pasta, $18-26 per entrée\n• Il Corvo (Pioneer Square) - Lunch counter style, $12-16\n• Serious Pie (Downtown) - Artisan pizza, $16-22\n\n**Mediterranean:**\n• Mamnoon (Capitol Hill) - Lebanese cuisine, $14-24 per entrée\n• Phoenicia at Alki - Greek/Mediterranean, $16-26\n\n**Reservations:** Call ahead for Spinasse and Mamnoon. Serious Pie and Il Corvo are first-come, first-served.\n\n**Timing:** Most open at 5 PM for dinner. Il Corvo closes early (3 PM), so focus on the others for tonight."
+  },
+  "feedback": {
+    "what_happened": "The weak prompt gives the AI almost nothing to work with, so it responds with generic categories anyone could list. The medium prompt provides some direction (tonight, not expensive, Italian preference), so the AI can offer general advice about price ranges and restaurant types. The effective prompt includes specific location, party size, budget, and cuisine preferences, enabling the AI to recommend actual restaurants with names, addresses, prices, and practical details like reservation policies and hours.",
+    "principle": "Include everything the AI needs to help you — but nothing extra.",
+    "principle_name": "Include everything needed — but nothing extra",
+    "tip": "Before asking for recommendations, write down the 4-5 essential details that would help a local friend give you good advice: location, budget, party size, cuisine type, and timing. Skip your food philosophy and family history — the AI only needs what's relevant to tonight's decision."
+  },
+  "feedbackUpdatedAt": "2026-03-24T05:43:17.295Z"
+}

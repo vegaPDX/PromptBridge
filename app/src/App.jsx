@@ -8,6 +8,7 @@ import GuidedMode from "./pages/GuidedMode";
 import FreeformMode from "./pages/FreeformMode";
 import ProgressPage from "./pages/ProgressPage";
 import HelpPage from "./pages/HelpPage";
+import AiSafetyPage from "./pages/AiSafetyPage";
 import AssessmentMode from "./pages/AssessmentMode";
 
 export default function App() {
@@ -124,13 +125,16 @@ export default function App() {
         {page === "help" && (
           <HelpPage onNavigate={navigate} />
         )}
+        {page === "ai-safety" && (
+          <AiSafetyPage onNavigate={navigate} />
+        )}
       </main>
 
       {/* Footer — landing page only */}
       {page === "landing" && (
         <footer className="text-center py-8 px-4 border-t border-stone-200">
           <p className="text-stone-400 text-xs">
-            PromptBridge — Open source. Inspired by NeuroBridge (Haroon et al., ASSETS 2025).
+            PromptBridge — Open source. Built on research into how people communicate with AI. Inspired by NeuroBridge (Haroon et al., ASSETS 2025).
           </p>
           <p className="text-stone-300 text-xs mt-1">
             Skills learned here work with any AI assistant.

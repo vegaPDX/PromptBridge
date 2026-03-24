@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import {
-  ChevronRight, Check, X, Lightbulb, ExternalLink, HelpCircle,
+  ChevronRight, Check, X, Lightbulb, ExternalLink, HelpCircle, AlertTriangle,
 } from "lucide-react";
 import { PRINCIPLES } from "../data/principles";
 import {
@@ -15,8 +15,15 @@ export default function LandingPage({ onNavigate }) {
 
   return (
     <div className="max-w-4xl mx-auto">
-      {/* Help button — upper right */}
-      <div className="flex justify-end px-4 pt-4">
+      {/* Top nav — upper right */}
+      <div className="flex justify-end gap-1 px-4 pt-4">
+        <button
+          onClick={() => onNavigate("ai-safety")}
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm text-stone-500 hover:text-amber-600 hover:bg-stone-100 rounded-lg transition-colors"
+        >
+          <AlertTriangle className="w-4 h-4" />
+          Heads Up
+        </button>
         <button
           onClick={() => onNavigate("help")}
           className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm text-stone-500 hover:text-indigo-600 hover:bg-stone-100 rounded-lg transition-colors"
@@ -32,7 +39,7 @@ export default function LandingPage({ onNavigate }) {
           Learn to talk to AI
         </h1>
         <p className="text-lg text-stone-500 max-w-2xl mx-auto leading-relaxed">
-          The way you phrase your request changes everything.
+          What you put in determines what you get out. Better prompts, better results.
           <br className="hidden md:block" />
           See the difference in 5 seconds.
         </p>
@@ -111,6 +118,22 @@ export default function LandingPage({ onNavigate }) {
         </div>
       )}
 
+      {/* Research stat */}
+      {showGood && (
+        <div className="px-4 mb-8 animate-fadeIn">
+          <div className="bg-indigo-50 border border-indigo-200 rounded-xl p-4 text-center">
+            <p className="text-stone-700 text-sm">
+              Research shows that how you talk to AI really matters —
+              clear communication can improve AI accuracy by{" "}
+              <strong className="text-indigo-600">up to 27%</strong>.
+            </p>
+            <p className="text-stone-400 text-xs mt-1">
+              Based on peer-reviewed AI research, 2025
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* CTA */}
       <div className="text-center px-4 pb-12">
         <button
@@ -136,7 +159,7 @@ export default function LandingPage({ onNavigate }) {
       {/* What you'll learn */}
       <div className="px-4 pb-12">
         <h2 className="font-serif text-2xl font-bold text-stone-800 text-center mb-6">
-          8 skills that work with any AI
+          {PRINCIPLES.length} skills that work with any AI
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {PRINCIPLES.map(p => {

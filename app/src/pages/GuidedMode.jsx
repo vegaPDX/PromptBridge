@@ -31,6 +31,19 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
   const [tryPrompt, setTryPrompt] = useState("");
   const [tryHeuristic, setTryHeuristic] = useState(null);
 
+  // Resolve feedback format: nested (weak/medium/strong) → flat
+  function resolveFeedback(data) {
+    if (!data?.feedback) return data;
+    // Already flat format (old files)
+    if (data.feedback.what_happened) return data;
+    // Nested format (new generated files) — use "strong" as default display
+    const fb = data.feedback.strong || data.feedback.medium || data.feedback.weak;
+    if (fb) {
+      return { ...data, feedback: { ...fb, _nested: data.feedback } };
+    }
+    return data;
+  }
+
   // Load pre-generated content on mount
   useEffect(() => {
     let cancelled = false;
@@ -40,7 +53,7 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
       try {
         const data = await loadGuidedContent(scenario.id);
         if (cancelled) return;
-        setContent(data);
+        setContent(resolveFeedback(data));
         setStep("explore");
       } catch (e) {
         if (!cancelled) setError(e.message);
@@ -56,7 +69,7 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
     loadGuidedContent(scenario.id)
       .then(data => {
         if (unmountedRef.current) return;
-        setContent(data);
+        setContent(resolveFeedback(data));
         setStep("explore");
       })
       .catch(e => {
