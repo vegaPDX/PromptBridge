@@ -21,7 +21,7 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
   const [step, setStep] = useState("loading");
   const [content, setContent] = useState(null);
   const [error, setError] = useState(null);
-  const [expandedTier, setExpandedTier] = useState("weak");
+  const [expandedTier, setExpandedTier] = useState(null);
 
   // Unmount guard for async operations
   const unmountedRef = useRef(false);
