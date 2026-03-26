@@ -20,10 +20,14 @@ Every scenario maps to one or more of these principles:
 | P6 | Give specific feedback | Tell the AI what's wrong and how to fix it, not just "try again" |
 | P7 | Ask the AI to ask you questions | Let it interview you instead of guessing what it needs |
 | P8 | Ask the AI to write prompts for you | Once a plan is worked out, let the AI crystallize it |
+| P9 | Verify before you trust | Don't take AI answers at face value — ask it to show its work |
+| P10 | Include everything needed — but nothing extra | Give the AI all the important details, but cut anything that doesn't help |
+| P11 | Know what AI can't do | AI has a training cutoff, can't browse the web, and sometimes avoids topics |
+| P12 | Use AI responsibly | AI can reflect biases, agree when it shouldn't, and produce harmful content |
 
 ---
 
-## Category 1: Vague vs. Specific Requests (8 guided scenarios)
+## Category 1: Vague vs. Specific Requests (11 guided scenarios)
 
 **What this teaches:** The difference between treating AI like a search engine (keywords) and treating it like a knowledgeable colleague (full requests with context).
 
@@ -111,7 +115,7 @@ Every scenario maps to one or more of these principles:
 
 ---
 
-## Category 2: Context & Framing (8 guided scenarios)
+## Category 2: Context & Framing (16 guided scenarios)
 
 **What this teaches:** How providing information about yourself, your audience, and your goal dramatically changes the quality of AI output.
 
@@ -197,7 +201,7 @@ Every scenario maps to one or more of these principles:
 
 ---
 
-## Category 3: Iterative Refinement (7 guided scenarios)
+## Category 3: Iterative Refinement (13 guided scenarios)
 
 **What this teaches:** How to review AI output and steer it toward what you actually want through specific feedback. Also teaches power techniques: asking the AI to interview you, having it write prompts for you, and using positive instructions.
 
@@ -273,7 +277,7 @@ Every scenario maps to one or more of these principles:
 
 ---
 
-## Category 4: Smart Strategies (7 guided scenarios)
+## Category 4: Smart Strategies (21 guided scenarios)
 
 **What this teaches:** Powerful techniques that go beyond the basics — step-by-step reasoning, task decomposition, showing examples, structuring complex requests, and self-verification. These are techniques highlighted across all three major AI providers' documentation as significant quality multipliers.
 
@@ -353,7 +357,7 @@ Every scenario maps to one or more of these principles:
 
 **What this teaches:** Combining all skills in a realistic multi-turn scenario. These scenarios are only available in Free-form Mode because they require the user to write and iterate, not just pick options.
 
-**Principles covered:** All (P1–P8)
+**Principles covered:** All (P1–P12)
 
 ### Scenario 5.1 — "Daily work planner"
 
@@ -412,19 +416,23 @@ For free-form scenarios, the format is:
 
 ## v1 scope
 
-For the initial release, target **30 guided scenarios** across 4 categories and **3 free-form scenarios** (category 5). This covers all 8 principles extensively and provides a meaningful learning path from basic specificity through advanced techniques.
+For the initial release, target **61 guided scenarios** across 4 categories and **15 free-form scenarios** (category 5). This covers all 12 principles extensively and provides a meaningful learning path from basic specificity through advanced techniques.
 
 ### Scenario coverage by principle
 
 | Principle | Scenarios covering it |
 |-----------|----------------------|
-| P1 — Be specific | 1.1–1.8, 2.7, 3.5, 3.7, 4A.1, 4A.2, 4A.4, 4A.5 (15 scenarios) |
-| P2 — Provide context | 1.2, 1.3, 1.6, 1.7, 2.1–2.8, 4A.4, 4A.6, 4A.7 (14 scenarios) |
-| P3 — State your intent | 1.3, 1.4, 1.7, 2.1–2.3, 2.5, 2.8, 4A.2, 4A.7 (10 scenarios) |
-| P4 — Avoid ambiguity | 1.1, 1.5 (2 scenarios) |
-| P5 — Show what "good" looks like | 1.4, 1.8, 2.1, 2.4, 2.6, 2.7, 4A.3, 4A.4, 4A.6 (9 scenarios) |
-| P6 — Give specific feedback | 3.1, 3.4–3.7 (5 scenarios) |
-| P7 — Ask AI to ask questions | 3.2 (1 scenario + free-form) |
-| P8 — Ask AI to write prompts | 3.3, 3.6 (2 scenarios) |
+| P1 — Be specific | ~30+ scenarios |
+| P2 — Provide context | ~35+ scenarios |
+| P3 — State your intent | ~15+ scenarios |
+| P4 — Avoid ambiguity | 3 scenarios (1.1, 1.5, 3.13) |
+| P5 — Show what "good" looks like | ~15+ scenarios |
+| P6 — Give specific feedback | ~15+ scenarios |
+| P7 — Ask AI to ask questions | 5 scenarios |
+| P8 — Ask AI to write prompts | 4 scenarios |
+| P9 — Verify before you trust | 8 scenarios |
+| P10 — Include everything needed | 3 scenarios |
+| P11 — Know what AI can't do | 6 scenarios |
+| P12 — Use AI responsibly | 5 scenarios |
 
 Additional scenarios can be contributed by the community after launch.

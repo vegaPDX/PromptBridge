@@ -31,11 +31,6 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
   const [tryPrompt, setTryPrompt] = useState("");
   const [tryHeuristic, setTryHeuristic] = useState(null);
 
-  // All generated JSON files use flat feedback format
-  function resolveFeedback(data) {
-    return data;
-  }
-
   // Load pre-generated content on mount
   useEffect(() => {
     let cancelled = false;
@@ -45,7 +40,7 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
       try {
         const data = await loadGuidedContent(scenario.id);
         if (cancelled) return;
-        setContent(resolveFeedback(data));
+        setContent(data);
         setStep("explore");
       } catch (e) {
         if (!cancelled) setError(e.message);
@@ -61,7 +56,7 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
     loadGuidedContent(scenario.id)
       .then(data => {
         if (unmountedRef.current) return;
-        setContent(resolveFeedback(data));
+        setContent(data);
         setStep("explore");
       })
       .catch(e => {

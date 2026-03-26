@@ -7,10 +7,10 @@ Thank you for helping make PromptBridge better! Scenarios are the core of the le
 A good scenario is:
 - **Relatable** — Based on a situation most people would actually encounter
 - **Specific** — Has enough detail for meaningful prompt variations (weak/medium/strong)
-- **Principled** — Maps clearly to 1-3 of the 8 communication principles
+- **Principled** — Maps clearly to 1-3 of the 12 communication principles
 - **AI-agnostic** — Works with any AI assistant, not specific to one tool
 
-## The 8 communication principles
+## The 12 communication principles
 
 Every scenario must map to at least one:
 
@@ -24,6 +24,10 @@ Every scenario must map to at least one:
 | P6 | Give specific feedback | Say what's wrong AND what to change |
 | P7 | Ask the AI to ask you questions | Let it interview you |
 | P8 | Ask the AI to write prompts for you | Let it crystallize the prompt |
+| P9 | Verify before you trust | Don't take AI answers at face value |
+| P10 | Include everything needed — but nothing extra | Give all important details, cut the rest |
+| P11 | Know what AI can't do | AI has a training cutoff, can't browse the web, etc. |
+| P12 | Use AI responsibly | AI can reflect biases and produce harmful content |
 
 ## Scenario format
 

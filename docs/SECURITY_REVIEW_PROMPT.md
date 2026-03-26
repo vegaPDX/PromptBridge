@@ -30,7 +30,7 @@ Based on a research report analyzing 80+ real user complaints about AI tools, a 
   - `LandingPage.jsx` — language audit: hero ("Tired of generic AI responses?"), research stat (0%-to-90%), skills heading ("12 ways to stop getting generic AI slop"), user vernacular throughout
   - `ProgressPage.jsx` — principles sorted by `teachingOrder`, explanatory text about research-driven ordering
 - **Phase 4 — New scenarios:** 8 new guided scenarios added (76 total: 61 guided + 15 freeform). Research-driven pain points: generic email (P1,P2,P5), code debugging (P2,P3,P6), context window cliff (P2,P11), endless redo loop (P4,P6), AI sycophancy (P9,P12), prompt regression (P1,P2,P5), safety wall (P3,P11), five-minute expert (P8,P7). All 8 generated JSON files are hand-crafted (not pipeline-generated).
-- **Phase 5 — Test infrastructure:** Added vitest with 109 tests across 5 files covering data integrity, heuristic scorer (all 12 principles + P5 expanded patterns), recommendation engine (teachingOrder sorting), storage (banner flags + failure handling), and component smoke tests.
+- **Phase 5 — Test infrastructure:** Added vitest with 123 tests across 6 files covering data integrity, heuristic scorer (all 12 principles + P5 expanded patterns), recommendation engine (teachingOrder sorting), storage (banner flags + failure handling), and component smoke tests.
 - **Phase 6 — Holistic review:** Fixed LandingPage sycophancy icon (Check→AlertTriangle) and inconsistent "Heads Up"→"AI Limits" labeling.
 
 Your goals are:
@@ -51,7 +51,7 @@ Your goals are:
 * **Content Rendering:** Custom `MarkdownText` component uses `escapeHtml()` + regex bold/italic + `dangerouslySetInnerHTML`
 * **Content Security Policy:** `<meta>` tag in `index.html` (verify current directives)
 * **Clickjacking:** JavaScript frame-buster in `main.jsx`
-* **Tests:** Vitest 4.1.1 with jsdom, @testing-library/react, @testing-library/jest-dom — 109 tests across 5 files
+* **Tests:** Vitest 4.1.1 with jsdom, @testing-library/react, @testing-library/jest-dom — 123 tests across 6 files
 * **Build Config:** Vite with `base: '/PromptBridge/'`
 
 ### File inventory
@@ -59,8 +59,8 @@ Your goals are:
 **Pages (src/pages/) — 8 components:**
 LandingPage, ScenarioSelector, GuidedMode, FreeformMode, AssessmentMode, ProgressPage, HelpPage, AiSafetyPage
 
-**Components (src/components/) — 10 files:**
-Header, AiToolLinks, CopyButton, MarkdownText, ResponseComparison, PrincipleBadge, ErrorBanner, LoadingSpinner, AiSafetyBanner, PreScenarioBanner
+**Components (src/components/) — 9 files:**
+Header, CopyButton, AiToolLinks, MarkdownText, PrincipleBadge, ErrorBanner, LoadingSpinner, AiSafetyBanner, PreScenarioBanner
 
 **Services (src/services/) — 4 files:**
 heuristic-scorer.js, guided-data.js, recommendations.js, storage.js
@@ -68,7 +68,7 @@ heuristic-scorer.js, guided-data.js, recommendations.js, storage.js
 **Data (src/data/) — 8 files + 61 generated JSON:**
 scenarios.js (76 scenarios), principles.js (12 principles with teachingOrder), categories.js, prompts.js (used only by generate-content.js script), assessment-scenarios.js, demo.js, icon-map.js, plus `generated/*.json`
 
-**Tests (src/__tests__/) — 5 files:**
+**Tests (src/__tests__/) — 6 files:**
 data-integrity.test.js (22 tests), heuristic-scorer.test.js (42 tests), recommendations.test.js (10 tests), storage.test.js (19 tests), components.test.jsx (16 tests), plus setup.js and vitest.config.js
 
 **Scripts (scripts/) — 2 files (local dev only, not in the built app):**
@@ -144,7 +144,7 @@ if (window.self !== window.top) {
 
 **Carry-forward items from v4 (verify these are still clean):**
 
-- **`src/components/ResponseComparison.jsx`** — This component was used by deleted API-powered modes. Is it imported anywhere? Is it safe to delete?
+- **`src/components/ResponseComparison.jsx`** — This component has been removed. Verify no references remain in source code.
 - **`src/data/prompts.js`** — Exports functions used only by `scripts/generate-content.js` (NOT part of the built app). Verify: does Vite tree-shake this file out of the production bundle, or does it get included because other data files import from `principles.js` which is in the same directory?
 - **`.env.example`** — Verify it no longer references any `VITE_` prefixed variables.
 - **Search the entire `src/` directory** for remaining references to deleted features: `hasApiKey`, `callLLM`, `analyzeFreeform`, `simulateResponses`, `generateVariations`, `generateInitialResponse`, `generateImprovedResponse`, `generateMultiTurnFeedback`, `getProviderConfig`, `PROVIDER_STORAGE_KEY`, `promptbridge_provider`, `HybridMode`, `MultiTurnMode`, `SettingsPage`, `llm.js`, `apiKey`, `api_key`, `BYOK`.
@@ -415,7 +415,7 @@ Review all 5 entries in `categories.js`. These are shown on the scenario selecto
 
 ## Audit Area 14: Test Coverage Review (NEW)
 
-Phase 5 added 109 tests. Review the test infrastructure and coverage for gaps:
+Phase 5 added 123 tests. Review the test infrastructure and coverage for gaps:
 
 **Infrastructure:**
 - `vitest.config.js` — Verify the configuration is correct: jsdom environment, React plugin, setup file path, test file pattern.

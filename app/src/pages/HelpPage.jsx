@@ -263,7 +263,7 @@ export default function HelpPage({ onNavigate }) {
             <p>
               Everything stays in your browser. Your progress is stored
               locally on your device — nothing is sent to any server because there aren't any.
-              PromptBridge is a fully static site with no backend.
+              PromptBridge runs entirely in your browser — nothing you type is ever sent to a server.
             </p>
           </div>
         </div>

@@ -34,7 +34,7 @@ PromptBridge's mission is to make AI communication skills accessible to everyone
 
 ## Guided by Research
 
-PromptBridge's 12 communication skills and 68 practice scenarios aren't invented from intuition — they're guided by a body of academic research on how humans and AI systems communicate, where those conversations break down, and what makes them work.
+PromptBridge's 12 communication skills and 76 practice scenarios aren't invented from intuition — they're guided by a body of academic research on how humans and AI systems communicate, where those conversations break down, and what makes them work.
 
 ### The NeuroBridge Foundation
 

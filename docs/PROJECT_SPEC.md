@@ -61,16 +61,25 @@ The user picks a scenario and writes their own prompt from scratch. A client-sid
 
 ### Feature 3: Communication principle tracker
 
-Each scenario maps to one or more of 8 communication principles:
+Each scenario maps to one or more of 12 communication principles:
 
-- **Be specific, not vague** — Ask for exactly what you want
-- **Provide context** — Who you are, what you're working on, what constraints exist
-- **State your intent** — What you'll use the result for
-- **Avoid ambiguity** — Don't use questions that can be answered with yes/no when you want information
-- **Show what "good" looks like** — Give examples of the format or style you want
-- **Iterate with specific feedback** — Tell the AI what's wrong, not just that it's wrong
-- **Ask the AI to ask you questions** — Let it interview you instead of guessing what it needs
-- **Ask the AI to write prompts for you** — Once direction is established, let it crystallize the prompt
+**Communication fundamentals:**
+- **P1 — Be specific, not vague** — Ask for exactly what you want
+- **P2 — Provide context** — Who you are, what you're working on, what constraints exist
+- **P3 — State your intent** — What you'll use the result for
+- **P4 — Avoid ambiguity** — Don't use questions that can be answered with yes/no when you want information
+- **P5 — Show what "good" looks like** — Give examples of the format or style you want
+- **P6 — Iterate with specific feedback** — Tell the AI what's wrong, not just that it's wrong
+- **P7 — Ask the AI to ask you questions** — Let it interview you instead of guessing what it needs
+- **P8 — Ask the AI to write prompts for you** — Once direction is established, let it crystallize the prompt
+
+**Verification and critical thinking:**
+- **P9 — Verify before you trust** — Don't take AI answers at face value — ask it to show its work and flag what it's unsure about
+- **P10 — Include everything needed — but nothing extra** — Give the AI all the important details, but cut anything that doesn't help
+
+**AI awareness and responsibility:**
+- **P11 — Know what AI can't do** — AI has a training cutoff, can't browse the web, has no personal experience, and sometimes avoids topics without explaining why
+- **P12 — Use AI responsibly** — AI can reflect biases, agree when it shouldn't, and produce harmful content — you're the human quality filter
 
 The tool tracks which principles the user has practiced and recommends what to try next.
 

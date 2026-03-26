@@ -53,7 +53,10 @@ const ASSESSMENT_KEY = "promptbridge_assessment";
 export function loadAssessment() {
   try {
     const raw = localStorage.getItem(ASSESSMENT_KEY);
-    if (raw) return JSON.parse(raw);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      return { pre: parsed.pre || null, post: parsed.post || null };
+    }
   } catch (e) {
     // corrupt data
   }
@@ -79,7 +82,10 @@ const CONTEXT_KEY = "promptbridge_user_context";
 export function loadUserContext() {
   try {
     const raw = localStorage.getItem(CONTEXT_KEY);
-    if (raw) return JSON.parse(raw);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      return typeof parsed === "string" ? parsed : null;
+    }
   } catch (e) {
     // corrupt data
   }
