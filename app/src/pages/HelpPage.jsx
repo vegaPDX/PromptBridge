@@ -16,10 +16,10 @@ export default function HelpPage({ onNavigate }) {
       </div>
       <p className="text-stone-600 mb-8">Everything you need to get the most out of AI.</p>
 
-      {/* What is PromptBridge? */}
-      <Section title="What is PromptBridge?">
+      {/* What is PromptBridge Lite? */}
+      <Section title="What is PromptBridge Lite?">
         <p>
-          PromptBridge is a free, interactive tool that teaches you how to talk to AI assistants
+          PromptBridge Lite is a free, interactive tool that teaches you how to talk to AI assistants
           more effectively. The skills you learn here work with any AI tool — ChatGPT, Claude,
           Gemini, Copilot, or any other.
         </p>
@@ -211,12 +211,12 @@ export default function HelpPage({ onNavigate }) {
       {/* How to use with your favorite AI tool */}
       <Section title="How to use with your favorite AI tool">
         <p className="mb-3">
-          PromptBridge teaches the skills — then you practice them in real AI tools. Here's the workflow:
+          PromptBridge Lite teaches the skills — then you practice them in real AI tools. Here's the workflow:
         </p>
         <ol className="space-y-2 list-none">
           <li className="flex items-start gap-2">
             <span className="w-5 h-5 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5">1</span>
-            <span><strong>Practice a scenario</strong> in PromptBridge to learn the skill.</span>
+            <span><strong>Practice a scenario</strong> in PromptBridge Lite to learn the skill.</span>
           </li>
           <li className="flex items-start gap-2">
             <span className="w-5 h-5 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center flex-shrink-0 text-xs font-bold mt-0.5">2</span>
@@ -263,7 +263,7 @@ export default function HelpPage({ onNavigate }) {
             <p>
               Everything stays in your browser. Your progress is stored
               locally on your device — nothing is sent to any server because there aren't any.
-              PromptBridge runs entirely in your browser — nothing you type is ever sent to a server.
+              PromptBridge Lite runs entirely in your browser — nothing you type is ever sent to a server.
             </p>
           </div>
         </div>

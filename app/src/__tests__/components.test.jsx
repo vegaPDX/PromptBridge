@@ -8,7 +8,7 @@ import Header from "../components/Header";
 describe("AiSafetyBanner", () => {
   it("renders welcome heading", () => {
     render(<AiSafetyBanner onDismiss={() => {}} />);
-    expect(screen.getByText("Welcome to PromptBridge")).toBeInTheDocument();
+    expect(screen.getByText("Welcome to PromptBridge Lite")).toBeInTheDocument();
   });
 
   it("renders 3 AI facts", () => {
@@ -64,14 +64,15 @@ describe("Header", () => {
     expect(screen.getByText("Progress")).toBeInTheDocument();
   });
 
-  it("renders PromptBridge logo/title", () => {
+  it("renders PromptBridge Lite logo/title", () => {
     render(<Header page="landing" practicedPrinciples={[]} onNavigate={() => {}} />);
     expect(screen.getByText("PromptBridge")).toBeInTheDocument();
+    expect(screen.getByText("Lite")).toBeInTheDocument();
   });
 
   it("shows principle count badge when principles are practiced", () => {
     render(<Header page="landing" practicedPrinciples={["P1", "P2"]} onNavigate={() => {}} />);
-    expect(screen.getByText("2/12")).toBeInTheDocument();
+    expect(screen.getByText("2/13")).toBeInTheDocument();
   });
 
   it("does not show badge when no principles are practiced", () => {

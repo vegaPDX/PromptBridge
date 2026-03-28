@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * PromptBridge — Scenario Validator
+ * PromptBridge Lite — Scenario Validator
  *
  * Validates a scenario definition against the expected schema.
  *
