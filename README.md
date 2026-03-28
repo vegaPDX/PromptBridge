@@ -1,4 +1,4 @@
-# PromptBridge
+# PromptBridge-Lite
 
 **An interactive, open-source tool that teaches people how to communicate effectively with AI assistants.**
 
