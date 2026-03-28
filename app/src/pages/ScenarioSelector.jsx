@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Check, BookOpen, PenTool, Sparkles, X, ChevronDown } from "lucide-react";
+import { Check, Sparkles, X, ChevronDown, Shield } from "lucide-react";
 import PreScenarioBanner from "../components/PreScenarioBanner";
-import { groupBy } from "lodash-es";
-import { GUIDED_SCENARIOS, FREEFORM_SCENARIOS } from "../data/scenarios";
+import { GUIDED_SCENARIOS } from "../data/scenarios";
+import { MAXIMS } from "../data/maxims";
 import { CATEGORIES } from "../data/categories";
 import { PRINCIPLE_MAP } from "../data/principles";
 import { resolveIcon } from "../data/icon-map";
@@ -10,7 +10,6 @@ import { getRecommendedScenarios } from "../services/recommendations";
 
 const CONTEXT_PILLS = [
   { label: "Work emails & docs", tags: ["work"] },
-  { label: "Coding & tech", tags: ["coding"] },
   { label: "School & learning", tags: ["school"] },
   { label: "Personal projects", tags: ["personal"] },
   { label: "A bit of everything", tags: ["work", "coding", "school", "personal", "other"] },
@@ -21,42 +20,38 @@ function getMatchingTags(userContext) {
   return pill ? pill.tags : [];
 }
 
-export default function ScenarioSelector({ onSelectScenario, completedScenarios, practicedPrinciples = [], userContext, onSetUserContext, showPreScenarioBanner, onDismissPreScenario }) {
-  const [activeTab, setActiveTab] = useState("guided");
+export default function ScenarioSelector({ onSelectScenario, completedScenarios, practicedPrinciples = [], userContext, onSetUserContext, showPreScenarioBanner, onDismissPreScenario, initialExpandMaxim }) {
   const [bannerDismissed, setBannerDismissed] = useState(false);
-  const [expandedCategories, setExpandedCategories] = useState(new Set());
+  const [expandedMaxims, setExpandedMaxims] = useState(() =>
+    initialExpandMaxim ? new Set([initialExpandMaxim]) : new Set()
+  );
 
-  const toggleCategory = (catKey) => {
-    setExpandedCategories(prev => {
+  const toggleMaxim = (maximId) => {
+    setExpandedMaxims(prev => {
       const next = new Set(prev);
-      if (next.has(catKey)) next.delete(catKey);
-      else next.add(catKey);
+      if (next.has(maximId)) next.delete(maximId);
+      else next.add(maximId);
       return next;
     });
   };
-  const scenarios = activeTab === "guided" ? GUIDED_SCENARIOS : FREEFORM_SCENARIOS;
-
-  // Sort scenarios by relevance match within each category group
-  const matchingTags = userContext ? getMatchingTags(userContext) : [];
-  const sortedScenarios = userContext
-    ? [...scenarios].sort((a, b) => {
-        const aMatch = (a.relevance || []).some(r => matchingTags.includes(r)) ? 1 : 0;
-        const bMatch = (b.relevance || []).some(r => matchingTags.includes(r)) ? 1 : 0;
-        return bMatch - aMatch;
-      })
-    : scenarios;
-
-  const grouped = groupBy(sortedScenarios, "category");
 
   const recommendedIds = new Set(
-    getRecommendedScenarios(practicedPrinciples, completedScenarios, scenarios, 3)
+    getRecommendedScenarios(practicedPrinciples, completedScenarios, GUIDED_SCENARIOS, 3)
       .map(r => r.scenario.id)
   );
+
+  const totalCompleted = completedScenarios.length;
+  const totalScenarios = GUIDED_SCENARIOS.length;
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
       <h1 className="font-serif text-3xl font-bold text-stone-800 mb-2">Choose a Scenario</h1>
-      <p className="text-stone-600 mb-6">Pick a situation and practice talking to AI effectively.</p>
+      <p className="text-stone-600 mb-1">
+        26 focused practice scenarios organized by 6 core principles.
+      </p>
+      <p className="text-stone-500 text-sm mb-6">
+        {totalCompleted} of {totalScenarios} completed
+      </p>
 
       {showPreScenarioBanner && <PreScenarioBanner onDismiss={onDismissPreScenario} />}
 
@@ -85,53 +80,44 @@ export default function ScenarioSelector({ onSelectScenario, completedScenarios,
         </div>
       )}
 
-      {/* Tabs */}
-      <div className="flex gap-2 mb-8">
-        <button
-          onClick={() => setActiveTab("guided")}
-          className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-            activeTab === "guided"
-              ? "bg-indigo-600 text-white"
-              : "bg-stone-100 text-stone-600 hover:bg-stone-200"
-          }`}
-        >
-          <BookOpen className="w-4 h-4 inline mr-1.5 -mt-0.5" />
-          Guided Practice
-        </button>
-        <button
-          onClick={() => setActiveTab("freeform")}
-          className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
-            activeTab === "freeform"
-              ? "bg-indigo-600 text-white"
-              : "bg-stone-100 text-stone-600 hover:bg-stone-200"
-          }`}
-        >
-          <PenTool className="w-4 h-4 inline mr-1.5 -mt-0.5" />
-          Write Your Own
-        </button>
-      </div>
-
-      {/* Scenario cards grouped by category (collapsible) */}
-      {Object.entries(grouped).map(([catKey, catScenarios]) => {
-        const cat = CATEGORIES[catKey];
+      {/* Maxim accordion */}
+      {MAXIMS.map((maxim) => {
+        const cat = CATEGORIES[maxim.id];
         if (!cat) return null;
         const CatIcon = resolveIcon(cat.icon);
-        const isExpanded = expandedCategories.has(catKey);
-        const completedCount = catScenarios.filter(s => completedScenarios.includes(s.id)).length;
+        const isExpanded = expandedMaxims.has(maxim.id);
+        const isSafety = maxim.id === "M5" || maxim.id === "M6";
+
+        // Count completed scenarios in this maxim
+        const maximScenarioIds = maxim.subMaxims.flatMap(sm => sm.scenarioIds);
+        const completedCount = maximScenarioIds.filter(id => completedScenarios.includes(id)).length;
+
         return (
-          <section key={catKey} aria-labelledby={`cat-${catKey}`} className="mb-4">
+          <section key={maxim.id} aria-labelledby={`maxim-${maxim.id}`} className="mb-4">
             <button
-              onClick={() => toggleCategory(catKey)}
+              onClick={() => toggleMaxim(maxim.id)}
               aria-expanded={isExpanded}
-              className="w-full text-left bg-white rounded-xl border border-stone-200 p-4 hover:border-indigo-200 transition-all"
+              className={`w-full text-left rounded-xl border p-4 hover:border-indigo-200 transition-all ${
+                isSafety
+                  ? "bg-rose-50 border-rose-200 hover:border-rose-300"
+                  : "bg-white border-stone-200"
+              }`}
             >
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2.5">
-                  {CatIcon && <CatIcon className="w-5 h-5 text-stone-400" />}
-                  <h2 id={`cat-${catKey}`} className="font-serif text-lg font-semibold text-stone-700">{cat.label}</h2>
+                  {isSafety && <Shield className="w-4 h-4 text-rose-500" />}
+                  {CatIcon && !isSafety && <CatIcon className="w-5 h-5 text-stone-400" />}
+                  <h2 id={`maxim-${maxim.id}`} className="font-serif text-lg font-semibold text-stone-700">
+                    {maxim.name}
+                  </h2>
                   <span className="text-xs px-2 py-0.5 bg-stone-100 text-stone-500 rounded-full font-medium">
-                    {completedCount}/{catScenarios.length}
+                    {completedCount}/{maximScenarioIds.length}
                   </span>
+                  {isSafety && (
+                    <span className="text-xs px-2 py-0.5 bg-rose-100 text-rose-600 rounded-full font-medium">
+                      Safety
+                    </span>
+                  )}
                 </div>
                 <ChevronDown className={`w-5 h-5 text-stone-400 transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`} />
               </div>
@@ -139,44 +125,57 @@ export default function ScenarioSelector({ onSelectScenario, completedScenarios,
             </button>
 
             {isExpanded && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-3 ml-2 animate-fadeIn">
-                {catScenarios.map(scenario => {
-                  const isCompleted = completedScenarios.includes(scenario.id);
-                  const isRecommended = recommendedIds.has(scenario.id);
+              <div className="mt-3 ml-2 space-y-4 animate-fadeIn">
+                {maxim.subMaxims.map(subMaxim => {
+                  const subScenarios = GUIDED_SCENARIOS.filter(s => subMaxim.scenarioIds.includes(s.id));
                   return (
-                    <button
-                      key={scenario.id}
-                      onClick={() => onSelectScenario(scenario)}
-                      className={`text-left bg-white rounded-xl border p-4 hover:border-indigo-300 hover:shadow-md transition-all group ${
-                        isRecommended && !isCompleted ? "border-indigo-200" : "border-stone-200"
-                      }`}
-                    >
-                      <div className="flex items-start justify-between mb-2">
-                        <div className="flex items-center gap-2 flex-1 min-w-0">
-                          <h3 className="font-semibold text-stone-800 group-hover:text-indigo-700 transition-colors text-sm">
-                            {scenario.title}
-                          </h3>
-                          {isRecommended && !isCompleted && (
-                            <span className="text-xs px-2 py-0.5 bg-indigo-100 text-indigo-600 rounded-full font-medium flex-shrink-0 inline-flex items-center gap-1">
-                              <Sparkles className="w-3 h-3" /> Next
-                            </span>
-                          )}
-                        </div>
-                        {isCompleted && (
-                          <div className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
-                            <Check className="w-3 h-3 text-emerald-500" />
-                          </div>
-                        )}
+                    <div key={subMaxim.id}>
+                      <h3 className="text-sm font-semibold text-stone-600 mb-2 pl-2">
+                        {subMaxim.name}
+                        <span className="font-normal text-stone-400 ml-2">— {subMaxim.description}</span>
+                      </h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        {subScenarios.map(scenario => {
+                          const isCompleted = completedScenarios.includes(scenario.id);
+                          const isRecommended = recommendedIds.has(scenario.id);
+                          return (
+                            <button
+                              key={scenario.id}
+                              onClick={() => onSelectScenario(scenario)}
+                              className={`text-left bg-white rounded-xl border p-4 hover:border-indigo-300 hover:shadow-md transition-all group ${
+                                isRecommended && !isCompleted ? "border-indigo-200" : "border-stone-200"
+                              }`}
+                            >
+                              <div className="flex items-start justify-between mb-2">
+                                <div className="flex items-center gap-2 flex-1 min-w-0">
+                                  <h4 className="font-semibold text-stone-800 group-hover:text-indigo-700 transition-colors text-sm">
+                                    {scenario.title}
+                                  </h4>
+                                  {isRecommended && !isCompleted && (
+                                    <span className="text-xs px-2 py-0.5 bg-indigo-100 text-indigo-600 rounded-full font-medium flex-shrink-0 inline-flex items-center gap-1">
+                                      <Sparkles className="w-3 h-3" /> Next
+                                    </span>
+                                  )}
+                                </div>
+                                {isCompleted && (
+                                  <div className="w-5 h-5 rounded-full bg-emerald-100 flex items-center justify-center flex-shrink-0">
+                                    <Check className="w-3 h-3 text-emerald-500" />
+                                  </div>
+                                )}
+                              </div>
+                              <p className="text-stone-600 text-sm mb-3 line-clamp-2">{scenario.situation}</p>
+                              <div className="flex flex-wrap gap-1">
+                                {scenario.principles.map(pid => (
+                                  <span key={pid} className="text-xs px-1.5 py-0.5 bg-indigo-50 text-indigo-600 rounded font-medium">
+                                    {PRINCIPLE_MAP[pid]?.name}
+                                  </span>
+                                ))}
+                              </div>
+                            </button>
+                          );
+                        })}
                       </div>
-                      <p className="text-stone-600 text-sm mb-3 line-clamp-2">{scenario.situation}</p>
-                      <div className="flex flex-wrap gap-1">
-                        {scenario.principles.map(pid => (
-                          <span key={pid} className="text-xs px-1.5 py-0.5 bg-indigo-50 text-indigo-600 rounded font-medium">
-                            {PRINCIPLE_MAP[pid]?.name}
-                          </span>
-                        ))}
-                      </div>
-                    </button>
+                    </div>
                   );
                 })}
               </div>

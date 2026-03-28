@@ -1,22 +1,59 @@
-import { useState, useCallback } from "react";
-import { GUIDED_SCENARIOS, FREEFORM_SCENARIOS } from "./data/scenarios";
-import { loadProgress, saveProgress, loadAssessment, saveAssessment, loadUserContext, saveUserContext, hasSeenSafetyIntro, markSafetyIntroSeen, hasSeenPreScenarioBanner, markPreScenarioBannerSeen } from "./services/storage";
+import { useState, useCallback, useEffect, useRef } from "react";
+import { GUIDED_SCENARIOS } from "./data/scenarios";
+import { loadProgress, saveProgress, loadUserContext, saveUserContext, hasSeenSafetyIntro, markSafetyIntroSeen, hasSeenPreScenarioBanner, markPreScenarioBannerSeen } from "./services/storage";
 import Header from "./components/Header";
 import AiSafetyBanner from "./components/AiSafetyBanner";
 import LandingPage from "./pages/LandingPage";
 import ScenarioSelector from "./pages/ScenarioSelector";
 import GuidedMode from "./pages/GuidedMode";
-import FreeformMode from "./pages/FreeformMode";
 import ProgressPage from "./pages/ProgressPage";
 import HelpPage from "./pages/HelpPage";
 import AiSafetyPage from "./pages/AiSafetyPage";
-import AssessmentMode from "./pages/AssessmentMode";
+
+// ── Hash-based routing helpers ─────────────────────────────
+
+function parseHash(hash) {
+  const raw = (hash || "").replace(/^#\/?/, "");
+  if (!raw || raw === "landing") return { page: "landing" };
+  if (raw === "scenarios") return { page: "scenarios" };
+  if (raw.startsWith("scenarios/")) {
+    return { page: "scenarios", expandMaxim: raw.split("/")[1] || null };
+  }
+  if (raw.startsWith("guided/")) {
+    const id = raw.slice(7);
+    const scenario = GUIDED_SCENARIOS.find(s => s.id === id);
+    if (scenario) return { page: "guided", scenario };
+  }
+  if (raw === "progress") return { page: "progress" };
+  if (raw === "help") return { page: "help" };
+  if (raw === "ai-safety") return { page: "ai-safety" };
+  return { page: "landing" };
+}
+
+function buildHash(page, scenarioId, expandMaxim) {
+  if (page === "guided" && scenarioId) return `#/guided/${scenarioId}`;
+  if (page === "scenarios" && expandMaxim) return `#/scenarios/${expandMaxim}`;
+  if (page === "scenarios") return "#/scenarios";
+  if (page === "progress") return "#/progress";
+  if (page === "help") return "#/help";
+  if (page === "ai-safety") return "#/ai-safety";
+  return "#/";
+}
+
+// ── App ────────────────────────────────────────────────────
 
 export default function App() {
-  const [page, setPage] = useState("landing");
-  const [selectedScenario, setSelectedScenario] = useState(null);
+  // Resolve initial state from URL hash
+  const initial = parseHash(window.location.hash);
 
-  // Load progress once on mount (lazy initializer avoids re-reading localStorage on every render)
+  const [page, setPage] = useState(initial.page);
+  const [selectedScenario, setSelectedScenario] = useState(initial.scenario || null);
+  const [expandMaxim, setExpandMaxim] = useState(initial.expandMaxim || null);
+
+  // Flag: true when we're restoring from popstate (skip pushState)
+  const restoringRef = useRef(false);
+
+  // Load progress once on mount
   const [initProgress] = useState(() => loadProgress());
   const [completedScenarios, setCompletedScenarios] = useState(initProgress.completedScenarios);
   const [practicedPrinciples, setPracticedPrinciples] = useState(initProgress.practicedPrinciples);
@@ -32,14 +69,49 @@ export default function App() {
   const dismissSafetyBanner = () => { setShowSafetyBanner(false); markSafetyIntroSeen(); };
   const dismissPreScenario = () => { setShowPreScenario(false); markPreScenarioBannerSeen(); };
 
-  // Assessment data
-  const [assessmentData, setAssessmentData] = useState(() => loadAssessment());
+  // ── History sync ─────────────────────────────────────────
 
-  const handleAssessmentComplete = (type, result) => {
-    const updated = { ...assessmentData, [type]: result };
-    setAssessmentData(updated);
-    saveAssessment(updated);
-  };
+  // Push a new history entry (called on forward navigation)
+  const pushHistory = useCallback((pg, scenarioId, exMaxim) => {
+    if (restoringRef.current) return; // don't push during popstate restore
+    const hash = buildHash(pg, scenarioId, exMaxim);
+    const state = { page: pg, scenarioId: scenarioId || null, expandMaxim: exMaxim || null };
+    history.pushState(state, "", hash);
+  }, []);
+
+  // Replace initial history entry so the first "back" works correctly
+  useEffect(() => {
+    const hash = buildHash(page, selectedScenario?.id, expandMaxim);
+    const state = { page, scenarioId: selectedScenario?.id || null, expandMaxim: expandMaxim || null };
+    history.replaceState(state, "", hash);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Listen for back/forward
+  useEffect(() => {
+    const onPopState = (e) => {
+      restoringRef.current = true;
+      const navState = e.state || parseHash(window.location.hash);
+      setPage(navState.page || "landing");
+      setExpandMaxim(navState.expandMaxim || null);
+      if (navState.scenarioId) {
+        const sc = GUIDED_SCENARIOS.find(s => s.id === navState.scenarioId);
+        setSelectedScenario(sc || null);
+      } else {
+        setSelectedScenario(null);
+      }
+      // Allow next navigation to push again
+      requestAnimationFrame(() => { restoringRef.current = false; });
+    };
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
+
+  // Scroll to top on page change
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [page, selectedScenario]);
+
+  // ── Navigation handlers ──────────────────────────────────
 
   const markCompleted = useCallback((scenario, extraPrinciples) => {
     const newCompleted = [...new Set([...completedScenarios, scenario.id])];
@@ -51,33 +123,44 @@ export default function App() {
     return newCompleted;
   }, [completedScenarios, practicedPrinciples]);
 
-  const handleSelectScenario = (scenario, modeOverride) => {
+  const handleSelectScenario = (scenario) => {
     setSelectedScenario(scenario);
-    setPage(modeOverride || (scenario.mode === "freeform" ? "freeform" : "guided"));
+    setPage("guided");
+    setExpandMaxim(null);
+    pushHistory("guided", scenario.id, null);
   };
 
   const handleScenarioComplete = (scenario, extraPrinciples) => {
     const newCompleted = markCompleted(scenario, extraPrinciples);
-    const pool = scenario.mode === "freeform" ? FREEFORM_SCENARIOS : GUIDED_SCENARIOS;
-    const currentIdx = pool.findIndex(s => s.id === scenario.id);
-    const next = pool.find((s, i) => i > currentIdx && !newCompleted.includes(s.id));
+    const currentIdx = GUIDED_SCENARIOS.findIndex(s => s.id === scenario.id);
+    const next = GUIDED_SCENARIOS.find((s, i) => i > currentIdx && !newCompleted.includes(s.id));
     if (next) {
       setSelectedScenario(next);
-      setPage(next.mode === "freeform" ? "freeform" : "guided");
+      setPage("guided");
+      pushHistory("guided", next.id, null);
     } else {
+      setSelectedScenario(null);
       setPage("scenarios");
+      pushHistory("scenarios", null, null);
     }
   };
 
-  const navigate = (p) => {
+  const navigate = (p, opts) => {
+    const exMaxim = opts?.expandMaxim || null;
     setPage(p);
     setSelectedScenario(null);
+    setExpandMaxim(exMaxim);
+    pushHistory(p, null, exMaxim);
   };
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: "#FAFAF8" }}>
       {/* Skip to main content link for keyboard users */}
-      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-2 focus:left-2 focus:px-4 focus:py-2 focus:bg-indigo-600 focus:text-white focus:rounded-lg focus:text-sm focus:font-medium">
+      <a
+        href="#main-content"
+        onClick={(e) => { e.preventDefault(); document.getElementById("main-content")?.focus(); }}
+        className="sr-only focus:not-sr-only focus:absolute focus:z-[100] focus:top-2 focus:left-2 focus:px-4 focus:py-2 focus:bg-indigo-600 focus:text-white focus:rounded-lg focus:text-sm focus:font-medium"
+      >
         Skip to main content
       </a>
 
@@ -87,7 +170,7 @@ export default function App() {
       )}
 
       {/* Pages */}
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1} className="outline-none">
         {page === "landing" && (
           <>
             {showSafetyBanner && (
@@ -107,6 +190,7 @@ export default function App() {
             onSetUserContext={handleSetUserContext}
             showPreScenarioBanner={showPreScenario}
             onDismissPreScenario={dismissPreScenario}
+            initialExpandMaxim={expandMaxim}
           />
         )}
         {page === "guided" && selectedScenario && (
@@ -119,30 +203,11 @@ export default function App() {
             completedScenarios={completedScenarios}
           />
         )}
-        {page === "freeform" && selectedScenario && (
-          <FreeformMode
-            key={selectedScenario.id}
-            scenario={selectedScenario}
-            onComplete={handleScenarioComplete}
-            onBack={() => navigate("scenarios")}
-            practicedPrinciples={practicedPrinciples}
-            completedScenarios={completedScenarios}
-            userContext={userContext}
-          />
-        )}
         {page === "progress" && (
           <ProgressPage
             completedScenarios={completedScenarios}
             practicedPrinciples={practicedPrinciples}
             onNavigate={navigate}
-            assessmentData={assessmentData}
-          />
-        )}
-        {page === "assessment" && (
-          <AssessmentMode
-            assessmentData={assessmentData}
-            onComplete={handleAssessmentComplete}
-            onBack={() => navigate(assessmentData?.pre ? "progress" : "scenarios")}
           />
         )}
         {page === "help" && (
@@ -157,7 +222,7 @@ export default function App() {
       {page === "landing" && (
         <footer className="text-center py-8 px-4 border-t border-stone-200">
           <p className="text-stone-500 text-sm">
-            PromptBridge — Open source. Built on research into how people communicate with AI (Haroon et al., 2025).
+            PromptBridge Lite — Open source. A focused introduction to responsible AI communication.
           </p>
           <p className="text-stone-500 text-sm mt-1">
             Skills learned here work with any AI assistant.

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import {
-  ChevronRight, Check, X, Lightbulb, ExternalLink, HelpCircle, AlertTriangle,
+  ChevronRight, Check, X, Lightbulb, ExternalLink, HelpCircle, AlertTriangle, Shield,
 } from "lucide-react";
-import { PRINCIPLES } from "../data/principles";
+// ExternalLink used for Anthropic doc links on maxim cards
+import { MAXIMS } from "../data/maxims";
 import {
   DEMO_BAD_PROMPT, DEMO_BAD_RESPONSE,
   DEMO_GOOD_PROMPT, DEMO_GOOD_RESPONSE,
@@ -22,7 +23,7 @@ export default function LandingPage({ onNavigate }) {
           className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm text-stone-500 hover:text-amber-600 hover:bg-stone-100 rounded-lg transition-colors"
         >
           <AlertTriangle className="w-4 h-4" />
-          AI Limits
+          AI Safety
         </button>
         <button
           onClick={() => onNavigate("help")}
@@ -35,13 +36,17 @@ export default function LandingPage({ onNavigate }) {
 
       {/* Hero */}
       <div className="text-center pt-4 pb-10 px-4">
+        <div className="inline-flex items-center gap-2 bg-rose-50 border border-rose-200 rounded-full px-4 py-1.5 mb-4">
+          <Shield className="w-4 h-4 text-rose-500" />
+          <span className="text-sm font-medium text-rose-700">Safety-first AI learning</span>
+        </div>
         <h1 className="font-serif text-4xl md:text-5xl font-bold text-stone-800 mb-4">
           Learn to talk to AI
+          <span className="text-indigo-500"> — responsibly</span>
         </h1>
         <p className="text-lg text-stone-600 max-w-2xl mx-auto leading-relaxed">
-          Tired of generic AI responses? What you say determines what you get back.
-          <br className="hidden md:block" />
-          See the difference in 5 seconds.
+          26 focused practice scenarios. 6 core principles. Everything a beginner needs
+          to use AI effectively <em>and</em> safely.
         </p>
       </div>
 
@@ -118,30 +123,18 @@ export default function LandingPage({ onNavigate }) {
         </div>
       )}
 
-      {/* Research stat */}
+      {/* AI honesty section — safety emphasis */}
       {showGood && (
         <div className="px-4 mb-8 animate-fadeIn">
-          <div className="bg-indigo-50 border border-indigo-200 rounded-xl p-4 text-center">
-            <p className="text-stone-700 text-base">
-              How you talk to AI really matters — giving it an example of what you want
-              can improve accuracy from <strong className="text-indigo-600">0% to 90%</strong>.
-            </p>
-            <p className="text-stone-500 text-xs mt-1">
-              Based on peer-reviewed AI communication research
-            </p>
-          </div>
-        </div>
-      )}
-
-      {/* AI honesty section */}
-      {showGood && (
-        <div className="px-4 mb-8 animate-fadeIn">
-          <div className="bg-white rounded-2xl border border-stone-200 shadow-sm p-6">
-            <h2 className="font-serif text-xl font-bold text-stone-800 mb-1">
-              We believe in being honest about AI
-            </h2>
+          <div className="bg-white rounded-2xl border border-rose-200 shadow-sm p-6">
+            <div className="flex items-center gap-2 mb-1">
+              <Shield className="w-5 h-5 text-rose-500" />
+              <h2 className="font-serif text-xl font-bold text-stone-800">
+                AI is powerful — but not perfect
+              </h2>
+            </div>
             <p className="text-stone-600 text-sm mb-4">
-              AI is a powerful tool — but like any tool, it works better when you know its limits.
+              This app teaches you both how to get great results <em>and</em> how to protect yourself.
             </p>
             <div className="space-y-3">
               <div className="flex items-start gap-3">
@@ -161,19 +154,27 @@ export default function LandingPage({ onNavigate }) {
                 </p>
               </div>
               <div className="flex items-start gap-3">
+                <div className="w-7 h-7 rounded-lg bg-purple-50 flex items-center justify-center flex-shrink-0">
+                  <AlertTriangle className="w-3.5 h-3.5 text-purple-500" />
+                </div>
+                <p className="text-stone-700 text-sm leading-relaxed pt-0.5">
+                  <strong>AI can reflect biases.</strong> Its output may encode stereotypes about gender, race, age, or background — often invisibly.
+                </p>
+              </div>
+              <div className="flex items-start gap-3">
                 <div className="w-7 h-7 rounded-lg bg-indigo-50 flex items-center justify-center flex-shrink-0">
                   <Lightbulb className="w-3.5 h-3.5 text-indigo-500" />
                 </div>
                 <p className="text-stone-700 text-sm leading-relaxed pt-0.5">
-                  <strong>How you talk to AI really matters.</strong> About 60% of frustrations come from communication gaps — and that's exactly what you'll practice here.
+                  <strong>You'll practice handling all of this.</strong> 10 of our 26 scenarios are specifically about AI safety, bias, and critical thinking.
                 </p>
               </div>
             </div>
             <button
               onClick={() => onNavigate("ai-safety")}
-              className="mt-4 inline-flex items-center gap-1.5 text-sm text-amber-600 hover:text-amber-700 font-medium transition-colors"
+              className="mt-4 inline-flex items-center gap-1.5 text-sm text-rose-600 hover:text-rose-700 font-medium transition-colors"
             >
-              Learn more about AI limitations <ChevronRight className="w-4 h-4" />
+              Learn more about AI safety <ChevronRight className="w-4 h-4" />
             </button>
           </div>
         </div>
@@ -185,42 +186,66 @@ export default function LandingPage({ onNavigate }) {
           onClick={() => onNavigate("scenarios")}
           className="inline-flex items-center gap-2 px-8 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-semibold shadow-sm transition-colors text-lg"
         >
-          Try It Yourself <ChevronRight className="w-5 h-5" />
+          Start Learning <ChevronRight className="w-5 h-5" />
         </button>
         <p className="text-stone-600 text-sm mt-3">
-          Hands-on practice that works with any AI tool
+          26 scenarios — works with any AI tool — no signup required
         </p>
       </div>
 
-      {/* What you'll learn */}
+      {/* 6 Maxims grid */}
       <div className="px-4 pb-12">
-        <h2 className="font-serif text-2xl font-bold text-stone-800 text-center mb-6">
-          {PRINCIPLES.length} ways to stop getting generic AI slop
+        <h2 className="font-serif text-2xl font-bold text-stone-800 text-center mb-2">
+          6 principles for responsible AI use
         </h2>
+        <p className="text-stone-600 text-center text-sm mb-6 max-w-xl mx-auto">
+          Each principle builds on the last. Start with clarity, end with responsibility.
+        </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {PRINCIPLES.map(p => {
-            const Icon = resolveIcon(p.icon);
+          {MAXIMS.map((m, i) => {
+            const Icon = resolveIcon(m.icon);
+            // M6 = rose (safety), M5 = amber (critical thinking), rest = indigo
+            const styles = m.id === "M6"
+              ? { card: "bg-rose-50 border-rose-200 hover:border-rose-300", iconBg: "bg-rose-100", iconText: "text-rose-500", hover: "group-hover:text-rose-700", sub: "text-rose-400" }
+              : m.id === "M5"
+              ? { card: "bg-amber-50 border-amber-200 hover:border-amber-300", iconBg: "bg-amber-100", iconText: "text-amber-500", hover: "group-hover:text-amber-700", sub: "text-amber-400" }
+              : { card: "bg-white border-stone-200 hover:border-indigo-300", iconBg: "bg-indigo-50", iconText: "text-indigo-500", hover: "group-hover:text-indigo-700", sub: "text-indigo-400" };
             return (
-              <div key={p.id} className="flex items-start gap-3 bg-white rounded-xl border border-stone-200 p-4">
-                <div className="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center flex-shrink-0">
-                  {Icon && <Icon className="w-4 h-4 text-indigo-500" />}
+              <button
+                key={m.id}
+                onClick={() => onNavigate("scenarios", { expandMaxim: m.id })}
+                className={`flex items-start gap-3 rounded-xl border p-4 text-left transition-all hover:shadow-md group ${styles.card}`}
+              >
+                <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${styles.iconBg}`}>
+                  {Icon && <Icon className={`w-4 h-4 ${styles.iconText}`} />}
                 </div>
                 <div>
-                  <p className="font-medium text-stone-800 text-sm">{p.name}</p>
-                  <p className="text-stone-600 text-sm mt-0.5 leading-snug">{p.description}</p>
-                  {p.learnMoreUrl && (
+                  <p className={`font-medium text-sm ${styles.hover} transition-colors`}>
+                    <span className="text-stone-400 mr-1.5">{i + 1}.</span>
+                    {m.name}
+                  </p>
+                  <p className="text-stone-600 text-sm mt-0.5 leading-snug">{m.description}</p>
+                  <p className={`text-xs mt-1.5 ${styles.sub} font-medium`}>
+                    {m.subMaxims.length} sub-principles &middot; {m.subMaxims.reduce((n, sm) => n + sm.scenarioIds.length, 0)} scenarios &rarr;
+                  </p>
+                  {m.learnMoreUrl && (
                     <a
-                      href={p.learnMoreUrl}
+                      href={m.learnMoreUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-indigo-500 hover:text-indigo-700 text-xs mt-1.5 transition-colors"
+                      onClick={(e) => e.stopPropagation()}
+                      className={`inline-flex items-center gap-1 text-xs mt-1.5 transition-colors ${
+                        m.id === "M6" ? "text-rose-500 hover:text-rose-700"
+                        : m.id === "M5" ? "text-amber-500 hover:text-amber-700"
+                        : "text-indigo-500 hover:text-indigo-700"
+                      }`}
                     >
-                      {p.learnMoreLabel || "Learn more"}
+                      {m.learnMoreLabel}
                       <ExternalLink className="w-3 h-3" />
                     </a>
                   )}
                 </div>
-              </div>
+              </button>
             );
           })}
         </div>

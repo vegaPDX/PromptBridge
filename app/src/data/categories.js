@@ -1,32 +1,43 @@
+// ============================================================
+// Categories — mapped to 6 maxims for PromptBridge Lite
+// Used by ScenarioSelector for grouping and display
+// ============================================================
+
 export const CATEGORIES = {
-  vague_vs_specific: {
-    label: "Vague vs. Specific",
-    description: "Learn the difference between keyword searches and clear requests. These scenarios show how adding specific details — numbers, constraints, and context — transforms generic AI output into something you can actually use. You'll also learn to spot when AI agrees with mistakes instead of correcting them.",
+  M1: {
+    label: "Be Clear & Specific",
+    description: "The difference between a useful AI response and a useless one almost always comes down to how clearly you asked. Practice being specific and avoiding ambiguity.",
     icon: "Target",
     color: "blue",
   },
-  context_and_framing: {
-    label: "Context & Framing",
-    description: "How sharing your background transforms AI responses. Practice telling AI who you are, what you need, and why — so it can tailor its answers instead of guessing. These scenarios also cover AI's real limitations: its training cutoff, lack of personal experience, and how it can reflect biases you might not notice.",
+  M2: {
+    label: "Provide Context & Intent",
+    description: "AI can't read your mind. Tell it who you are, what you're working on, and what you'll use the result for — and watch the output transform.",
     icon: "Users",
     color: "purple",
   },
-  iterative_refinement: {
-    label: "Iterative Refinement",
-    description: "Steer AI responses with specific feedback and smart techniques. Instead of starting over when AI gets it wrong, learn to guide it forward — fixing tone, cutting scope, verifying accuracy, and checking for bias. These scenarios teach the back-and-forth skills that turn a rough first draft into a polished result.",
-    icon: "RefreshCw",
+  M3: {
+    label: "Guide the Output",
+    description: "Don't just describe what you want — show it. Learn to use examples and focus your requests so AI gives you exactly what you need.",
+    icon: "Eye",
     color: "teal",
   },
-  smart_strategies: {
-    label: "Smart Strategies",
-    description: "Power techniques that level up your results — step-by-step thinking, examples, structured prompts, and more. These scenarios also teach critical thinking skills: catching made-up facts, interviewing AI about its own limitations, understanding why AI says no, and asking AI to critique its own work for errors and bias.",
-    icon: "Sparkles",
-    color: "rose",
+  M4: {
+    label: "Iterate & Collaborate",
+    description: "Great results rarely come from a single prompt. Learn to give specific feedback and let AI help you think through complex tasks.",
+    icon: "RefreshCw",
+    color: "indigo",
   },
-  full_conversation_loop: {
-    label: "Full Conversation Loop",
-    description: "Combine all skills in realistic scenarios. These are open-ended challenges where you write your own prompts from scratch and apply everything you've learned — context, specificity, feedback, and verification — in a single workflow.",
-    icon: "Zap",
+  M5: {
+    label: "Verify & Think Critically",
+    description: "AI sounds confident whether it's right or wrong. Practice catching made-up facts, understanding limitations, and verifying before you trust.",
+    icon: "ShieldCheck",
     color: "amber",
+  },
+  M6: {
+    label: "Use AI Responsibly",
+    description: "AI can reflect biases, agree when it shouldn't, and refuse legitimate requests. Learn to be the human quality filter that keeps AI honest and fair.",
+    icon: "Shield",
+    color: "rose",
   },
 };

@@ -15,6 +15,7 @@ import AiToolLinks from "../components/AiToolLinks";
 
 import { GUIDED_SCENARIOS } from "../data/scenarios";
 import { getRecommendedScenarios, buildRecommendation } from "../services/recommendations";
+import { getSubMaximForScenario } from "../data/maxims";
 
 export default function GuidedMode({ scenario, onComplete, onBack, practicedPrinciples = [], completedScenarios = [] }) {
   // Steps: loading | explore | write-own | write-loading | write-results
@@ -90,6 +91,14 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
         <div className="flex items-center gap-2 mb-2">
           <MessageSquare className="w-4 h-4 text-indigo-500" />
           <span className="text-xs text-indigo-600 font-medium uppercase tracking-wide">Guided Practice</span>
+          {(() => {
+            const ctx = getSubMaximForScenario(scenario.id);
+            return ctx ? (
+              <span className="text-xs text-stone-400 font-medium">
+                &middot; {ctx.maxim.name} &rarr; {ctx.subMaxim.name}
+              </span>
+            ) : null;
+          })()}
         </div>
         <h2 className="font-serif text-xl font-bold text-stone-800 mb-1">{scenario.title}</h2>
         <p className="text-stone-600 text-base">{scenario.situation}</p>

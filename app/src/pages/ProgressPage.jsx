@@ -1,10 +1,11 @@
 import React from "react";
-import { Check, ArrowRight, Award, Target } from "lucide-react";
-import { PRINCIPLES } from "../data/principles";
+import { Check, ArrowRight, Award, Shield } from "lucide-react";
+import { MAXIMS } from "../data/maxims";
 import { SCENARIOS } from "../data/scenarios";
+import { PRINCIPLE_MAP } from "../data/principles";
 import { resolveIcon } from "../data/icon-map";
 
-export default function ProgressPage({ completedScenarios, practicedPrinciples, onNavigate, assessmentData }) {
+export default function ProgressPage({ completedScenarios, practicedPrinciples, onNavigate }) {
   const totalScenarios = SCENARIOS.length;
   const completedCount = completedScenarios.length;
 
@@ -23,98 +24,79 @@ export default function ProgressPage({ completedScenarios, practicedPrinciples, 
         />
       </div>
 
-      {/* Assessment CTA */}
-      {completedCount === 0 && !assessmentData?.pre && (
-        <div className="bg-indigo-50 border border-indigo-200 rounded-xl p-4 mb-8">
-          <div className="flex items-center gap-3">
-            <Target className="w-5 h-5 text-indigo-500 flex-shrink-0" />
-            <div className="flex-1">
-              <p className="font-medium text-indigo-800 text-sm">See where you stand</p>
-              <p className="text-stone-600 text-sm">Take a quick 3-scenario assessment to measure your starting point.</p>
-            </div>
-            <button
-              onClick={() => onNavigate("assessment")}
-              className="px-4 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-sm font-medium transition-colors flex-shrink-0"
-            >
-              Start
-            </button>
-          </div>
-        </div>
-      )}
-      {completedCount >= 10 && assessmentData?.pre && !assessmentData?.post && (
-        <div className="bg-emerald-50 border border-emerald-200 rounded-xl p-4 mb-8">
-          <div className="flex items-center gap-3">
-            <Target className="w-5 h-5 text-emerald-500 flex-shrink-0" />
-            <div className="flex-1">
-              <p className="font-medium text-emerald-800 text-sm">Measure your progress</p>
-              <p className="text-stone-600 text-sm">You've completed {completedCount} scenarios. Take a post-assessment to see how much you've improved.</p>
-            </div>
-            <button
-              onClick={() => onNavigate("assessment")}
-              className="px-4 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-medium transition-colors flex-shrink-0"
-            >
-              Start
-            </button>
-          </div>
-        </div>
-      )}
-      {assessmentData?.pre && assessmentData?.post && (
-        <div className="bg-white border border-stone-200 rounded-xl p-4 mb-8">
-          <p className="font-medium text-stone-800 text-sm mb-2">Assessment Results</p>
-          <div className="flex items-center gap-6 text-center">
-            <div>
-              <p className="text-xs text-stone-500">Before</p>
-              <p className="text-2xl font-bold text-stone-500">{assessmentData.pre.scores.totalScore}</p>
-            </div>
-            <ArrowRight className="w-4 h-4 text-stone-300" />
-            <div>
-              <p className="text-xs text-indigo-600">After</p>
-              <p className="text-2xl font-bold text-indigo-700">{assessmentData.post.scores.totalScore}</p>
-            </div>
-            {assessmentData.post.scores.totalScore > assessmentData.pre.scores.totalScore && (
-              <span className="text-sm text-emerald-600 font-medium">
-                +{assessmentData.post.scores.totalScore - assessmentData.pre.scores.totalScore} points
-              </span>
-            )}
-          </div>
-        </div>
-      )}
+      {/* Maxims progress */}
+      <h2 className="font-serif text-xl font-bold text-stone-800 mb-4">6 Core Principles</h2>
+      <div className="space-y-4 mb-8">
+        {MAXIMS.map((maxim, i) => {
+          const Icon = resolveIcon(maxim.icon);
+          const isSafety = maxim.id === "M5" || maxim.id === "M6";
+          const maximScenarioIds = maxim.subMaxims.flatMap(sm => sm.scenarioIds);
+          const maximCompleted = maximScenarioIds.filter(id => completedScenarios.includes(id)).length;
+          const maximTotal = maximScenarioIds.length;
+          const allDone = maximCompleted === maximTotal;
 
-      {/* Principles grid */}
-      <h2 className="font-serif text-xl font-bold text-stone-800 mb-4">Communication Skills</h2>
-      <p className="text-stone-600 text-sm mb-4">
-        Ordered by impact — the skills at the top are the ones research shows make the biggest difference.
-      </p>
-      <div className="space-y-3 mb-8">
-        {[...PRINCIPLES].sort((a, b) => a.teachingOrder - b.teachingOrder).map(p => {
-          const Icon = resolveIcon(p.icon);
-          const practiced = practicedPrinciples.includes(p.id);
           return (
             <div
-              key={p.id}
-              className={`flex items-center gap-4 rounded-xl border p-4 transition-all ${
-                practiced
+              key={maxim.id}
+              className={`rounded-xl border p-4 transition-all ${
+                allDone
                   ? "bg-emerald-50 border-emerald-200"
-                  : "bg-white border-stone-200"
+                  : isSafety
+                    ? "bg-rose-50 border-rose-200"
+                    : "bg-white border-stone-200"
               }`}
             >
-              <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
-                practiced ? "bg-emerald-100" : "bg-stone-100"
-              }`}>
-                {practiced
-                  ? <Check className="w-5 h-5 text-emerald-500" />
-                  : Icon ? <Icon className="w-5 h-5 text-stone-400" /> : null
-                }
+              <div className="flex items-center gap-3 mb-3">
+                <div className={`w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0 ${
+                  allDone ? "bg-emerald-100" : isSafety ? "bg-rose-100" : "bg-stone-100"
+                }`}>
+                  {allDone
+                    ? <Check className="w-5 h-5 text-emerald-500" />
+                    : Icon ? <Icon className={`w-5 h-5 ${isSafety ? "text-rose-500" : "text-stone-400"}`} /> : null
+                  }
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <p className={`font-medium text-sm ${allDone ? "text-emerald-800" : "text-stone-700"}`}>
+                      {i + 1}. {maxim.name}
+                    </p>
+                    {isSafety && !allDone && (
+                      <span className="text-xs px-1.5 py-0.5 bg-rose-100 text-rose-600 rounded-full font-medium flex-shrink-0 inline-flex items-center gap-1">
+                        <Shield className="w-3 h-3" /> Safety
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-stone-500 text-xs mt-0.5">{maximCompleted}/{maximTotal} scenarios</p>
+                </div>
               </div>
-              <div className="flex-1 min-w-0">
-                <p className={`font-medium text-sm ${practiced ? "text-emerald-800" : "text-stone-700"}`}>{p.name}</p>
-                <p className={`text-sm ${practiced ? "text-emerald-700" : "text-stone-600"}`}>{p.description}</p>
+
+              {/* Sub-maxim breakdown */}
+              <div className="space-y-2 ml-13">
+                {maxim.subMaxims.map(sm => {
+                  const smCompleted = sm.scenarioIds.filter(id => completedScenarios.includes(id)).length;
+                  const smDone = smCompleted === sm.scenarioIds.length;
+                  // Check if any principle from this sub-maxim has been practiced
+                  const principePracticed = sm.principleIds.some(pid => practicedPrinciples.includes(pid));
+                  return (
+                    <div key={sm.id} className="flex items-center gap-2">
+                      <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${
+                        smDone ? "bg-emerald-100" : "bg-stone-100"
+                      }`}>
+                        {smDone
+                          ? <Check className="w-3 h-3 text-emerald-500" />
+                          : <span className="w-2 h-2 rounded-full bg-stone-300" />
+                        }
+                      </div>
+                      <span className={`text-sm ${smDone ? "text-emerald-700" : "text-stone-600"}`}>
+                        {sm.name}
+                      </span>
+                      <span className="text-xs text-stone-400">
+                        {smCompleted}/{sm.scenarioIds.length}
+                      </span>
+                    </div>
+                  );
+                })}
               </div>
-              {practiced && (
-                <span className="text-xs bg-emerald-100 text-emerald-700 px-2 py-0.5 rounded-full font-medium flex-shrink-0">
-                  Practiced
-                </span>
-              )}
             </div>
           );
         })}
@@ -136,7 +118,13 @@ export default function ProgressPage({ completedScenarios, practicedPrinciples, 
         <div className="text-center bg-amber-50 border border-amber-200 rounded-xl p-6">
           <Award className="w-8 h-8 text-amber-500 mx-auto mb-2" />
           <p className="font-serif text-lg font-bold text-stone-800 mb-1">All scenarios completed!</p>
-          <p className="text-stone-600 text-sm">You've practiced every scenario. Try the "Write Your Own" mode to keep building skills.</p>
+          <p className="text-stone-600 text-sm">
+            You've practiced all 26 scenarios. Check out the full{" "}
+            <a href="https://github.com/vegaPDX/PromptBridge" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:text-indigo-700 underline">
+              PromptBridge
+            </a>{" "}
+            for 76 scenarios and advanced practice modes.
+          </p>
         </div>
       )}
     </div>

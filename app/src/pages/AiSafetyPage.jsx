@@ -36,24 +36,24 @@ export default function AiSafetyPage({ onNavigate }) {
           We don't think AI is magic. We think it's a tool — and like any tool, it works better when you know how to use it <strong>and</strong> when you know its limits.
         </p>
         <p className="text-stone-700 text-sm mb-3">
-          Of the 12 skills you'll learn here, 4 are specifically about protecting yourself from AI mistakes:
+          10 of our 26 scenarios are specifically about protecting yourself from AI mistakes:
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <button onClick={() => onNavigate("scenarios")} className="flex items-center gap-2 bg-white rounded-lg border border-indigo-100 px-3 py-2 text-left hover:border-indigo-300 transition-colors">
             <ShieldCheck className="w-4 h-4 text-indigo-500 flex-shrink-0" />
-            <span className="text-sm text-stone-700">P9: Verify before you trust</span>
+            <span className="text-sm text-stone-700">Verify before you trust</span>
           </button>
           <button onClick={() => onNavigate("scenarios")} className="flex items-center gap-2 bg-white rounded-lg border border-indigo-100 px-3 py-2 text-left hover:border-indigo-300 transition-colors">
             <ShieldCheck className="w-4 h-4 text-indigo-500 flex-shrink-0" />
-            <span className="text-sm text-stone-700">P10: Include everything needed</span>
+            <span className="text-sm text-stone-700">Know what AI can't do</span>
           </button>
           <button onClick={() => onNavigate("scenarios")} className="flex items-center gap-2 bg-white rounded-lg border border-indigo-100 px-3 py-2 text-left hover:border-indigo-300 transition-colors">
             <ShieldCheck className="w-4 h-4 text-indigo-500 flex-shrink-0" />
-            <span className="text-sm text-stone-700">P11: Know what AI can't do</span>
+            <span className="text-sm text-stone-700">Recognize and challenge bias</span>
           </button>
           <button onClick={() => onNavigate("scenarios")} className="flex items-center gap-2 bg-white rounded-lg border border-indigo-100 px-3 py-2 text-left hover:border-indigo-300 transition-colors">
             <ShieldCheck className="w-4 h-4 text-indigo-500 flex-shrink-0" />
-            <span className="text-sm text-stone-700">P12: Use AI responsibly</span>
+            <span className="text-sm text-stone-700">Maintain human oversight</span>
           </button>
         </div>
       </div>
@@ -65,7 +65,7 @@ export default function AiSafetyPage({ onNavigate }) {
           Research shows that about <strong>60% of AI frustrations</strong> come from how people communicate with AI — and about <strong>40% come from real limitations</strong> in the AI itself.
         </p>
         <p className="text-stone-700 text-sm">
-          PromptBridge teaches you to handle both. You'll learn communication skills that fix the 60%, and awareness skills that help you recognize and work around the 40%.
+          PromptBridge Lite teaches you to handle both. You'll learn communication skills that fix the 60%, and awareness skills that help you recognize and work around the 40%.
         </p>
       </div>
 

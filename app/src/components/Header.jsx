@@ -1,6 +1,8 @@
 import React from "react";
-import { MessageSquare, BarChart3, HelpCircle, AlertTriangle } from "lucide-react";
-import { PRINCIPLES } from "../data/principles";
+import { MessageSquare, BarChart3, HelpCircle, Shield } from "lucide-react";
+import { MAXIMS } from "../data/maxims";
+
+const TOTAL_SUB_MAXIMS = MAXIMS.reduce((n, m) => n + m.subMaxims.length, 0);
 
 export default function Header({ page, practicedPrinciples, onNavigate }) {
   return (
@@ -8,18 +10,18 @@ export default function Header({ page, practicedPrinciples, onNavigate }) {
       <div className="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
         <button
           onClick={() => onNavigate("landing")}
-          aria-label="PromptBridge Home"
+          aria-label="PromptBridge Lite Home"
           className="flex items-center gap-2 font-serif font-bold text-stone-800 hover:text-indigo-600 transition-colors"
         >
           <MessageSquare className="w-5 h-5 text-indigo-500" />
-          PromptBridge
+          <span>PromptBridge <span className="text-indigo-500 text-sm font-normal">Lite</span></span>
         </button>
         <nav className="flex items-center gap-1">
           <button
             onClick={() => onNavigate("scenarios")}
             aria-label="Scenarios"
             className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
-              page === "scenarios" || page === "guided" || page === "freeform"
+              page === "scenarios" || page === "guided"
                 ? "bg-indigo-50 text-indigo-700"
                 : "text-stone-500 hover:text-stone-700 hover:bg-stone-100"
             }`}
@@ -39,7 +41,7 @@ export default function Header({ page, practicedPrinciples, onNavigate }) {
             Progress
             {practicedPrinciples.length > 0 && (
               <span className="text-xs bg-indigo-100 text-indigo-600 px-1.5 py-0.5 rounded-full font-semibold">
-                {practicedPrinciples.length}/{PRINCIPLES.length}
+                {practicedPrinciples.length}/{TOTAL_SUB_MAXIMS}
               </span>
             )}
           </button>
@@ -47,13 +49,13 @@ export default function Header({ page, practicedPrinciples, onNavigate }) {
             onClick={() => onNavigate("ai-safety")}
             className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors flex items-center gap-1.5 ${
               page === "ai-safety"
-                ? "bg-amber-50 text-amber-700"
+                ? "bg-rose-50 text-rose-700"
                 : "text-stone-500 hover:text-stone-700 hover:bg-stone-100"
             }`}
-            aria-label="Using AI Wisely"
+            aria-label="AI Safety"
           >
-            <AlertTriangle className="w-3.5 h-3.5" />
-            AI Limits
+            <Shield className="w-3.5 h-3.5" />
+            AI Safety
           </button>
           <button
             onClick={() => onNavigate("help")}
