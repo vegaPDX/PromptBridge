@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * PromptBridge Lite — Static Content Generator
+ * PromptBridge — Static Content Generator
  *
  * Generates all static content for 30 guided scenarios.
  * Run once, produces JSON files that ship with the app.
@@ -268,7 +268,7 @@ async function generateForScenario(scenario) {
 // ── Main ────────────────────────────────────────────────────
 
 async function main() {
-  console.log(`\n🌉 PromptBridge Lite Content Generator`);
+  console.log(`\n🌉 PromptBridge Content Generator`);
   console.log(`   Provider: ${PROVIDER}`);
   console.log(`   Output:   ${OUTPUT_DIR}\n`);
 

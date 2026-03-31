@@ -222,7 +222,7 @@ export default function App() {
       {page === "landing" && (
         <footer className="text-center py-8 px-4 border-t border-stone-200">
           <p className="text-stone-500 text-sm">
-            PromptBridge Lite — Open source. A focused introduction to responsible AI communication.
+            PromptBridge — Open source. A focused introduction to responsible AI communication.
           </p>
           <p className="text-stone-500 text-sm mt-1">
             Skills learned here work with any AI assistant.

@@ -1,4 +1,4 @@
-# PromptBridge Lite — Scenario Map
+# PromptBridge — Scenario Map
 
 **26 scenarios | 6 maxims | 13 sub-maxims | 2 scenarios per sub-maxim**
 

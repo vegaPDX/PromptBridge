@@ -29,7 +29,7 @@ export default function AiSafetyBanner({ onDismiss }) {
         <div className="flex items-start justify-between mb-3">
           <div>
             <h2 className="font-serif text-xl font-bold text-stone-800">
-              Welcome to PromptBridge Lite
+              Welcome to PromptBridge
             </h2>
             <p className="text-stone-600 text-sm mt-1">
               3 things most people don't know about AI

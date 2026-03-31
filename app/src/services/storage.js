@@ -2,7 +2,7 @@
 // Storage — Synchronous localStorage wrappers for progress
 // ============================================================
 
-const STORAGE_KEY = "promptbridge_lite_progress";
+const STORAGE_KEY = "promptbridge_progress";
 
 const DEFAULT_PROGRESS = {
   completedScenarios: [],
@@ -48,7 +48,7 @@ export function saveProgress(data) {
 
 // ── Assessment storage ──────────────────────────────────────
 
-const ASSESSMENT_KEY = "promptbridge_lite_assessment";
+const ASSESSMENT_KEY = "promptbridge_assessment";
 
 export function loadAssessment() {
   try {
@@ -77,7 +77,7 @@ export function saveAssessment(data) {
 
 // ── User context storage ────────────────────────────────────
 
-const CONTEXT_KEY = "promptbridge_lite_user_context";
+const CONTEXT_KEY = "promptbridge_user_context";
 
 export function loadUserContext() {
   try {
@@ -106,8 +106,8 @@ export function saveUserContext(data) {
 
 // ── Safety banner flags ────────────────────────────────────
 
-const SAFETY_INTRO_KEY = "promptbridge_lite_seen_safety_intro";
-const PRE_SCENARIO_KEY = "promptbridge_lite_seen_pre_scenario";
+const SAFETY_INTRO_KEY = "promptbridge_seen_safety_intro";
+const PRE_SCENARIO_KEY = "promptbridge_seen_pre_scenario";
 
 export function hasSeenSafetyIntro() {
   try {

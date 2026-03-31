@@ -10,11 +10,11 @@ export default function Header({ page, practicedPrinciples, onNavigate }) {
       <div className="max-w-4xl mx-auto px-4 h-14 flex items-center justify-between">
         <button
           onClick={() => onNavigate("landing")}
-          aria-label="PromptBridge Lite Home"
+          aria-label="PromptBridge Home"
           className="flex items-center gap-2 font-serif font-bold text-stone-800 hover:text-indigo-600 transition-colors"
         >
           <MessageSquare className="w-5 h-5 text-indigo-500" />
-          <span>PromptBridge <span className="text-indigo-500 text-sm font-normal">Lite</span></span>
+          <span>PromptBridge</span>
         </button>
         <nav className="flex items-center gap-1">
           <button

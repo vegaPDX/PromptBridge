@@ -1,6 +1,6 @@
-# PromptBridge Lite — App Directory
+# PromptBridge — App Directory
 
-This directory contains the PromptBridge Lite web application built with React 19, Vite 8, and Tailwind CSS v4.
+This directory contains the PromptBridge web application built with React 19, Vite 8, and Tailwind CSS v4.
 
 > For the full project overview, see the [root README](../README.md).
 

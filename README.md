@@ -1,18 +1,14 @@
-# PromptBridge Lite
+# PromptBridge
 
 **An interactive, open-source tool that teaches people how to communicate effectively with AI assistants.**
 
-### **[Try it now — https://vegapdx.github.io/PromptBridge-Lite/](https://vegapdx.github.io/PromptBridge-Lite/)**
+### **[Try it now — https://vegapdx.github.io/PromptBridge/](https://vegapdx.github.io/PromptBridge/)**
 
 No signup. No API key. No backend. Just open and start learning.
 
 ---
 
-> **Lite version** — PromptBridge Lite is a focused introduction to AI communication, organized around 6 core maxims with 26 guided scenarios. The full [PromptBridge](https://github.com/vegaPDX/PromptBridge) app offers nearly 3x as many scenarios across guided and freeform modes.
-
----
-
-PromptBridge Lite teaches the universal communication skills that make AI conversations productive — being specific, providing context, verifying AI output, understanding AI limitations, and using AI responsibly. The skills you learn here work with any AI tool: ChatGPT, Claude, Gemini, Copilot, or any other conversational AI.
+PromptBridge teaches the universal communication skills that make AI conversations productive — being specific, providing context, verifying AI output, understanding AI limitations, and using AI responsibly. The skills you learn here work with any AI tool: ChatGPT, Claude, Gemini, Copilot, or any other conversational AI.
 
 No technical background required. No AI experience required. The tool meets people where they are.
 
@@ -31,7 +27,7 @@ NeuroBridge trains neurotypical people to communicate more clearly with autistic
 | Provide explicit context | Tell the AI who you are and what you need |
 | Don't assume shared knowledge | State your intent and constraints |
 
-NeuroBridge uses a see-consequences, compare-approaches, receive-feedback interaction model. PromptBridge Lite adapts this same pedagogical approach for AI communication training: users compare weak, medium, and strong prompts side by side, see the dramatically different AI responses each produces, and get specific feedback tied to communication principles.
+NeuroBridge uses a see-consequences, compare-approaches, receive-feedback interaction model. PromptBridge adapts this same pedagogical approach for AI communication training: users compare weak, medium, and strong prompts side by side, see the dramatically different AI responses each produces, and get specific feedback tied to communication principles.
 
 **Citation:**
 > Haroon, R., Wigdor, K., Yang, K., Toumanios, N., Crehan, E.T., & Dogar, F. (2025). "NeuroBridge: Using Generative AI to Bridge Cross-neurotype Communication Differences through Neurotypical Perspective-taking." In *Proceedings of the 27th International ACM SIGACCESS Conference on Computers and Accessibility (ASSETS '25)*. ACM. DOI: [10.1145/3663547.3746337](https://dl.acm.org/doi/10.1145/3663547.3746337)
@@ -42,7 +38,7 @@ NeuroBridge uses a see-consequences, compare-approaches, receive-feedback intera
 
 ### 6 Maxims, 13 Sub-maxims
 
-PromptBridge Lite organizes its teaching around 6 core maxims — broad communication principles drawn from Gricean pragmatics and human-AI interaction research. Each maxim contains 2–3 sub-maxims with 2 practice scenarios each, for 26 guided scenarios total. Maxim 6 (Use AI Responsibly) receives extra emphasis with 3 sub-maxims and 6 scenarios.
+PromptBridge organizes its teaching around 6 core maxims — broad communication principles drawn from Gricean pragmatics and human-AI interaction research. Each maxim contains 2–3 sub-maxims with 2 practice scenarios each, for 26 guided scenarios total. Maxim 6 (Use AI Responsibly) receives extra emphasis with 3 sub-maxims and 6 scenarios.
 
 | Maxim | Sub-maxims | Scenarios |
 |-------|------------|-----------|
@@ -114,7 +110,7 @@ The public web app is a **fully static site** with no backend and no outbound ne
 
 ## Security
 
-PromptBridge Lite is designed as a zero-trust static site:
+PromptBridge is designed as a zero-trust static site:
 
 **Application security:**
 
@@ -147,8 +143,8 @@ If you find a security issue, please open an issue or contact the maintainer dir
 
 ```bash
 # Clone the repository
-git clone https://github.com/vegaPDX/PromptBridge-Lite.git
-cd PromptBridge-Lite/app
+git clone https://github.com/vegaPDX/PromptBridge.git
+cd PromptBridge/app
 
 # Install dependencies
 npm install
@@ -193,7 +189,7 @@ Output goes to `app/dist/`. The GitHub Actions workflow handles production build
 ### Project Structure
 
 ```
-promptbridge_lite/
+promptbridge/
 ├── README.md
 ├── PROJECT_OVERVIEW.md                # Project vision, goals, and research foundation
 ├── SCENARIO-MAP.md                    # Full mapping of 26 scenarios to maxims and principles

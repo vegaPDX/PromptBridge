@@ -1,5 +1,5 @@
 // ============================================================
-// Scenarios — 26 guided scenarios for PromptBridge Lite
+// Scenarios — 26 guided scenarios for PromptBridge
 // 2 per sub-maxim across 6 maxims (13 sub-maxims)
 // Curated for beginners with heavy emphasis on AI safety
 // ============================================================

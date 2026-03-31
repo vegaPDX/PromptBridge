@@ -9,7 +9,7 @@ const PRINCIPLE_MAP = Object.fromEntries(PRINCIPLES.map(p => [p.id, p]));
 
 // ── System prompts ──────────────────────────────────────────
 
-export const OPTION_GENERATOR_SYSTEM = `You are a component of PromptBridge Lite, an interactive tool that teaches people how to communicate effectively with AI assistants.
+export const OPTION_GENERATOR_SYSTEM = `You are a component of PromptBridge, an interactive tool that teaches people how to communicate effectively with AI assistants.
 
 Your job: Given a scenario, generate exactly 3 prompt options that a user might write to an AI assistant. The options should represent different quality levels:
 
@@ -34,7 +34,7 @@ Respond in JSON format:
   ]
 }`;
 
-export const RESPONSE_SIMULATOR_SYSTEM = `You are a component of PromptBridge Lite, an interactive tool that teaches people how to communicate effectively with AI assistants.
+export const RESPONSE_SIMULATOR_SYSTEM = `You are a component of PromptBridge, an interactive tool that teaches people how to communicate effectively with AI assistants.
 
 Your job: Simulate how an AI assistant would realistically respond to two different prompts about the same topic. You will receive a WEAK prompt and a STRONG prompt. Generate a realistic response for each.
 
@@ -73,7 +73,7 @@ Respond in JSON format:
   "response_strong": "..."
 }`;
 
-export const FEEDBACK_GENERATOR_SYSTEM = `You are a component of PromptBridge Lite, an interactive tool that teaches people how to communicate effectively with AI assistants.
+export const FEEDBACK_GENERATOR_SYSTEM = `You are a component of PromptBridge, an interactive tool that teaches people how to communicate effectively with AI assistants.
 
 Your job: The user has just seen three prompt approaches (weak, medium, and effective) side by side, along with the AI response each one produces. Explain the contrast so they understand WHY the effective approach works better.
 

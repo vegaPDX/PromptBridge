@@ -1,5 +1,5 @@
 // ============================================================
-// Maxims — 6 maxims with 13 sub-maxims for PromptBridge Lite
+// Maxims — 6 maxims with 13 sub-maxims for PromptBridge
 // Organized hierarchy: Maxim → Sub-maxim → Scenarios
 // Heavy emphasis on AI safety (Maxim 6 gets 3 sub-maxims)
 // ============================================================

@@ -8,7 +8,7 @@ import App from './App.jsx'
 if (window.self !== window.top) {
   document.body.textContent = '';
   const p = document.createElement('p');
-  p.textContent = 'PromptBridge Lite cannot be loaded in a frame.';
+  p.textContent = 'PromptBridge cannot be loaded in a frame.';
   document.body.appendChild(p);
   throw new Error('Refused to load in frame');
 }

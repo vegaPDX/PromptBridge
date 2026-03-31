@@ -1,5 +1,5 @@
 // ============================================================
-// Categories — mapped to 6 maxims for PromptBridge Lite
+// Categories — mapped to 6 maxims for PromptBridge
 // Used by ScenarioSelector for grouping and display
 // ============================================================
 

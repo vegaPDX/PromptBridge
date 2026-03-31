@@ -65,7 +65,7 @@ export default function AiSafetyPage({ onNavigate }) {
           Research shows that about <strong>60% of AI frustrations</strong> come from how people communicate with AI — and about <strong>40% come from real limitations</strong> in the AI itself.
         </p>
         <p className="text-stone-700 text-sm">
-          PromptBridge Lite teaches you to handle both. You'll learn communication skills that fix the 60%, and awareness skills that help you recognize and work around the 40%.
+          PromptBridge teaches you to handle both. You'll learn communication skills that fix the 60%, and awareness skills that help you recognize and work around the 40%.
         </p>
       </div>
 
