@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { PRINCIPLES, PRINCIPLE_MAP } from "../data/principles";
+import { SKILLS, SKILL_MAP } from "../data/skills";
 import { SCENARIOS, GUIDED_SCENARIOS, FREEFORM_SCENARIOS } from "../data/scenarios";
 import { CATEGORIES } from "../data/categories";
 import fs from "fs";
@@ -7,63 +7,63 @@ import path from "path";
 
 const GENERATED_DIR = path.resolve(__dirname, "../data/generated");
 
-describe("Principles data integrity", () => {
-  it("all 12 principles have a teachingOrder field", () => {
-    expect(PRINCIPLES).toHaveLength(12);
-    for (const p of PRINCIPLES) {
-      expect(p).toHaveProperty("teachingOrder");
-      expect(typeof p.teachingOrder).toBe("number");
+describe("Skills data integrity", () => {
+  it("all 12 skills have a teachingOrder field", () => {
+    expect(SKILLS).toHaveLength(12);
+    for (const s of SKILLS) {
+      expect(s).toHaveProperty("teachingOrder");
+      expect(typeof s.teachingOrder).toBe("number");
     }
   });
 
   it("teachingOrder values are unique", () => {
-    const orders = PRINCIPLES.map((p) => p.teachingOrder);
+    const orders = SKILLS.map((s) => s.teachingOrder);
     const unique = new Set(orders);
     expect(unique.size).toBe(orders.length);
   });
 
   it("teachingOrder values are sequential 1-12", () => {
-    const orders = PRINCIPLES.map((p) => p.teachingOrder).sort((a, b) => a - b);
+    const orders = SKILLS.map((s) => s.teachingOrder).sort((a, b) => a - b);
     expect(orders).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
   });
 
-  it("every principle has required fields", () => {
-    for (const p of PRINCIPLES) {
-      expect(p.id).toMatch(/^P\d+$/);
-      expect(p.name).toBeTruthy();
-      expect(p.description).toBeTruthy();
-      expect(p.icon).toBeTruthy();
-      expect(p.teachingOrder).toBeGreaterThanOrEqual(1);
-      expect(p.teachingOrder).toBeLessThanOrEqual(12);
+  it("every skill has required fields", () => {
+    for (const s of SKILLS) {
+      expect(s.id).toMatch(/^S\d+$/);
+      expect(s.name).toBeTruthy();
+      expect(s.description).toBeTruthy();
+      expect(s.icon).toBeTruthy();
+      expect(s.teachingOrder).toBeGreaterThanOrEqual(1);
+      expect(s.teachingOrder).toBeLessThanOrEqual(12);
     }
   });
 
-  it("PRINCIPLE_MAP contains all principles by id", () => {
-    for (const p of PRINCIPLES) {
-      expect(PRINCIPLE_MAP[p.id]).toBe(p);
+  it("SKILL_MAP contains all skills by id", () => {
+    for (const s of SKILLS) {
+      expect(SKILL_MAP[s.id]).toBe(s);
     }
   });
 });
 
 describe("Scenarios data integrity", () => {
-  it("has correct total count (26 scenarios)", () => {
-    expect(SCENARIOS).toHaveLength(26);
+  it("has correct total count (35 scenarios)", () => {
+    expect(SCENARIOS).toHaveLength(35);
   });
 
-  it("has 26 guided and 0 freeform scenarios", () => {
-    expect(GUIDED_SCENARIOS).toHaveLength(26);
+  it("has 35 guided and 0 freeform scenarios", () => {
+    expect(GUIDED_SCENARIOS).toHaveLength(35);
     expect(FREEFORM_SCENARIOS).toHaveLength(0);
   });
 
   it("every scenario has required fields", () => {
     for (const s of SCENARIOS) {
       expect(s.id).toBeTruthy();
-      expect(s.maxim).toBeTruthy();
+      expect(s.area).toBeTruthy();
       expect(s.title).toBeTruthy();
       expect(s.situation).toBeTruthy();
       expect(s.mode).toBe("guided");
-      expect(Array.isArray(s.principles)).toBe(true);
-      expect(s.principles.length).toBeGreaterThan(0);
+      expect(Array.isArray(s.skills)).toBe(true);
+      expect(s.skills.length).toBeGreaterThan(0);
     }
   });
 
@@ -73,18 +73,18 @@ describe("Scenarios data integrity", () => {
     expect(unique.size).toBe(ids.length);
   });
 
-  it("every scenario references principles that exist", () => {
+  it("every scenario references skills that exist", () => {
     for (const s of SCENARIOS) {
-      for (const pid of s.principles) {
-        expect(PRINCIPLE_MAP).toHaveProperty(pid);
+      for (const sid of s.skills) {
+        expect(SKILL_MAP).toHaveProperty(sid);
       }
     }
   });
 
-  it("all maxims used in scenarios exist in categories.js", () => {
+  it("all areas used in scenarios exist in categories.js", () => {
     const validCategories = Object.keys(CATEGORIES);
     for (const s of SCENARIOS) {
-      expect(validCategories).toContain(s.maxim);
+      expect(validCategories).toContain(s.area);
     }
   });
 });
@@ -142,8 +142,8 @@ describe("Generated JSON file integrity", () => {
 
       // Flat format has these direct keys
       expect(fb.what_happened).toBeTruthy();
-      expect(fb.principle).toBeTruthy();
-      expect(fb.principle_name).toBeTruthy();
+      expect(fb.skill).toBeTruthy();
+      expect(fb.skill_name).toBeTruthy();
       expect(fb.tip).toBeTruthy();
 
       // Should NOT have nested weak/medium/strong feedback

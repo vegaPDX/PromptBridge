@@ -6,8 +6,8 @@ import AssessmentMode from "../pages/AssessmentMode";
 vi.mock("../services/heuristic-scorer", () => ({
   scorePrompt: vi.fn((prompt, scenario) => ({
     score: prompt.length > 20 ? 75 : 25,
-    principlesDetected: prompt.length > 20 ? scenario.principles : [],
-    principlesMissing: prompt.length > 20 ? [] : scenario.principles,
+    principlesDetected: prompt.length > 20 ? (scenario.skills || []) : [],
+    principlesMissing: prompt.length > 20 ? [] : (scenario.skills || []),
     suggestions: [],
   })),
 }));

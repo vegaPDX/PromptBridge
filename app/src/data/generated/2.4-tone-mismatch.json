@@ -26,8 +26,8 @@
   },
   "feedback": {
     "what_happened": "The weak prompt gives the AI almost nothing to work with, so it creates a generic, unhelpful message that doesn't match either audience or include key details. The medium prompt specifies the two audiences and basic facts, so the AI produces appropriate messages for each context, but they're still pretty bare-bones. The effective prompt gives the AI everything it needs — the specific change, why each audience cares, what tone to use, and what elements to include — so it creates polished, complete messages that actually solve the communication challenge.",
-    "principle": "Give the AI specific context about your audience, purpose, and desired outcome so it can tailor the response appropriately.",
-    "principle_name": "Provide context",
+    "skill": "Give the AI specific context about your audience, purpose, and desired outcome so it can tailor the response appropriately.",
+    "skill_name": "Provide full context",
     "tip": "When you need different versions for different audiences, tell the AI who each audience is and why they care about your message — this helps it adjust tone, detail level, and focus for each group."
   },
   "feedbackUpdatedAt": "2026-03-24T05:44:15.007Z"

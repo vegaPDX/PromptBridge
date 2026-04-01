@@ -26,8 +26,8 @@
   },
   "feedback": {
     "what_happened": "The weak prompt gets a single, precise-sounding number with no context about where it came from or how reliable it is. The medium prompt produces a helpful list of statistics, but they're presented as facts without any indication of their reliability. The effective prompt generates the same types of numbers, but crucially tells you which ones are trustworthy and which aren't — plus it explains why some statistics can't be verified at all. This happens because the effective prompt explicitly asked the AI to evaluate and cite its sources rather than just provide numbers.",
-    "principle": "When you need factual information, ask the AI to show its work and admit uncertainty rather than just giving you confident-sounding answers.",
-    "principle_name": "Verify before you trust",
+    "skill": "When you need factual information, ask the AI to show its work and admit uncertainty rather than just giving you confident-sounding answers.",
+    "skill_name": "Verify before you trust",
     "tip": "When asking for statistics or facts, add 'please cite your sources and tell me how confident you are in each piece of information' to your request. This forces the AI to be transparent about data quality instead of presenting everything as equally reliable."
   },
   "feedbackUpdatedAt": "2026-03-24T05:48:07.648Z"

@@ -1,0 +1,33 @@
+{
+  "scenarioId": "9.3-party-planner-drift",
+  "generatedAt": "2026-04-01T12:00:00.000Z",
+  "generatedWith": "claude-opus-4-6-20260322",
+  "options": [
+    {
+      "id": "a",
+      "text": "No, that won't work. Try something else.",
+      "quality": "weak"
+    },
+    {
+      "id": "b",
+      "text": "That restaurant doesn't work — it's not vegetarian and it's way over budget. Can you suggest something that fits those two constraints?",
+      "quality": "medium"
+    },
+    {
+      "id": "c",
+      "text": "That suggestion misses most of my requirements. Let me restate all four of my original constraints: (1) $300 budget maximum, (2) vegetarian food only, (3) outdoor venue, (4) 20 guests. The BBQ restaurant you suggested violates three of these. Please suggest an option that meets ALL four, and check each constraint before recommending it.",
+      "quality": "strong"
+    }
+  ],
+  "responses": {
+    "response_weak": "Sorry about that! Here are some other options to consider:\n\n1. **The Rustic Table** — A cozy restaurant with a private dining room that handles large groups well. They have a varied menu with something for everyone. Pricing runs about $25–35 per person.\n\n2. **Greenfield Catering** — They do on-site event catering with some nice package deals for parties.\n\n3. **The Backyard Grill** — Popular spot for group events with outdoor seating available on weekends.\n\nWould any of these work for your birthday party?",
+    "response_medium": "Good catch! Let me focus on vegetarian-friendly and budget-friendly options:\n\n**Option 1: Park Picnic with Catered Platters**\nReserve a pavilion at a local park (free or ~$50) and order vegetarian platters from a Mediterranean restaurant — hummus, falafel, tabbouleh, and pita run about $8–10 per person for 20 guests.\n\n**Option 2: Pizza Party**\nOrder vegetarian pizzas from a local shop. For 20 people, 8–10 large veggie pizzas at ~$15 each = $120–150, leaving plenty of room in the budget for drinks and a birthday cake.\n\nBoth of these come in well under $300 and are fully vegetarian. Want me to flesh out either option?",
+    "response_strong": "## Birthday Party — Checking All Four Constraints\n\nLet me suggest an option and verify it against each of your requirements:\n\n### Suggestion: Outdoor Park Picnic with Catered Vegetarian Food\n\n**Venue:** Reserve a pavilion or picnic area at a local park\n\n| Constraint | Check |\n|-----------|-------|\n| ✅ $300 budget max | Park pavilion: $0–75 (many are free). Food + supplies: $180–225. **Total: $180–300** |\n| ✅ Vegetarian only | Mediterranean or Indian catering — naturally vegetarian-heavy. Platters: falafel, hummus, samosas, veggie biryani, naan, fruit |\n| ✅ Outdoor venue | Park pavilion is fully outdoors with a covered option if weather turns |\n| ✅ 20 guests | Parks handle any group size. A standard pavilion seats 20–30 comfortably |\n\n### Sample Budget Breakdown\n| Item | Estimated Cost |\n|------|---------------|\n| Park pavilion reservation | $0–50 |\n| Catered veggie platters (20 people) | $120–160 |\n| Drinks (lemonade, sparkling water) | $25–35 |\n| Birthday cake from a local bakery | $30–40 |\n| Plates, napkins, decorations | $15–20 |\n| **Total** | **$190–305** |\n\n### Why This Works\n- Naturally outdoor, so no venue rental fee eating into your food budget\n- Vegetarian Mediterranean or Indian food is crowd-pleasing even for non-vegetarians\n- Scales easily to exactly 20 people\n- Leaves room in the budget for a nice cake or party favors\n\n### Backup Option\nIf weather is a concern: rent a community center with an outdoor patio (~$75–100) and use the same food plan. Still within budget.\n\nAll four constraints verified. Want me to help plan the decorations and activities next?"
+  },
+  "feedback": {
+    "what_happened": "The weak prompt says 'try something else' without explaining why, so the AI guesses blindly — its new suggestions still miss the budget, don't mention vegetarian food, and include indoor restaurants. The medium prompt flags two of the four constraints (budget and vegetarian), so the AI fixes those two but doesn't ensure the options are outdoor or sized for exactly 20 guests. The effective prompt restates all four constraints as a numbered list and asks the AI to check each one, producing a suggestion with an explicit verification table and a detailed budget breakdown that confirms every requirement is met.",
+    "skill": "Spot context drift",
+    "skill_name": "When AI drifts far from your original requirements, a vague correction gets a vague fix. Restating ALL your constraints together — especially as a numbered list — gets everything back on track at once.",
+    "tip": "When AI suggests something that misses your requirements, don't just say what's wrong — restate ALL of your constraints as a numbered list and ask the AI to check each one before recommending. This prevents it from fixing one problem while creating another."
+  }
+}

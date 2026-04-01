@@ -1,36 +1,36 @@
 import { describe, it, expect } from "vitest";
 import { getRecommendedScenarios, buildRecommendation } from "../services/recommendations";
-import { PRINCIPLES } from "../data/principles";
+import { SKILLS } from "../data/skills";
 import { GUIDED_SCENARIOS } from "../data/scenarios";
 
 describe("Recommendation engine — teaching order", () => {
-  it("new users (no practiced principles) get P8 scenarios first", () => {
+  it("new users (no practiced skills) get S1 scenarios first", () => {
     const recs = getRecommendedScenarios([], [], GUIDED_SCENARIOS, 5);
     expect(recs.length).toBeGreaterThan(0);
 
-    // The first recommendation should include P8 (teachingOrder 1)
+    // The first recommendation should include S1 (teachingOrder 1)
     const firstRec = recs[0];
-    expect(firstRec.unpracticedPrinciples).toContain("P8");
+    expect(firstRec.unpracticedPrinciples).toContain("S1");
   });
 
-  it("users who completed P8 get P1 scenarios next", () => {
-    // Mark all P8 scenarios as completed so they're excluded
-    const p8ScenarioIds = GUIDED_SCENARIOS
-      .filter((s) => s.principles.includes("P8"))
+  it("users who completed S1 get S2 scenarios next", () => {
+    // Mark all S1 scenarios as completed so they're excluded
+    const s1ScenarioIds = GUIDED_SCENARIOS
+      .filter((s) => s.skills.includes("S1"))
       .map((s) => s.id);
 
-    const recs = getRecommendedScenarios(["P8"], p8ScenarioIds, GUIDED_SCENARIOS, 5);
+    const recs = getRecommendedScenarios(["S1"], s1ScenarioIds, GUIDED_SCENARIOS, 5);
     expect(recs.length).toBeGreaterThan(0);
 
-    // First recommendation should prioritize P1 (teachingOrder 2)
+    // First recommendation should prioritize S2 (teachingOrder 2)
     const firstRec = recs[0];
     const minOrder = Math.min(
       ...firstRec.unpracticedPrinciples.map((id) => {
-        const p = PRINCIPLES.find((pr) => pr.id === id);
-        return p ? p.teachingOrder : 99;
+        const s = SKILLS.find((sk) => sk.id === id);
+        return s ? s.teachingOrder : 99;
       })
     );
-    // P1 has teachingOrder 2, so the min should be 2
+    // S2 has teachingOrder 2, so the min should be 2
     expect(minOrder).toBe(2);
   });
 
@@ -41,8 +41,8 @@ describe("Recommendation engine — teaching order", () => {
     const orders = recs.map((r) =>
       Math.min(
         ...r.unpracticedPrinciples.map((id) => {
-          const p = PRINCIPLES.find((pr) => pr.id === id);
-          return p ? p.teachingOrder : 99;
+          const s = SKILLS.find((sk) => sk.id === id);
+          return s ? s.teachingOrder : 99;
         })
       )
     );
@@ -62,12 +62,12 @@ describe("Recommendation engine — teaching order", () => {
     }
   });
 
-  it("does not recommend scenarios where all principles are practiced", () => {
-    // Practice P1 and P4 — scenario 1.1-snow-shoveling uses [P1, P4]
-    const recs = getRecommendedScenarios(["P1", "P4"], [], GUIDED_SCENARIOS, 50);
+  it("does not recommend scenarios where all skills are practiced", () => {
+    // Practice S1 — scenario 1.4-product-comparison uses [S1]
+    const recs = getRecommendedScenarios(["S1"], [], GUIDED_SCENARIOS, 50);
 
     for (const rec of recs) {
-      // Every recommendation should have at least one unpracticed principle
+      // Every recommendation should have at least one unpracticed skill
       expect(rec.unpracticedPrinciples.length).toBeGreaterThan(0);
     }
   });
@@ -101,10 +101,10 @@ describe("buildRecommendation", () => {
     expect(result).toBeNull();
   });
 
-  it("includes practiced principle names", () => {
-    const recs = getRecommendedScenarios(["P1"], [], GUIDED_SCENARIOS, 3);
-    const result = buildRecommendation(["P1"], recs);
+  it("includes practiced skill names", () => {
+    const recs = getRecommendedScenarios(["S1"], [], GUIDED_SCENARIOS, 3);
+    const result = buildRecommendation(["S1"], recs);
 
-    expect(result.practiced).toContain("Be specific, not vague");
+    expect(result.practiced).toContain("Be clear and specific");
   });
 });

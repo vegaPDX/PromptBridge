@@ -26,8 +26,8 @@
   },
   "feedback": {
     "what_happened": "The weak prompt produces a generic presentation template that could apply to any project — the AI has no idea what executives care about or what decisions need to be made. The medium prompt gets better by including the key facts, so the AI creates a more relevant structure and suggests focusing on the April risk. But the effective prompt transforms the response entirely by explaining WHO the audience is and WHAT they need from this meeting. This context lets the AI craft executive-specific content: leading with bottom-line status, framing the April issue as a decision point with clear options, and ending with specific asks. The difference isn't just better slides — it's a completely different strategic approach.",
-    "principle": "Provide context about your audience and purpose so the AI can tailor its response to what actually matters in your situation.",
-    "principle_name": "Provide context",
+    "skill": "Provide full context about your audience and purpose so the AI can tailor its response to what actually matters in your situation.",
+    "skill_name": "Provide full context",
     "tip": "When asking for help with work deliverables, always mention who will see it and what you need them to do with the information — this shifts the AI from giving generic advice to crafting audience-specific solutions."
   },
   "feedbackUpdatedAt": "2026-03-24T05:43:50.103Z"

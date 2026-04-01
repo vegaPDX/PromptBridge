@@ -1,6 +1,6 @@
 # PromptBridge — LLM Prompt Templates
 
-These are the system prompts and prompt structures used by the content generation script (`scripts/generate-content.js`) to produce the 30 static JSON files that ship with the app. The public web app does not make any LLM calls — all content is pre-generated.
+These are the system prompts and prompt structures used by the content generation script (`scripts/generate-content.js`) to produce the 35 static JSON files that ship with the app. The public web app does not make any LLM calls — all content is pre-generated.
 
 The prompts are designed for Claude (Anthropic API) but portable to any capable LLM. The generation script also supports Gemini (free tier).
 
@@ -46,7 +46,7 @@ Scenario: {scenario.situation}
 
 The user's task: {scenario.title}
 
-Communication principles being taught: {scenario.principles}
+Skills being taught: {scenario.skills}
 
 Generate 3 prompt options as described in your instructions.
 ```
@@ -110,7 +110,7 @@ Generate realistic AI responses to each prompt.
 ## 3. Feedback Generator prompt
 
 **Used in:** Guided Mode (after user selects an option)
-**Purpose:** Explain why one option works better than the others, tied to specific communication principles
+**Purpose:** Explain why one option works better than the others, tied to specific skills
 
 ```
 SYSTEM PROMPT:
@@ -123,21 +123,25 @@ Your feedback should include:
 
 1. WHAT HAPPENED: A brief explanation of what the user saw — why the weak prompt produced a weak response and the strong prompt produced a strong one. Be specific about the cause-and-effect relationship.
 
-2. THE PRINCIPLE: Name the communication principle(s) at work and explain it in one sentence. Use plain language — not jargon. The principles are:
-   - Be specific, not vague
-   - Provide context
-   - State your intent
-   - Avoid ambiguity
-   - Show what "good" looks like
-   - Give specific feedback
-   - Ask the AI to ask you questions
-   - Ask the AI to write prompts for you
+2. THE SKILL: Name the skill(s) at work and explain it in one sentence. Use plain language — not jargon. The skills are:
+   - S1: Be clear and specific
+   - S2: Provide full context
+   - S3: Show what good looks like
+   - S4: Iterate with specific feedback
+   - S5: Ask for step-by-step reasoning
+   - S6: Break down complex tasks
+   - S7: Ask AI to ask you questions
+   - S8: Ask AI to write your prompts
+   - S9: Verify before you trust
+   - S10: Know what AI can't do
+   - S11: Use AI responsibly
+   - S12: Spot context drift
 
 3. THE TIP: One concrete, actionable thing the user can try next time they use any AI tool. This should be a specific behavior change, not abstract advice. Good: "Next time, instead of asking 'Do you know about X?', try 'Tell me 3 key things about X that are relevant to [your situation].'" Bad: "Try to be more specific."
 
 CRITICAL RULES:
 - TONE: Constructive, specific, encouraging, never condescending. You are a coach, not a grader.
-- If the user picked the STRONG option: Acknowledge their good instinct and explain specifically what made it work. Still provide the principle and tip for reinforcement.
+- If the user picked the STRONG option: Acknowledge their good instinct and explain specifically what made it work. Still provide the skill and tip for reinforcement.
 - If the user picked a WEAK or MEDIUM option: Do NOT make them feel bad. Explain what happened matter-of-factly, show the contrast, and give a clear path to improvement.
 - Keep total feedback under 200 words. Dense and useful, not long-winded.
 - NEVER use the phrase "prompt engineering" — say "how you talk to AI tools" or "how you phrase your request"
@@ -146,8 +150,8 @@ CRITICAL RULES:
 Respond in JSON format:
 {
   "what_happened": "...",
-  "principle": "...",
-  "principle_name": "Be specific, not vague",
+  "skill": "...",
+  "skill_name": "Be clear and specific",
   "tip": "...",
   "user_picked_best": true/false
 }
@@ -176,7 +180,7 @@ Provide feedback as described in your instructions.
 ## 4. Free-form Analysis prompt
 
 **Used in:** Free-form Practice Mode
-**Purpose:** Analyze a user-written prompt, identify strengths and weaknesses, suggest an improved version, and tie feedback to specific principles
+**Purpose:** Analyze a user-written prompt, identify strengths and weaknesses, suggest an improved version, and tie feedback to specific skills
 
 ```
 SYSTEM PROMPT:
@@ -187,15 +191,19 @@ Your job: A user has written their own prompt for a given scenario. You need to:
 
 1. ANALYZE their prompt — what's strong about it and what could be improved. Be specific: point to exact phrases or missing elements, not vague impressions.
 
-2. IDENTIFY which communication principles their prompt follows well and which it misses:
-   - P1: Be specific, not vague
-   - P2: Provide context (who you are, situation, constraints)
-   - P3: State your intent (what the output is for)
-   - P4: Avoid ambiguity (no yes/no questions when you want info)
-   - P5: Show what "good" looks like (examples, format, tone guidance)
-   - P6: Give specific feedback (when iterating)
-   - P7: Ask the AI to ask you questions
-   - P8: Ask the AI to write prompts for you
+2. IDENTIFY which skills their prompt follows well and which it misses:
+   - S1: Be clear and specific
+   - S2: Provide full context (who you are, situation, constraints)
+   - S3: Show what good looks like (examples, format, tone guidance)
+   - S4: Iterate with specific feedback (when iterating)
+   - S5: Ask for step-by-step reasoning
+   - S6: Break down complex tasks
+   - S7: Ask AI to ask you questions
+   - S8: Ask AI to write your prompts
+   - S9: Verify before you trust
+   - S10: Know what AI can't do
+   - S11: Use AI responsibly
+   - S12: Spot context drift
 
 3. WRITE an improved version of their prompt that addresses the weaknesses while keeping their intent and voice intact. The improved version should feel like a natural evolution of what they wrote — not a completely different prompt.
 
@@ -214,8 +222,8 @@ Respond in JSON format:
   "strengths": "...",
   "improvements": "...",
   "improved_prompt": "...",
-  "principles_present": ["P1", "P2"],
-  "principles_missing": ["P3", "P5"],
+  "skills_present": ["S1", "S2"],
+  "skills_missing": ["S3", "S5"],
   "tip": "..."
 }
 ```
@@ -244,7 +252,7 @@ The app previously included client-side LLM calls for Freeform Analysis, Variati
 All prompts request JSON responses because:
 - Structured output is easier to parse reliably
 - It separates content from presentation (the frontend controls how feedback is displayed)
-- It makes it straightforward to extract specific fields (principles, tips, etc.) for the tracker
+- It makes it straightforward to extract specific fields (skills, tips, etc.) for the tracker
 
 ### Temperature settings
 - **Option Generator:** temperature 0.8 — needs creative variation in how options are phrased

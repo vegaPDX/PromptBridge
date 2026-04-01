@@ -12,15 +12,23 @@
 
 import { SCENARIOS } from "../src/data/scenarios.js";
 
-const VALID_CATEGORIES = [
-  "vague_vs_specific",
-  "context_and_framing",
-  "iterative_refinement",
-  "smart_strategies",
-  "full_conversation_loop",
+const VALID_AREAS = ["A1", "A2"];
+
+const VALID_SKILL_GROUPS = [
+  "A1-clarity",
+  "A1-context",
+  "A1-examples",
+  "A1-iteration",
+  "A1-reasoning",
+  "A1-decomposition",
+  "A1-collaboration",
+  "A2-verification",
+  "A2-limitations",
+  "A2-responsibility",
+  "A2-drift",
 ];
 
-const VALID_PRINCIPLES = ["P1", "P2", "P3", "P4", "P5", "P6", "P7", "P8", "P9", "P10", "P11", "P12"];
+const VALID_SKILLS = ["S1", "S2", "S3", "S4", "S5", "S6", "S7", "S8", "S9", "S10", "S11", "S12"];
 const VALID_MODES = ["guided", "freeform"];
 const VALID_RELEVANCE = ["work", "coding", "school", "personal", "other"];
 
@@ -31,8 +39,12 @@ function validate(scenario) {
     errors.push("Missing or invalid 'id' (string required)");
   }
 
-  if (!VALID_CATEGORIES.includes(scenario.category)) {
-    errors.push(`Invalid category: "${scenario.category}". Must be one of: ${VALID_CATEGORIES.join(", ")}`);
+  if (!VALID_AREAS.includes(scenario.area)) {
+    errors.push(`Invalid area: "${scenario.area}". Must be one of: ${VALID_AREAS.join(", ")}`);
+  }
+
+  if (!VALID_SKILL_GROUPS.includes(scenario.skillGroup)) {
+    errors.push(`Invalid skillGroup: "${scenario.skillGroup}". Must be one of: ${VALID_SKILL_GROUPS.join(", ")}`);
   }
 
   if (!scenario.title || scenario.title.length > 60) {
@@ -47,12 +59,12 @@ function validate(scenario) {
     errors.push(`Invalid mode: "${scenario.mode}". Must be "guided" or "freeform"`);
   }
 
-  if (!Array.isArray(scenario.principles) || scenario.principles.length === 0) {
-    errors.push("Principles must be a non-empty array");
+  if (!Array.isArray(scenario.skills) || scenario.skills.length === 0) {
+    errors.push("Skills must be a non-empty array");
   } else {
-    for (const p of scenario.principles) {
-      if (!VALID_PRINCIPLES.includes(p)) {
-        errors.push(`Invalid principle: "${p}". Must be one of: ${VALID_PRINCIPLES.join(", ")}`);
+    for (const s of scenario.skills) {
+      if (!VALID_SKILLS.includes(s)) {
+        errors.push(`Invalid skill: "${s}". Must be one of: ${VALID_SKILLS.join(", ")}`);
       }
     }
   }

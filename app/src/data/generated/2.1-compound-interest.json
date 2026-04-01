@@ -26,8 +26,8 @@
   },
   "feedback": {
     "what_happened": "The weak prompt asks a basic question, so the AI gives a textbook definition that's technically correct but not actionable. The medium prompt adds context about retirement investing, which gets a more relevant explanation about the snowball effect and why starting early matters. The effective prompt provides specific details (age 25, first account, no finance background) and asks for concrete examples, so the AI delivers a complete tutorial with real numbers, comparisons, and clear takeaways tailored to this exact situation.",
-    "principle": "When you provide specific context about your situation and ask for concrete examples, AI can give you personalized, actionable advice instead of generic information.",
-    "principle_name": "Provide context",
+    "skill": "When you provide specific context about your situation and ask for concrete examples, AI can give you personalized, actionable advice instead of generic information.",
+    "skill_name": "Provide full context",
     "tip": "Next time you ask an AI about a complex topic, include 2-3 specific details about your situation (like your age, experience level, or goal) and explicitly ask for examples that relate to your circumstances."
   },
   "feedbackUpdatedAt": "2026-03-24T05:43:32.196Z"

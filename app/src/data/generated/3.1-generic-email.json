@@ -26,8 +26,8 @@
   },
   "feedback": {
     "what_happened": "The weak prompt says 'write a marketing email' with no other details, so the AI produces something that could be about literally anything — no product, no personality, no audience. It's the textbook definition of generic AI slop. The medium prompt adds the product and discount, which gets a more relevant email, but it still reads like a template — no brand voice, no personality, no reason for the customer to care. The effective prompt includes the audience (returning customers), specific products, the sale dates, the desired tone, AND an example of a previous email the user liked. That example is the game-changer — it gives the AI a concrete style to match instead of guessing.",
-    "principle": "Show what 'good' looks like",
-    "principle_name": "Giving AI an example of what you want — even just one — can transform generic output into something that actually sounds like you.",
+    "skill": "Show what good looks like",
+    "skill_name": "Giving AI an example of what you want — even just one — can transform generic output into something that actually sounds like you.",
     "tip": "Next time you ask AI to write something, paste in an example of similar writing you liked. It doesn't have to be perfect — even a rough sample gives the AI a pattern to follow instead of defaulting to corporate robot voice."
   }
 }

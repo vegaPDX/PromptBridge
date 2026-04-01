@@ -1,8 +1,8 @@
 import React from "react";
 import { MessageSquare, BarChart3, HelpCircle, Shield } from "lucide-react";
-import { MAXIMS } from "../data/maxims";
+import { SKILLS } from "../data/skills";
 
-const TOTAL_SUB_MAXIMS = MAXIMS.reduce((n, m) => n + m.subMaxims.length, 0);
+const TOTAL_SKILLS = SKILLS.length;
 
 export default function Header({ page, practicedPrinciples, onNavigate }) {
   return (
@@ -41,7 +41,7 @@ export default function Header({ page, practicedPrinciples, onNavigate }) {
             Progress
             {practicedPrinciples.length > 0 && (
               <span className="text-xs bg-indigo-100 text-indigo-600 px-1.5 py-0.5 rounded-full font-semibold">
-                {practicedPrinciples.length}/{TOTAL_SUB_MAXIMS}
+                {practicedPrinciples.length}/{TOTAL_SKILLS}
               </span>
             )}
           </button>

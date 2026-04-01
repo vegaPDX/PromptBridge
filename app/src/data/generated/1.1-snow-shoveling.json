@@ -26,8 +26,8 @@
   },
   "feedback": {
     "what_happened": "The weak prompt asks a yes/no question, so the AI gives basic general information and waits for clarification. The medium prompt asks for advice, which gets you solid technique tips but nothing tailored to your situation. The effective prompt includes your specific constraints (8 inches, wet snow, 30-foot driveway, 45 minutes), so the AI creates a complete action plan with time estimates, prioritized steps, and strategies that match your exact scenario.",
-    "principle": "Provide context",
-    "principle_name": "When you give the AI your specific situation and constraints, it can tailor its advice instead of giving generic information.",
+    "skill": "Provide full context",
+    "skill_name": "When you give the AI your specific situation and constraints, it can tailor its advice instead of giving generic information.",
     "tip": "Next time you need help with a task, include your specific constraints like time limits, physical space, materials you have, and what 'success' looks like for your situation."
   },
   "feedbackUpdatedAt": "2026-03-24T05:42:14.153Z"

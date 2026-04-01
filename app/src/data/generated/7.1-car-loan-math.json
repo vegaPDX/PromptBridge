@@ -1,0 +1,33 @@
+{
+  "scenarioId": "7.1-car-loan-math",
+  "generatedAt": "2026-04-01T12:00:00.000Z",
+  "generatedWith": "claude-opus-4-6-20260322",
+  "options": [
+    {
+      "id": "a",
+      "text": "Should I refinance my car loan? I was offered a lower rate.",
+      "quality": "weak"
+    },
+    {
+      "id": "b",
+      "text": "I have a car loan at 6.9% with 48 months left, paying $320/month. A bank offered me 60 months at 4.5%. Which deal is better?",
+      "quality": "medium"
+    },
+    {
+      "id": "c",
+      "text": "I'm deciding whether to refinance my car loan. Current deal: 48 months left at 6.9% APR, $320/month. New offer: 60 months at 4.5% APR. Before you answer, walk me through the total cost of each option step by step — calculate the remaining balance, total payments, and total interest for both so I can compare.",
+      "quality": "strong"
+    }
+  ],
+  "responses": {
+    "response_weak": "Yes, refinancing sounds like a smart move! Going from 6.9% to 4.5% is a significant rate reduction — nearly 2.5 percentage points lower. A lower interest rate means you'll pay less in interest over the life of the loan, and your monthly payment will drop too, freeing up cash each month. I'd recommend going ahead with the refinance. That kind of rate improvement is hard to pass up.",
+    "response_medium": "That's a solid rate reduction. Going from 6.9% to 4.5% will definitely lower your monthly payment, which helps with cash flow. However, keep in mind that you're extending the loan from 48 months to 60 months — that's an extra year of payments.\n\nThe lower rate helps offset the longer term, but whether you actually save money overall depends on the total cost of each option. You might want to run the numbers on total interest paid for both loans. Generally, if the total cost is lower with the new loan, it's worth refinancing — but the longer term is a factor to watch.",
+    "response_strong": "## Let's Work Through the Math\n\n### Step 1: Calculate Your Remaining Balance\nWith 48 months left at 6.9% APR and $320/month payments, your remaining loan balance is approximately **$13,400**.\n\n### Step 2: Total Cost of Your Current Loan\n- Monthly payment: **$320**\n- Months remaining: **48**\n- Total remaining payments: 48 × $320 = **$15,360**\n- Total interest you'll pay: $15,360 − $13,400 = **$1,960**\n\n### Step 3: Total Cost of the Refinanced Loan\n- New loan amount: **$13,400** (your remaining balance)\n- New rate: **4.5% APR** for **60 months**\n- New monthly payment: approximately **$250**\n- Total payments: 60 × $250 = **$15,000**\n- Total interest: $15,000 − $13,400 = **$1,600**\n\n### Step 4: Factor in Refinancing Costs\nRefinancing typically costs **$400–$800** in fees (application, title transfer, origination). Assuming $500 in fees:\n- Total cost of refinancing: $15,000 + $500 = **$15,500**\n\n### Step 5: Compare\n| | Current Loan | Refinanced Loan |\n|---|---|---|\n| Monthly payment | $320 | $250 |\n| Total cost remaining | $15,360 | $15,500 |\n| Time to payoff | 48 months | 60 months |\n\n### The Verdict\nThe refinance **costs you about $140 more overall** and keeps you in debt for an extra 12 months. The monthly payment drops by $70, but you pay for a full extra year. The lower rate saves ~$360 in interest, but refinancing fees wipe that out and then some.\n\n**Bottom line:** Unless you urgently need the lower monthly payment for cash flow reasons, staying with your current loan saves money."
+  },
+  "feedback": {
+    "what_happened": "The weak prompt asks a yes/no question without any numbers, so the AI gives a confident 'yes, refinance!' based solely on the lower rate — without doing any math. The medium prompt provides the key numbers, and the AI mentions the longer term as a concern but still doesn't calculate the actual total cost. The effective prompt asks the AI to walk through the math step by step, which reveals that after refinancing fees, the 'better deal' actually costs $140 more overall and adds an extra year of payments.",
+    "skill": "Ask for step-by-step reasoning",
+    "skill_name": "When a decision involves math or multiple factors, ask AI to show its work step by step before giving a recommendation — this catches errors it would otherwise make.",
+    "tip": "Next time AI recommends a financial decision, ask it to 'show me the math step by step' before accepting its advice. A confident recommendation isn't the same as a correct one."
+  }
+}

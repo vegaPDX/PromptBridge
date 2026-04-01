@@ -8,7 +8,7 @@
 
 PromptBridge is an open-source, interactive web tool that teaches people how to communicate effectively with AI assistants. It's not specific to any one AI tool or company — it teaches the universal communication skills that make AI conversations productive: being specific, providing context, avoiding ambiguity, iterating based on feedback, and knowing when and how to refine.
 
-The tool is inspired by NeuroBridge (Tufts University, ASSETS 2025 Best Student Paper), which trains neurotypical people to communicate more clearly with autistic individuals. NeuroBridge's key insight: the communication skills it teaches (direct, literal, unambiguous, context-rich) are the same skills that make someone effective at AI prompting. PromptBridge takes that insight and builds a dedicated AI prompting trainer around it.
+The skills taught are drawn from published best practices by Anthropic, OpenAI, and Google — taught in an AI-agnostic, jargon-free way.
 
 ---
 
@@ -47,7 +47,7 @@ No technical background required. No AI experience required. The tool meets peop
 
 ### Feature 1: Scenario-based learning (Guided Practice)
 
-The user is presented with a real-world scenario (e.g., "You need help planning a team meeting agenda"). The tool shows three pre-generated prompt approaches — weak, getting there, and effective — with the simulated AI response each one produces. The user sees the side-by-side comparison and gets feedback explaining WHY the effective prompt works, tied to a specific communication principle. Then the user writes their own prompt for the scenario and gets scored on which skills they applied.
+The user is presented with a real-world scenario (e.g., "You need help planning a team meeting agenda"). The tool shows three pre-generated prompt approaches — weak, getting there, and effective — with the simulated AI response each one produces. The user sees the side-by-side comparison and gets feedback explaining WHY the effective prompt works, tied to specific skills. Then the user writes their own prompt for the scenario and gets scored on which skills they applied.
 
 **Scenario categories:**
 1. Vague vs. specific requests (binary questions, keyword-style queries, missing context)
@@ -57,31 +57,29 @@ The user is presented with a real-world scenario (e.g., "You need help planning 
 
 ### Feature 2: Write Your Own (Freeform practice)
 
-The user picks a scenario and writes their own prompt from scratch. A client-side heuristic scorer detects which communication principles are present and which are missing, providing instant feedback. The user can then copy their prompt and try it in any real AI tool.
+The user picks a scenario and writes their own prompt from scratch. A client-side heuristic scorer detects which skills are present and which are missing, providing instant feedback. The user can then copy their prompt and try it in any real AI tool.
 
-### Feature 3: Communication principle tracker
+### Feature 3: Skill tracker
 
-Each scenario maps to one or more of 12 communication principles:
+Each scenario maps to one or more of 12 skills:
 
-**Communication fundamentals:**
-- **P1 — Be specific, not vague** — Ask for exactly what you want
-- **P2 — Provide context** — Who you are, what you're working on, what constraints exist
-- **P3 — State your intent** — What you'll use the result for
-- **P4 — Avoid ambiguity** — Don't use questions that can be answered with yes/no when you want information
-- **P5 — Show what "good" looks like** — Give examples of the format or style you want
-- **P6 — Iterate with specific feedback** — Tell the AI what's wrong, not just that it's wrong
-- **P7 — Ask the AI to ask you questions** — Let it interview you instead of guessing what it needs
-- **P8 — Ask the AI to write prompts for you** — Once direction is established, let it crystallize the prompt
+**Effective Prompting (A1):**
+- **S1 — Be clear and specific** — Ask for exactly what you want — include numbers, constraints, and details
+- **S2 — Provide full context** — Tell AI who you are, what you're working on, and what constraints exist
+- **S3 — Show what good looks like** — Give examples of the format, tone, or style you want
+- **S4 — Iterate with specific feedback** — Tell AI what's wrong AND how to fix it — specific corrections get specific improvements
+- **S5 — Ask for step-by-step reasoning** — Ask AI to think through problems step by step before giving a final answer
+- **S6 — Break down complex tasks** — Split big requests into smaller, focused steps — don't ask AI to do everything at once
+- **S7 — Ask AI to ask you questions** — Instead of guessing what AI needs, ask it to interview you
+- **S8 — Ask AI to write your prompts** — Once you know what you want, ask AI to write a reusable prompt
 
-**Verification and critical thinking:**
-- **P9 — Verify before you trust** — Don't take AI answers at face value — ask it to show its work and flag what it's unsure about
-- **P10 — Include everything needed — but nothing extra** — Give the AI all the important details, but cut anything that doesn't help
+**Responsible & Safe AI Use (A2):**
+- **S9 — Verify before you trust** — AI sounds confident whether it's right or wrong — ask for sources and flag uncertainty
+- **S10 — Know what AI can't do** — AI has a training cutoff, can't browse the web, has no personal experience
+- **S11 — Use AI responsibly** — AI can reflect biases, agree when you're wrong, and produce harmful content
+- **S12 — Spot context drift** — In long conversations, AI can lose track of instructions or contradict itself
 
-**AI awareness and responsibility:**
-- **P11 — Know what AI can't do** — AI has a training cutoff, can't browse the web, has no personal experience, and sometimes avoids topics without explaining why
-- **P12 — Use AI responsibly** — AI can reflect biases, agree when it shouldn't, and produce harmful content — you're the human quality filter
-
-The tool tracks which principles the user has practiced and recommends what to try next.
+The tool tracks which skills the user has practiced and recommends what to try next.
 
 ### Feature 4: Copy-to-real-AI workflow
 
@@ -122,4 +120,4 @@ Pre/post assessments with different scenario sets let users measure improvement 
 - **License:** AGPL-3.0 (ensures derivative works remain open)
 - **Repository:** GitHub (public)
 - **Contributions:** Welcome — especially scenario contributions and translations
-- **Attribution:** Credit NeuroBridge (Haroon et al., ASSETS 2025) as the inspiration
+- **Attribution:** Credit NeuroBridge (Haroon et al., ASSETS 2025) as inspiration for the comparison-based teaching format

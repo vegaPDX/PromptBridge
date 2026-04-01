@@ -26,8 +26,8 @@
   },
   "feedback": {
     "what_happened": "The weak prompt asks a completely open question, so the AI gives generic categories without specific models or prices. The medium prompt includes budget and use case, which gets the AI to suggest actual product lines and considerations, but still lacks detail about specific needs. The effective prompt provides exact requirements (weight, battery, screen size, specific tasks), so the AI delivers a detailed comparison table with three specific models, specs, and trade-offs tailored to those exact needs.",
-    "principle": "When you provide specific requirements and constraints, AI can give you targeted recommendations instead of general advice.",
-    "principle_name": "Be specific, not vague",
+    "skill": "When you provide specific requirements and constraints, AI can give you targeted recommendations instead of general advice.",
+    "skill_name": "Be clear and specific",
     "tip": "Next time you need product recommendations, list your specific requirements upfront: budget, size preferences, main tasks you'll do, and any deal-breakers. This helps the AI narrow down from thousands of options to the few that actually fit your situation."
   },
   "feedbackUpdatedAt": "2026-03-24T05:42:45.793Z"

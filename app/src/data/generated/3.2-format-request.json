@@ -26,8 +26,8 @@
   },
   "feedback": {
     "what_happened": "The weak prompt says 'summarize this article' with no other guidance, so the AI produces a vague overview that reads like a book jacket — it mentions techniques exist but doesn't name most of them or explain how to use any of them. The medium prompt adds your goal (referencing the techniques later) and asks for the main methods, so the AI identifies each technique by name and explains how they connect — much more useful, but still a flowing paragraph you'd have to re-read each time. The effective prompt shows the AI exactly what one entry should look like — a bold technique name, a dash, and one implementation sentence — and the AI follows that pattern for all five. Instead of describing the format, you demonstrated it, and the output matched.",
-    "principle": "Show what 'good' looks like — giving AI a concrete example of the format you want produces output that matches exactly.",
-    "principle_name": "Show what \"good\" looks like",
+    "skill": "Show what good looks like — giving AI a concrete example of the format you want produces output that matches exactly.",
+    "skill_name": "Show what good looks like",
     "tip": "Instead of describing the format you want, show a single example of it. Paste one bullet point, one row, or one entry in the style you need — the AI will follow that pattern for the rest, which is faster and more reliable than writing out format instructions."
   },
   "feedbackUpdatedAt": "2026-03-28T12:00:00.000Z"

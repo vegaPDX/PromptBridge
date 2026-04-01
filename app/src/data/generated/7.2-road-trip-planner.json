@@ -1,0 +1,33 @@
+{
+  "scenarioId": "7.2-road-trip-planner",
+  "generatedAt": "2026-04-01T12:00:00.000Z",
+  "generatedWith": "claude-opus-4-6-20260322",
+  "options": [
+    {
+      "id": "a",
+      "text": "What order should I visit these 4 places on my day trip?",
+      "quality": "weak"
+    },
+    {
+      "id": "b",
+      "text": "I'm planning a day trip to visit a botanical garden, a waterfall hike, a brewery, and a farmers market. They each have different hours. What's the best order?",
+      "quality": "medium"
+    },
+    {
+      "id": "c",
+      "text": "I'm planning a day trip to 4 places and need to figure out the best order. Here are the details: farmers market (8am–1pm only), botanical garden (opens 9am, closes 5pm), waterfall hike (takes about 2 hours, trailhead is 45 minutes from the garden), and a craft brewery (opens at noon). Think through each location's hours and the driving times step by step to find an order where I don't arrive anywhere after it closes.",
+      "quality": "strong"
+    }
+  ],
+  "responses": {
+    "response_weak": "Here's a great order for your day trip:\n\n1. Start with the botanical garden in the morning\n2. Head to the waterfall hike next\n3. Visit the farmers market after lunch\n4. End the day at the brewery\n\nThis gives you a nice flow from nature to food and drinks. Start early to make the most of your day and leave plenty of buffer time between stops. Have fun!",
+    "response_medium": "Since each place has different hours, here's what I'd suggest:\n\n1. **Farmers market** — Hit this first since markets tend to have limited morning hours\n2. **Botanical garden** — A nice morning activity\n3. **Waterfall hike** — Do this midday while you have energy\n4. **Brewery** — Perfect way to end the day and relax\n\nThis order front-loads the time-sensitive stops. Just make sure to check exact opening hours for each place so you don't arrive too late. You'll want to leave early to fit everything in!",
+    "response_strong": "## Let Me Work Through the Timing\n\n### Constraints to Consider\n- **Farmers market:** 8am–1pm (closes early — must visit before 1pm)\n- **Botanical garden:** 9am–5pm (long window)\n- **Waterfall hike:** ~2 hours on trail + 45 min drive from the garden\n- **Brewery:** Opens at noon (can't visit before 12pm)\n\n### Checking the Best Order\n\n**Option: Market → Garden → Hike → Brewery**\n- **8:00am** — Arrive at farmers market (opens at 8am ✓)\n- **9:30am** — Leave market, drive to botanical garden (~20 min)\n- **10:00am–12:00pm** — Botanical garden (opens at 9am ✓)\n- **12:00pm** — Drive to waterfall trailhead (45 min from garden)\n- **12:45pm–2:45pm** — Waterfall hike (2 hours)\n- **3:00pm** — Drive to brewery (~30 min)\n- **3:30pm–5:00pm** — Brewery (opens at noon ✓)\n\n✅ **This works.** Every stop falls within its operating hours.\n\n### Why Other Orders Don't Work\n- **Garden first → Market later** risks arriving at the market after 1pm close\n- **Hike first** means starting at 8am + 2 hours hiking + 45 min driving = arriving at the next stop around 11am, which works — but then fitting the market in before 1pm gets tight\n- **Brewery before hike** means waiting until noon to start, pushing the hike to late afternoon\n\n### Recommended Route\n1. **Farmers market** (8:00–9:30am)\n2. **Botanical garden** (10:00am–12:00pm)\n3. **Waterfall hike** (12:45–2:45pm)\n4. **Brewery** (3:30–5:00pm)\n\nThis is the only order that comfortably fits all four stops within their operating hours with buffer time between each."
+  },
+  "feedback": {
+    "what_happened": "The weak prompt doesn't mention any hours or constraints, so the AI picks a pleasant-sounding order but puts the farmers market after lunch — when it's already closed. The medium prompt mentions 'different hours' but doesn't share the specifics, so the AI guesses correctly on the market but can't verify whether the other stops actually work. The effective prompt provides all the hours and driving times and asks the AI to think through the timing step by step, producing a verified schedule with exact arrival times and explanations for why other orders fail.",
+    "skill": "Ask for step-by-step reasoning",
+    "skill_name": "For problems with multiple constraints like times, distances, or budgets, asking AI to reason through each one step by step catches conflicts it would otherwise miss.",
+    "tip": "When your plan has hard constraints like opening hours or deadlines, give AI the specific numbers and ask it to 'think through the timing step by step.' A plausible-sounding answer isn't the same as one that's actually been checked."
+  }
+}

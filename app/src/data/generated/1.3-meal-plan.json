@@ -26,8 +26,8 @@
   },
   "feedback": {
     "what_happened": "The weak prompt gets a generic list that doesn't solve the real problem — you still don't know what to cook tonight or how long it'll take. The medium prompt adds context about wanting quick, healthy meals, so the AI provides more specific categories and a helpful batch-cooking tip. But the effective prompt gives exact constraints (30 minutes, common ingredients, no shellfish) and asks for specific details (prep times, ingredient lists). This produces a complete meal-planning resource with everything needed to actually cook these dishes this week.",
-    "principle": "Provide context — the more specific details you give about your situation and constraints, the more useful and actionable the AI's response becomes.",
-    "principle_name": "Provide context",
+    "skill": "Provide full context — the more specific details you give about your situation and constraints, the more useful and actionable the AI's response becomes.",
+    "skill_name": "Provide full context",
     "tip": "Next time you ask for recommendations, include your specific constraints upfront: time limits, dietary restrictions, skill level, or equipment available. This helps the AI tailor suggestions that actually work for your real situation."
   },
   "feedbackUpdatedAt": "2026-03-24T05:42:21.997Z"

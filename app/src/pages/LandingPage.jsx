@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import {
   ChevronRight, Check, X, Lightbulb, ExternalLink, HelpCircle, AlertTriangle, Shield,
 } from "lucide-react";
-// ExternalLink used for Anthropic doc links on maxim cards
-import { MAXIMS } from "../data/maxims";
+import { SKILL_AREAS } from "../data/skill-areas";
 import {
   DEMO_BAD_PROMPT, DEMO_BAD_RESPONSE,
   DEMO_GOOD_PROMPT, DEMO_GOOD_RESPONSE,
@@ -41,11 +40,11 @@ export default function LandingPage({ onNavigate }) {
           <span className="text-sm font-medium text-rose-700">Safety-first AI learning</span>
         </div>
         <h1 className="font-serif text-4xl md:text-5xl font-bold text-stone-800 mb-4">
-          Learn to talk to AI
-          <span className="text-indigo-500"> — responsibly</span>
+          Learn to use AI
+          <span className="text-indigo-500"> effectively and responsibly</span>
         </h1>
         <p className="text-lg text-stone-600 max-w-2xl mx-auto leading-relaxed">
-          26 focused practice scenarios. 6 core principles. Everything a beginner needs
+          {SKILL_AREAS.reduce((n, a) => n + a.skills.flatMap(sg => sg.scenarioIds).length, 0)} focused practice scenarios. 12 skills. Everything a beginner needs
           to use AI effectively <em>and</em> safely.
         </p>
       </div>
@@ -166,7 +165,7 @@ export default function LandingPage({ onNavigate }) {
                   <Lightbulb className="w-3.5 h-3.5 text-indigo-500" />
                 </div>
                 <p className="text-stone-700 text-sm leading-relaxed pt-0.5">
-                  <strong>You'll practice handling all of this.</strong> 10 of our 26 scenarios are specifically about AI safety, bias, and critical thinking.
+                  <strong>You'll practice handling all of this.</strong> Our scenarios cover both effective prompting and AI safety.
                 </p>
               </div>
             </div>
@@ -189,63 +188,67 @@ export default function LandingPage({ onNavigate }) {
           Start Learning <ChevronRight className="w-5 h-5" />
         </button>
         <p className="text-stone-600 text-sm mt-3">
-          26 scenarios — works with any AI tool — no signup required
+          {SKILL_AREAS.reduce((n, a) => n + a.skills.flatMap(sg => sg.scenarioIds).length, 0)} scenarios — works with any AI tool — no signup required
         </p>
       </div>
 
-      {/* 6 Maxims grid */}
+      {/* 2 Focus Areas */}
       <div className="px-4 pb-12">
         <h2 className="font-serif text-2xl font-bold text-stone-800 text-center mb-2">
-          6 principles for responsible AI use
+          12 skills for responsible AI use
         </h2>
         <p className="text-stone-600 text-center text-sm mb-6 max-w-xl mx-auto">
-          Each principle builds on the last. Start with clarity, end with responsibility.
+          Two focus areas: master effective prompting, then learn to use AI safely and responsibly.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {MAXIMS.map((m, i) => {
-            const Icon = resolveIcon(m.icon);
-            // M6 = rose (safety), M5 = amber (critical thinking), rest = indigo
-            const styles = m.id === "M6"
-              ? { card: "bg-rose-50 border-rose-200 hover:border-rose-300", iconBg: "bg-rose-100", iconText: "text-rose-500", hover: "group-hover:text-rose-700", sub: "text-rose-400" }
-              : m.id === "M5"
-              ? { card: "bg-amber-50 border-amber-200 hover:border-amber-300", iconBg: "bg-amber-100", iconText: "text-amber-500", hover: "group-hover:text-amber-700", sub: "text-amber-400" }
-              : { card: "bg-white border-stone-200 hover:border-indigo-300", iconBg: "bg-indigo-50", iconText: "text-indigo-500", hover: "group-hover:text-indigo-700", sub: "text-indigo-400" };
+        <div className="space-y-4">
+          {SKILL_AREAS.map((area, i) => {
+            const Icon = resolveIcon(area.icon);
+            const isSafety = area.id === "A2";
+            const styles = isSafety
+              ? { card: "bg-rose-50 border-rose-200", iconBg: "bg-rose-100", iconText: "text-rose-500", sub: "text-rose-400", skillText: "text-rose-600", skillBg: "bg-rose-50 border-rose-200" }
+              : { card: "bg-white border-stone-200", iconBg: "bg-indigo-50", iconText: "text-indigo-500", sub: "text-indigo-400", skillText: "text-indigo-600", skillBg: "bg-indigo-50 border-indigo-200" };
             return (
-              <button
-                key={m.id}
-                onClick={() => onNavigate("scenarios", { expandMaxim: m.id })}
-                className={`flex items-start gap-3 rounded-xl border p-4 text-left transition-all hover:shadow-md group ${styles.card}`}
+              <div
+                key={area.id}
+                className={`rounded-xl border p-5 ${styles.card}`}
               >
-                <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${styles.iconBg}`}>
-                  {Icon && <Icon className={`w-4 h-4 ${styles.iconText}`} />}
+                <div className="flex items-start gap-3 mb-3">
+                  <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${styles.iconBg}`}>
+                    {Icon && <Icon className={`w-4 h-4 ${styles.iconText}`} />}
+                  </div>
+                  <div>
+                    <p className="font-medium text-sm text-stone-800">
+                      <span className="text-stone-400 mr-1.5">{i + 1}.</span>
+                      {area.name}
+                    </p>
+                    <p className="text-stone-600 text-sm mt-0.5 leading-snug">{area.description}</p>
+                  </div>
                 </div>
-                <div>
-                  <p className={`font-medium text-sm ${styles.hover} transition-colors`}>
-                    <span className="text-stone-400 mr-1.5">{i + 1}.</span>
-                    {m.name}
-                  </p>
-                  <p className="text-stone-600 text-sm mt-0.5 leading-snug">{m.description}</p>
-                  <p className={`text-xs mt-1.5 ${styles.sub} font-medium`}>
-                    {m.subMaxims.length} sub-principles &middot; {m.subMaxims.reduce((n, sm) => n + sm.scenarioIds.length, 0)} scenarios &rarr;
-                  </p>
-                  {m.learnMoreUrl && (
-                    <a
-                      href={m.learnMoreUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      onClick={(e) => e.stopPropagation()}
-                      className={`inline-flex items-center gap-1 text-xs mt-1.5 transition-colors ${
-                        m.id === "M6" ? "text-rose-500 hover:text-rose-700"
-                        : m.id === "M5" ? "text-amber-500 hover:text-amber-700"
-                        : "text-indigo-500 hover:text-indigo-700"
-                      }`}
+                <div className="flex flex-wrap gap-2 ml-11">
+                  {area.skills.map(sg => (
+                    <button
+                      key={sg.id}
+                      onClick={() => onNavigate("scenarios", { expandMaxim: area.id })}
+                      className={`text-xs px-2.5 py-1 rounded-full font-medium border transition-colors hover:opacity-80 ${styles.skillBg} ${styles.skillText}`}
                     >
-                      {m.learnMoreLabel}
-                      <ExternalLink className="w-3 h-3" />
-                    </a>
-                  )}
+                      {sg.name}
+                    </button>
+                  ))}
                 </div>
-              </button>
+                {area.learnMoreUrl && (
+                  <a
+                    href={area.learnMoreUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`inline-flex items-center gap-1 text-xs mt-3 ml-11 transition-colors ${
+                      isSafety ? "text-rose-500 hover:text-rose-700" : "text-indigo-500 hover:text-indigo-700"
+                    }`}
+                  >
+                    {area.learnMoreLabel}
+                    <ExternalLink className="w-3 h-3" />
+                  </a>
+                )}
+              </div>
             );
           })}
         </div>

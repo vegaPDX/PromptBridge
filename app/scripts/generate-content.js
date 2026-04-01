@@ -3,7 +3,7 @@
 /**
  * PromptBridge — Static Content Generator
  *
- * Generates all static content for 30 guided scenarios.
+ * Generates all static content for 35 guided scenarios.
  * Run once, produces JSON files that ship with the app.
  *
  * Usage:
@@ -28,7 +28,7 @@ import {
   buildResponseSimulatorMessage,
   buildFeedbackGeneratorMessage,
 } from "../src/data/prompts.js";
-import { PRINCIPLE_MAP } from "../src/data/principles.js";
+import { SKILL_MAP } from "../src/data/skills.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const OUTPUT_DIR = path.join(__dirname, "..", "src", "data", "generated");
@@ -214,10 +214,10 @@ async function generateForScenario(scenario) {
   }
 
   console.log(`  📝 Generating options...`);
-  const principleNames = scenario.principles.map(p => PRINCIPLE_MAP[p]?.name || p).join(", ");
+  const skillNames = scenario.skills.map(s => SKILL_MAP[s]?.name || s).join(", ");
   const optionsResult = await callLLM(
     OPTION_GENERATOR_SYSTEM,
-    buildOptionGeneratorMessage(scenario, principleNames),
+    buildOptionGeneratorMessage(scenario, skillNames),
     { temperature: 0.8, maxTokens: 800 }
   );
   await sleep(DELAY_MS);

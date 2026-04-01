@@ -1,0 +1,33 @@
+{
+  "scenarioId": "7.3-breakfast-study",
+  "generatedAt": "2026-04-01T12:00:00.000Z",
+  "generatedWith": "claude-opus-4-6-20260322",
+  "options": [
+    {
+      "id": "a",
+      "text": "People who eat breakfast daily are 30% less likely to gain weight. Should I start eating breakfast every day?",
+      "quality": "weak"
+    },
+    {
+      "id": "b",
+      "text": "I read that people who eat breakfast daily are 30% less likely to gain weight. Is this a strong enough finding to change my morning routine?",
+      "quality": "medium"
+    },
+    {
+      "id": "c",
+      "text": "I read a headline: 'People who eat breakfast daily are 30% less likely to gain weight.' Before I change my routine based on this, think through step by step whether this claim actually proves that eating breakfast prevents weight gain. What other explanations could there be? What would I need to know about the study to trust this conclusion?",
+      "quality": "strong"
+    }
+  ],
+  "responses": {
+    "response_weak": "That's a compelling statistic! Yes, eating breakfast daily is a great habit to adopt. Breakfast kickstarts your metabolism in the morning, helps regulate blood sugar levels throughout the day, and prevents overeating at lunch. A 30% reduction in weight gain risk is significant. I'd recommend starting with a balanced breakfast that includes protein, fiber, and healthy fats — something like eggs with whole grain toast or Greek yogurt with fruit and nuts.",
+    "response_medium": "That's an interesting finding, but I'd be somewhat cautious about changing your routine based on a single statistic. A 30% reduction sounds impressive, but it depends on how the study was conducted — was it a large study? Was it observational or experimental? Those details matter.\n\nThat said, there is general evidence that breakfast can help with appetite regulation and energy levels throughout the day. If you're considering adding breakfast, it's unlikely to hurt — just make sure it's a nutritious meal, not sugary cereal or pastries. The bigger question is whether it fits your lifestyle and how your body responds to it.",
+    "response_strong": "## Let's Think Through This Claim Step by Step\n\n### Step 1: What Does the Headline Actually Say?\nIt says people who eat breakfast **are less likely** to gain weight. This is a correlation — it means two things happen together. It does **not** say breakfast **causes** less weight gain.\n\n### Step 2: Could Something Else Explain This?\nAbsolutely. Several confounding variables could be at play:\n\n- **Lifestyle habits:** People who eat breakfast regularly may also exercise more, sleep better, and make healthier food choices overall. It might be the disciplined lifestyle keeping them thinner, not the breakfast itself.\n- **Socioeconomic factors:** Regular breakfast eating correlates with stable schedules and food access, which also correlate with better health outcomes.\n- **Meal skipping and overeating:** Some studies find breakfast skippers overeat later, but this doesn't mean forcing breakfast on a non-breakfast-eater would produce the same result.\n\n### Step 3: What Kind of Study Would You Need?\nTo trust this claim, you'd want to know:\n- **Observational or experimental?** Observational studies (surveys) show correlation, not causation. A randomized controlled trial where some people are assigned to eat breakfast would be much stronger evidence.\n- **How large was the sample?** A few hundred people vs. tens of thousands makes a big difference.\n- **How long did it run?** A 2-week study means far less than a 5-year study.\n- **Who funded it?** Cereal companies fund a surprising amount of breakfast research.\n\n### Step 4: The Bottom Line\nThis headline is a **correlation, not a proven cause.** Eating breakfast might help some people, but the 30% statistic alone doesn't prove it will help you. Before changing your routine, consider: do you feel better when you eat breakfast? Does it fit your schedule? Those personal factors matter more than a single headline."
+  },
+  "feedback": {
+    "what_happened": "The weak prompt treats the headline as established fact, so the AI enthusiastically confirms it and jumps straight to recommending breakfast foods — no critical thinking at all. The medium prompt questions the strength of the evidence, and the AI adds some caveats but still leans toward recommending breakfast. The effective prompt asks the AI to think through step by step whether the claim is actually supported, and it immediately identifies that correlation isn't causation, lists confounding variables, and explains what kind of study you'd actually need to trust the conclusion.",
+    "skill": "Ask for step-by-step reasoning",
+    "skill_name": "When AI encounters a claim or statistic, asking it to reason through the logic step by step reveals gaps that a quick answer would gloss over.",
+    "tip": "When a statistic sounds convincing, ask AI to 'think through step by step whether this actually proves what it claims.' AI is great at spotting logical gaps — but only when you ask it to look."
+  }
+}

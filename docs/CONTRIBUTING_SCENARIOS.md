@@ -7,27 +7,29 @@ Thank you for helping make PromptBridge better! Scenarios are the core of the le
 A good scenario is:
 - **Relatable** — Based on a situation most people would actually encounter
 - **Specific** — Has enough detail for meaningful prompt variations (weak/medium/strong)
-- **Principled** — Maps clearly to 1-3 of the 12 communication principles
+- **Skill-mapped** — Maps clearly to 1-3 of the 12 skills
 - **AI-agnostic** — Works with any AI assistant, not specific to one tool
 
-## The 12 communication principles
+## The 12 skills
 
 Every scenario must map to at least one:
 
-| ID | Principle | What it teaches |
-|----|-----------|----------------|
-| P1 | Be specific, not vague | Ask for exactly what you want |
-| P2 | Provide context | Share who you are, constraints, situation |
-| P3 | State your intent | Explain what the result is for |
-| P4 | Avoid ambiguity | Don't use yes/no questions when you want info |
-| P5 | Show what "good" looks like | Give examples of format, tone, style |
-| P6 | Give specific feedback | Say what's wrong AND what to change |
-| P7 | Ask the AI to ask you questions | Let it interview you |
-| P8 | Ask the AI to write prompts for you | Let it crystallize the prompt |
-| P9 | Verify before you trust | Don't take AI answers at face value |
-| P10 | Include everything needed — but nothing extra | Give all important details, cut the rest |
-| P11 | Know what AI can't do | AI has a training cutoff, can't browse the web, etc. |
-| P12 | Use AI responsibly | AI can reflect biases and produce harmful content |
+| ID | Skill | What it teaches |
+|----|-------|----------------|
+| S1 | Be clear and specific | Ask for exactly what you want — include numbers, constraints, and details |
+| S2 | Provide full context | Tell AI who you are, what you're working on, and what constraints exist |
+| S3 | Show what good looks like | Give examples of the format, tone, or style you want |
+| S4 | Iterate with specific feedback | Tell AI what's wrong AND how to fix it |
+| S5 | Ask for step-by-step reasoning | Ask AI to think through problems step by step |
+| S6 | Break down complex tasks | Split big requests into smaller, focused steps |
+| S7 | Ask AI to ask you questions | Let it interview you instead of guessing |
+| S8 | Ask AI to write your prompts | Let it crystallize a reusable prompt |
+| S9 | Verify before you trust | AI sounds confident whether right or wrong — ask for sources |
+| S10 | Know what AI can't do | AI has a training cutoff, can't browse the web, etc. |
+| S11 | Use AI responsibly | AI can reflect biases, agree when wrong, produce harmful content |
+| S12 | Spot context drift | In long conversations, AI can lose track of instructions |
+
+**Note:** S1–S6 are recommended by Anthropic, OpenAI, and Google. S7–S8 are supported by user research.
 
 ## Scenario format
 
@@ -35,26 +37,33 @@ Each scenario is a JavaScript object in `app/src/data/scenarios.js`:
 
 ```javascript
 {
-  id: "category.number-short-name",     // e.g., "1.9-budget-tracker"
-  category: "vague_vs_specific",         // one of the 5 categories below
-  title: "The budget tracker",           // short, memorable title
-  situation: "You want to create a monthly budget...", // 1-3 sentences describing the situation
-  mode: "guided",                        // "guided" or "freeform"
-  principles: ["P1", "P2"],             // 1-3 principle IDs
-  feedbackNotes: "Show how...",          // guidance for content generation
-  relevance: ["personal", "work"],       // context tags for personalization
+  id: "7.4-example-scenario",
+  area: "A1",
+  skillGroup: "A1-reasoning",
+  title: "Example title",
+  situation: "...",
+  mode: "guided",
+  skills: ["S5"],
+  feedbackNotes: "...",
+  relevance: ["personal"],
 }
 ```
 
-### Categories
+### Focus areas and skill groups
 
-| Key | Label | When to use |
-|-----|-------|-------------|
-| `vague_vs_specific` | Vague vs. Specific | Teaches specificity and clear requests |
-| `context_and_framing` | Context & Framing | Teaches context-setting and audience awareness |
-| `iterative_refinement` | Iterative Refinement | Teaches feedback and iteration |
-| `smart_strategies` | Smart Strategies | Teaches advanced techniques |
-| `full_conversation_loop` | Full Conversation Loop | Multi-skill freeform scenarios |
+| Focus Area | Skill Group | Label |
+|-----------|------------|-------|
+| A1 — Effective Prompting | A1-clarity | S1: Be clear and specific |
+| | A1-context | S2: Provide full context |
+| | A1-examples | S3: Show what good looks like |
+| | A1-iteration | S4: Iterate with specific feedback |
+| | A1-reasoning | S5: Ask for step-by-step reasoning |
+| | A1-decomposition | S6: Break down complex tasks |
+| | A1-collaboration | S7, S8: Collaborate with AI |
+| A2 — Responsible & Safe AI Use | A2-verification | S9: Verify before you trust |
+| | A2-limitations | S10: Know what AI can't do |
+| | A2-responsibility | S11: Use AI responsibly |
+| | A2-drift | S12: Spot context drift |
 
 ### Relevance tags
 
@@ -100,17 +109,17 @@ Before submitting:
 
 - [ ] Situation is realistic — would a real person encounter this?
 - [ ] Title is short and memorable (under 40 characters)
-- [ ] Principles are correctly mapped (the scenario actually teaches those skills)
+- [ ] Skills are correctly mapped (the scenario actually teaches those skills)
 - [ ] FeedbackNotes explain what the comparison should highlight
 - [ ] Relevance tags match the scenario context
-- [ ] ID follows the `category.number-short-name` format
+- [ ] ID follows the `group.number-short-name` format
 - [ ] No jargon — no "prompt engineering," "tokens," "context window"
 
 ## Examples
 
 **Good scenario idea:** "You need to write a LinkedIn recommendation for a coworker, but you're not sure how to make it sound genuine rather than generic."
-- Teaches: P2 (context about the person), P5 (tone/style examples)
-- Relatable, specific, clear principle mapping
+- Teaches: S2 (full context), S3 (show examples)
+- Relatable, specific, clear skill mapping
 
 **Bad scenario idea:** "Use AI to do something at work."
-- Too vague, no specific situation, unclear what principles it teaches
+- Too vague, no specific situation, unclear what skills it teaches

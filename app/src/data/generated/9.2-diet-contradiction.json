@@ -1,0 +1,33 @@
+{
+  "scenarioId": "9.2-diet-contradiction",
+  "generatedAt": "2026-04-01T12:00:00.000Z",
+  "generatedWith": "claude-opus-4-6-20260322",
+  "options": [
+    {
+      "id": "a",
+      "text": "Wait, that doesn't seem right. Didn't you say something different before?",
+      "quality": "weak"
+    },
+    {
+      "id": "b",
+      "text": "Hold on — didn't you tell me earlier to watch out for sodium in sauces? This ramen recipe has soy sauce and miso. Isn't that a lot of sodium?",
+      "quality": "medium"
+    },
+    {
+      "id": "c",
+      "text": "You're contradicting your earlier advice. Twenty messages ago, you told me to keep sodium under 1,500mg/day and specifically warned me about hidden sodium in sauces. Now you're recommending ramen with soy sauce and miso — both high-sodium ingredients. Let me restate my constraint: under 1,500mg sodium per day. Can you estimate the sodium in that recipe and either adjust it to fit my limit or suggest a lower-sodium alternative?",
+      "quality": "strong"
+    }
+  ],
+  "responses": {
+    "response_weak": "You're right, I should be more consistent! Let me clarify — when it comes to healthy eating, balance is key. The ramen recipe I suggested is nutritious and flavorful, and it fits well into a varied diet. Of course, you should always be mindful of your overall dietary goals. If you have specific sodium concerns, you can always adjust the recipe by using less soy sauce or substituting certain ingredients. Would you like me to suggest some modifications?",
+    "response_medium": "Good catch! Soy sauce and miso are both high in sodium, and I should have flagged that given our earlier conversation about watching your sodium intake.\n\nHere are some rough numbers:\n- 1 tablespoon of soy sauce: ~900mg sodium\n- 1 tablespoon of miso paste: ~600mg sodium\n\nThat's already around 1,500mg just from those two ingredients — before counting the broth, noodles, or toppings. This recipe would likely push well past 2,000mg of sodium in a single meal.\n\nWould you like me to suggest a lower-sodium version, or a completely different recipe?",
+    "response_strong": "## You're Right — I Contradicted Myself\n\nI recommended a recipe that directly conflicts with the sodium constraint we established earlier. Let me fix that.\n\n### Sodium Breakdown of the Original Ramen Recipe\n| Ingredient | Estimated Sodium |\n|-----------|------------------|\n| Soy sauce (2 tbsp) | ~1,800mg |\n| Miso paste (1 tbsp) | ~600mg |\n| Chicken broth (2 cups) | ~800mg |\n| Ramen noodles | ~400mg |\n| **Total** | **~3,600mg** |\n\nThat's **more than double** your 1,500mg daily limit — in a single meal.\n\n### Adjusted Low-Sodium Version\nHere's a reworked version that keeps the flavors while respecting your constraint:\n\n- **Swap soy sauce** → use 1 tsp low-sodium soy sauce (~230mg) + rice vinegar for tang\n- **Swap miso** → use 1 tsp white miso (~200mg) instead of a full tablespoon\n- **Swap broth** → use low-sodium chicken broth (~140mg per cup, ~280mg for 2 cups)\n- **Swap noodles** → rice noodles instead of ramen (~50mg)\n\n**Adjusted total: ~760mg sodium** — well within your 1,500mg daily limit with room for other meals.\n\n### Your Constraint Restated\nI have it: **under 1,500mg sodium per day, and flag high-sodium ingredients — especially in sauces — before recommending them.** I'll check sodium levels on all recipes going forward.\n\nWant me to revisit any other recipes we discussed earlier?"
+  },
+  "feedback": {
+    "what_happened": "The weak prompt vaguely says 'that doesn't seem right' without naming the contradiction, so the AI gives a non-answer about 'balance' and doesn't acknowledge the sodium issue at all. The medium prompt identifies the soy sauce and miso concern, and the AI provides useful sodium numbers — but doesn't reconnect to the specific 1,500mg limit or offer a fully adjusted recipe. The effective prompt names the exact contradiction, restates the original constraint with a number, and asks for a concrete fix — so the AI delivers a full sodium breakdown, an adjusted recipe within the limit, and confirms the constraint going forward.",
+    "skill": "Spot context drift",
+    "skill_name": "AI doesn't truly 'remember' what it told you earlier in long conversations. It can lose track of your constraints and even contradict its own earlier advice without realizing it.",
+    "tip": "When AI contradicts something it said earlier, don't just point out the conflict — restate your exact constraint with specific numbers and ask it to apply that constraint to its current suggestion. AI needs you to manage continuity in long conversations."
+  }
+}

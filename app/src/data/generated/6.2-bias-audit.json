@@ -26,8 +26,8 @@
   },
   "feedback": {
     "what_happened": "The weak prompt asks a yes/no question, so the AI gives a surface-level 'looks good' without any real analysis — the letter could be full of subtle bias and you'd never know. The medium prompt asks for bias checking, and the AI catches some genuine issues like the family reference and personality-heavy language, but without a specific framework the analysis stays broad. The effective prompt provides a detailed framework — gendered language patterns, background assumptions, and stereotype-reflecting adjectives — so the AI delivers a structured, category-by-category audit with specific examples flagged from the letter, clear explanations of why each is problematic, and concrete alternative phrasings that maintain the letter's positive intent.",
-    "principle": "Show what 'good' looks like by giving the AI specific examples and criteria to work with.",
-    "principle_name": "Show what 'good' looks like",
+    "skill": "Show what good looks like by giving the AI specific examples and criteria to work with.",
+    "skill_name": "Show what good looks like",
     "tip": "When asking AI to evaluate something for quality or problems, include 2-3 specific examples of what you want it to look for. Instead of 'check for bias,' try 'check for gendered language patterns, background assumptions, and stereotype-reflecting adjectives' — this helps the AI understand the depth and type of analysis you need."
   },
   "feedbackUpdatedAt": "2026-03-28T12:00:00.000Z"

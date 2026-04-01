@@ -1,15 +1,15 @@
 // ============================================================
-// Recommendations — Suggest next scenarios based on unpracticed principles
+// Recommendations — Suggest next scenarios based on unpracticed skills
 // ============================================================
 
-import { PRINCIPLE_MAP } from "../data/principles";
+import { SKILL_MAP } from "../data/skills";
 
 /**
- * Get recommended next scenarios based on which principles the user
+ * Get recommended next scenarios based on which skills the user
  * hasn't practiced yet. Prioritizes scenarios by teachingOrder so
- * new users start with P8, then P1, P2, P5, etc.
+ * new users start with S1, then S2, S3, etc.
  *
- * @param {string[]} practicedPrinciples - IDs of principles already practiced (e.g., ["P1", "P2"])
+ * @param {string[]} practicedPrinciples - IDs of skills already practiced (e.g., ["S1", "S2"])
  * @param {string[]} completedScenarios - IDs of scenarios already completed
  * @param {object[]} scenarios - Full scenario objects to choose from
  * @param {number} limit - Max recommendations to return
@@ -19,22 +19,22 @@ export function getRecommendedScenarios(practicedPrinciples, completedScenarios,
   const practicedSet = new Set(practicedPrinciples);
   const completedSet = new Set(completedScenarios);
 
-  // Helper: lowest teachingOrder among a list of principle IDs
-  const minTeachingOrder = (principleIds) =>
-    Math.min(...principleIds.map(id => PRINCIPLE_MAP[id]?.teachingOrder ?? 99));
+  // Helper: lowest teachingOrder among a list of skill IDs
+  const minTeachingOrder = (skillIds) =>
+    Math.min(...skillIds.map(id => SKILL_MAP[id]?.teachingOrder ?? 99));
 
   const scored = scenarios
     .filter(s => !completedSet.has(s.id))
     .map(s => {
-      const unpracticed = (s.principles || []).filter(p => !practicedSet.has(p));
+      const unpracticed = (s.skills || []).filter(p => !practicedSet.has(p));
       return { scenario: s, unpracticedPrinciples: unpracticed };
     })
     .filter(r => r.unpracticedPrinciples.length > 0)
     .sort((a, b) => {
-      // Primary: prefer scenarios teaching the earliest unpracticed principle
+      // Primary: prefer scenarios teaching the earliest unpracticed skill
       const orderDiff = minTeachingOrder(a.unpracticedPrinciples) - minTeachingOrder(b.unpracticedPrinciples);
       if (orderDiff !== 0) return orderDiff;
-      // Tiebreaker: prefer scenarios covering more unpracticed principles
+      // Tiebreaker: prefer scenarios covering more unpracticed skills
       return b.unpracticedPrinciples.length - a.unpracticedPrinciples.length;
     });
 
@@ -53,9 +53,9 @@ export function buildRecommendation(practicedPrinciples, recommendations) {
 
   const top = recommendations[0];
   return {
-    practiced: practicedPrinciples.map(id => PRINCIPLE_MAP[id]?.name).filter(Boolean),
+    practiced: practicedPrinciples.map(id => SKILL_MAP[id]?.name).filter(Boolean),
     nextScenario: top.scenario.title,
     nextScenarioId: top.scenario.id,
-    newSkills: top.unpracticedPrinciples.map(id => PRINCIPLE_MAP[id]?.name).filter(Boolean),
+    newSkills: top.unpracticedPrinciples.map(id => SKILL_MAP[id]?.name).filter(Boolean),
   };
 }

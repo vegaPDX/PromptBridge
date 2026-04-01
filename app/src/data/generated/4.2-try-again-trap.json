@@ -26,8 +26,8 @@
   },
   "feedback": {
     "what_happened": "The weak prompt gives the AI no guidance about what's wrong, so it defaults to the same corporate style with different buzzwords like 'unparalleled sensory experience' and 'discerning customer.' The medium prompt identifies the problem (too corporate) and requests a casual tone, which gets you partway there — the AI drops some jargon and uses simpler language, but it's still generic small-business speak. The effective prompt acts like a style guide: it shows exactly what corporate language to avoid, describes the specific voice you want, and gives the AI a clear target ('like talking to a friend'). The result reads like an actual person sharing their passion, complete with personality and authentic details.",
-    "principle": "Show what 'good' looks like by giving specific examples of what to avoid and what tone to aim for, rather than just saying something is 'wrong.'",
-    "principle_name": "Show what \"good\" looks like",
+    "skill": "Show what good looks like by giving specific examples of what to avoid and what tone to aim for, rather than just saying something is 'wrong.'",
+    "skill_name": "Show what good looks like",
     "tip": "When AI output misses your target, don't just say what's wrong — describe the voice or style you want with specific examples, like 'write this like you're explaining it to a neighbor' or 'avoid phrases like X and instead use language like Y.'"
   },
   "feedbackUpdatedAt": "2026-03-24T05:45:51.230Z"

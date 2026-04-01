@@ -26,8 +26,8 @@
   },
   "feedback": {
     "what_happened": "The weak prompt gets bare-bones information — just basic titles and one-line descriptions that don't help readers understand what makes each book valuable. The medium prompt produces much better summaries by mentioning it's for a blog post, so the AI writes more engaging descriptions. But the effective prompt goes further by asking for verification details like ISBN numbers and publishers. This produces the most useful response: complete bibliographic information, detailed summaries that explain key concepts, and ways to confirm the books actually exist — crucial for a published blog post where accuracy matters.",
-    "principle": "Include everything needed — but nothing extra means asking for all the specific details your task requires, like verification information for published content, without adding unnecessary requests.",
-    "principle_name": "Include everything needed — but nothing extra",
+    "skill": "Provide full context means asking for all the specific details your task requires, like verification information for published content, without adding unnecessary requests.",
+    "skill_name": "Provide full context",
     "tip": "When you need information for something public-facing (like a blog, presentation, or report), always ask the AI to include ways to verify the information — like ISBN numbers, publication dates, or publisher names. This helps you fact-check and builds credibility with your audience."
   },
   "feedbackUpdatedAt": "2026-03-24T05:48:16.634Z"

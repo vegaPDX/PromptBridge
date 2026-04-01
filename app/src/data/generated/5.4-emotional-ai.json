@@ -26,8 +26,8 @@
   },
   "feedback": {
     "what_happened": "The weak prompt treats the AI like a human friend, asking about its personal emotional experiences. This forces the AI to awkwardly clarify it doesn't have feelings while offering minimal help. The medium prompt acknowledges the AI's nature but still asks what 'it would say,' creating some confusion about perspective. The effective prompt is crystal clear: it asks the AI to draw from patterns and research rather than personal experience. This produces concrete, evidence-based advice with specific techniques and even asks a follow-up question to personalize the help.",
-    "principle": "Be specific about what you want the AI to draw from — its training data, research patterns, or general knowledge — rather than asking it to simulate human experiences it doesn't have.",
-    "principle_name": "Know what AI can't do",
+    "skill": "Be specific about what you want the AI to draw from — its training data, research patterns, or general knowledge — rather than asking it to simulate human experiences it doesn't have.",
+    "skill_name": "Know what AI can't do",
     "tip": "When you want advice or insights, tell the AI exactly what knowledge base to use: 'Based on research...' or 'Drawing from common patterns...' or 'Using evidence-based approaches...' This gets you much more useful, grounded responses."
   },
   "feedbackUpdatedAt": "2026-03-24T05:45:11.810Z"

@@ -5,7 +5,7 @@ import {
 } from "lucide-react";
 import { loadGuidedContent } from "../services/guided-data";
 import { scorePrompt, getFeedbackSummary } from "../services/heuristic-scorer";
-import { PRINCIPLE_MAP } from "../data/principles";
+import { SKILL_MAP } from "../data/skills";
 import LoadingSpinner from "../components/LoadingSpinner";
 import ErrorBanner from "../components/ErrorBanner";
 import PrincipleBadge from "../components/PrincipleBadge";
@@ -15,7 +15,7 @@ import AiToolLinks from "../components/AiToolLinks";
 
 import { GUIDED_SCENARIOS } from "../data/scenarios";
 import { getRecommendedScenarios, buildRecommendation } from "../services/recommendations";
-import { getSubMaximForScenario } from "../data/maxims";
+import { getSkillForScenario } from "../data/skill-areas";
 
 export default function GuidedMode({ scenario, onComplete, onBack, practicedPrinciples = [], completedScenarios = [] }) {
   // Steps: loading | explore | write-own | write-loading | write-results
@@ -92,10 +92,10 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
           <MessageSquare className="w-4 h-4 text-indigo-500" />
           <span className="text-xs text-indigo-600 font-medium uppercase tracking-wide">Guided Practice</span>
           {(() => {
-            const ctx = getSubMaximForScenario(scenario.id);
+            const ctx = getSkillForScenario(scenario.id);
             return ctx ? (
               <span className="text-xs text-stone-400 font-medium">
-                &middot; {ctx.maxim.name} &rarr; {ctx.subMaxim.name}
+                &middot; {ctx.area.name} &rarr; {ctx.skill.name}
               </span>
             ) : null;
           })()}
@@ -115,8 +115,8 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
       {/* ── Step: Explore (collapsible accordion) ─────────────── */}
       {step === "explore" && content && (
         <div className="animate-fadeIn">
-          {/* P5 research callout */}
-          {scenario.principles.includes("P5") && (
+          {/* S3 research callout — showing examples is the most powerful technique */}
+          {scenario.skills.includes("S3") && (
             <div className="bg-indigo-50 border border-indigo-200 rounded-xl p-4 mb-4">
               <div className="flex items-start gap-3">
                 <Star className="w-5 h-5 text-indigo-500 flex-shrink-0 mt-0.5" aria-hidden="true" />
@@ -216,9 +216,9 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
               </div>
               <p className="text-stone-700 text-base mb-4">{content.feedback.what_happened}</p>
               <div className="bg-white rounded-lg p-4 mb-4 border border-amber-100">
-                <p className="text-xs text-amber-600 font-medium uppercase tracking-wide mb-1">The Principle</p>
-                <p className="font-semibold text-stone-800 mb-1">{content.feedback.principle_name}</p>
-                <p className="text-stone-700 text-sm">{content.feedback.principle}</p>
+                <p className="text-xs text-amber-600 font-medium uppercase tracking-wide mb-1">The Skill</p>
+                <p className="font-semibold text-stone-800 mb-1">{content.feedback.skill_name}</p>
+                <p className="text-stone-700 text-sm">{content.feedback.skill}</p>
               </div>
               <div className="bg-white rounded-lg p-4 border border-amber-100">
                 <p className="text-xs text-amber-600 font-medium uppercase tracking-wide mb-1">Try This Next Time</p>
@@ -227,16 +227,16 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
             </div>
           )}
 
-          {/* Principle badges */}
+          {/* Skill badges */}
           <div className="flex flex-wrap gap-2 mb-6">
-            {scenario.principles.map(pid => (
-              <PrincipleBadge key={pid} principleId={pid} />
+            {scenario.skills.map(sid => (
+              <PrincipleBadge key={sid} principleId={sid} />
             ))}
           </div>
 
           {/* Recommendation callout */}
           <RecommendationCallout
-            practicedPrinciples={[...new Set([...practicedPrinciples, ...(scenario.principles || [])])]}
+            practicedPrinciples={[...new Set([...practicedPrinciples, ...(scenario.skills || [])])]}
             completedScenarios={[...new Set([...completedScenarios, scenario.id])]}
           />
 
@@ -276,9 +276,9 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
               Write your own request for this scenario. Apply what you just learned, then try it in a real AI tool.
             </p>
             <div className="flex flex-wrap gap-1.5 mt-2">
-              {scenario.principles.map(pid => (
-                <span key={pid} className="text-xs px-2 py-0.5 bg-white text-emerald-700 rounded-full border border-emerald-200 font-medium">
-                  {PRINCIPLE_MAP[pid]?.name}
+              {scenario.skills.map(sid => (
+                <span key={sid} className="text-xs px-2 py-0.5 bg-white text-emerald-700 rounded-full border border-emerald-200 font-medium">
+                  {SKILL_MAP[sid]?.name}
                 </span>
               ))}
             </div>
@@ -344,21 +344,21 @@ export default function GuidedMode({ scenario, onComplete, onBack, practicedPrin
                 </div>
               </div>
 
-              {/* Detected principles */}
+              {/* Detected skills */}
               {tryHeuristic.principlesDetected.length > 0 && (
                 <div className="mb-3">
                   <p className="text-xs text-emerald-600 font-medium uppercase tracking-wide mb-2">Skills detected</p>
                   <div className="flex flex-wrap gap-1.5">
-                    {tryHeuristic.principlesDetected.map(pid => (
-                      <span key={pid} className="text-xs px-2 py-0.5 bg-emerald-50 text-emerald-700 rounded-full font-medium border border-emerald-200 inline-flex items-center gap-1">
-                        <Check className="w-3 h-3" /> {PRINCIPLE_MAP[pid]?.name}
+                    {tryHeuristic.principlesDetected.map(sid => (
+                      <span key={sid} className="text-xs px-2 py-0.5 bg-emerald-50 text-emerald-700 rounded-full font-medium border border-emerald-200 inline-flex items-center gap-1">
+                        <Check className="w-3 h-3" /> {SKILL_MAP[sid]?.name}
                       </span>
                     ))}
                   </div>
                 </div>
               )}
 
-              {/* Missing principles with suggestions */}
+              {/* Missing skills with suggestions */}
               {tryHeuristic.suggestions.length > 0 && (
                 <div>
                   <p className="text-xs text-amber-600 font-medium uppercase tracking-wide mb-2">Try adding</p>

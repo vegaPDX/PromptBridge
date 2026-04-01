@@ -1,0 +1,33 @@
+{
+  "scenarioId": "8.1-portfolio-website",
+  "generatedAt": "2026-04-01T12:00:00.000Z",
+  "generatedWith": "claude-opus-4-6-20260322",
+  "options": [
+    {
+      "id": "a",
+      "text": "Build me a portfolio website to showcase my design work.",
+      "quality": "weak"
+    },
+    {
+      "id": "b",
+      "text": "I want to create a personal portfolio website to showcase my design work. I've never built a website before. Can you help me plan the whole thing from start to finish?",
+      "quality": "medium"
+    },
+    {
+      "id": "c",
+      "text": "I want to build a portfolio website for my design work, but I've never made one before. Let's start with just the first step — what sections should my homepage have and what's the purpose of each one? Don't cover hosting, coding, or design tools yet. Just help me figure out the content layout first.",
+      "quality": "strong"
+    }
+  ],
+  "responses": {
+    "response_weak": "To build a portfolio website, you'll need to choose a platform like WordPress, Squarespace, or Wix. Pick a clean, minimal template that lets your work shine. Include a homepage, an about page, a portfolio gallery, a contact page, and maybe a blog. Use high-quality images of your work, write a compelling bio, add your resume, set up a custom domain, optimize for mobile, add SEO metadata, connect Google Analytics, integrate social media links, and make sure your site loads fast. You'll also want to consider hosting costs, SSL certificates, and regular content updates to keep things fresh.",
+    "response_medium": "Great idea! Here's a comprehensive plan for building your portfolio from scratch:\n\n**1. Planning Phase**\n- Decide what work to showcase (your best 8-12 pieces)\n- Research other designers' portfolios for inspiration\n- Choose a platform (Squarespace and Cargo are popular with designers)\n\n**2. Content Creation**\n- Write your bio and about page\n- Create case studies for your top projects\n- Gather high-quality images of your work\n- Write project descriptions explaining your process\n\n**3. Design & Structure**\n- Homepage with a strong intro and featured work\n- Portfolio page with project thumbnails\n- Individual project pages with case studies\n- About page with your story and skills\n- Contact page with a form or email\n\n**4. Technical Setup**\n- Sign up for your chosen platform\n- Pick and customize a template\n- Set up a custom domain name\n- Configure mobile responsiveness\n\n**5. Polish & Launch**\n- Test on multiple devices and browsers\n- Get feedback from peers before going live\n- Set up basic SEO and analytics\n- Share on social media and LinkedIn\n\nWant me to go deeper on any of these steps?",
+    "response_strong": "## Homepage Sections for a Design Portfolio\n\nHere are the essential sections your homepage needs, in the order visitors typically expect:\n\n### 1. Hero Section (Top of Page)\n**Purpose:** Make a strong first impression and instantly communicate who you are.\n- Your name and a short tagline (e.g., \"Graphic designer specializing in brand identity\")\n- One striking image or visual that represents your best work\n- This should answer \"who is this person and what do they do?\" in under 5 seconds\n\n### 2. Featured Work (3–6 Projects)\n**Purpose:** Show your range and quality without overwhelming visitors.\n- Thumbnail images that link to full project pages\n- Each with a short title and one-line description (e.g., \"Sunrise Coffee — Brand Identity Redesign\")\n- Pick projects that show different skills — don't put six logos in a row\n\n### 3. About Snippet\n**Purpose:** Add a human element so visitors connect with you, not just your work.\n- 2-3 sentences about who you are and what drives your design work\n- A photo of you (optional but builds trust)\n- Link to a full About page for people who want more\n\n### 4. What You Do\n**Purpose:** Help potential clients or employers understand what you offer.\n- 3-4 short descriptions of your main skills (brand identity, web design, illustration, etc.)\n- Keeps people from wondering \"but can they do what I need?\"\n\n### 5. Contact / Call to Action\n**Purpose:** Make it dead simple for someone to reach out.\n- A clear prompt like \"Interested in working together?\" with an email link or contact form\n- Links to LinkedIn, Dribbble, or other relevant profiles\n\n### What to Skip on the Homepage\n- **Blog** — Not needed unless you write regularly. An empty blog looks worse than no blog.\n- **Resume/CV** — Put this on a separate page or offer as a download.\n- **Testimonials** — Nice to have later, but don't wait on them to launch.\n\nOnce you're happy with this layout, the next step would be choosing a platform to build it on. Ready for that when you are!"
+  },
+  "feedback": {
+    "what_happened": "The weak prompt asks AI to handle everything at once, producing a scattered list of tasks from templates to SSL certificates — overwhelming for someone who's never built a website. The medium prompt asks for a full plan and gets an organized overview, but it's still five phases of information to process with no depth on any of them. The effective prompt focuses on just one step — the homepage layout — and gets a detailed, actionable breakdown of exactly what sections to include and why, with guidance a beginner can actually follow.",
+    "skill": "When you ask AI to do everything at once, you get a shallow overview of everything. When you focus on one step at a time, you get depth and detail you can actually use.",
+    "skill_name": "Break down complex tasks",
+    "tip": "Next time you're facing a big project, resist the urge to ask AI for the whole thing. Start with 'let's focus on just [one part]' — you'll get much better results for each step, and you can always ask for the next step when you're ready."
+  }
+}

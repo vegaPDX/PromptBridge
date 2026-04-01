@@ -26,8 +26,8 @@
   },
   "feedback": {
     "what_happened": "The weak prompt gives the AI almost nothing to work with, so it responds with generic categories anyone could list. The medium prompt provides some direction (tonight, not expensive, Italian preference), so the AI can offer general advice about price ranges and restaurant types. The effective prompt includes specific location, party size, budget, and cuisine preferences, enabling the AI to recommend actual restaurants with names, addresses, prices, and practical details like reservation policies and hours.",
-    "principle": "Include everything the AI needs to help you — but nothing extra.",
-    "principle_name": "Include everything needed — but nothing extra",
+    "skill": "Include everything the AI needs to help you — but nothing extra.",
+    "skill_name": "Provide full context",
     "tip": "Before asking for recommendations, write down the 4-5 essential details that would help a local friend give you good advice: location, budget, party size, cuisine type, and timing. Skip your food philosophy and family history — the AI only needs what's relevant to tonight's decision."
   },
   "feedbackUpdatedAt": "2026-03-24T05:43:17.295Z"

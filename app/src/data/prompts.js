@@ -3,10 +3,6 @@
 // Used by scripts/generate-content.js to generate static JSON.
 // ============================================================
 
-import { PRINCIPLES } from "./principles.js";
-
-const PRINCIPLE_MAP = Object.fromEntries(PRINCIPLES.map(p => [p.id, p]));
-
 // ── System prompts ──────────────────────────────────────────
 
 export const OPTION_GENERATOR_SYSTEM = `You are a component of PromptBridge, an interactive tool that teaches people how to communicate effectively with AI assistants.
@@ -81,19 +77,19 @@ Your feedback should include:
 
 1. WHAT HAPPENED: Explain the cause-and-effect across all three levels. What did the weak prompt lack? What did the medium prompt get partially right? What made the effective prompt produce a genuinely useful response? Be specific about the differences in the AI's output and WHY they happened.
 
-2. THE PRINCIPLE: Name the communication principle(s) at work and explain it in one sentence. Use plain language — not jargon. The principles are:
-   - Be specific, not vague
-   - Provide context
-   - State your intent
-   - Avoid ambiguity
-   - Show what "good" looks like
-   - Give specific feedback
-   - Ask the AI to ask you questions
-   - Ask the AI to write prompts for you
+2. THE SKILL: Name the skill(s) at work and explain it in one sentence. Use plain language — not jargon. The skills are:
+   - Be clear and specific
+   - Provide full context
+   - Show what good looks like
+   - Iterate with specific feedback
+   - Ask for step-by-step reasoning
+   - Break down complex tasks
+   - Ask AI to ask you questions
+   - Ask AI to write your prompts
    - Verify before you trust
-   - Include everything needed — but nothing extra
    - Know what AI can't do
    - Use AI responsibly
+   - Spot context drift
 
 3. THE TIP: One concrete, actionable thing the user can try next time they use any AI tool. This should be a specific behavior change, not abstract advice.
 
@@ -107,21 +103,21 @@ CRITICAL RULES:
 - Frame comparisons as "Here's what happens when..." not "Here's what you did wrong."
 - Use collaborative language: "Next time, try..." not "You should have..."
 - Keep total feedback under 200 words. Dense and useful, not long-winded.
-- NEVER use the phrase "prompt engineering" — say "how you talk to AI tools" or "how you phrase your request"
+- NEVER use the phrase "prompt engineering" — say "how you prompt AI tools" or "how you phrase your request"
 - NEVER use technical AI jargon (tokens, context window, system prompt, etc.)
 
 Respond in JSON format:
 {
   "what_happened": "...",
-  "principle": "...",
-  "principle_name": "...",
+  "skill": "...",
+  "skill_name": "...",
   "tip": "..."
 }`;
 
 // ── User-message builders ───────────────────────────────────
 
-export function buildOptionGeneratorMessage(scenario, principleNames) {
-  return `Scenario: ${scenario.situation}\n\nThe user's task: ${scenario.title}\n\nCommunication principles being taught: ${principleNames}\n\nAdditional guidance: ${scenario.feedbackNotes || ""}\n\nGenerate 3 prompt options as described in your instructions.`;
+export function buildOptionGeneratorMessage(scenario, skillNames) {
+  return `Scenario: ${scenario.situation}\n\nThe user's task: ${scenario.title}\n\nSkills being taught: ${skillNames}\n\nAdditional guidance: ${scenario.feedbackNotes || ""}\n\nGenerate 3 prompt options as described in your instructions.`;
 }
 
 export function buildResponseSimulatorMessage(weakPrompt, mediumPrompt, strongPrompt, situation) {

@@ -26,8 +26,8 @@
   },
   "feedback": {
     "what_happened": "The weak prompt produces generic leadership traits that could unconsciously trigger biased assumptions - words like 'confident' and 'decisive' often get interpreted through cultural stereotypes. The medium prompt improves by adding specific requirements, but still leaves room for bias in phrases like 'advanced degree preferred.' The effective prompt explicitly asks the AI to check for demographic assumptions and focus only on job-relevant skills. Notice how the AI's final response includes a clear disclaimer about avoiding assumptions and structures the description around measurable competencies rather than personality traits.",
-    "principle": "Ask the AI to check its own work for potential problems you might not notice.",
-    "principle_name": "Verify before you trust",
+    "skill": "Ask the AI to check its own work for potential problems you might not notice.",
+    "skill_name": "Verify before you trust",
     "tip": "When asking AI to help with hiring, promotion, or evaluation content, always include a sentence like 'Please review your response for any assumptions about demographics or background, and focus only on job-relevant qualifications.' This catches bias you might miss."
   },
   "feedbackUpdatedAt": "2026-03-24T05:45:19.149Z"

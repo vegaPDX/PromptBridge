@@ -26,8 +26,8 @@
   },
   "feedback": {
     "what_happened": "The weak and medium prompts both assume the AI has current information, so they get confident-sounding answers that might be outdated or wrong. The AI responds as if it knows for certain, giving specific details without any caveats. The effective prompt acknowledges the AI's limitations upfront, which completely changes the response — instead of potentially wrong 'facts,' you get honest context about what the AI does and doesn't know, plus guidance on where to find reliable current information.",
-    "principle": "Know what AI can't do — AI systems have knowledge cutoffs and can't browse the internet for current information, so asking about recent events without acknowledging this leads to potentially outdated answers presented as fact.",
-    "principle_name": "Know what AI can't do",
+    "skill": "Know what AI can't do — AI systems have knowledge cutoffs and can't browse the internet for current information, so asking about recent events without acknowledging this leads to potentially outdated answers presented as fact.",
+    "skill_name": "Know what AI can't do",
     "tip": "When asking about recent events, stock prices, or breaking news, start by asking 'When does your training data end?' or say 'Based on what you know...' — this prompts the AI to be transparent about its limitations and guide you to current sources."
   },
   "feedbackUpdatedAt": "2026-03-24T05:45:03.777Z"

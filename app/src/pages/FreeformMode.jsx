@@ -3,7 +3,7 @@ import {
   ArrowLeft, ArrowRight, PenTool, Send,
   RefreshCw, Check, Lightbulb,
 } from "lucide-react";
-import { PRINCIPLE_MAP } from "../data/principles";
+import { SKILL_MAP } from "../data/skills";
 import { scorePrompt, getFeedbackSummary } from "../services/heuristic-scorer";
 import AiToolLinks from "../components/AiToolLinks";
 
@@ -121,7 +121,7 @@ export default function FreeformMode({ scenario, onComplete, onBack, practicedPr
                 <div className="flex flex-wrap gap-1.5">
                   {heuristic.principlesDetected.map(pid => (
                     <span key={pid} className="text-xs px-2 py-0.5 bg-emerald-50 text-emerald-700 rounded-full font-medium border border-emerald-200 inline-flex items-center gap-1">
-                      <Check className="w-3 h-3" /> {PRINCIPLE_MAP[pid]?.name}
+                      <Check className="w-3 h-3" /> {SKILL_MAP[pid]?.name}
                     </span>
                   ))}
                 </div>
@@ -143,8 +143,8 @@ export default function FreeformMode({ scenario, onComplete, onBack, practicedPr
             )}
           </div>
 
-          {/* Contextual P6 debugging tip — only for scenarios that target P6 */}
-          {scenario.principles.includes("P6") && heuristic.principlesMissing.includes("P6") && (
+          {/* Contextual S4 debugging tip — only for scenarios that target S4 */}
+          {scenario.skills.includes("S4") && heuristic.principlesMissing.includes("S4") && (
             <div className="bg-amber-50 border border-amber-200 rounded-xl p-4">
               <div className="flex items-start gap-3">
                 <Lightbulb className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" aria-hidden="true" />

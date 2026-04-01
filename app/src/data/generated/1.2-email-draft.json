@@ -26,8 +26,8 @@
   },
   "feedback": {
     "what_happened": "The weak prompt produces a vague, generic delay email that could apply to any project — it doesn't mention the Q2 report, finance team, or timeline, leaving your manager guessing about details. The medium prompt gets the basics right with a more specific email, but the AI has to guess at tone and structure, producing something professional but generic. The effective prompt includes all the same context plus a real example email — and that's the game-changer. The AI picks up on the conversational tone ('Quick heads-up'), the concise structure, and the direct style from your sample, producing an email that actually sounds like something you'd write.",
-    "principle": "Show what 'good' looks like — giving AI an example of your own writing produces output that sounds like you, not a template.",
-    "principle_name": "Show what \"good\" looks like",
+    "skill": "Show what good looks like — giving AI an example of your own writing produces output that sounds like you, not a template.",
+    "skill_name": "Show what good looks like",
     "tip": "When asking AI to write something, paste in an example of similar writing you've done before. Even a short sample gives the AI a concrete style to match instead of guessing at your tone — this is the difference between generic AI output and something that sounds like you."
   },
   "feedbackUpdatedAt": "2026-03-28T12:00:00.000Z"

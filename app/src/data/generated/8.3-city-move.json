@@ -1,0 +1,33 @@
+{
+  "scenarioId": "8.3-city-move",
+  "generatedAt": "2026-04-01T12:00:00.000Z",
+  "generatedWith": "claude-opus-4-6-20260322",
+  "options": [
+    {
+      "id": "a",
+      "text": "I need to move to a new city in 6 weeks. Help me plan everything.",
+      "quality": "weak"
+    },
+    {
+      "id": "b",
+      "text": "I just accepted a job in Denver and need to relocate from Portland in 6 weeks. Can you help me figure out what I need to do — housing, moving logistics, utilities, finding new doctors, and everything else?",
+      "quality": "medium"
+    },
+    {
+      "id": "c",
+      "text": "I need to relocate from Portland to Denver in 6 weeks for a new job. Let's focus on just the housing search first — my budget is $1,800/month, I need to be within 30 minutes of downtown Denver, and I have a large dog. What neighborhoods should I look at, and what are the steps to secure a rental remotely? We'll tackle moving logistics after I've found a place.",
+      "quality": "strong"
+    }
+  ],
+  "responses": {
+    "response_weak": "Moving to a new city is exciting! Here's what you'll need to do:\n\n- Find housing (research neighborhoods, check listings)\n- Hire movers or rent a truck\n- Forward your mail with USPS\n- Transfer or set up utilities (electric, gas, water, internet)\n- Update your address everywhere (bank, DMV, insurance, subscriptions)\n- Find new doctors, dentist, and vet\n- Register your car in the new state\n- Get a new driver's license\n- Update your voter registration\n- Explore your new neighborhood\n\nStart as early as possible since 6 weeks goes fast! Make a spreadsheet to track everything and check items off as you go.",
+    "response_medium": "## 6-Week Relocation Plan: Portland → Denver\n\n### Weeks 1–2: Housing\n- Research Denver neighborhoods based on commute and budget\n- Check listings on Zillow, Apartments.com, and Craigslist\n- Schedule virtual tours if you can't visit in person\n- Apply quickly — Denver's rental market moves fast\n- You'll likely need first month's rent, deposit, and proof of employment\n\n### Weeks 2–3: Moving Logistics\n- Get quotes from 3+ moving companies for cross-state moves\n- Alternatively, rent a U-Haul or use a pod service like PODS\n- Start decluttering and packing non-essential items\n- Decide what to sell, donate, or trash\n\n### Weeks 3–4: Administrative\n- Forward mail through USPS\n- Set up utilities at your new address (Xcel Energy is Denver's main provider)\n- Notify your bank, insurance, and subscriptions of the address change\n- Request medical records from current doctors\n\n### Weeks 4–5: Medical & Personal\n- Find new primary care doctor, dentist, and any specialists\n- Find a new vet if you have pets\n- Research your new neighborhood (grocery stores, gyms, parks)\n\n### Week 6: Final Prep\n- Confirm moving date and logistics\n- Do a final walkthrough of your current place\n- Clean and handle security deposit requirements\n\nThis is a lot, but tackling one category at a time makes it manageable. Want me to go deeper on any section?",
+    "response_strong": "## Finding a Rental in Denver — Remote Search Guide\n\n### Neighborhoods That Fit Your Criteria\nBased on $1,800/month, within 30 minutes of downtown, and large-dog-friendly:\n\n**Best bets:**\n- **Capitol Hill / Cheesman Park** — Walkable, close to downtown (10 min), good mix of apartments. Some buildings have breed or size restrictions, so ask specifically about large dogs. Budget: $1,400–1,800 for a 1BR.\n- **Wash Park** — Quieter, very dog-friendly with a huge off-leash park. About 15 minutes to downtown. Budget: $1,500–1,900 for a 1BR.\n- **Sloan's Lake** — Up-and-coming area with great lake access for dog walks. 15–20 minutes to downtown. Budget: $1,400–1,750 for a 1BR.\n- **Arvada / Wheat Ridge** — Suburban feel, more space, very dog-friendly. 20–30 minutes to downtown. Budget: $1,300–1,700 for a 1BR or small 2BR.\n\n**Skip for your needs:**\n- **LoDo / RiNo** — Trendy but expensive, limited pet-friendly options, few ground-floor units for easy dog access.\n- **East Aurora** — Affordable but often 30+ minutes to downtown in traffic.\n\n### Steps to Secure a Rental Remotely\n\n**Step 1: Prep your application package now**\n- Employment offer letter or proof of income\n- Last 2–3 pay stubs (or new salary info)\n- Credit report (pull yours from annualcreditreport.com)\n- References from current or previous landlords\n- Photo of your dog with breed and weight\n\n**Step 2: Search and filter (this week)**\n- Use Zillow, Apartments.com, and Padmapper\n- Filter for \"large dogs allowed\" — many Denver listings specify this\n- Focus on the neighborhoods above\n- Save 8–10 options and request virtual tours\n\n**Step 3: Virtual tours and applications (weeks 1–2)**\n- Most Denver landlords will do FaceTime or video walkthroughs\n- Apply to your top 2–3 the same day as the tour — the market moves fast\n- Budget $30–75 per application fee\n\n**Step 4: Secure the lease (weeks 2–3)**\n- Denver typically requires first month + one month security deposit\n- Most landlords accept e-signatures for remote leases\n- Ask about move-in date flexibility — some hold for 2–3 weeks\n\n### One Thing to Watch\nDenver had a pit bull ban until 2021 — it's now allowed with a breed-restricted license. If your dog is a pit bull or pit mix, you'll need to register. Other large breeds are generally fine, but always confirm with the landlord.\n\nOnce you've locked down housing, we can map out moving logistics for your specific timeline. Ready when you are!"
+  },
+  "feedback": {
+    "what_happened": "The weak prompt asks for help with 'everything,' producing a generic checklist that could apply to any move anywhere — no neighborhood advice, no timelines, no priorities. The medium prompt adds helpful details and gets a more organized timeline, but each section is still surface-level because it's covering five major tasks at once. The effective prompt focuses entirely on housing with specific constraints, and the AI delivers neighborhood recommendations with real detail, a step-by-step remote search process, and even a local heads-up about breed restrictions — the kind of actionable depth that actually helps you find an apartment.",
+    "skill": "Big tasks with many moving parts produce shallow, generic plans when you ask for everything at once. Focusing on one piece at a time with specific details produces answers you can actually act on.",
+    "skill_name": "Break down complex tasks",
+    "tip": "When facing a complex project with many parts, pick the most time-sensitive piece and say 'let's focus on just this first.' You'll get specific, useful answers instead of a shallow overview you can't act on."
+  }
+}

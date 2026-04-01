@@ -19,11 +19,12 @@ vi.mock("../services/recommendations", () => ({
 
 const MOCK_SCENARIO = {
   id: "1.1-snow-shoveling",
-  category: "vague_vs_specific",
+  area: "A1",
+  skillGroup: "A1-clarity",
   title: "The snow shoveling problem",
   situation: "It snowed heavily overnight.",
   mode: "guided",
-  principles: ["P1", "P4"],
+  skills: ["S1"],
 };
 
 const MOCK_CONTENT = {

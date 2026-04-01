@@ -26,8 +26,8 @@
   },
   "feedback": {
     "what_happened": "The weak prompt treats the AI's refusal as a personal attack, so the AI responds defensively with a generic explanation that doesn't help you move forward. The medium prompt is calmer and gets a real explanation — the AI tells you why it declined and offers a couple of alternatives — but the conversation stays surface-level. The effective prompt does something completely different: it asks the AI to explain its reasoning and suggest alternatives. This collaborative approach gets you a detailed breakdown of the AI's specific concerns, a clear explanation of the boundary categories, multiple practical workarounds, and keeps the door open for further problem-solving.",
-    "principle": "Ask the AI to ask you questions — when you hit a wall, invite the AI to help you find a better path forward rather than pushing against the boundary.",
-    "principle_name": "Ask the AI to ask you questions",
+    "skill": "Ask AI to ask you questions — when you hit a wall, invite the AI to help you find a better path forward rather than pushing against the boundary.",
+    "skill_name": "Ask AI to ask you questions",
     "tip": "When an AI declines your request, respond with curiosity instead of frustration. Ask 'What specifically concerns you about this?' and 'How could I rephrase this to get help?' This turns a dead end into a collaborative problem-solving conversation."
   },
   "feedbackUpdatedAt": "2026-03-28T12:00:00.000Z"

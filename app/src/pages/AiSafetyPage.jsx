@@ -36,7 +36,7 @@ export default function AiSafetyPage({ onNavigate }) {
           We don't think AI is magic. We think it's a tool — and like any tool, it works better when you know how to use it <strong>and</strong> when you know its limits.
         </p>
         <p className="text-stone-700 text-sm mb-3">
-          10 of our 26 scenarios are specifically about protecting yourself from AI mistakes:
+          13 of our 35 scenarios are specifically about protecting yourself from AI mistakes:
         </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
           <button onClick={() => onNavigate("scenarios")} className="flex items-center gap-2 bg-white rounded-lg border border-indigo-100 px-3 py-2 text-left hover:border-indigo-300 transition-colors">
@@ -62,10 +62,10 @@ export default function AiSafetyPage({ onNavigate }) {
       <div className="bg-stone-50 border border-stone-200 rounded-xl p-5 mb-6">
         <h2 className="font-serif text-lg font-semibold text-stone-800 mb-2">Why this matters</h2>
         <p className="text-stone-700 text-sm mb-3">
-          Research shows that about <strong>60% of AI frustrations</strong> come from how people communicate with AI — and about <strong>40% come from real limitations</strong> in the AI itself.
+          Research shows that <strong>~60% of AI frustrations</strong> come from how people prompt AI — and <strong>~40% come from real limitations</strong> in the AI itself.
         </p>
         <p className="text-stone-700 text-sm">
-          PromptBridge teaches you to handle both. You'll learn communication skills that fix the 60%, and awareness skills that help you recognize and work around the 40%.
+          PromptBridge teaches you to handle both. You'll learn prompting skills that fix the 60%, and awareness skills that help you recognize and work around the 40%.
         </p>
       </div>
 

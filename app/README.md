@@ -13,7 +13,7 @@ npm install
 npm run dev
 ```
 
-The app runs at `http://localhost:5173`. All 26 scenarios work immediately with no API key required.
+The app runs at `http://localhost:5173`. All 35 scenarios work immediately with no API key required.
 
 ---
 
@@ -47,7 +47,6 @@ The app is a **fully static SPA** with zero backend dependencies:
 
 ## Structure
 
-- **6 maxims** with **13 sub-maxims** and **26 guided scenarios**
-- Heavy emphasis on AI safety (Maxim 6 gets 3 sub-maxims, 10 of 26 scenarios cover safety)
-- Simplified from the full [PromptBridge](https://github.com/vegaPDX/PromptBridge) (76 scenarios)
-- No freeform or assessment modes — focused guided practice only
+- **2 focus areas** with **12 skills** and **35 guided scenarios**
+- Heavy emphasis on AI safety (13 of 35 scenarios cover verification, limitations, bias, and safety)
+- Focused guided practice only

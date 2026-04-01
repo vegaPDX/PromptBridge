@@ -69,9 +69,9 @@ describe("Header", () => {
     expect(screen.getByText("PromptBridge")).toBeInTheDocument();
   });
 
-  it("shows principle count badge when principles are practiced", () => {
-    render(<Header page="landing" practicedPrinciples={["P1", "P2"]} onNavigate={() => {}} />);
-    expect(screen.getByText("2/13")).toBeInTheDocument();
+  it("shows skill count badge when skills are practiced", () => {
+    render(<Header page="landing" practicedPrinciples={["S1", "S2"]} onNavigate={() => {}} />);
+    expect(screen.getByText("2/12")).toBeInTheDocument();
   });
 
   it("does not show badge when no principles are practiced", () => {

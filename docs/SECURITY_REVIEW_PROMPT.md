@@ -8,29 +8,33 @@ Act as a veteran Senior Frontend/Web Platform Engineer with 15-20 years of exper
 
 PromptBridge is a **fully static web application** deployed on GitHub Pages that teaches people to communicate effectively with AI assistants. It makes **zero outbound network requests**, stores **no secrets**, and has **no backend**. Users practice with interactive scenarios, get client-side heuristic feedback on their prompts, then copy their prompts to real AI tools (ChatGPT, Claude, Gemini, Copilot).
 
-**Recent changes since the last audit (v4) — Research-driven improvement round (Phases 1-6):**
+**Recent changes since the last audit (v4):**
+
+**Rebuild (Phases 1–4):** Complete data layer rewrite. Old terminology (maxims, sub-maxims, principles P1–P12, categories M1–M6) replaced with new model: 2 focus areas (A1, A2), 12 skills (S1–S12), 11 skill groups. New data files: `skills.js` (primary, replaces `principles.js`), `skill-areas.js` (primary, replaces `maxims.js`). Legacy files `principles.js` and `maxims.js` kept for reference. `scenarios.js` rewritten: `maxim`→`area`, `subMaxim`→`skillGroup`, `principles`→`skills`. All 26 original JSON files updated (feedback keys: `principle`→`skill`, `principle_name`→`skill_name`). 9 new scenarios added for S5, S6, S12. **Total: 35 guided scenarios, 0 freeform.** Heuristic scorer updated for all 12 skills. All tests pass (189 tests across 9 files).
+
+**Earlier: Research-driven improvement round (Phases 1-6):**
 
 Based on a research report analyzing 80+ real user complaints about AI tools, a 6-phase improvement was executed:
 
-- **Phase 1 — Principle reordering:** Added `teachingOrder` field to all 12 principles. New teaching sequence: P8→P1→P2→P5→P3→P7→P4→P6→P9→P10→P11→P12. Recommendation engine (`recommendations.js`) now sorts by `teachingOrder` so new users start with P8 ("Ask the AI to write prompts for you") as the gateway skill.
+- **Phase 1 — Skill reordering:** Added `teachingOrder` field to all 12 skills. New teaching sequence: S8→S1→S2→S3→S5→S7→S4→S6→S9→S10→S11→S12. Recommendation engine (`recommendations.js`) now sorts by `teachingOrder` so new users start with S8 ("Ask AI to write your prompts") as the gateway skill.
 - **Phase 2 — AI safety visibility:** Three new touchpoints ensure every user sees AI safety content before their first scenario:
   - `AiSafetyBanner.jsx` (NEW) — first-visit welcome card with 3 key AI facts, dismissable, stored in localStorage
   - `PreScenarioBanner.jsx` (NEW) — one-line amber reminder before first scenario, dismissable, stored in localStorage
   - `LandingPage.jsx` — new "We believe in being honest about AI" section (3 bullet points: hallucination, sycophancy, 60% communication stat)
-  - `AiSafetyPage.jsx` — new "New to AI? Start here" section (P9-P12 cards) + "Why this matters" 60/40 split section
+  - `AiSafetyPage.jsx` — new "New to AI? Start here" section (S9–S12 cards) + "Why this matters" 60/40 split section
   - `Header.jsx` — AI safety button now has "AI Limits" text label (was icon-only)
   - `storage.js` — 4 new functions for banner flag persistence (`hasSeenSafetyIntro`, `markSafetyIntroSeen`, `hasSeenPreScenarioBanner`, `markPreScenarioBannerSeen`)
   - `App.jsx` — banner state management with lazy-loaded localStorage reads
   - `ScenarioSelector.jsx` — accepts `showPreScenarioBanner` and `onDismissPreScenario` props
 - **Phase 3 — Content updates:**
-  - `heuristic-scorer.js` — P5 detection expanded with 10+ new patterns (quoted blocks, "here's an example," "in the style of," etc.)
-  - `GuidedMode.jsx` — P5 research callout box (indigo, 0%-to-90% stat) shown for P5 scenarios
+  - `heuristic-scorer.js` — S3 (Show what good looks like) detection expanded with 10+ new patterns (quoted blocks, "here's an example," "in the style of," etc.)
+  - `GuidedMode.jsx` — S3 research callout box (indigo, 0%-to-90% stat) shown for S3 scenarios
   - `HelpPage.jsx` — new "When AI isn't giving you what you want" debugging protocol (3 steps + "Common traps" section)
-  - `FreeformMode.jsx` — contextual P6 tip when user's prompt is missing specific feedback skill
+  - `FreeformMode.jsx` — contextual S4 tip when user's prompt is missing specific feedback skill
   - `LandingPage.jsx` — language audit: hero ("Tired of generic AI responses?"), research stat (0%-to-90%), skills heading ("12 ways to stop getting generic AI slop"), user vernacular throughout
-  - `ProgressPage.jsx` — principles sorted by `teachingOrder`, explanatory text about research-driven ordering
-- **Phase 4 — New scenarios:** 8 new guided scenarios added (76 total: 61 guided + 15 freeform). Research-driven pain points: generic email (P1,P2,P5), code debugging (P2,P3,P6), context window cliff (P2,P11), endless redo loop (P4,P6), AI sycophancy (P9,P12), prompt regression (P1,P2,P5), safety wall (P3,P11), five-minute expert (P8,P7). All 8 generated JSON files are hand-crafted (not pipeline-generated).
-- **Phase 5 — Test infrastructure:** Added vitest with 123 tests across 6 files covering data integrity, heuristic scorer (all 12 principles + P5 expanded patterns), recommendation engine (teachingOrder sorting), storage (banner flags + failure handling), and component smoke tests.
+  - `ProgressPage.jsx` — skills sorted by `teachingOrder`, explanatory text about research-driven ordering
+- **Phase 4 — New scenarios:** 8 new guided scenarios added for research-driven pain points: generic email (S1,S2,S3), code debugging (S2,S4), context window cliff (S2,S10), endless redo loop (S1,S4), AI sycophancy (S9,S11), prompt regression (S1,S2,S3), safety wall (S10), five-minute expert (S7,S8). All 8 generated JSON files are hand-crafted (not pipeline-generated).
+- **Phase 5 — Test infrastructure:** Added vitest with 123 tests across 6 files covering data integrity, heuristic scorer (all 12 skills + S3 expanded patterns), recommendation engine (teachingOrder sorting), storage (banner flags + failure handling), and component smoke tests.
 - **Phase 6 — Holistic review:** Fixed LandingPage sycophancy icon (Check→AlertTriangle) and inconsistent "Heads Up"→"AI Limits" labeling.
 
 Your goals are:
@@ -38,20 +42,20 @@ Your goals are:
 2. **Find bugs** — React state issues, edge cases, broken flows
 3. **Find dead code** — orphaned imports, unused components, leftover references
 4. **Audit user-facing language** — jargon, inconsistent tone, unclear wording for beginners
-5. **Verify the data layer integrity** — all 12 principles referenced correctly, no dangling scenario IDs, teachingOrder consistency
+5. **Verify the data layer integrity** — all 12 skills referenced correctly, no dangling scenario IDs, skill group consistency
 6. **Review test coverage** — gaps, false-positive tests, edge cases not covered
 
 ## The Codebase
 
 * **Frontend:** React 19, JavaScript (no TypeScript), Vite 8, Tailwind CSS v4, lodash-es (groupBy only), lucide-react
 * **Architecture:** Fully static SPA, zero outbound network requests, deployed on GitHub Pages
-* **Content:** 61 pre-generated JSON scenario files (53 pipeline-generated + 8 hand-crafted), committed to repo
-* **Scoring:** Client-side heuristic scorer using regex pattern matching against 12 communication principles
+* **Content:** 35 pre-generated JSON scenario files, committed to repo
+* **Scoring:** Client-side heuristic scorer using regex pattern matching against 12 skills (S1–S12)
 * **Storage:** Progress, assessment results, user context, and 2 banner flags stored in `localStorage` as JSON/strings
 * **Content Rendering:** Custom `MarkdownText` component uses `escapeHtml()` + regex bold/italic + `dangerouslySetInnerHTML`
 * **Content Security Policy:** `<meta>` tag in `index.html` (verify current directives)
 * **Clickjacking:** JavaScript frame-buster in `main.jsx`
-* **Tests:** Vitest 4.1.1 with jsdom, @testing-library/react, @testing-library/jest-dom — 123 tests across 6 files
+* **Tests:** Vitest 4.1.1 with jsdom, @testing-library/react, @testing-library/jest-dom — 189 tests across 9 files
 * **Build Config:** Vite with `base: '/PromptBridge/'`
 
 ### File inventory
@@ -65,8 +69,8 @@ Header, CopyButton, AiToolLinks, MarkdownText, PrincipleBadge, ErrorBanner, Load
 **Services (src/services/) — 4 files:**
 heuristic-scorer.js, guided-data.js, recommendations.js, storage.js
 
-**Data (src/data/) — 8 files + 61 generated JSON:**
-scenarios.js (76 scenarios), principles.js (12 principles with teachingOrder), categories.js, prompts.js (used only by generate-content.js script), assessment-scenarios.js, demo.js, icon-map.js, plus `generated/*.json`
+**Data (src/data/) — 10 files + 35 generated JSON:**
+scenarios.js (35 scenarios), skills.js (12 skills, S1–S12 — primary), skill-areas.js (2 focus areas, 11 skill groups — primary), principles.js (legacy, kept for reference), maxims.js (legacy, kept for reference), categories.js, prompts.js (used only by generate-content.js script), assessment-scenarios.js, demo.js, icon-map.js, plus `generated/*.json`
 
 **Tests (src/__tests__/) — 6 files:**
 data-integrity.test.js (22 tests), heuristic-scorer.test.js (42 tests), recommendations.test.js (10 tests), storage.test.js (19 tests), components.test.jsx (16 tests), plus setup.js and vitest.config.js
@@ -105,7 +109,7 @@ const formatted = escaped
 - Several components render strings from pre-generated JSON as React text nodes (e.g., `{content.feedback.what_happened}`). Confirm these are all safe (React auto-escapes text nodes).
 - `AiSafetyPage.jsx` renders hardcoded JSX strings. Verify no dynamic content is rendered unsafely on this page.
 - **NEW:** `AiSafetyBanner.jsx` and `PreScenarioBanner.jsx` render hardcoded text. Verify no dynamic content paths exist.
-- **NEW:** The 8 hand-crafted JSON files in Phase 4 were not pipeline-generated. Verify they don't contain any HTML or script content that could bypass escaping. Spot-check at least 3 of these files: `3.1-generic-email.json`, `6.4-ai-agreed-bad-idea.json`, `6.6-safety-wall.json`.
+- Verify generated JSON files don't contain any HTML or script content that could bypass escaping. Spot-check at least 3 files including newer scenarios (e.g., `7.1-car-loan-math.json`, `8.1-portfolio-website.json`, `9.1-drifting-format.json`).
 
 ---
 
@@ -145,7 +149,7 @@ if (window.self !== window.top) {
 **Carry-forward items from v4 (verify these are still clean):**
 
 - **`src/components/ResponseComparison.jsx`** — This component has been removed. Verify no references remain in source code.
-- **`src/data/prompts.js`** — Exports functions used only by `scripts/generate-content.js` (NOT part of the built app). Verify: does Vite tree-shake this file out of the production bundle, or does it get included because other data files import from `principles.js` which is in the same directory?
+- **`src/data/prompts.js`** — Exports functions used only by `scripts/generate-content.js` (NOT part of the built app). Verify: does Vite tree-shake this file out of the production bundle, or does it get included because other data files import from `skills.js` which is in the same directory?
 - **`.env.example`** — Verify it no longer references any `VITE_` prefixed variables.
 - **Search the entire `src/` directory** for remaining references to deleted features: `hasApiKey`, `callLLM`, `analyzeFreeform`, `simulateResponses`, `generateVariations`, `generateInitialResponse`, `generateImprovedResponse`, `generateMultiTurnFeedback`, `getProviderConfig`, `PROVIDER_STORAGE_KEY`, `promptbridge_provider`, `HybridMode`, `MultiTurnMode`, `SettingsPage`, `llm.js`, `apiKey`, `api_key`, `BYOK`.
 - **`user_picked_best` field:** Verify no source code references it. Verify no generated JSON files still contain it.
@@ -154,7 +158,7 @@ if (window.self !== window.top) {
 
 - **`resolveFeedback()` in GuidedMode.jsx:** This function handles both flat and nested (weak/medium/strong) feedback formats. All 61 generated files now use flat format. Is the nested format fallback dead code? Are there any generated JSON files that still use the nested format? If all 61 files are flat, this fallback code should be flagged.
 - **Check for unused lucide-react icons** in each file. The app now imports icons across 10+ files. Verify every imported icon is actually rendered in each file. Pay special attention to files modified across multiple phases (LandingPage.jsx was touched by Phases 2, 3, and 6).
-- **Check localStorage keys:** The app now uses 5 localStorage keys: `promptbridge_progress`, `promptbridge_assessment`, `promptbridge_user_context`, `promptbridge_seen_safety_intro`, `promptbridge_seen_pre_scenario`. Verify no code reads or writes any other keys (e.g., the old `promptbridge_provider` for API keys).
+- **Check localStorage keys:** The app uses localStorage keys including `promptbridge_progress`, `promptbridge_assessment`, `promptbridge_user_context`, `promptbridge_seen_safety_intro`, `promptbridge_seen_pre_scenario`. Verify no code reads or writes any other keys (e.g., the old `promptbridge_provider` for API keys).
 - **Phase completion artifacts:** The project root contains `PHASE_1_COMPLETE.md` through `PHASE_5_COMPLETE.md`, `PHASE_6_REVIEW.md`, `HANDOFF_NOTES.md`, and `PROMPTBRIDGE_IMPROVEMENT_PLAN.md`. These are documentation artifacts — they should NOT be committed to the main branch. Flag them for removal before pushing.
 - **`docs/IMPROVEMENT_CHANGELOG.md`** — Created by Phase 1. Verify it's in the `docs/` directory (appropriate for repo docs, not the built app).
 
@@ -166,7 +170,7 @@ if (window.self !== window.top) {
 
 | Key | Type | Purpose |
 |-----|------|---------|
-| `promptbridge_progress` | JSON object | `{ completedScenarios: [], practicedPrinciples: [] }` |
+| `promptbridge_progress` | JSON object | `{ completedScenarios: [], practicedSkills: [] }` |
 | `promptbridge_assessment` | JSON object | `{ pre: null\|object, post: null\|object }` |
 | `promptbridge_user_context` | JSON string/null | User's AI usage context (e.g., "Work emails & docs") |
 | `promptbridge_seen_safety_intro` | string `"true"` | Whether first-visit banner has been dismissed |
@@ -175,7 +179,7 @@ if (window.self !== window.top) {
 **Audit tasks:**
 - All `JSON.parse` calls are wrapped in try/catch with fallback defaults. Verify this is correct and that no parse failure can crash the app.
 - The banner flags use string comparison (`=== "true"`) rather than JSON parsing. Verify this is consistent and that no code path could store a non-string value.
-- Could a malicious browser extension modify localStorage to inject unexpected data? What happens with non-string values in arrays, invalid principle IDs (e.g., "P13" which doesn't exist), or oversized data?
+- Could a malicious browser extension modify localStorage to inject unexpected data? What happens with non-string values in arrays, invalid skill IDs (e.g., "S13" which doesn't exist), or oversized data?
 - What happens if localStorage is full (quota exceeded)? Verify all `setItem` calls return meaningful success/failure.
 - Is there a way for the user to reset all data? Should the app clean up unknown/stale localStorage keys?
 - **NEW:** The banner dismiss flow: `App.jsx` reads `hasSeenSafetyIntro()` in a lazy `useState` initializer. If localStorage is corrupted, does the banner re-appear (safe default) or fail silently?
@@ -210,25 +214,25 @@ In `App.jsx`, `markCompleted` uses `useCallback` with `[completedScenarios, prac
 - The `PreScenarioBanner` is passed as props through `ScenarioSelector`. Verify the prop drilling is correct and the dismiss callback reaches `App.jsx`.
 - If a user clears localStorage manually, both banners should re-appear on next visit. Does the lazy initializer handle this correctly?
 
-### 6f. ProgressPage teachingOrder sort (NEW)
+### 6f. ProgressPage skill sort (NEW)
 
-`ProgressPage.jsx` sorts principles with `[...PRINCIPLES].sort((a, b) => a.teachingOrder - b.teachingOrder)`. Verify:
-- The spread-then-sort doesn't mutate the original `PRINCIPLES` array.
-- The sorted order is stable and matches the expected P8→P1→P2→P5→P3→P7→P4→P6→P9→P10→P11→P12 sequence.
+`ProgressPage.jsx` sorts skills for display. Verify:
+- The spread-then-sort doesn't mutate the original skills array.
+- The sorted order is stable and matches the expected skill sequence.
 
-### 6g. GuidedMode P5 callout conditional (NEW)
+### 6g. GuidedMode S3 callout conditional (NEW)
 
-`GuidedMode.jsx` shows an indigo callout box when `scenario.principles.includes("P5")`. Verify:
+`GuidedMode.jsx` shows an indigo callout box when the scenario includes S3 (Show what good looks like). Verify:
 - The callout appears only during the "explore" step, not during "write-own" or "write-results."
-- Scenarios that don't include P5 never show this callout.
+- Scenarios that don't include S3 never show this callout.
 - The callout doesn't interfere with the accordion layout below it.
 
-### 6h. FreeformMode P6 contextual tip (NEW)
+### 6h. FreeformMode S4 contextual tip (NEW)
 
-`FreeformMode.jsx` shows an amber tip when `heuristic.principlesMissing.includes("P6")`. Verify:
+`FreeformMode.jsx` shows an amber tip when the user's prompt is missing the S4 skill (Iterate with specific feedback). Verify:
 - This only appears in the "heuristic-results" step, not before scoring.
-- The tip doesn't show when P6 IS detected.
-- What happens for scenarios that don't include P6 in their principles array at all?
+- The tip doesn't show when S4 IS detected.
+- What happens for scenarios that don't include S4 in their skills array at all?
 
 ---
 
@@ -236,50 +240,50 @@ In `App.jsx`, `markCompleted` uses `useCallback` with `[completedScenarios, prac
 
 The data layer was significantly expanded in Phases 1 and 4. Verify internal consistency:
 
-**Principles:**
-- `principles.js` defines P1–P12. Verify all 12 have valid `id`, `name`, `description`, `icon`, `teachingOrder`, and `learnMoreUrl`.
-- **NEW:** `teachingOrder` values must be unique integers 1–12 with no gaps. Expected mapping: P8=1, P1=2, P2=3, P5=4, P3=5, P7=6, P4=7, P6=8, P9=9, P10=10, P11=11, P12=12.
-- `icon-map.js` must import and export every icon referenced by principles. Verify `EyeOff` and `Heart` are present alongside the original 10 icons.
-- `heuristic-scorer.js` must have a `PRINCIPLE_CHECKS` entry for every principle P1–P12. Verify all 12 exist and their regex patterns are syntactically valid.
+**Skills:**
+- `skills.js` defines S1–S12 (primary file). Verify all 12 have valid `id`, `name`, `description`, and `icon`.
+- `principles.js` is legacy — kept for reference only.
+- `skill-areas.js` defines 2 focus areas (A1, A2) and 11 skill groups (primary file). `maxims.js` is legacy.
+- `icon-map.js` must import and export every icon referenced by skills.
+- `heuristic-scorer.js` must have a check entry for every skill S1–S12. Verify all 12 exist and their regex patterns are syntactically valid.
 
 **Scenarios:**
-- `scenarios.js` defines **76 scenarios** (61 guided + 15 freeform). Run `node scripts/validate-scenario.js --all` to verify.
+- `scenarios.js` defines **35 guided scenarios** (0 freeform). Run `node scripts/validate-scenario.js --all` to verify.
 - Every guided scenario must have a corresponding JSON file in `generated/`. List any guided scenario IDs that are missing a generated file.
 - Every generated JSON file must have a corresponding scenario in `scenarios.js`. List any orphaned JSON files.
-- Every principle referenced in a scenario's `principles` array must exist in `principles.js`. No dangling references like "P13".
-- **NEW:** Verify the 8 new scenario IDs match their generated JSON filenames: `3.1-generic-email`, `2.15-code-almost-works`, `2.16-context-window-cliff`, `3.13-endless-redo`, `6.4-ai-agreed-bad-idea`, `6.5-refusal-decoder`, `6.6-safety-wall`, `4a.21-five-minute-expert`.
+- Every skill referenced in a scenario's `skills` array must exist in `skills.js`. No dangling references like "S13".
+- Verify the 9 new scenario IDs (Phase 4 of rebuild) match their generated JSON filenames: 7.1-car-loan-math, 7.2-road-trip-planner, 7.3-breakfast-study, 8.1-portfolio-website, 8.2-business-plan, 8.3-city-move, 9.1-drifting-format, 9.2-diet-contradiction, 9.3-party-planner-drift.
 
 **Feedback format:**
-- All 61 generated JSON files should have flat feedback: `{ what_happened, principle, principle_name, tip }`. No nested `{ weak: {...}, medium: {...}, strong: {...} }` format should remain.
+- All 35 generated JSON files should have flat feedback: `{ what_happened, skill, skill_name, tip }`. No nested `{ weak: {...}, medium: {...}, strong: {...} }` format should remain.
 - No generated JSON file should contain the field `user_picked_best`.
-- **NEW:** The 8 hand-crafted JSON files (Phase 4) should match the same schema as the 53 pipeline-generated files. Spot-check that `scenarioId` matches filename, `options` has exactly 3 entries with `weak`/`medium`/`strong` quality values, and `responses` has all 3 response keys.
+- Spot-check that `scenarioId` matches filename, `options` has exactly 3 entries with `weak`/`medium`/`strong` quality values, and `responses` has all 3 response keys.
 
 **Recommendation engine:**
-- **NEW:** `recommendations.js` sorts by `minTeachingOrder` among unpracticed principles. Verify that new users (no practiced principles) get P8 scenarios first, and that after completing P8, P1 scenarios come next.
+- `recommendations.js` suggests next scenarios based on unpracticed skills. Verify that new users see a reasonable starting recommendation.
 
 **Categories:**
-- `categories.js` defines 5 categories. Verify every `category` value used in `scenarios.js` exists in `categories.js`.
-- **NEW:** Verify the new scenario category assignments are correct: `3.1-generic-email` → `vague_vs_specific`, `2.15-code-almost-works` and `2.16-context-window-cliff` → `context_and_framing`, `3.13-endless-redo` → `iterative_refinement`, `4a.18` through `4a.21` → `smart_strategies`.
+- `categories.js` defines focus area display labels. Verify every `area` value used in `scenarios.js` exists in `categories.js`.
 
 **Prompts:**
-- `prompts.js` lists principles in the `FEEDBACK_GENERATOR_SYSTEM` prompt. Verify all 12 principle names are listed and match `principles.js`.
+- `prompts.js` lists skills in the `FEEDBACK_GENERATOR_SYSTEM` prompt. Verify all 12 skill names are listed and match `skills.js`.
 
 ---
 
 ## Audit Area 8: Heuristic Scorer (MEDIUM)
 
-`src/services/heuristic-scorer.js` uses regex patterns to detect communication principles in user prompts. Now covers P1–P12 with expanded P5 detection.
+`src/services/heuristic-scorer.js` uses regex patterns to detect skills in user prompts. Covers all 12 skills (S1–S12).
 
 **Audit tasks:**
-- **ReDoS:** Review each regex in `PRINCIPLE_CHECKS` for catastrophic backtracking. The patterns use alternation (`|`) inside `\b...\b`. Are any of the 12 patterns vulnerable to ReDoS with crafted input?
-- **P5 expanded patterns (NEW):** Phase 3 added 10+ new patterns to P5 detection: `here's an example of what i want`, `here's a sample`, `something like`, `for reference`, `for instance`, `modeled on`, `in the style of`, `based on this example`. It also added quoted text block detection: double-quoted strings (20+ chars), triple-backtick code blocks, and `>` blockquote markers. Verify:
-  - These new P5 patterns don't cause false positives on normal prompts. E.g., does "I want something like a professional email" falsely trigger P5?
+- **ReDoS:** Review each regex in the skill checks for catastrophic backtracking. The patterns use alternation (`|`) inside `\b...\b`. Are any of the 12 patterns vulnerable to ReDoS with crafted input?
+- **S3 expanded patterns (NEW):** S3 (Show what good looks like) has expanded detection patterns: `here's an example of what i want`, `here's a sample`, `something like`, `for reference`, `for instance`, `modeled on`, `in the style of`, `based on this example`. It also includes quoted text block detection: double-quoted strings (20+ chars), triple-backtick code blocks, and `>` blockquote markers. Verify:
+  - These patterns don't cause false positives on normal prompts. E.g., does "I want something like a professional email" falsely trigger S3?
   - The quoted block regex `/[""][^""]{20,}[""]/` — does this handle curly quotes correctly? What about escaped quotes inside the block?
   - The blockquote regex `/^>.*$/m` — this matches any line starting with `>`. In a multi-line prompt, could this false-positive on email-style quoting or comparison operators?
-- **P11 and P12 patterns:** The P11 pattern matches terms like `knowledge cutoff`, `training data`, `browse`, `internet access`. The P12 pattern matches terms like `bias`, `stereotype`, `assumption`, `harmful`, `ethical`. Are these patterns too broad (false positives on normal prompts) or too narrow (missing obvious signals)?
+- **S10 and S11 patterns:** The S10 pattern matches terms like `knowledge cutoff`, `training data`, `browse`, `internet access`. The S11 pattern matches terms like `bias`, `stereotype`, `assumption`, `harmful`, `ethical`. Are these patterns too broad (false positives on normal prompts) or too narrow (missing obvious signals)?
 - **Empty/whitespace input:** What happens if `scorePrompt` receives an empty string?
 - **Edge cases:** Very long input (close to 4000 char limit), Unicode text, emoji, RTL characters.
-- **P5 suggestion text (NEW):** The P5 suggestion now includes the research stat "This one technique can improve AI accuracy from 0% to 90%." Verify this text is grammatically correct and doesn't appear as jargon to beginners.
+- **S3 suggestion text (NEW):** The S3 suggestion now includes the research stat "This one technique can improve AI accuracy from 0% to 90%." Verify this text is grammatically correct and doesn't appear as jargon to beginners.
 
 ---
 
@@ -316,7 +320,7 @@ Multiple components use `navigator.clipboard.writeText()`:
 - **Error sanitization:** `sanitizeErrorText()` strips API key patterns from error messages. Verify the regex patterns are comprehensive.
 - **Path traversal:** The script writes to `src/data/generated/${scenario.id}.json`. Could a malicious scenario ID with `../` cause path traversal?
 - **parseJSON fallback:** The character-by-character control-character sanitization fallback — is it correct?
-- **NEW:** 8 of the 61 generated files were hand-crafted (not generated by this script). If the script is run with `--all`, will it overwrite the hand-crafted files? Is there a protection mechanism?
+- If the script is run with `--all`, will it overwrite hand-crafted files? Is there a protection mechanism?
 
 ---
 
@@ -329,7 +333,7 @@ PromptBridge's primary audience is complete AI beginners — people who have nev
 Search ALL user-facing text (JSX content, not code comments) across every page and component for:
 
 - **AI/ML jargon that should never appear:** "prompt engineering," "tokens," "context window," "system prompt," "temperature," "few-shot," "zero-shot," "RLHF," "fine-tuning," "embeddings," "RAG," "inference," "parameters," "weights," "training data" (except when explaining AI limitations), "LLM," "large language model," "neural network," "transformer," "hallucination" (except in the AI Safety page where it's defined), "sycophancy" (should never appear — use plain language equivalent)
-- **Academic jargon that should never appear in the UI:** "Gricean," "maxim," "pragmatics," "cooperative principle," "sub-maxim," "Miehling," "EMNLP," "ASSETS," "NeuroBridge" (this belongs in README/docs only, not in the user-facing app)
+- **Academic jargon that should never appear in the UI:** "Gricean," "pragmatics," "cooperative principle," "Miehling," "EMNLP," "ASSETS," "NeuroBridge" (this belongs in README/docs only, not in the user-facing app)
 - **Technical web jargon:** "localStorage," "JSON," "API," "API key," "backend," "frontend," "CSP," "XSS"
 - **NEW — Research language that should be plain:** Phase 3 introduced research-backed language. Verify these appear as intended (user-friendly), not as raw academic citations. Specifically check for:
   - The 0%-to-90% stat — should be framed simply, not with citation details
@@ -352,8 +356,8 @@ Check all hardcoded UI text in:
 - `HelpPage.jsx` (all instructional sections, debugging protocol, common traps)
 - `AiSafetyPage.jsx` (9 risk items, verification techniques, "New to AI" section, 60/40 section)
 - `ScenarioSelector.jsx` (category descriptions, tab labels, pre-scenario banner)
-- `GuidedMode.jsx` (step labels, feedback panel headers, P5 callout, button text)
-- `FreeformMode.jsx` (instructions, scoring feedback, P6 contextual tip)
+- `GuidedMode.jsx` (step labels, feedback panel headers, S3 callout, button text)
+- `FreeformMode.jsx` (instructions, scoring feedback, S4 contextual tip)
 - `ProgressPage.jsx` (progress descriptions, teaching order explanation)
 - `AssessmentMode.jsx` (assessment instructions)
 - `AiSafetyBanner.jsx` (3 facts, dismiss button text)
@@ -365,7 +369,7 @@ The 61 generated JSON files contain AI-written or hand-crafted text for:
 - `options[].text` — the three prompt examples (weak/medium/strong)
 - `responses.response_weak`, `response_medium`, `response_strong` — simulated AI responses
 - `feedback.what_happened` — explanation of what the user saw
-- `feedback.principle` — principle explanation
+- `feedback.skill` — skill explanation
 - `feedback.tip` — actionable advice
 
 **Spot-check at least 15 generated files** (mix of original 53 and the 8 new hand-crafted) for:
@@ -374,22 +378,21 @@ The 61 generated JSON files contain AI-written or hand-crafted text for:
 - Condescending or judgmental tone
 - References to "prompt engineering" instead of "how you talk to AI"
 - **NEW:** The 8 hand-crafted files (Phase 4) should use the same user vernacular style as the Phase 3 language updates. Verify they use "generic AI slop," "sounds confident and still be wrong," etc. where appropriate — not academic phrasing.
-- **NEW:** P5 scenarios (`3.1-generic-email`, `6.5-refusal-decoder`) should demonstrate few-shot prompting in their "strong" prompt option (pasting an example of desired output). Verify the examples are realistic and helpful.
+- **NEW:** S3 scenarios (`3.1-generic-email`, `3.2-format-request`) should demonstrate example-based prompting in their "strong" prompt option (pasting an example of desired output). Verify the examples are realistic and helpful.
 
-### 12d. Principle names and descriptions
+### 12d. Skill names and descriptions
 
-Review all 12 entries in `principles.js`. Each `name` and `description` will be displayed directly to users. Verify:
+Review all 12 entries in `skills.js` (primary file; `principles.js` is legacy). Each `name` and `description` will be displayed directly to users. Verify:
 - Names are action-oriented and self-explanatory (a beginner should understand what each means without additional context)
 - Descriptions use plain language — no jargon
 - Consistency in style (all should follow the same grammatical pattern)
-- **NEW:** The `teachingOrder` field is not user-facing but affects the order on `ProgressPage.jsx`. Verify the displayed order makes intuitive sense to a beginner (P8 "Ask the AI to write prompts for you" appearing first, etc.).
 
-### 12e. Category descriptions
+### 12e. Focus area and skill group descriptions
 
-Review all 5 entries in `categories.js`. These are shown on the scenario selector page. Verify:
+Review `categories.js` and `skill-areas.js`. These are shown on the scenario selector page. Verify:
 - Descriptions are clear and inviting for beginners
 - No jargon or academic terminology
-- Each description accurately reflects the scenarios within that category (including the 8 newly added scenarios from Phase 4)
+- Each description accurately reflects the scenarios within that skill group
 
 ---
 
@@ -404,12 +407,12 @@ Review all 5 entries in `categories.js`. These are shown on the scenario selecto
 - The AiSafetyPage — does it have proper heading hierarchy and landmark elements?
 - Do color combinations meet WCAG AA contrast ratios? Check:
   - Amber/stone combinations on AiSafetyPage and PreScenarioBanner
-  - Indigo/stone on AiSafetyBanner and P5 callout in GuidedMode
+  - Indigo/stone on AiSafetyBanner and S3 callout in GuidedMode
   - Rose/stone on LandingPage sycophancy bullet
 - GuidedMode uses color (rose/amber/emerald) to indicate tier quality. Is this accessible to colorblind users? Is there a non-color indicator (the icon + label)?
-- **NEW:** `ProgressPage.jsx` sorts principles by `teachingOrder`. Is this reordering communicated to screen readers? The explanatory text says "Ordered by impact" — verify this is clear enough.
-- **NEW:** The P5 callout in `GuidedMode.jsx` uses a `Star` icon. Is this purely decorative or does it need an aria label?
-- **NEW:** The P6 tip in `FreeformMode.jsx` uses a `Lightbulb` icon. Is this purely decorative?
+- **NEW:** `ProgressPage.jsx` sorts skills for display. Is this reordering communicated to screen readers?
+- **NEW:** The S3 callout in `GuidedMode.jsx` uses a `Star` icon. Is this purely decorative or does it need an aria label?
+- **NEW:** The S4 tip in `FreeformMode.jsx` uses a `Lightbulb` icon. Is this purely decorative?
 
 ---
 
@@ -428,8 +431,8 @@ Phase 5 added 123 tests. Review the test infrastructure and coverage for gaps:
 - **No test for AiSafetyPage content.** The "New to AI" section and 60/40 split section were added in Phase 2. Are there tests verifying these render?
 - **No test for HelpPage debugging protocol.** Phase 3 added a significant content section. Is there at least a smoke test?
 - **No test for ProgressPage teachingOrder sort.** Phase 3 changed the display order. Is there a test verifying the sort?
-- **Heuristic scorer P5 quoted block detection:** The test file covers P5 patterns — verify it specifically tests the quoted block regex (20+ char strings, triple backticks, blockquote markers).
-- **Recommendation engine edge cases:** What happens if `PRINCIPLE_MAP[id]?.teachingOrder` returns `undefined` for an unknown principle? The `?? 99` fallback is tested?
+- **Heuristic scorer S3 quoted block detection:** The test file covers S3 patterns — verify it specifically tests the quoted block regex (20+ char strings, triple backticks, blockquote markers).
+- **Recommendation engine edge cases:** What happens if a skill ID doesn't exist in the skill map? Is there a fallback for unknown skill IDs?
 - **Component tests:** `AiSafetyBanner` and `PreScenarioBanner` are tested. `Header` is tested. Are the test assertions specific enough? Do they test the actual user-visible text (e.g., "AI Limits" label, "Got it, let's start learning" button)?
 
 **Test quality:**
@@ -449,7 +452,7 @@ Phase 5 added 123 tests. Review the test infrastructure and coverage for gaps:
 
 4. **Language Issues:** Every jargon instance, tone violation, or confusing wording found. Organized by file, with the current text and a suggested replacement.
 
-5. **Data Integrity Issues:** Any mismatches between principles, scenarios, generated files, categories, or teachingOrder.
+5. **Data Integrity Issues:** Any mismatches between skills, scenarios, generated files, skill areas, or skill groups.
 
 6. **Test Coverage Issues:** Gaps in the test suite, false-positive risk, infrastructure concerns.
 
@@ -459,4 +462,4 @@ Phase 5 added 123 tests. Review the test infrastructure and coverage for gaps:
 
 9. **Recommended Test Additions:** The 10 most valuable tests to add next, focusing on the gaps identified in Area 14.
 
-10. **Recommended Manual Test Scenarios:** The 10 most important manual test cases, focusing on the new Phase 1-6 features: teaching order flow, AI safety banners, P5 callout, debugging protocol, new scenarios, and language consistency.
+10. **Recommended Manual Test Scenarios:** The 10 most important manual test cases, focusing on the rebuild and earlier features: skill-based organization, AI safety banners, S3 callout, debugging protocol, new scenarios (S5/S6/S12), and language consistency.

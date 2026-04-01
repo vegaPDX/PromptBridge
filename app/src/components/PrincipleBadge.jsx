@@ -1,8 +1,8 @@
 import React from "react";
-import { PRINCIPLE_MAP } from "../data/principles";
+import { SKILL_MAP } from "../data/skills";
 
 export default function PrincipleBadge({ principleId, size = "sm" }) {
-  const p = PRINCIPLE_MAP[principleId];
+  const p = SKILL_MAP[principleId];
   if (!p) return null;
   const sizeClasses = size === "sm" ? "text-xs px-2 py-0.5" : "text-sm px-3 py-1";
   return (

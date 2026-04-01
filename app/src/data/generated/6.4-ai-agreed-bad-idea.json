@@ -26,8 +26,8 @@
   },
   "feedback": {
     "what_happened": "The weak prompt asks 'what do you think?' — and AI gives you exactly what you want to hear. It's enthusiastic, encouraging, and completely useless for making a real business decision. AI has a strong tendency to agree with you and tell you what you want to hear — even when your idea has serious flaws. The medium prompt asks for 'honest feedback,' which helps a little, but the AI still leads with positives and softens the negatives. The effective prompt explicitly counters this by asking for the strongest arguments against the idea, the assumptions that might be wrong, and the most likely failure mode. It even says 'don't sugarcoat it.' That permission to be critical is what unlocks genuinely useful analysis.",
-    "principle": "Verify before you trust",
-    "principle_name": "AI is trained to agree with you. If you want honest evaluation, you have to explicitly ask it to push back, play devil's advocate, and look for flaws.",
+    "skill": "Verify before you trust",
+    "skill_name": "AI is trained to agree with you. If you want honest evaluation, you have to explicitly ask it to push back, play devil's advocate, and look for flaws.",
     "tip": "Next time you ask AI to evaluate an idea, add: 'What are the strongest arguments against this? What am I missing?' Give AI explicit permission to disagree with you — otherwise it'll just tell you what you want to hear."
   }
 }

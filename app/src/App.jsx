@@ -115,7 +115,7 @@ export default function App() {
 
   const markCompleted = useCallback((scenario, extraPrinciples) => {
     const newCompleted = [...new Set([...completedScenarios, scenario.id])];
-    const allPrinciples = [...(scenario.principles || []), ...(extraPrinciples || [])];
+    const allPrinciples = [...(scenario.skills || []), ...(extraPrinciples || [])];
     const newPracticed = [...new Set([...practicedPrinciples, ...allPrinciples])];
     setCompletedScenarios(newCompleted);
     setPracticedPrinciples(newPracticed);
@@ -222,7 +222,7 @@ export default function App() {
       {page === "landing" && (
         <footer className="text-center py-8 px-4 border-t border-stone-200">
           <p className="text-stone-500 text-sm">
-            PromptBridge — Open source. A focused introduction to responsible AI communication.
+            PromptBridge — Open source. A focused introduction to responsible AI prompting.
           </p>
           <p className="text-stone-500 text-sm mt-1">
             Skills learned here work with any AI assistant.

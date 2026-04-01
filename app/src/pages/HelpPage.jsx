@@ -4,7 +4,7 @@ import {
   AlertTriangle, ExternalLink, ChevronRight, Target, BarChart3,
   RefreshCw, Search, MessageSquare,
 } from "lucide-react";
-import { PRINCIPLES } from "../data/principles";
+import { SKILLS } from "../data/skills";
 import { resolveIcon } from "../data/icon-map";
 
 export default function HelpPage({ onNavigate }) {
@@ -19,7 +19,7 @@ export default function HelpPage({ onNavigate }) {
       {/* What is PromptBridge? */}
       <Section title="What is PromptBridge?">
         <p>
-          PromptBridge is a free, interactive tool that teaches you how to talk to AI assistants
+          PromptBridge is a free, interactive tool that teaches you how to work with AI assistants
           more effectively. The skills you learn here work with any AI tool — ChatGPT, Claude,
           Gemini, Copilot, or any other.
         </p>
@@ -100,10 +100,10 @@ export default function HelpPage({ onNavigate }) {
       {/* What are the skills? */}
       <Section title="What are the skills?">
         <p className="mb-3">
-          Every scenario teaches one or more of these skills for talking to AI:
+          Every scenario teaches one or more of these skills for prompting AI:
         </p>
         <div className="space-y-2">
-          {PRINCIPLES.map(p => {
+          {SKILLS.map(p => {
             const Icon = resolveIcon(p.icon);
             return (
               <div key={p.id} className="flex items-start gap-3">
@@ -128,7 +128,7 @@ export default function HelpPage({ onNavigate }) {
         </div>
         <p className="text-stone-700 text-base mb-3">
           AI can make things up, agree with you when it shouldn't, and reflect biases.
-          About 60% of frustrations come from how people talk to AI — but 40% come from
+          About 60% of frustrations come from how people prompt AI — but 40% come from
           real limits in the AI itself. We cover both.
         </p>
         <button
@@ -264,6 +264,9 @@ export default function HelpPage({ onNavigate }) {
               Everything stays in your browser. Your progress is stored
               locally on your device — nothing is sent to any server because there aren't any.
               PromptBridge runs entirely in your browser — nothing you type is ever sent to a server.
+              Don't take our word for it — the{" "}
+              <a href="https://github.com/vegaPDX/PromptBridge" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:text-indigo-800 underline">entire source code is public</a>
+              {" "}and available for anyone to review.
             </p>
           </div>
         </div>

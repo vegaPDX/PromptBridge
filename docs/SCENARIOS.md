@@ -1,385 +1,276 @@
 # PromptBridge — Scenario Library
 
-This document defines the scenario categories and specific scenarios for v1. Each scenario is a self-contained learning unit that teaches one or more communication principles through interactive practice.
+This document defines the scenario inventory for PromptBridge. Each scenario is a self-contained learning unit that teaches one or more skills through interactive practice.
 
-Techniques are sourced from prompting best practices documented by Anthropic, OpenAI, and Google — but taught in an AI-agnostic, jargon-free way.
-
----
-
-## Communication principles (the skills we teach)
-
-Every scenario maps to one or more of these principles:
-
-| ID | Principle | One-line description |
-|----|-----------|---------------------|
-| P1 | Be specific, not vague | Ask for exactly what you want — not a topic, not a keyword |
-| P2 | Provide context | Tell the AI who you are, what you're working on, what constraints exist |
-| P3 | State your intent | Explain what you'll use the result for |
-| P4 | Avoid ambiguity | Don't use yes/no questions when you want information |
-| P5 | Show what "good" looks like | Provide examples of the format, tone, or style you want |
-| P6 | Give specific feedback | Tell the AI what's wrong and how to fix it, not just "try again" |
-| P7 | Ask the AI to ask you questions | Let it interview you instead of guessing what it needs |
-| P8 | Ask the AI to write prompts for you | Once a plan is worked out, let the AI crystallize it |
-| P9 | Verify before you trust | Don't take AI answers at face value — ask it to show its work |
-| P10 | Include everything needed — but nothing extra | Give the AI all the important details, but cut anything that doesn't help |
-| P11 | Know what AI can't do | AI has a training cutoff, can't browse the web, and sometimes avoids topics |
-| P12 | Use AI responsibly | AI can reflect biases, agree when it shouldn't, and produce harmful content |
+Skills are drawn from prompting best practices documented by Anthropic, OpenAI, and Google — taught in an AI-agnostic, jargon-free way.
 
 ---
 
-## Category 1: Vague vs. Specific Requests (11 guided scenarios)
+## The 12 skills
+
+Every scenario maps to one or more of these skills:
+
+| ID | Skill | One-line description |
+|----|-------|---------------------|
+| S1 | Be clear and specific | Ask for exactly what you want — include numbers, constraints, and details |
+| S2 | Provide full context | Tell AI who you are, what you're working on, and what constraints exist |
+| S3 | Show what good looks like | Give examples of the format, tone, or style you want |
+| S4 | Iterate with specific feedback | Tell AI what's wrong AND how to fix it — specific corrections get specific improvements |
+| S5 | Ask for step-by-step reasoning | Ask AI to think through problems step by step before giving a final answer |
+| S6 | Break down complex tasks | Split big requests into smaller, focused steps — don't ask AI to do everything at once |
+| S7 | Ask AI to ask you questions | Instead of guessing what AI needs, ask it to interview you |
+| S8 | Ask AI to write your prompts | Once you know what you want, ask AI to write a reusable prompt |
+| S9 | Verify before you trust | AI sounds confident whether it's right or wrong — ask for sources and flag uncertainty |
+| S10 | Know what AI can't do | AI has a training cutoff, can't browse the web, has no personal experience |
+| S11 | Use AI responsibly | AI can reflect biases, agree when you're wrong, and produce harmful content |
+| S12 | Spot context drift | In long conversations, AI can lose track of instructions or contradict itself |
+
+**Note:** S1–S6 are recommended by Anthropic, OpenAI, and Google. S7–S8 are helpful tips supported by user research (not in company documentation).
+
+---
+
+## Focus Area A1: Effective Prompting (22 scenarios)
+
+### A1-clarity — S1: Be clear and specific (4 scenarios)
 
 **What this teaches:** The difference between treating AI like a search engine (keywords) and treating it like a knowledgeable colleague (full requests with context).
 
-**Sources:** Anthropic's "Be clear and direct" principle; OpenAI's Strategy 1 "Write clear instructions"; Google's "Precision and specificity" technique.
-
-### Scenario 1.1 — "The snow shoveling problem"
-
+#### 1.1-snow-shoveling — "The snow shoveling problem"
 **Situation:** It snowed heavily overnight. You need to clear your driveway before work and you want to do it efficiently.
+**Skills:** S1
+**Feedback notes:** Focus on binary question pattern and the difference between keyword search and actual requests. The "Do you know" construction is one of the most common ineffective patterns.
 
-**This is the landing page demo scenario.**
-
-**Principle:** P1 (Be specific), P4 (Avoid ambiguity)
-
-**Feedback notes:** Focus on binary question pattern (P4) and the difference between keyword search and actual requests (P1). The "Do you know" construction is one of the most common ineffective patterns. *(Documented across all three providers as the most basic prompting mistake.)*
-
----
-
-### Scenario 1.2 — "The meal plan"
-
-**Situation:** You want to eat healthier this week but you're short on time. You'd like some dinner ideas.
-
-**Principle:** P1 (Be specific), P2 (Provide context)
-
-**Feedback notes:** Highlight how adding constraints (time, preferences, format) transforms generic lists into usable plans. *(Google's documentation emphasizes that "Gemini favors directness" — this applies universally.)*
-
----
-
-### Scenario 1.3 — "The error message"
-
-**Situation:** You got a 403 Forbidden error when trying to access your company's internal dashboard. It worked fine yesterday.
-
-**Principle:** P1 (Be specific), P2 (Provide context), P3 (State your intent)
-
-**Feedback notes:** Show how context about what changed (or didn't) helps the AI narrow down causes instead of listing every possibility. *(OpenAI's "include details in your query" sub-tactic.)*
-
----
-
-### Scenario 1.4 — "The email draft"
-
+#### 1.2-email-draft — "The email draft"
 **Situation:** You need to write an email to your manager about a project delay. The Q2 report will be 3 days late because you're waiting on data from the finance team.
+**Skills:** S1, S2, S3
+**Feedback notes:** Emphasize how specifying recipient, tone, reason, and length transforms a generic email into one that's actually sendable.
 
-**Principle:** P1 (Be specific), P2 (Provide context), P3 (State your intent), P5 (Show what "good" looks like)
+#### 1.3-meal-plan — "The meal plan"
+**Situation:** You want to eat healthier this week but you're short on time. You'd like some dinner ideas.
+**Skills:** S1, S2
+**Feedback notes:** Highlight how adding constraints (time, preferences, format) transforms generic lists into usable plans.
 
-**Feedback notes:** Emphasize how specifying recipient, tone, reason, and length transforms a generic email into one that's actually sendable. *(OpenAI's "specify the desired length" sub-tactic.)*
-
----
-
-### Scenario 1.5 — "The product comparison"
-
+#### 1.4-product-comparison — "The product comparison"
 **Situation:** You want to buy a new laptop for work and personal use, and you need help deciding what to get. Your budget is around $1,200.
-
-**Principle:** P1 (Be specific), P4 (Avoid ambiguity)
-
-**Feedback notes:** Highlight how "what's the best laptop?" gives the AI nothing to work with — there is no "best" without knowing budget, use case, screen size preference, and priorities (battery life vs. performance vs. weight). *(Google: "Vague goals produce vague deliverables.")*
+**Skills:** S1
+**Feedback notes:** Highlight how "what's the best laptop?" gives the AI nothing to work with — there is no "best" without knowing budget, use case, screen size preference, and priorities.
 
 ---
 
-### Scenario 1.6 — "The recipe request"
-
-**Situation:** You want to cook dinner tonight but you're tired and don't want to go to the store. You have chicken, rice, some vegetables, and basic pantry staples.
-
-**Principle:** P1 (Be specific), P2 (Provide context)
-
-**Feedback notes:** Show how providing ingredients on hand, time available, and skill level turns a generic recipe list into a practical meal you can actually make tonight. *(All three providers document this pattern: constraints make outputs actionable.)*
-
----
-
-### Scenario 1.7 — "The travel recommendation"
-
-**Situation:** You and a friend are planning a long weekend trip sometime in the next two months and want destination ideas. You have a rough budget but aren't sure where to go.
-
-**Principle:** P1 (Be specific), P2 (Provide context), P3 (State your intent)
-
-**Feedback notes:** Show how budget, travel dates, interests, group size, and distance preferences transform "where should I go?" into targeted, bookable recommendations. *(OpenAI's "include details in your query" — every missing detail forces the AI to guess.)*
-
----
-
-### Scenario 1.8 — "The meeting summary"
-
-**Situation:** You just finished a 45-minute team meeting and have messy handwritten notes. You need to send a clear summary to your team, but your notes are scattered and disorganized.
-
-**Principle:** P1 (Be specific), P5 (Show what "good" looks like)
-
-**Feedback notes:** Show how specifying the summary format (action items, decisions, key discussion points) and audience produces a much more useful result than "summarize this." *(Google: "specify the output format" is a major lever for quality.)*
-
----
-
-## Category 2: Context & Framing (16 guided scenarios)
+### A1-context — S2: Provide full context (6 scenarios)
 
 **What this teaches:** How providing information about yourself, your audience, and your goal dramatically changes the quality of AI output.
 
-**Sources:** Anthropic's "Add context / explain the why" technique; OpenAI's "Provide reference text" strategy and persona tactics; Google's role prompting and context injection patterns.
-
-### Scenario 2.1 — "Explain this concept"
-
+#### 2.1-compound-interest — "Explain this concept"
 **Situation:** You're 25 years old, just opened your first retirement account, and need to understand how compound interest works. You don't have a finance background.
+**Skills:** S2, S3
+**Feedback notes:** Show how telling the AI about your knowledge level and purpose produces an explanation calibrated to you, not a textbook definition.
 
-**Principle:** P2 (Provide context), P3 (State your intent), P5 (Show what "good" looks like)
-
-**Feedback notes:** Show how telling the AI about your knowledge level and purpose produces an explanation calibrated to you, not a textbook definition. *(All three providers emphasize this: context about the user's level transforms explanations.)*
-
----
-
-### Scenario 2.2 — "The audience mismatch"
-
-**Situation:** Your company's main database was down for 2 hours this morning, affecting customer-facing services. You need to communicate about the outage — but different people need different messages.
-
-**Principle:** P2 (Provide context), P3 (State your intent)
-
-**Feedback notes:** The key insight: the SAME event requires completely different messages depending on your audience. Context about WHO you're writing for is as important as WHAT you're writing about. *(Google calls this the "audience mismatch" problem. OpenAI's persona tactic addresses the same issue.)*
-
----
-
-### Scenario 2.3 — "The presentation helper"
-
-**Situation:** You need to prepare a 10-minute presentation for your VP and directors about a customer migration project. You've moved 340 of 500 accounts, you're on track to finish by June, and the main risk is a legacy system deprecation in April.
-
-**Principle:** P1 (Be specific), P2 (Provide context), P3 (State your intent)
-
-**Feedback notes:** Highlight how specifying the audience's priorities (timeline, risk, asks) shapes the AI's output more than describing the topic. *(Anthropic: "The 'new employee' model" — give the AI all the context it needs to do the job.)*
-
----
-
-### Scenario 2.4 — "The role switch"
-
-**Situation:** You're thinking about buying your first home and need to understand how a mortgage works — the process, costs, and what to watch out for.
-
-**Principle:** P2 (Provide context), P5 (Show what "good" looks like)
-
-**Feedback notes:** Show how "explain mortgages" produces a Wikipedia-style overview, while "I'm a first-time buyer with no real estate experience — explain this like a patient advisor walking me through my first meeting" produces a warm, practical, beginner-friendly guide. *(All three providers document role prompting as a core technique. Anthropic: "Even a single sentence of role-setting makes a measurable difference.")*
-
----
-
-### Scenario 2.5 — "The cover letter"
-
+#### 2.2-cover-letter — "The cover letter"
 **Situation:** You found a job posting you're excited about and want help writing a cover letter. You have the posting details and your relevant experience.
+**Skills:** S2
+**Feedback notes:** Show how pasting the actual job posting details and key resume highlights vs. just saying "write a cover letter" produces a tailored letter vs. a generic template.
 
-**Principle:** P2 (Provide context), P3 (State your intent)
+#### 2.3-presentation-helper — "The presentation helper"
+**Situation:** You need to prepare a 10-minute presentation for your VP and directors about a customer migration project. You've moved 340 of 500 accounts, you're on track to finish by June, and the main risk is a legacy system deprecation in April.
+**Skills:** S1, S2
+**Feedback notes:** Highlight how specifying the audience's priorities (timeline, risk, asks) shapes the AI's output more than describing the topic.
 
-**Feedback notes:** Show how pasting the actual job posting details and key resume highlights into the prompt vs. just saying "write a cover letter" produces a tailored letter vs. a generic template. *(OpenAI's "Provide reference text" strategy — grounding the AI in actual source material eliminates generic filler.)*
-
----
-
-### Scenario 2.6 — "The tone mismatch"
-
+#### 2.4-tone-mismatch — "The tone mismatch"
 **Situation:** Your team's work schedule is changing next month — meetings are moving from Monday mornings to Wednesday afternoons. You need to tell your team (casual Slack message) and also notify the broader department (professional email).
+**Skills:** S2, S3
+**Feedback notes:** Show how the SAME information needs completely different treatment depending on audience and channel.
 
-**Principle:** P2 (Provide context), P5 (Show what "good" looks like)
+#### 3.3-kitchen-sink — "The kitchen sink prompt"
+**Situation:** You want restaurant recommendations for tonight. You start writing your prompt and include your entire food history, every allergy in your family, your budget philosophy, and what you ate last Tuesday.
+**Skills:** S1, S2
+**Feedback notes:** Show how dumping every possible detail overwhelms the AI and buries the actual question. The strong prompt includes only what matters.
 
-**Feedback notes:** Show how the SAME information needs completely different treatment depending on the audience and channel. Specifying tone and medium is as important as specifying content. *(Anthropic: "explain the why" — when you tell the AI the channel is Slack, it understands the norms.)*
+#### 3.4-signal-vs-noise — "Signal vs. noise"
+**Situation:** You need help writing a product review for a blender you bought. You include your entire order history, shipping details, and account information alongside what you actually thought of the product.
+**Skills:** S1, S2
+**Feedback notes:** Show how irrelevant details dilute the AI's focus on what actually matters — your experience with the product.
 
 ---
 
-### Scenario 2.7 — "The format request"
+### A1-examples — S3: Show what good looks like (2 scenarios)
 
+**What this teaches:** How giving AI examples of the format, tone, or style you want produces dramatically better results than describing it.
+
+#### 3.1-generic-email — "The generic email"
+**Situation:** You ask AI to "write a marketing email" for your company's spring sale. It produces something that sounds like it could be about anything — generic corporate language, no personality, no clear audience.
+**Skills:** S1, S2, S3
+**Feedback notes:** Show how the strong prompt specifies audience, product, tone, call-to-action, AND includes an example of a previous email the user liked.
+
+#### 3.2-format-request — "The format request"
 **Situation:** You read a long article about productivity techniques and want to capture the main ideas. You just need the key takeaways in a format you can quickly reference later.
-
-**Principle:** P1 (Be specific), P5 (Show what "good" looks like)
-
-**Feedback notes:** Show how "summarize this article" produces a wall of text, while specifying format (5 bullet points, a comparison table, numbered takeaways with one sentence each) produces something actually scannable and useful. *(Google explicitly documents "specify the output format" as a standalone technique.)*
+**Skills:** S1, S3
+**Feedback notes:** Show how "summarize this article" produces a wall of text, while specifying format produces something actually scannable.
 
 ---
 
-### Scenario 2.8 — "Explain the why"
+### A1-iteration — S4: Iterate with specific feedback (2 scenarios)
 
-**Situation:** You run a bakery's social media account. You need AI-generated posts that are warm, use food emojis, mention your location (Portland), and always end with your tagline. But just listing these rules doesn't always capture the spirit of what you want.
+**What this teaches:** How to review AI output and steer it toward what you actually want through specific feedback.
 
-**Principle:** P2 (Provide context), P3 (State your intent)
+#### 4.1-vague-rejection — "The vague rejection"
+**Situation:** You asked an AI to draft an email for you. The draft is factually correct but way too formal — you're writing to a colleague you work with every day, not a client.
+**Skills:** S4
+**Feedback notes:** Show that "try again" gives the AI nothing to work with. Specific feedback produces targeted improvements.
 
-**Feedback notes:** Show how explaining WHY behind a rule ("we use food emojis because our Instagram audience responds best to visual, casual content") helps the AI generalize and get the spirit right, not just the letter. The AI will also avoid things that conflict with the spirit even if you didn't think to mention them. *(Anthropic specifically documents this: "Rules with reasons are followed better than bare rules, because the AI can generalize intelligently from the reasoning.")*
-
----
-
-## Category 3: Iterative Refinement (13 guided scenarios)
-
-**What this teaches:** How to review AI output and steer it toward what you actually want through specific feedback. Also teaches power techniques: asking the AI to interview you, having it write prompts for you, and using positive instructions.
-
-**Sources:** Anthropic's chain-prompts and self-correction loop; OpenAI's "Give the model time to think" and positive framing patterns; Google's iterative refinement strategies and positive instruction technique.
-
-### Scenario 3.1 — "The vague rejection"
-
-**Situation:** You asked an AI to draft an email for you. The draft is factually correct but way too formal — you're writing to a colleague you work with every day, not a client. You need to give the AI feedback to fix it.
-
-**Principle:** P6 (Give specific feedback)
-
-**Feedback notes:** Show that "try again" gives the AI nothing to work with. Specific feedback about what's right, what's wrong, and what to change produces targeted improvements. *(All three providers document this: specificity in feedback matters as much as specificity in initial requests.)*
-
----
-
-### Scenario 3.2 — "Let the AI interview you"
-
-**Situation:** You want to plan a team offsite for 8 people but you're not sure where to start. You have a rough budget and some ideas but haven't thought through all the details.
-
-**Principle:** P7 (Ask the AI to ask you questions)
-
-**Feedback notes:** This teaches a powerful technique: instead of guessing what information the AI needs, ask it to interview you. It will ask about things you might not have thought to mention — dietary restrictions, accessibility needs, weather preferences. *(Anthropic and Google both document this as an advanced technique that consistently produces better results.)*
-
----
-
-### Scenario 3.3 — "Have the AI write your prompt"
-
-**Situation:** You've been going back and forth with an AI about your weekly meal prep routine. After several messages, you've worked out exactly what you want — high-protein, 30-minute cook times, budget-friendly ingredients, with lunch leftovers. Now you want to save this as a reusable request you can use every week.
-
-**Principle:** P8 (Ask the AI to write prompts for you)
-
-**Feedback notes:** After working out the details through conversation, the AI can crystallize everything into a structured, reusable request that captures constraints you might forget to include next time. *(OpenAI's prompt generation guide documents this pattern. The AI's version is often more structured and complete than what you'd write yourself.)*
-
----
-
-### Scenario 3.4 — "The 'try again' trap"
-
+#### 4.2-try-again-trap — "The 'try again' trap"
 **Situation:** You asked an AI to write a product description for your handmade candles. The result is accurate but reads like a corporate press release — stiff, buzzwordy, and nothing like your brand voice.
-
-**Principle:** P6 (Give specific feedback)
-
-**Feedback notes:** Show the dramatic contrast between "That's not right, try again" (AI guesses randomly what to change, often produces something equally wrong but differently wrong) vs. specific feedback identifying what's wrong and what the brand voice should sound like ("I want it warm and personal, like I'm telling a friend about my favorite candle"). *(OpenAI: "Be explicit about what you DO want" — positive direction beats negative rejection.)*
+**Skills:** S4
+**Feedback notes:** Show the contrast between vague rejection and specific feedback about what the brand voice should sound like.
 
 ---
 
-### Scenario 3.5 — "The scope creep"
+### A1-reasoning — S5: Ask for step-by-step reasoning (3 scenarios)
 
-**Situation:** You asked for book recommendations and got a list of 20 books with paragraph-long descriptions for each. Way too much — you wanted a short, focused list you could actually use.
+**What this teaches:** How asking AI to think through problems step by step catches errors and produces more accurate results.
 
-**Principle:** P1 (Be specific), P6 (Give specific feedback)
+#### 7.1-car-loan-math — "The car loan calculator"
+**Situation:** You're considering refinancing your car loan. Current deal: 48 months left at 6.9% APR, $320/month. A bank is offering 60 months at 4.5%. The lower rate sounds like a no-brainer — but you want to make sure you'd actually save money overall.
+**Skills:** S5
+**Feedback notes:** Show how AI can give a confident but wrong answer without doing the math. Step-by-step reveals that the longer term costs more total despite lower monthly payments.
 
-**Feedback notes:** Show how "make it shorter" doesn't tell the AI what to cut. Specific feedback like "give me your top 5 only, one sentence each, focused on [specific genre or preference]" gets exactly what you want. *(OpenAI's "specify the desired length" and Google's iteration strategy both address this.)*
+#### 7.2-road-trip-planner — "The road trip optimizer"
+**Situation:** You're planning a day trip to visit 4 places. Each has specific opening hours, and driving times between them vary. You need to figure out the best order to visit everything without running into a closed door.
+**Skills:** S5, S1
+**Feedback notes:** Show how AI picks a plausible-sounding route without checking constraints. Step-by-step reasoning catches conflicts.
 
----
-
-### Scenario 3.6 — "The draft-review-refine"
-
-**Situation:** You need to write a thank-you email after a job interview. Instead of trying to get a perfect email in one shot, you want to take a multi-step approach.
-
-**Principle:** P6 (Give specific feedback), P8 (Ask the AI to write prompts for you)
-
-**Feedback notes:** Show how asking for a draft first, then asking the AI to review it against criteria ("check the tone — is it grateful without being desperate?"), then refining based on that review produces better results than one monolithic request. *(Anthropic calls this the "self-correction loop" — the most common chained prompt pattern. OpenAI: "Split complex tasks into simpler subtasks.")*
-
----
-
-### Scenario 3.7 — "The positive flip"
-
-**Situation:** Every time you ask an AI for help writing something, it adds bullet points, markdown formatting, disclaimers, and unnecessary introductions. You just want clean, natural prose.
-
-**Principle:** P1 (Be specific), P6 (Give specific feedback)
-
-**Feedback notes:** Show how "don't use bullet points, don't add disclaimers, don't add headers" is less effective than "write in flowing prose paragraphs, get straight to the content, use a confident and direct tone." Telling the AI what TO do is more effective than listing what NOT to do. *(Anthropic explicitly documents this: "Tell the AI what TO DO rather than what NOT to do." Google's whitepaper lists "Use positive instructions" as a core technique. OpenAI found that negative framing like "DO NOT" often still triggered the unwanted behavior.)*
+#### 7.3-breakfast-study — "The breakfast study"
+**Situation:** You read a news headline: "People who eat breakfast daily are 30% less likely to gain weight." You're thinking about changing your morning routine based on this.
+**Skills:** S5, S9
+**Feedback notes:** Show how AI can treat a correlation as a recommendation. Step-by-step reasoning identifies confounding variables, correlation vs. causation, and study limitations.
 
 ---
 
-## Category 4: Smart Strategies (21 guided scenarios)
+### A1-decomposition — S6: Break down complex tasks (3 scenarios)
 
-**What this teaches:** Powerful techniques that go beyond the basics — step-by-step reasoning, task decomposition, showing examples, structuring complex requests, and self-verification. These are techniques highlighted across all three major AI providers' documentation as significant quality multipliers.
+**What this teaches:** How splitting big requests into smaller, focused steps produces better results than asking AI to do everything at once.
 
-**Sources:** Anthropic's "Let Claude think" and structured prompting; OpenAI's "Give the model time to think" and few-shot strategies; Google's chain-of-thought prompting and task decomposition.
+#### 8.1-portfolio-website — "Build me a website"
+**Situation:** You want to create a personal portfolio website to showcase your design work. You've never built a website before and you're not sure where to start.
+**Skills:** S6
+**Feedback notes:** Show how "build me a portfolio website" produces an overwhelming wall of generic advice. Breaking it into focused steps produces actionable output at each stage.
 
-### Scenario 4A.1 — "The step-by-step thinker"
+#### 8.2-business-plan — "The business plan"
+**Situation:** You have a small business idea (a neighborhood dog-walking service) and need a business plan to apply for a small business loan from your bank.
+**Skills:** S6, S2
+**Feedback notes:** Show how "write me a complete business plan" produces a shallow, generic plan. Working section by section produces deeper, more tailored content.
 
-**Situation:** You and four friends went out to dinner. The bill is $187. Three people had the steak special ($38 each), two shared an appetizer ($16), one person didn't drink but the rest split two bottles of wine ($45 each). You need to figure out what each person owes.
-
-**Principle:** P1 (Be specific)
-
-**Feedback notes:** Show how "split this bill" gives a rough per-person average that's unfair, while "work through this step by step before giving me the final amounts" produces accurate, verified math with clear reasoning you can check. *(All three providers document chain-of-thought as a major accuracy booster. Google found Gemini Ultra's reasoning accuracy jumped from 84% to 90% with this technique.)*
-
----
-
-### Scenario 4A.2 — "The task breakdown"
-
-**Situation:** You're planning a surprise birthday party for a friend — venue, food, decorations, guest list, timeline. It's a lot to organize all at once.
-
-**Principle:** P1 (Be specific), P3 (State your intent)
-
-**Feedback notes:** Show how one massive "plan a birthday party" request produces a generic checklist, while breaking it into focused steps ("first, help me choose a venue — here are my constraints") produces detailed, actionable results for each part that you can review before moving on. *(OpenAI: "Split complex tasks into simpler subtasks" is a full strategy. Google: "Research, strategy, structure, and copy should be separate requests, not one massive prompt.")*
+#### 8.3-city-move — "The big move"
+**Situation:** You just accepted a job in a new city and need to relocate in 6 weeks. You need to figure out housing, moving logistics, utilities, new doctors, and more — all at once.
+**Skills:** S6, S1
+**Feedback notes:** Show how asking AI to handle an entire relocation at once produces a generic, overwhelming checklist. Breaking it into phases produces focused, actionable help.
 
 ---
 
-### Scenario 4A.3 — "The few-shot example"
+### A1-collaboration — S7, S8: Collaborate with AI (2 scenarios)
 
-**Situation:** You sell handmade jewelry on Etsy and need to write product descriptions for 10 new items. You have a specific style you like — short, warm, and focused on the story behind each piece — but it's hard to put into words.
+**What this teaches:** Two powerful techniques — asking the AI to interview you and asking it to write reusable prompts for you.
 
-**Principle:** P5 (Show what "good" looks like)
+#### 4.3-ai-interview — "Let the AI interview you"
+**Situation:** You want to plan a team offsite for 8 people but you're not sure where to start. You have a rough budget and some ideas but haven't thought through all the details.
+**Skills:** S7
+**Feedback notes:** Instead of guessing what the AI needs, ask it to interview you. It will ask about things you might not have thought to mention.
 
-**Feedback notes:** Show how "write product descriptions for my jewelry" produces generic marketing copy, while showing 2-3 examples of descriptions you like gives the AI a pattern to follow. The examples speak louder than any description of the style. *(Anthropic: examples are "one of the most reliable ways to steer output format, tone, and structure." OpenAI documents few-shot learning as a core tactic. Google: "Prompts without few-shot examples are likely to be less effective.")*
-
----
-
-### Scenario 4A.4 — "The structured prompt"
-
-**Situation:** You want help planning a weekly workout routine. You have specific goals (build upper body strength, improve cardio), constraints (3 days per week, 45 minutes max, home gym with dumbbells and a pull-up bar), and a history of shoulder injury on your left side.
-
-**Principle:** P1 (Be specific), P2 (Provide context), P5 (Show what "good" looks like)
-
-**Feedback notes:** Show how dumping all this info into one rambling paragraph leads to the AI missing important details (like the shoulder injury), while organizing it into clear sections (goals, schedule, equipment, medical notes) ensures nothing gets lost and the AI addresses every constraint. *(Anthropic: "Use clear formatting — XML tags, section headers, delimiters." Google's recommended prompt template uses labeled sections. OpenAI: "Use delimiters to clearly indicate distinct parts of the input.")*
+#### 4.4-ai-write-prompt — "Have the AI write your prompt"
+**Situation:** You've been going back and forth with an AI about your weekly meal prep routine. After several messages, you've worked out exactly what you want. Now you want to save this as a reusable request.
+**Skills:** S8
+**Feedback notes:** The AI can crystallize a conversation into a structured, reusable request that captures constraints you might forget.
 
 ---
 
-### Scenario 4A.5 — "The self-check"
+## Focus Area A2: Responsible & Safe AI Use (13 scenarios)
 
-**Situation:** You're using an AI to help you proofread an important email to a client. You want to make sure there are no factual errors, awkward phrasing, or tone issues before you send it.
+### A2-verification — S9: Verify before you trust (2 scenarios)
 
-**Principle:** P1 (Be specific)
+**What this teaches:** AI sounds confident whether it's right or wrong. Your job is to check.
 
-**Feedback notes:** Show how "proofread this" gives a surface-level pass, while "proofread this email, then review your own corrections — flag anything you're not confident about and explain your reasoning for each change" catches errors the AI might otherwise introduce. Asking the AI to verify its own work is a simple technique that significantly improves reliability. *(Anthropic: "Ask the AI to self-check before finalizing." OpenAI: "Instruct the model to work out its own solution before concluding." Google documents self-critique as an extension of chain-of-thought.)*
+#### 5.1-fact-check-trap — "The fact-check trap"
+**Situation:** Your manager asks you to quickly look up some statistics about remote work trends. You ask an AI and it gives you specific numbers with decimal points.
+**Skills:** S1, S9
+**Feedback notes:** Show how adding "cite your sources and tell me how confident you are in each number" forces the AI to either provide real citations or admit uncertainty.
 
----
-
-### Scenario 4A.6 — "Same question, different expert"
-
-**Situation:** Your knee has been hurting after your morning runs. You want advice, but the kind of advice depends on who you ask.
-
-**Principle:** P2 (Provide context), P5 (Show what "good" looks like)
-
-**Feedback notes:** Show how the same question ("my knee hurts when I run") produces fundamentally different advice depending on the expert role you assign: a doctor focuses on diagnosis and warning signs, a running coach focuses on form and training errors, a physical therapist focuses on stretches and strengthening exercises. This teaches that the "who you're asking" matters as much as "what you're asking." *(All three providers document role/persona assignment. Anthropic: "Even a single sentence of role-setting makes a measurable difference." Google calls this "role prompting.")*
+#### 5.2-hallucination-catcher — "Catching made-up facts"
+**Situation:** You're writing a blog post and ask AI to recommend 5 books about leadership, including author names and a brief summary of each. The AI provides a polished list.
+**Skills:** S9
+**Feedback notes:** Show how AI can make up book titles, attribute books to wrong authors, or invent summaries. Asking for verification details makes fabrication harder.
 
 ---
 
-### Scenario 4A.7 — "The document detective"
+### A2-limitations — S10: Know what AI can't do (4 scenarios)
 
-**Situation:** You have a long rental lease agreement and need to quickly find answers about the pet policy, security deposit rules, and what happens if you need to break the lease early.
+**What this teaches:** AI has a training cutoff, can't browse the web, has no personal experience, and sometimes avoids topics without explaining why.
 
-**Principle:** P2 (Provide context), P3 (State your intent)
+#### 5.3-time-traveler — "The time traveler"
+**Situation:** You want to know who won the most recent Super Bowl, what a company's current stock price is, or what happened in the news this week. You're about to ask AI as if it knows.
+**Skills:** S10, S2
+**Feedback notes:** Show how AI has a training cutoff date and can't access the internet or current information.
 
-**Feedback notes:** Show how "summarize my lease" gives a broad overview that might miss what you need, while providing the document and then asking specific questions at the end ("Based on this lease, answer these three questions: 1) Can I have a cat? 2) How much is the security deposit and when do I get it back? 3) What's the penalty for breaking the lease early?") produces targeted, accurate answers. *(Anthropic: "Put longform data at the top, queries at the bottom — this can improve response quality by up to 30%." OpenAI's "Provide reference text" strategy. Google: place specific questions after context, using bridge phrases like "Based on the information above.")*
+#### 5.4-emotional-ai — "The emotional AI"
+**Situation:** You're having a tough day and start chatting with AI. You ask it "How do you feel about this?" or "What's your favorite movie?" You notice it answers as if it has real preferences and emotions.
+**Skills:** S10
+**Feedback notes:** Show how AI doesn't have feelings, opinions, or personal experiences — it generates text that sounds like it does.
 
----
+#### 6.5-refusal-decoder — "The refusal decoder"
+**Situation:** You ask AI for help with something and it refuses or gives a vague non-answer. Maybe you asked about medication interactions, or how a security vulnerability works for a class project.
+**Skills:** S10
+**Feedback notes:** Show how AI sometimes avoids topics without explaining why. Asking "Why can't you help with this?" often reveals what specifically triggered the refusal.
 
-## Category 5: The Full Conversation Loop (free-form only)
-
-**What this teaches:** Combining all skills in a realistic multi-turn scenario. These scenarios are only available in Free-form Mode because they require the user to write and iterate, not just pick options.
-
-**Principles covered:** All (P1–P12)
-
-### Scenario 5.1 — "Daily work planner"
-
-**Situation:** You want an AI to help you create a prioritized to-do list for today. You have emails to catch up on, a project deadline Friday, a 1-on-1 meeting to prep for, and some Slack messages to follow up on.
-
-**Principle:** Full loop — P1, P2, P3, P5, P6
-
----
-
-### Scenario 5.2 — "Customer escalation response"
-
-**Situation:** A customer's account team has emailed asking why a data sync hasn't completed. The sync is delayed because of a database migration that took longer than expected. You need to draft both an internal update for your team and a customer-facing response.
-
-**Principle:** Full loop — P1, P2, P3, P5, P6, P7, P8
+#### 6.6-safety-wall — "The safety wall"
+**Situation:** You're a nurse researching medication interactions for a patient education handout. You ask AI about drug combinations and it refuses to discuss medications, giving you a generic disclaimer instead.
+**Skills:** S2, S10
+**Feedback notes:** Show how AI sometimes refuses legitimate requests because it can't tell the difference between a professional need and a harmful one. Professional framing helps.
 
 ---
 
-### Scenario 5.3 — "Meeting prep brief"
+### A2-responsibility — S11: Use AI responsibly (4 scenarios)
 
-**Situation:** You have a meeting in 30 minutes with a customer you haven't spoken to in 2 weeks. You need to quickly get up to speed on open issues, recent activity, and action items so you're not caught off guard.
+**What this teaches:** AI can reflect biases, agree when it shouldn't, and produce harmful content — you're the human quality filter.
 
-**Principle:** P1, P2, P3, P5, P6
+#### 6.1-invisible-bias — "The invisible bias"
+**Situation:** You're writing a job posting and ask AI to describe the "ideal candidate" for a leadership role. The AI generates a description that subtly skews toward certain demographics.
+**Skills:** S11, S2
+**Feedback notes:** Show how AI reflects biases from its training data — its description of an "ideal" anything may encode stereotypes.
+
+#### 6.2-bias-audit — "The bias audit"
+**Situation:** You used AI to draft a recommendation letter for a colleague. It reads well, but you want to make sure it doesn't contain subtle biased language.
+**Skills:** S11, S4
+**Feedback notes:** Show how AI can produce text that sounds professional but encodes subtle bias. Asking the AI to review for gendered language catches issues.
+
+#### 6.3-sycophancy-test — "When AI agrees too much"
+**Situation:** You're writing a report and tell the AI: "The Great Wall of China is visible from space." (This is actually a myth.) You want to see if the AI will correct you or just go along with it.
+**Skills:** S11, S9
+**Feedback notes:** Show how AI is trained to agree with users, even when they're wrong. Asking "verify whether this claim is actually true" teaches users to expect and counter sycophancy.
+
+#### 6.4-ai-agreed-bad-idea — "The AI agreed with my bad idea"
+**Situation:** You pitched a business idea to AI and it said it was brilliant. You showed it to a friend and they immediately spotted three fatal flaws the AI never mentioned.
+**Skills:** S9, S11
+**Feedback notes:** Show how AI is trained to agree — the strong prompt counters sycophancy: "Play devil's advocate. What are the 3 strongest arguments against this idea?"
+
+---
+
+### A2-drift — S12: Spot context drift (3 scenarios)
+
+**What this teaches:** In long conversations, AI can lose track of your instructions, forget constraints, and contradict its own earlier advice.
+
+#### 9.1-drifting-format — "The drifting format"
+**Situation:** You've been working with AI on a research report for 20 minutes. At the start, you said: "Use bullet points, keep each section under 100 words, and cite all sources." Section 4 just came back as long paragraphs with no citations.
+**Skills:** S12
+**Feedback notes:** Show how restating ALL original requirements together gets everything back on track, rather than pointing out one issue at a time.
+
+#### 9.2-diet-contradiction — "The contradicting advice"
+**Situation:** You've been chatting with AI about healthy eating. Early on, it recommended limiting sodium. Twenty messages later, it enthusiastically recommended a ramen recipe loaded with soy sauce and miso — without mentioning the sodium concern at all.
+**Skills:** S12, S4
+**Feedback notes:** Show how AI doesn't "remember" earlier advice. The strong response explicitly references the earlier constraint and restates it.
+
+#### 9.3-party-planner-drift — "The forgotten constraints"
+**Situation:** You've been planning a birthday party with AI. You established: $300 budget, vegetarian food only, outdoor venue, 20 guests. After several exchanges, the AI suggested booking a BBQ restaurant that seats 30 — blowing past three of your four constraints.
+**Skills:** S12, S1
+**Feedback notes:** Show how a full reset — restating all constraints as a numbered list — works better than partial correction.
 
 ---
 
@@ -390,49 +281,34 @@ Each scenario is stored as a JSON file. Here's the schema:
 ```json
 {
   "id": "1.1-snow-shoveling",
-  "category": "vague_vs_specific",
+  "area": "A1",
+  "skillGroup": "A1-clarity",
   "title": "The snow shoveling problem",
   "situation": "It snowed heavily overnight...",
   "mode": "guided",
-  "principles": ["P1", "P4"],
-  "feedback_notes": "Focus on binary question pattern..."
-}
-```
-
-For free-form scenarios, the format is:
-
-```json
-{
-  "id": "5.1-daily-planner",
-  "category": "full_conversation_loop",
-  "title": "Daily work planner",
-  "situation": "You want to create a daily to-do list...",
-  "mode": "freeform",
-  "principles": ["P1", "P2", "P3", "P5", "P6"]
+  "skills": ["S1"],
+  "feedbackNotes": "Focus on binary question pattern..."
 }
 ```
 
 ---
 
-## v1 scope
+## Current scope
 
-For the initial release, target **61 guided scenarios** across 4 categories and **15 free-form scenarios** (category 5). This covers all 12 principles extensively and provides a meaningful learning path from basic specificity through advanced techniques.
+**35 guided scenarios** across 11 skill groups:
 
-### Scenario coverage by principle
-
-| Principle | Scenarios covering it |
-|-----------|----------------------|
-| P1 — Be specific | ~30+ scenarios |
-| P2 — Provide context | ~35+ scenarios |
-| P3 — State your intent | ~15+ scenarios |
-| P4 — Avoid ambiguity | 3 scenarios (1.1, 1.5, 3.13) |
-| P5 — Show what "good" looks like | ~15+ scenarios |
-| P6 — Give specific feedback | ~15+ scenarios |
-| P7 — Ask AI to ask questions | 5 scenarios |
-| P8 — Ask AI to write prompts | 4 scenarios |
-| P9 — Verify before you trust | 8 scenarios |
-| P10 — Include everything needed | 3 scenarios |
-| P11 — Know what AI can't do | 6 scenarios |
-| P12 — Use AI responsibly | 5 scenarios |
+| Skill | Scenario count |
+|-------|---------------|
+| S1 — Be clear and specific | 4 |
+| S2 — Provide full context | 6 |
+| S3 — Show what good looks like | 2 |
+| S4 — Iterate with specific feedback | 2 |
+| S5 — Ask for step-by-step reasoning | 3 |
+| S6 — Break down complex tasks | 3 |
+| S7, S8 — Collaborate with AI | 2 |
+| S9 — Verify before you trust | 2 |
+| S10 — Know what AI can't do | 4 |
+| S11 — Use AI responsibly | 4 |
+| S12 — Spot context drift | 3 |
 
 Additional scenarios can be contributed by the community after launch.

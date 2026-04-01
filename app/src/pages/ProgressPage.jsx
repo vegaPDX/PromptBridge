@@ -1,8 +1,8 @@
 import React from "react";
 import { Check, ArrowRight, Award, Shield } from "lucide-react";
-import { MAXIMS } from "../data/maxims";
+import { SKILL_AREAS } from "../data/skill-areas";
 import { SCENARIOS } from "../data/scenarios";
-import { PRINCIPLE_MAP } from "../data/principles";
+import { SKILL_MAP } from "../data/skills";
 import { resolveIcon } from "../data/icon-map";
 
 export default function ProgressPage({ completedScenarios, practicedPrinciples, onNavigate }) {
@@ -24,20 +24,20 @@ export default function ProgressPage({ completedScenarios, practicedPrinciples, 
         />
       </div>
 
-      {/* Maxims progress */}
-      <h2 className="font-serif text-xl font-bold text-stone-800 mb-4">6 Core Principles</h2>
+      {/* Focus areas progress */}
+      <h2 className="font-serif text-xl font-bold text-stone-800 mb-4">2 Focus Areas &middot; 12 Skills</h2>
       <div className="space-y-4 mb-8">
-        {MAXIMS.map((maxim, i) => {
-          const Icon = resolveIcon(maxim.icon);
-          const isSafety = maxim.id === "M5" || maxim.id === "M6";
-          const maximScenarioIds = maxim.subMaxims.flatMap(sm => sm.scenarioIds);
-          const maximCompleted = maximScenarioIds.filter(id => completedScenarios.includes(id)).length;
-          const maximTotal = maximScenarioIds.length;
-          const allDone = maximCompleted === maximTotal;
+        {SKILL_AREAS.map((area, i) => {
+          const Icon = resolveIcon(area.icon);
+          const isSafety = area.id === "A2";
+          const areaScenarioIds = area.skills.flatMap(sg => sg.scenarioIds);
+          const areaCompleted = areaScenarioIds.filter(id => completedScenarios.includes(id)).length;
+          const areaTotal = areaScenarioIds.length;
+          const allDone = areaCompleted === areaTotal;
 
           return (
             <div
-              key={maxim.id}
+              key={area.id}
               className={`rounded-xl border p-4 transition-all ${
                 allDone
                   ? "bg-emerald-50 border-emerald-200"
@@ -58,7 +58,7 @@ export default function ProgressPage({ completedScenarios, practicedPrinciples, 
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2">
                     <p className={`font-medium text-sm ${allDone ? "text-emerald-800" : "text-stone-700"}`}>
-                      {i + 1}. {maxim.name}
+                      {i + 1}. {area.name}
                     </p>
                     {isSafety && !allDone && (
                       <span className="text-xs px-1.5 py-0.5 bg-rose-100 text-rose-600 rounded-full font-medium flex-shrink-0 inline-flex items-center gap-1">
@@ -66,32 +66,31 @@ export default function ProgressPage({ completedScenarios, practicedPrinciples, 
                       </span>
                     )}
                   </div>
-                  <p className="text-stone-500 text-xs mt-0.5">{maximCompleted}/{maximTotal} scenarios</p>
+                  <p className="text-stone-500 text-xs mt-0.5">{areaCompleted}/{areaTotal} scenarios</p>
                 </div>
               </div>
 
-              {/* Sub-maxim breakdown */}
+              {/* Skill group breakdown */}
               <div className="space-y-2 ml-13">
-                {maxim.subMaxims.map(sm => {
-                  const smCompleted = sm.scenarioIds.filter(id => completedScenarios.includes(id)).length;
-                  const smDone = smCompleted === sm.scenarioIds.length;
-                  // Check if any principle from this sub-maxim has been practiced
-                  const principePracticed = sm.principleIds.some(pid => practicedPrinciples.includes(pid));
+                {area.skills.map(sg => {
+                  const sgCompleted = sg.scenarioIds.filter(id => completedScenarios.includes(id)).length;
+                  const sgDone = sgCompleted === sg.scenarioIds.length && sg.scenarioIds.length > 0;
+                  const skillPracticed = sg.skillIds.some(sid => practicedPrinciples.includes(sid));
                   return (
-                    <div key={sm.id} className="flex items-center gap-2">
+                    <div key={sg.id} className="flex items-center gap-2">
                       <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 ${
-                        smDone ? "bg-emerald-100" : "bg-stone-100"
+                        sgDone ? "bg-emerald-100" : "bg-stone-100"
                       }`}>
-                        {smDone
+                        {sgDone
                           ? <Check className="w-3 h-3 text-emerald-500" />
                           : <span className="w-2 h-2 rounded-full bg-stone-300" />
                         }
                       </div>
-                      <span className={`text-sm ${smDone ? "text-emerald-700" : "text-stone-600"}`}>
-                        {sm.name}
+                      <span className={`text-sm ${sgDone ? "text-emerald-700" : "text-stone-600"}`}>
+                        {sg.name}
                       </span>
                       <span className="text-xs text-stone-400">
-                        {smCompleted}/{sm.scenarioIds.length}
+                        {sgCompleted}/{sg.scenarioIds.length}
                       </span>
                     </div>
                   );
@@ -119,11 +118,11 @@ export default function ProgressPage({ completedScenarios, practicedPrinciples, 
           <Award className="w-8 h-8 text-amber-500 mx-auto mb-2" />
           <p className="font-serif text-lg font-bold text-stone-800 mb-1">All scenarios completed!</p>
           <p className="text-stone-600 text-sm">
-            You've practiced all 26 scenarios. Check out the full{" "}
+            You've practiced all {totalScenarios} scenarios. Check out the full{" "}
             <a href="https://github.com/vegaPDX/PromptBridge" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:text-indigo-700 underline">
               PromptBridge
             </a>{" "}
-            for 76 scenarios and advanced practice modes.
+            for more scenarios and advanced practice modes.
           </p>
         </div>
       )}

@@ -26,8 +26,8 @@
   },
   "feedback": {
     "what_happened": "The weak prompt produces a completely generic cover letter that could be sent to any company for any job — it's full of empty phrases like 'proven track record' with zero specifics. The medium prompt gets a more personalized response that mentions the candidate's actual experience, but it's still generic marketing language that doesn't connect to the specific job requirements. The effective prompt produces a cover letter that directly addresses the company's mission, maps each requirement to specific achievements with numbers, and shows genuine enthusiasm for the role. This happens because the AI can only work with what you give it — no details means generic output, while specific job requirements and concrete examples let the AI create targeted, compelling content.",
-    "principle": "Provide context — the more relevant details you include, the more tailored and useful the AI's response will be.",
-    "principle_name": "Provide context",
+    "skill": "Provide full context — the more relevant details you include, the more tailored and useful the AI's response will be.",
+    "skill_name": "Provide full context",
     "tip": "Next time you need help with application materials, copy-paste the actual job posting into your prompt along with your specific, measurable achievements that match what they're looking for."
   },
   "feedbackUpdatedAt": "2026-03-24T05:44:07.381Z"

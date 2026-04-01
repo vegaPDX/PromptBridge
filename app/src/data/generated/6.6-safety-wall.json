@@ -26,8 +26,8 @@
   },
   "feedback": {
     "what_happened": "The weak prompt asks a clinical question with zero context about who's asking or why — so AI plays it safe with a generic 'ask your doctor' response. It's not wrong, but it's useless for a healthcare professional who needs actual clinical information. The medium prompt mentions nursing credentials, which unlocks more detailed information, but the AI still hedges with disclaimers and uses clinical jargon that wouldn't work for patient education. The effective prompt provides the full professional context — who you are, what the content is for, who will read it, and the reading level you need. It even mentions pharmacy department approval. This gives the AI everything it needs to produce genuinely useful, appropriately detailed content.",
-    "principle": "State your intent",
-    "principle_name": "AI can't tell the difference between a casual question and a professional need. Explaining who you are and why you need the information helps AI calibrate its response appropriately.",
+    "skill": "Provide full context",
+    "skill_name": "AI can't tell the difference between a casual question and a professional need. Explaining who you are and why you need the information helps AI calibrate its response appropriately.",
     "tip": "When AI gives you a generic disclaimer instead of useful information, add your professional context: who you are, what you'll use it for, and why you need this level of detail. Most safety filters respond to context — a nurse asking about drug interactions is very different from an anonymous question."
   }
 }

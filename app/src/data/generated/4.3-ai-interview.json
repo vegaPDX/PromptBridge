@@ -26,8 +26,8 @@
   },
   "feedback": {
     "what_happened": "The weak prompt gives you a generic checklist that could apply to any team offsite anywhere. The medium prompt is better — it acknowledges your budget and asks one clarifying question, so you get more tailored advice. But the effective prompt transforms the interaction entirely. Instead of guessing what you need, the AI becomes your planning partner, asking targeted questions about purpose, timeline, budget, team dynamics, and preferences. This produces a personalized roadmap rather than generic advice.",
-    "principle": "Ask the AI to ask you questions",
-    "principle_name": "When you're not sure how to approach a complex task, ask the AI to interview you with questions rather than trying to explain everything upfront.",
+    "skill": "Ask AI to ask you questions",
+    "skill_name": "When you're not sure how to approach a complex task, ask the AI to interview you with questions rather than trying to explain everything upfront.",
     "tip": "When facing a multi-step project you haven't fully thought through, add 'Can you interview me with questions to help me think through...' to your prompt. The AI will become your thinking partner instead of just giving you generic advice."
   },
   "feedbackUpdatedAt": "2026-03-24T05:45:34.118Z"

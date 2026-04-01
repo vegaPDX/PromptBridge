@@ -3,7 +3,7 @@ import {
   ArrowLeft, ArrowRight, Send, BarChart3, Check, Target,
 } from "lucide-react";
 import { SCENARIOS } from "../data/scenarios";
-import { PRINCIPLE_MAP } from "../data/principles";
+import { SKILL_MAP } from "../data/skills";
 import { PRE_SCENARIOS, POST_SCENARIOS } from "../data/assessment-scenarios";
 import { scorePrompt } from "../services/heuristic-scorer";
 
@@ -195,7 +195,7 @@ export default function AssessmentMode({ onComplete, onBack, assessmentData }) {
                       : <div className="w-4 h-4 rounded-full border-2 border-stone-300 flex-shrink-0" />
                     }
                     <span className={`text-sm ${detected ? "text-emerald-800 font-medium" : "text-stone-500"}`}>
-                      {PRINCIPLE_MAP[pid]?.name}
+                      {SKILL_MAP[pid]?.name}
                     </span>
                   </div>
                 );

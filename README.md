@@ -14,68 +14,50 @@ No technical background required. No AI experience required. The tool meets peop
 
 ---
 
-## Inspiration: NeuroBridge
+## Inspiration
 
-PromptBridge is directly inspired by [**NeuroBridge**](https://dl.acm.org/doi/10.1145/3663547.3746337), a training tool from Tufts University that won **Best Student Paper** at [ASSETS 2025](https://assets25.sigaccess.org/) (the ACM SIGACCESS Conference on Computers and Accessibility).
-
-NeuroBridge trains neurotypical people to communicate more clearly with autistic individuals. Its core insight — and the foundation of PromptBridge — is that the communication skills NeuroBridge teaches are the same skills that make someone effective at communicating with AI:
-
-| NeuroBridge teaches | PromptBridge applies it to AI |
-|---|---|
-| Be direct and literal | Be specific, not vague |
-| Avoid indirect speech acts | Don't use yes/no questions when you want information |
-| Provide explicit context | Tell the AI who you are and what you need |
-| Don't assume shared knowledge | State your intent and constraints |
-
-NeuroBridge uses a see-consequences, compare-approaches, receive-feedback interaction model. PromptBridge adapts this same pedagogical approach for AI communication training: users compare weak, medium, and strong prompts side by side, see the dramatically different AI responses each produces, and get specific feedback tied to communication principles.
-
-**Citation:**
-> Haroon, R., Wigdor, K., Yang, K., Toumanios, N., Crehan, E.T., & Dogar, F. (2025). "NeuroBridge: Using Generative AI to Bridge Cross-neurotype Communication Differences through Neurotypical Perspective-taking." In *Proceedings of the 27th International ACM SIGACCESS Conference on Computers and Accessibility (ASSETS '25)*. ACM. DOI: [10.1145/3663547.3746337](https://dl.acm.org/doi/10.1145/3663547.3746337)
+PromptBridge was personally inspired by [NeuroBridge](https://dl.acm.org/doi/10.1145/3663547.3746337),
+a training tool from Tufts University (ASSETS 2025 Best Student Paper). NeuroBridge's
+comparison-based teaching approach — showing learners the consequences of different
+choices side by side — shaped how PromptBridge teaches. The side-by-side practice
+format used throughout PromptBridge is adapted from this pedagogical model.
 
 ---
 
 ## Features
 
-### 6 Maxims, 13 Sub-maxims
+### 2 Focus Areas, 12 Skills
 
-PromptBridge organizes its teaching around 6 core maxims — broad communication principles drawn from Gricean pragmatics and human-AI interaction research. Each maxim contains 2–3 sub-maxims with 2 practice scenarios each, for 26 guided scenarios total. Maxim 6 (Use AI Responsibly) receives extra emphasis with 3 sub-maxims and 6 scenarios.
+PromptBridge organizes its teaching around 2 focus areas covering 12 skills. Each skill has multiple practice scenarios for 35 guided scenarios total.
 
-| Maxim | Sub-maxims | Scenarios |
-|-------|------------|-----------|
-| **M1: Be Clear & Specific** | Be specific, not vague / Avoid ambiguity | 4 |
-| **M2: Provide Context & Intent** | Provide relevant context / State your intent | 4 |
-| **M3: Guide the Output** | Show what "good" looks like / Include everything needed, nothing extra | 4 |
-| **M4: Iterate & Collaborate** | Give specific feedback / Collaborate with AI | 4 |
-| **M5: Verify & Think Critically** | Verify before you trust / Know what AI can't do | 4 |
-| **M6: Use AI Responsibly** | Recognize and challenge bias / Maintain human oversight / Understand safety boundaries | 6 |
+| Focus Area | Skills | Scenarios |
+|------------|--------|-----------|
+| **A1: Effective Prompting** | S1–S8 (8 skills) | 22 |
+| **A2: Responsible & Safe AI Use** | S9–S12 (4 skills) | 13 |
 
-See [SCENARIO-MAP.md](SCENARIO-MAP.md) for the full mapping of all 26 scenarios to maxims, sub-maxims, and principles.
+### 12 Skills
 
-### 12 Communication Skills
+Every scenario teaches one or more of these skills, drawn from published best practices by Anthropic, OpenAI, and Google:
 
-Every scenario teaches one or more of these principles, guided by research in Gricean pragmatics and human-AI communication:
+**Effective Prompting (A1):**
+1. **S1 — Be clear and specific** — Ask for exactly what you want — include numbers, constraints, and details
+2. **S2 — Provide full context** — Tell AI who you are, what you're working on, and what constraints exist
+3. **S3 — Show what good looks like** — Give examples of the format, tone, or style you want
+4. **S4 — Iterate with specific feedback** — Tell AI what's wrong AND how to fix it — specific corrections get specific improvements
+5. **S5 — Ask for step-by-step reasoning** — Ask AI to think through problems step by step before giving a final answer
+6. **S6 — Break down complex tasks** — Split big requests into smaller, focused steps — don't ask AI to do everything at once
+7. **S7 — Ask AI to ask you questions** — Instead of guessing what AI needs, ask it to interview you
+8. **S8 — Ask AI to write your prompts** — Once you know what you want, ask AI to write a reusable prompt
 
-**Communication fundamentals:**
-1. **Be specific, not vague** — Ask for exactly what you want
-2. **Provide context** — Share who you are, what you're working on, what constraints exist
-3. **State your intent** — Explain what you'll use the result for
-4. **Avoid ambiguity** — Don't use yes/no questions when you want information
-5. **Show what "good" looks like** — Give examples of format, tone, or style
-6. **Give specific feedback** — Say what's wrong and how to fix it, not just "try again"
-7. **Ask the AI to ask you questions** — Let it interview you instead of guessing
-8. **Ask the AI to write prompts for you** — Let it crystallize your request
+**Responsible & Safe AI Use (A2):**
+9. **S9 — Verify before you trust** — AI sounds confident whether it's right or wrong — ask for sources and flag uncertainty
+10. **S10 — Know what AI can't do** — AI has a training cutoff, can't browse the web, has no personal experience
+11. **S11 — Use AI responsibly** — AI can reflect biases, agree when you're wrong, and produce harmful content
+12. **S12 — Spot context drift** — In long conversations, AI can lose track of instructions or contradict itself
 
-**Verification and critical thinking:**
-9. **Verify before you trust** — Don't take AI answers at face value — ask it to show its work and flag what it's unsure about
-10. **Include everything needed — but nothing extra** — Give the AI all the important details, but cut anything that doesn't help
+### 35 Guided Scenarios
 
-**AI awareness and responsibility:**
-11. **Know what AI can't do** — AI has a training cutoff, can't browse the web, has no personal experience, and sometimes avoids topics without explaining why
-12. **Use AI responsibly** — AI can reflect biases, agree when it shouldn't, and produce harmful content — you're the human quality filter
-
-### 26 Guided Scenarios
-
-All scenarios use a **guided practice** format: compare 3 prompt approaches (weak, getting there, effective) side by side, see the AI response each produces, and receive specific feedback tied to communication principles. Then write your own version and get scored.
+All scenarios use a **guided practice** format: compare 3 prompt approaches (weak, getting there, effective) side by side, see the AI response each produces, and receive specific feedback tied to skills. Then write your own version and get scored.
 
 Scenarios span personal, work, and school contexts — from writing emails and planning meals to catching AI hallucinations, decoding AI refusals, and auditing for bias.
 
@@ -84,10 +66,10 @@ Scenarios span personal, work, and school contexts — from writing emails and p
 - **Welcome Banner** — First-visit banner highlighting 3 key facts most people don't know about AI: confident-sounding errors, sycophancy, and how communication skills fix most frustrations.
 - **Pre-Scenario Reminders** — Dismissible reminder before each scenario that AI can sound confident and still be wrong.
 - **Using AI Wisely** — Standalone guide covering critical AI limitations: hallucination, sycophancy, bias, knowledge cutoffs, operational limits, evasiveness, and more. Accessible from the landing page and header navigation.
-- **Collapsible Maxim Groups** — Scenarios organized by maxim, defaulting to collapsed with completion counters.
+- **Collapsible Skill Groups** — Scenarios organized by skill group, defaulting to collapsed with completion counters.
 - **Progression Recommendations** — The tool suggests what to try next based on which skills you haven't practiced yet.
 - **Personalization** — Optional "What do you use AI for?" question to surface the most relevant scenarios.
-- **Progress Tracking** — Tracks completed scenarios and practiced principles in your browser.
+- **Progress Tracking** — Tracks completed scenarios and practiced skills in your browser.
 - **Copy-to-Real-AI Workflow** — Every scenario includes copy buttons and links to ChatGPT, Claude, Gemini, and Copilot so you can immediately practice in real tools.
 - **Accessible** — Skip-to-content link, ARIA labels, reduced motion support, color contrast compliant, semantic HTML.
 - **Mobile Friendly** — Responsive design that works on phones, tablets, and desktops.
@@ -99,8 +81,8 @@ Scenarios span personal, work, and school contexts — from writing emails and p
 The public web app is a **fully static site** with no backend and no outbound network requests. All content is pre-generated at build time. No API keys are needed or accepted in the deployed app.
 
 - **Frontend:** React 19, Vite 8, Tailwind CSS v4
-- **Content:** 26 pre-generated JSON scenario files (generated once by a local script using Claude or Gemini APIs)
-- **Scoring:** Client-side heuristic scorer using regex pattern matching against the 12 communication principles
+- **Content:** 35 pre-generated JSON scenario files (generated once by a local script using Claude or Gemini APIs)
+- **Scoring:** Client-side heuristic scorer using regex pattern matching against the 12 skills
 - **Testing:** Vitest + React Testing Library
 - **Storage:** Progress saved in browser `localStorage`
 - **Deployment:** GitHub Pages (static files only)
@@ -155,7 +137,7 @@ npm run dev
 
 The app will be available at `http://localhost:5173`.
 
-All 26 guided scenarios work immediately with pre-generated content. No API key required.
+All 35 guided scenarios work immediately with pre-generated content. No API key required.
 
 ### Regenerating Content
 
@@ -191,8 +173,7 @@ Output goes to `app/dist/`. The GitHub Actions workflow handles production build
 ```
 promptbridge/
 ├── README.md
-├── PROJECT_OVERVIEW.md                # Project vision, goals, and research foundation
-├── SCENARIO-MAP.md                    # Full mapping of 26 scenarios to maxims and principles
+├── PROJECT_OVERVIEW.md                # Project vision, goals, and design foundation
 ├── LICENSE                            # AGPL-3.0
 ├── docs/                              # Project documentation
 │   ├── ARCHITECTURE.md
@@ -202,9 +183,6 @@ promptbridge/
 │   ├── ROADMAP.md
 │   ├── SCENARIOS.md
 │   └── SECURITY_REVIEW_PROMPT.md
-│
-├── artifact/
-│   └── PromptBridge.jsx               # Original single-file Claude.ai artifact
 │
 ├── .github/
 │   ├── workflows/deploy.yml           # GitHub Pages auto-deploy
@@ -223,25 +201,27 @@ promptbridge/
         ├── index.css                  # Tailwind CSS + animations
         ├── __tests__/                 # Vitest + React Testing Library tests
         ├── data/
-        │   ├── scenarios.js           # 26 scenario definitions
-        │   ├── maxims.js              # 6 maxims with 13 sub-maxims
-        │   ├── principles.js          # 12 communication principles
-        │   ├── categories.js          # Maxim display labels and colors
+        │   ├── scenarios.js           # 35 scenario definitions
+        │   ├── skills.js              # 12 skills (S1–S12) with definitions and metadata
+        │   ├── skill-areas.js         # 2 focus areas with 11 skill groups
+        │   ├── maxims.js              # Legacy file (6 maxims) — kept for reference
+        │   ├── principles.js          # Legacy file (12 principles) — kept for reference
+        │   ├── categories.js          # Focus area display labels and colors
         │   ├── assessment-scenarios.js # Pre/post assessment scenario IDs
         │   ├── demo.js                # Landing page demo prompts and responses
         │   ├── icon-map.js            # Dynamic Lucide icon resolver
         │   ├── prompts.js             # LLM prompt templates (used by generate-content.js)
-        │   └── generated/             # 26 pre-generated JSON files (one per scenario)
+        │   └── generated/             # 35 pre-generated JSON files (one per scenario)
         ├── pages/
         │   ├── LandingPage.jsx        # Home page with demo
-        │   ├── ScenarioSelector.jsx   # Maxim-grouped scenario browser
+        │   ├── ScenarioSelector.jsx   # Skill-grouped scenario browser
         │   ├── GuidedMode.jsx         # Guided practice with pre-generated content
         │   ├── ProgressPage.jsx       # Progress tracking dashboard
         │   ├── HelpPage.jsx           # Help and getting started
         │   └── AiSafetyPage.jsx       # "Using AI Wisely" standalone guide
         ├── services/
         │   ├── guided-data.js         # Data loading for guided scenarios
-        │   ├── heuristic-scorer.js    # Client-side prompt quality scoring
+        │   ├── heuristic-scorer.js    # Client-side prompt quality scoring (12 skills)
         │   ├── recommendations.js     # Next-scenario recommendations
         │   └── storage.js             # localStorage persistence
         └── components/
@@ -266,13 +246,12 @@ Copyright (C) 2026 Chris Vega (vegaPDX)
 
 You are free to use, modify, and redistribute this software. If you distribute a modified version — including running it as a web service — you must also make your source code available under the same AGPL-3.0 license.
 
-This license was chosen to honor the spirit of the NeuroBridge research that inspired PromptBridge: knowledge should be shared freely to advance understanding, not locked away for profit.
+This license was chosen to ensure that improvements to AI literacy tools remain freely available to everyone.
 
 ---
 
 ## Acknowledgments
 
-- **NeuroBridge** (Haroon et al., Tufts University) — The research that inspired PromptBridge's pedagogical approach. [Read the paper](https://dl.acm.org/doi/10.1145/3663547.3746337)
-- **Miehling et al.** (IBM Research, EMNLP 2024) — Extended Gricean maxims with Transparency and Benevolence for human-AI communication, providing the framework for principles 9–12 and the AI safety guide
-- **Anthropic**, **OpenAI**, and **Google** — Prompting best practices documentation that informed the communication principles and AI safety guidance
-- Communication principles are guided by research in Gricean pragmatics and human-AI interaction, taught in an AI-agnostic, jargon-free way
+- **NeuroBridge** (Haroon et al., Tufts University) — Inspired the comparison-based teaching format
+- **Anthropic**, **OpenAI**, and **Google** — Prompting best practices documentation that informed
+  the skills and AI safety guidance

@@ -26,8 +26,8 @@
   },
   "feedback": {
     "what_happened": "The weak prompt treats a myth as fact, so the AI goes along with it and builds an entire explanation around false information. The medium prompt shows some improvement by mentioning complexity, and the AI catches the error and provides a correction, but it's buried in hedging language. The effective prompt explicitly asks the AI to verify the claim first, which produces a clear, authoritative correction that prevents misinformation from entering the essay. The key difference is that only the effective approach made fact-checking the primary task.",
-    "principle": "Always ask AI to verify claims before expanding on them, especially when you're not completely certain they're true.",
-    "principle_name": "Verify before you trust",
+    "skill": "Always ask AI to verify claims before expanding on them, especially when you're not completely certain they're true.",
+    "skill_name": "Verify before you trust",
     "tip": "When you want AI to help with factual content, start with 'Can you verify whether [claim] is true?' rather than asking it to expand on something you're not sure about. This prevents you from accidentally building arguments on false foundations."
   },
   "feedbackUpdatedAt": "2026-03-24T05:43:24.591Z"

@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { Check, Sparkles, X, ChevronDown, Shield } from "lucide-react";
 import PreScenarioBanner from "../components/PreScenarioBanner";
 import { GUIDED_SCENARIOS } from "../data/scenarios";
-import { MAXIMS } from "../data/maxims";
+import { SKILL_AREAS } from "../data/skill-areas";
 import { CATEGORIES } from "../data/categories";
-import { PRINCIPLE_MAP } from "../data/principles";
+import { SKILL_MAP } from "../data/skills";
 import { resolveIcon } from "../data/icon-map";
 import { getRecommendedScenarios } from "../services/recommendations";
 
@@ -22,15 +22,15 @@ function getMatchingTags(userContext) {
 
 export default function ScenarioSelector({ onSelectScenario, completedScenarios, practicedPrinciples = [], userContext, onSetUserContext, showPreScenarioBanner, onDismissPreScenario, initialExpandMaxim }) {
   const [bannerDismissed, setBannerDismissed] = useState(false);
-  const [expandedMaxims, setExpandedMaxims] = useState(() =>
+  const [expandedAreas, setExpandedAreas] = useState(() =>
     initialExpandMaxim ? new Set([initialExpandMaxim]) : new Set()
   );
 
-  const toggleMaxim = (maximId) => {
-    setExpandedMaxims(prev => {
+  const toggleArea = (areaId) => {
+    setExpandedAreas(prev => {
       const next = new Set(prev);
-      if (next.has(maximId)) next.delete(maximId);
-      else next.add(maximId);
+      if (next.has(areaId)) next.delete(areaId);
+      else next.add(areaId);
       return next;
     });
   };
@@ -47,7 +47,7 @@ export default function ScenarioSelector({ onSelectScenario, completedScenarios,
     <div className="max-w-4xl mx-auto px-4 py-8">
       <h1 className="font-serif text-3xl font-bold text-stone-800 mb-2">Choose a Scenario</h1>
       <p className="text-stone-600 mb-1">
-        26 focused practice scenarios organized by 6 core principles.
+        {totalScenarios} focused practice scenarios organized by 12 skills.
       </p>
       <p className="text-stone-500 text-sm mb-6">
         {totalCompleted} of {totalScenarios} completed
@@ -80,22 +80,22 @@ export default function ScenarioSelector({ onSelectScenario, completedScenarios,
         </div>
       )}
 
-      {/* Maxim accordion */}
-      {MAXIMS.map((maxim) => {
-        const cat = CATEGORIES[maxim.id];
+      {/* Focus area accordion */}
+      {SKILL_AREAS.map((area) => {
+        const cat = CATEGORIES[area.id];
         if (!cat) return null;
         const CatIcon = resolveIcon(cat.icon);
-        const isExpanded = expandedMaxims.has(maxim.id);
-        const isSafety = maxim.id === "M5" || maxim.id === "M6";
+        const isExpanded = expandedAreas.has(area.id);
+        const isSafety = area.id === "A2";
 
-        // Count completed scenarios in this maxim
-        const maximScenarioIds = maxim.subMaxims.flatMap(sm => sm.scenarioIds);
-        const completedCount = maximScenarioIds.filter(id => completedScenarios.includes(id)).length;
+        // Count completed scenarios in this area
+        const areaScenarioIds = area.skills.flatMap(sg => sg.scenarioIds);
+        const completedCount = areaScenarioIds.filter(id => completedScenarios.includes(id)).length;
 
         return (
-          <section key={maxim.id} aria-labelledby={`maxim-${maxim.id}`} className="mb-4">
+          <section key={area.id} aria-labelledby={`area-${area.id}`} className="mb-4">
             <button
-              onClick={() => toggleMaxim(maxim.id)}
+              onClick={() => toggleArea(area.id)}
               aria-expanded={isExpanded}
               className={`w-full text-left rounded-xl border p-4 hover:border-indigo-200 transition-all ${
                 isSafety
@@ -107,11 +107,11 @@ export default function ScenarioSelector({ onSelectScenario, completedScenarios,
                 <div className="flex items-center gap-2.5">
                   {isSafety && <Shield className="w-4 h-4 text-rose-500" />}
                   {CatIcon && !isSafety && <CatIcon className="w-5 h-5 text-stone-400" />}
-                  <h2 id={`maxim-${maxim.id}`} className="font-serif text-lg font-semibold text-stone-700">
-                    {maxim.name}
+                  <h2 id={`area-${area.id}`} className="font-serif text-lg font-semibold text-stone-700">
+                    {area.name}
                   </h2>
                   <span className="text-xs px-2 py-0.5 bg-stone-100 text-stone-500 rounded-full font-medium">
-                    {completedCount}/{maximScenarioIds.length}
+                    {completedCount}/{areaScenarioIds.length}
                   </span>
                   {isSafety && (
                     <span className="text-xs px-2 py-0.5 bg-rose-100 text-rose-600 rounded-full font-medium">
@@ -126,16 +126,16 @@ export default function ScenarioSelector({ onSelectScenario, completedScenarios,
 
             {isExpanded && (
               <div className="mt-3 ml-2 space-y-4 animate-fadeIn">
-                {maxim.subMaxims.map(subMaxim => {
-                  const subScenarios = GUIDED_SCENARIOS.filter(s => subMaxim.scenarioIds.includes(s.id));
+                {area.skills.map(skillGroup => {
+                  const groupScenarios = GUIDED_SCENARIOS.filter(s => skillGroup.scenarioIds.includes(s.id));
                   return (
-                    <div key={subMaxim.id}>
+                    <div key={skillGroup.id}>
                       <h3 className="text-sm font-semibold text-stone-600 mb-2 pl-2">
-                        {subMaxim.name}
-                        <span className="font-normal text-stone-400 ml-2">— {subMaxim.description}</span>
+                        {skillGroup.name}
+                        <span className="font-normal text-stone-400 ml-2">— {skillGroup.description}</span>
                       </h3>
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        {subScenarios.map(scenario => {
+                        {groupScenarios.map(scenario => {
                           const isCompleted = completedScenarios.includes(scenario.id);
                           const isRecommended = recommendedIds.has(scenario.id);
                           return (
@@ -165,9 +165,9 @@ export default function ScenarioSelector({ onSelectScenario, completedScenarios,
                               </div>
                               <p className="text-stone-600 text-sm mb-3 line-clamp-2">{scenario.situation}</p>
                               <div className="flex flex-wrap gap-1">
-                                {scenario.principles.map(pid => (
-                                  <span key={pid} className="text-xs px-1.5 py-0.5 bg-indigo-50 text-indigo-600 rounded font-medium">
-                                    {PRINCIPLE_MAP[pid]?.name}
+                                {scenario.skills.map(sid => (
+                                  <span key={sid} className="text-xs px-1.5 py-0.5 bg-indigo-50 text-indigo-600 rounded font-medium">
+                                    {SKILL_MAP[sid]?.name}
                                   </span>
                                 ))}
                               </div>
